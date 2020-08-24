@@ -139,6 +139,20 @@
 		</dependency>	
 		<!-- 시큐리티 설정 종료 -->
 		
+		<!-- AOP 라이브러리 추가 -->
+		<dependency>
+		    <groupId>org.aspectj</groupId>
+		    <artifactId>aspectjweaver</artifactId>
+		    <version>1.9.2</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/cglib/cglib -->
+		<dependency>
+		    <groupId>cglib</groupId>
+		    <artifactId>cglib</artifactId>
+		    <version>2.2.2</version>
+		</dependency>
+		<!-- //AOP 라이브러리 추가 -->
+		
 		<!-- Mybatis 설정 시작 -->
 		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
 		<dependency>
