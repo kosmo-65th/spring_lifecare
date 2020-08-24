@@ -16,7 +16,7 @@ public class UserController {
 	public String home(Model model) {
 		logger.info("url ==> home");
 		
-		return "home";
+		return "main";
 	}
 	
 	@RequestMapping("HiPassCard")
