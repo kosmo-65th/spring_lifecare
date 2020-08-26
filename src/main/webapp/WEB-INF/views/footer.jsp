@@ -26,16 +26,15 @@
 						<p>대표전화 : <a href="tel:1588-5700">1588-5700</a></p>
 						<p>
 						
-			<a href="/login.do?retUrl=/join/client.do">홈페이지 의견접수</a>
+			<a href="/login.do?retUrl=/join/client.do">홈페이지 의견접수&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+			
 		</p>
+					<ul>
+						<li><a href="#"><img src="${path}img/인증1.png" width="30" height="30">Spring Security</a></li>
+					</ul>
 					</address>
-					<p class="copyright">COPYRIGHT 2010 SEOUL NATIONAL UNIVERSITY HOSPITAL. ALL RIGHTS RESERVED</p>
-					<ul class="awardList">
-						<li class="item05 hideTxt"><a href="/board/B003/view.do?viewType=true&amp;bbs_no=5224">전자의무기록시스템</a></li>
-						<li class="item01 hideTxt"><a href="/board/B003/view.do?bbs_no=1509">보건복지부 제 1호</a></li>
-<li class="item04 hideTxt"><a href="#">서울대학교병원 정보보호 관리체계(ISMS) 인증
-                        [유효기간] 2018.04.06~2021.04.05 
-                        [인증범위] 의료정보시스템(EMR,OCS),홈페이지 및 모바일 애플리케이션</a></li>              
+					<ul>
+						<li><p class="copyright" >COPYRIGHT 2010 SEOUL NATIONAL UNIVERSITY HOSPITAL. ALL RIGHTS RESERVED</p></li>
 					</ul>
 				</div>
 			</div>

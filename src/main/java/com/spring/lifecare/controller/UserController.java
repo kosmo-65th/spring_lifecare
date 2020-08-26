@@ -8,9 +8,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserController {
 	// HomeController.java는 주석처리
 	@RequestMapping("/")
-	public String home(Model model) {
+	public String main(Model model) {
 		
 		return "main";
+	}
+	
+	@RequestMapping("login")
+	public String login(Model model) {
+		
+		return "login";
 	}
 	
 	@RequestMapping("HiPassCard")
