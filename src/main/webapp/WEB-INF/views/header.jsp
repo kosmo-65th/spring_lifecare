@@ -40,8 +40,8 @@
                         <div class="col-xl-6 col-md-6">
                             <div class="short_contact_list">
                                 <ul>
-                                    <li><a href="#"> <i class="fa fa-envelope"></i> info@docmed.com</a></li>
-                                    <li><a href="#"> <i class="fa fa-phone"></i> 160160</a></li>
+                                    <li><a href="#">회원가입</a></li>
+                                    <li><a href="#">로그인</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -62,22 +62,25 @@
                             <div class="main-menu  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a class="active" href="index.html">home</a></li>
-                                        <li><a href="Department.html">Department</a></li>
-                                        <li><a href="#">blog <i class="ti-angle-down"></i></a>
+                                        <li><a class="active" href="index.html">HOME</a></li>
+                                        <li><a href="Department.html">예약<i class="ti-angle-down"></i></a>
+                                        	<ul class="submenu">
+                                               <li><a href="blog.html">자가진단</a></li>
+                                            </ul>
+                                        </li>     
+                                        <li><a href="#">이용안내<i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="blog.html">blog</a></li>
-                                                <li><a href="single-blog.html">single-blog</a></li>
+                                                <li><a href="blog.html">병원 오시는길</a></li>
+                                                <li><a href="single-blog.html">주변약국</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="#">pages <i class="ti-angle-down"></i></a>
+                                        <li><a href="#">의료정보 <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="elements.html">elements</a></li>
-                                                <li><a href="about.html">about</a></li>
+                                                <li><a href="elements.html">약정보</a></li>
+                                                <li><a href="about.html">응급처치방법</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="Doctors.html">Doctors</a></li>
-                                        <li><a href="contact.html">Contact</a></li>
+                                        <li><a href="Doctors.html">코로나정보</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -85,7 +88,7 @@
                         <div class="col-xl-3 col-lg-3 d-none d-lg-block">
                             <div class="Appointment">
                                 <div class="book_btn d-none d-lg-block">
-                                    <a class="popup-with-form" href="#test-form">Make an Appointment</a>
+                                    <a class="popup-with-form" href="#test-form">예약하기</a>
                                 </div>
                             </div>
                         </div>
