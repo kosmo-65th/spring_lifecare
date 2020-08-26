@@ -12,7 +12,6 @@
    <meta name="keywords" content="">
    <meta name="description" content="">
    <meta name="author" content="">
-   
    <!-- Site Icons -->
    <link rel="shortcut icon" href="${path3}images/fevicon.ico.png" type="image/x-icon" />
    <link rel="apple-touch-icon" href="${path3}images/apple-touch-icon.png">
@@ -28,6 +27,35 @@
    
    <!-- Modernizer for Portfolio -->
    <script src="${path3}js/modernizer.js"></script>
+   <!-- jQuery 추가 -->
+   <script src="${path}setting/jquery-3.5.1.min.js"></script>
+   
+   <!-- 팝업창 띄우는 자바스크립트 -->
+    <script type="text/javascript">
+	function getCookie(name) {
+    	var cookie = document.cookie;
+    	if (document.cookie != "") {
+         	var cookieArray = cookie.split("; ");
+         	for ( var index in cookieArray) {
+            	var cookieName = cookieArray[index].split("=");
+            	if (cookieName[0] == "popupYN") {
+                	return cookieName[1];
+             	}
+         	}
+    	} return ;    
+	}
+	
+	$(document).ready(function(){
+		popUp();
+	});
+ 
+	function popUp() {
+    	var cookieCheck = getCookie("popupYN");
+    	if (cookieCheck != "N"){
+         	window.open('popup', 'newpop', 'width=545,height=445,left=0,top=0');
+    	}
+	}
+	</script>
    <!-- [if lt IE 9] -->
    </head>
    <body class="clinic_version">

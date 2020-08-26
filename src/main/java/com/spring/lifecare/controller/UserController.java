@@ -19,8 +19,15 @@ public class UserController {
 		return "login";
 	}
 	
-	@RequestMapping("HiPassCard")
-	public String HiPassCard(Model model) {
-		return "HiPassCard";
+	// 팝업창 
+	@RequestMapping("popup")
+	public String popup(Model model) {
+		return "popup";
+	}
+	
+	// 카카오페이 결제 페이지(새창)
+	@RequestMapping("kakaopay")
+	public String kakaopay(Model model) {
+		return "kakaopay";
 	}
 }

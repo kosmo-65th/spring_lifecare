@@ -1,0 +1,182 @@
+@charset "UTF-8";
+
+body,p,div,span,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0; padding:0;}
+body,input,textarea,button,select,pre{font-family: 'Noto Sans KR', sans-serif;color:#060e1e;font-size:16px;letter-spacing: -0.5px;}
+body{/*font-size:0.875em;*/}
+h1,h2,h3,h4,h5,h6,input,textarea,button,select,table{font-size:1em;}
+img, fieldset, button{border:0;}
+textarea{overflow:auto;}
+input[type=submit],
+input[type=button],
+button{cursor:pointer;}
+img{vertical-align:middle;}
+address, em{font-style:normal;}
+pre{white-space:pre-wrap;}
+table{border-spacing:0; border-collapse:collapse;}
+table,th,td{border:none;}
+caption{overflow:hidden; line-height:0; text-indent:-2000em;}
+legend, .hidden{overflow:hidden; position:absolute; top:0; left:-2000em; line-height:0;}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display:block;}
+
+/* 링크 기본값 */
+a:link{text-decoration:none; color:#444;}
+a:visited{text-decoration:none; color:#444;}
+a:hover{text-decoration:none; color:#444;}
+a:active{text-decoration:none;}
+a:focus{text-decoration:none;}
+
+/* 리스트 스타일 제거 */
+ul,ol,li{list-style:none;}
+
+/* 마진 패딩 */
+/* 마진*/
+.m0 {margin: 0;}
+.m5 {margin: 5px;}
+.m10 {margin: 10px;}
+.m15 {margin: 15px;}
+.m20 {margin: 20px;}
+.m25 {margin: 25px;}
+.m30 {margin: 30px;}
+.m40 {margin: 40px;}
+/* 마진 left */
+.ml0 {margin-left: 0;}
+.ml5 {margin-left: 5px;}
+.ml10 {margin-left: 10px;}
+.ml15 {margin-left: 15px;}
+.ml20 {margin-left: 20px;}
+.ml25 {margin-left: 25px;}
+.ml30 {margin-left: 30px;}
+.ml40 {margin-left: 40px;}
+/* 마진 right */
+.mr0 {margin-right: 0;}
+.mr5 {margin-right: 5px;}
+.mr10 {margin-right: 10px;}
+.mr15 {margin-right: 15px;}
+.mr20 {margin-right: 20px;}
+.mr25 {margin-right: 25px;}
+.mr30 {margin-right: 30px;}
+.mr40 {margin-right: 40px;}
+/* 마진 top */
+.mt0 {margin-top: 0;}
+.mt5 {margin-top: 5px;}
+.mt10 {margin-top: 10px;}
+.mt15 {margin-top: 15px;}
+.mt20 {margin-top: 20px;}
+.mt25 {margin-top: 25px;}
+.mt30 {margin-top: 30px;}
+.mt40 {margin-top: 40px;}
+.mt50 {margin-top: 50px;}
+/* 마진 bottom */
+.mb0 {margin-bottom: 0;}
+.mb5 {margin-bottom: 5px;}
+.mb10 {margin-bottom: 10px;}
+.mb15 {margin-bottom: 15px;}
+.mb20 {margin-bottom: 20px;}
+.mb25 {margin-bottom: 25px;}
+.mb30 {margin-bottom: 30px;}
+.mb40 {margin-bottom: 40px;}
+.mb50 {margin-bottom: 50px;}
+
+/* 패딩*/
+.p0 {padding: 0;}
+.p5 {padding: 5px;}
+.p10 {padding: 10px;}
+.p15 {padding: 15px;}
+.p20 {padding: 20px;}
+.p25 {padding: 25px;}
+.p30 {padding: 30px;}
+.p40 {padding: 40px;}
+/* 패딩 left */
+.pl0 {padding-left: 0;}
+.pl5 {padding-left: 5px;}
+.pl10 {padding-left: 10px;}
+.pl15 {padding-left: 15px;}
+.pl20 {padding-left: 20px;}
+.pl25 {padding-left: 25px;}
+.pl30 {padding-left: 30px;}
+.pl40 {padding-left: 40px;}
+/* 패딩 right */
+.pr0 {padding-right: 0;}
+.pr5 {padding-right: 5px;}
+.pr10 {padding-right: 10px;}
+.pr15 {padding-right: 15px;}
+.pr20 {padding-right: 20px;}
+.pr25 {padding-right: 25px;}
+.pr30 {padding-right: 30px;}
+.pr40 {padding-right: 40px;}
+/* 패딩 top */
+.pt0 {padding-top: 0;}
+.pt5 {padding-top: 5px;}
+.pt10 {padding-top: 10px;}
+.pt15 {padding-top: 15px;}
+.pt20 {padding-top: 20px;}
+.pt25 {padding-top: 25px;}
+.pt30 {padding-top: 30px;}
+.pt40 {padding-top: 40px;}
+/* 패딩 bottom */
+.pb0 {padding-bottom: 0;}
+.pb5 {padding-bottom: 5px;}
+.pb10 {padding-bottom: 10px;}
+.pb15 {padding-bottom: 15px;}
+.pb20 {padding-bottom: 20px;}
+.pb25 {padding-bottom: 25px;}
+.pb30 {padding-bottom: 30px;}
+.pb40 {padding-bottom: 40px;}
+
+/* 버튼 패딩 */
+.p310 {padding:3px 10px;}
+
+/*타이틀*/
+.head_box p{font-size: 25px; position: relative; top: 15px;font-weight: bold; color: #414141;}
+
+/*20200306_수정_상황별 행동수칙 / 마스크착용법 / 코로나 바로알기*/
+.content_01 ul li:nth-of-type(2), .content_01 ul li:nth-of-type(3) {margin-top: 10px;}
+.content_01 ul li a{width: 550px; height: 50px;display: block;}
+.content_01 ul li:hover{background-color: #E4E4E4;}
+.content_01 ul li a span:nth-of-type(1){font-size: 24px;font-weight: 800; width: 40px; height: 40px; background-color: aqua; display: inline-block;text-align: center; border-radius: 5px;background-color: #25566A;color: #fff; position: relative;margin:5px;}
+.content_01 ul li a span:nth-of-type(2){margin-left: 16px;font-size: 18px;font-weight: bold;position:relative;}
+.content_01 ul li a img{position: relative;float: right;padding: 15px 13px 13px 13px;}
+
+/*20200306_수정_코로나감염증 페이지 바로가기 / 예방수칙 다운로드 바로가기*/
+.content_02 ul li a{width: 200px; height: 165px; float: left;text-align: center;margin-top:20px;}
+.content_02 ul li a:hover{background-color: #B8E2FF;}
+.content_02 ul li:nth-of-type(1) a p:nth-of-type(1){margin-top: 25px;font-size: 15px;font-weight: 800;}
+.content_02 ul li:nth-of-type(1) a > img{margin-top: 25px;}
+.content_02 ul li:nth-of-type(2) a > img{margin-top: 10px;}
+.content_02 ul li:nth-of-type(3) a > img{margin-top: 10px;}
+
+.content_02 ul li a p > img{margin-left: 10px;}
+.content_02 ul li:nth-of-type(3) a p:nth-of-type(1){margin-top: 22px;font-size: 15px;font-weight: 800;}
+.content_02 ul li:nth-of-type(2) a p:nth-of-type(1){margin-top: 15px;font-size: 15px;font-weight: 800;}
+.content_02 ul li:nth-of-type(1) a p:nth-of-type(1){margin-top: 18px;font-size: 15px;font-weight: 800;}
+
+.content_02 ul li:nth-of-type(3) a p:nth-of-type(2){margin-top: 17px;font-size: 15px;font-weight: 300;}
+.content_02 ul li:nth-of-type(2) a p:nth-of-type(2){margin-top: 15px;font-size: 15px;font-weight: 300;}
+.content_02 ul li:nth-of-type(1) a p:nth-of-type(2){margin-top: 15px;font-size: 15px;font-weight: 300;}
+
+/*20200306_수정_닫기 / 하루열지않기 버튼*/
+#popup > a:nth-of-type(1){background-color: #414141;font-size:15px;position:relative;}
+#popup > a:nth-of-type(2){background-color: #292929;}
+
+
+#popup{position: relative;width: 600px;height:450px; }
+.head_box{text-align: center;width: 100%; height: 75px;}
+.head_box p{font-size: 25px; position: relative; top: 15px;font-weight: bold; color: #414141;}
+
+.content_01 ul li{background-color: #85C3ED;width: 550px;height: 50px;margin: 0 auto; background-color: #fff; border-radius: 5px; border: solid 2px #666}
+
+.content_02 ul li{background-color: #85C3ED;width: 33.3%; height: 185px; float: left;text-align: center;}
+
+#popup {background-color: #85C3ED;}
+#popup > a{width: 50%; display: block;float: left; text-align: center;height: 38px; color: #fff;font-size: 15px;font-weight: 300;padding-top: 12px;}
+#popup > a button{width: 100%; display: block;float: left; text-align: center; color: #fff;font-size: 15px;font-weight: 300;background-color: #292929;}
+
+/*대피시설 팝업*/
+#popup1 > a:nth-of-type(1){background-color: #414141;font-size:15px;position:relative;}
+#popup1 > a:nth-of-type(2){background-color: #292929;}
+#popup1{position: relative;width: 377px;height:450px; }
+#popup1 {background-color: #85C3ED;}
+#popup1 > a{width: 50%; display: block;float: left; text-align: center;height: 38px; color: #fff;font-size: 15px;font-weight: 300;padding-top: 12px;}
+#popup1 > a button{width: 100%; display: block;float: left; text-align: center; color: #fff;font-size: 15px;font-weight: 300;background-color: #292929;}
