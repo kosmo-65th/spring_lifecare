@@ -6,3 +6,7 @@
 
 # Log file
 *.log
+
+/target/
+# MANIFEST.MF 무시하게
+*.MF
