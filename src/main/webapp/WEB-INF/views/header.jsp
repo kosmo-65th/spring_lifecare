@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 	<link rel="stylesheet" href="${path}css/bootstrap.min.css">
     <link rel="stylesheet" href="${path}css/owl.carousel.min.css">
@@ -16,6 +17,7 @@
     <link rel="stylesheet" href="${path}css/animate.css">
     <link rel="stylesheet" href="${path}css/slicknav.css">
     <link rel="stylesheet" href="${path}css/style.css">
+    <link rel="stylesheet" href="${path3}css/custom.css">
 </head>
 <body>
     <!-- header-start -->

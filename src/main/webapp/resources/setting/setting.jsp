@@ -11,3 +11,4 @@
   <c:set var="path3" value="/lifecare/resources/lifecare/" />
   <c:set var="path4" value="/lifecare/resources/asset/" />
   <c:set var="path5" value="/lifecare/resources/customcss/" />
+
