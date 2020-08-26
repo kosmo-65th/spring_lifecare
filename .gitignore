@@ -1,0 +1,8 @@
+*.properties
+
+### Java ###
+# Complied class file
+*.class
+
+# Log file
+*.log
