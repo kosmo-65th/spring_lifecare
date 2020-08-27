@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-	<%@ include file="/resources/setting/setting.jsp" %> 
+<%@ include file="/resources/setting/setting.jsp" %> 
    <!-- Basic -->
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,10 +25,8 @@
    <link rel="stylesheet" href="${path_resources_lifecare}css/custom.css">
    <!-- CSS -->
    
-   <!-- Modernizer for Portfolio -->
-   <script src="${path3}js/modernizer.js"></script>
    <!-- jQuery 추가 -->
-   <script src="${path}setting/jquery-3.5.1.min.js"></script>
+   <script src="${path_resources}setting/jquery-3.5.1.js"></script>
    
    <!-- 팝업창 띄우는 자바스크립트 -->
     <script type="text/javascript">
@@ -52,7 +50,7 @@
 	function popUp() {
     	var cookieCheck = getCookie("popupYN");
     	if (cookieCheck != "N"){
-         	window.open('popup', 'newpop', 'width=545,height=445,left=0,top=0');
+         	window.open('${path}/popup', 'newpop', 'width=630,height=570,left=0,top=0');
     	}
 	}
 	</script>

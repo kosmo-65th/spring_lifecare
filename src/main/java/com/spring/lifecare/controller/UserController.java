@@ -59,5 +59,44 @@ public class UserController {
 	@RequestMapping("/guest/doctorJoin")
 	public String doctorJoin(Model model) {
 		return "guest/doctorJoin";		
+
+	}
+	
+	@RequestMapping("/popup")
+	public String popup(Model model) {
+		
+		return "common/popup";
+	}
+	
+	
+	// 회원 로그인 이후 이용가능(테스트라 맵핑 설정 안함)
+	@RequestMapping("/payment")
+	public String payment(Model model) {
+		
+		return "customer/payment";
+	}
+	
+	@RequestMapping("/kakaopay")
+	public String kakaopay(Model model) {
+		
+		return "customer/kakaopay";
+	}
+	
+	@RequestMapping("/diagnosis")
+	public String diagnosis(Model model) {
+		
+		return "customer/diagnosis";
+	}
+	
+	@RequestMapping("/medicalNote")
+	public String medicalNote(Model model) {
+		
+		return "customer/medicalNote";
+	}
+	
+	@RequestMapping("/prescription")
+	public String prescription(Model model) {
+		
+		return "customer/prescription";
 	}
 }

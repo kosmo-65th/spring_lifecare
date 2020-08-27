@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="${path_resources}css/animate.css">
     <link rel="stylesheet" href="${path_resources}css/slicknav.css">
     <link rel="stylesheet" href="${path_resources}css/style.css">
-    
+    <link rel="stylesheet" href="${path_resources_lifecare}css/custom.css">
 </head>
 <body>
     <!-- header-start -->
@@ -101,6 +101,7 @@
             </div>
         </div>
     </header>
+    <div style="margin-top:145px;"></div>
     <!-- header-end -->
     <script src="${path_resources}js/vendor/modernizr-3.5.0.min.js"></script>
     <script src="${path_resources}js/vendor/jquery-1.12.4.min.js"></script>
