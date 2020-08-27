@@ -25,7 +25,6 @@ public class UserController {
 		return "common/popup";
 	}
 	
-	
 	// 회원 로그인 이후 이용가능(테스트라 맵핑 설정 안함)
 	@RequestMapping("/payment")
 	public String payment(Model model) {

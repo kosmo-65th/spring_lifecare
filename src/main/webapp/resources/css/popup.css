@@ -161,7 +161,7 @@ ul,ol,li{list-style:none;}
 #popup > a:nth-of-type(2){background-color: #292929;}
 
 
-#popup{position: relative;width: 600px;height:450px; }
+#popup{position: relative;height:450px; }
 .head_box{text-align: center;width: 100%; height: 75px;}
 .head_box p{font-size: 25px; position: relative; top: 15px;font-weight: bold; color: #414141;}
 
@@ -170,7 +170,7 @@ ul,ol,li{list-style:none;}
 .content_02 ul li{background-color: #85C3ED;width: 33.3%; height: 185px; float: left;text-align: center;}
 
 #popup {background-color: #85C3ED;}
-#popup > a{width: 50%; display: block;float: left; text-align: center;height: 38px; color: #fff;font-size: 15px;font-weight: 300;padding-top: 12px;}
+#popup > a{width: 50%; display: block;float: left; text-align: center;height: 38px; color: #fff;font-size: 15px;font-weight: 300;padding-top: 22px;}
 #popup > a button{width: 100%; display: block;float: left; text-align: center; color: #fff;font-size: 15px;font-weight: 300;background-color: #292929;}
 
 /*대피시설 팝업*/
