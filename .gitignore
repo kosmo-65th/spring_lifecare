@@ -1,3 +1,6 @@
+/target/
+# MANIFEST.MF 무시하게
+*.MF
 *.properties
 
 ### Java ###
@@ -7,6 +10,3 @@
 # Log file
 *.log
 
-/target/
-# MANIFEST.MF 무시하게
-*.MF
