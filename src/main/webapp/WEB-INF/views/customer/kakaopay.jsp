@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/resources/setting/setting.jsp" %>
-<link type="text/css" rel="stylesheet" href="${path}css/kakao.css">
+<link type="text/css" rel="stylesheet" href="${path_resources}css/kakao.css">
 <html>
 <head>
 <meta charset="UTF-8">
@@ -25,7 +25,7 @@
 		<div class="selectMethod">
 		<div class="smPayco">
 			<input type="radio" id="payco" name="payment" class="radio selected">
-			<label for="KAKAO"><img src="${path}img/kakaopay.png">간편결제</label>
+			<label for="KAKAO"><img src="${path_resources}img/kakaopay.png">간편결제</label>
 			<input type="hidden" id="pgMethod" value="PA">
 			<input type="hidden" id="pgId" value="PG039">
 
