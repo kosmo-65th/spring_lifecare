@@ -62,10 +62,8 @@
          <img class="preloader" src="${path_resources_lifecare}images/loaders/heart-loading2.gif" alt="">
       </div>
       <!-- END LOADER -->
-      <header>
-      	<%@include file="../common/header.jsp" %>
-      </header>
-      <div id="home" class="parallax first-section wow fadeIn" data-stellar-background-ratio="0.4" style="background-image:url('${path_resources_lifecare}images/slider-bg.png');">
+      <%@include file="../common/header.jsp" %>
+      <div id="home" class="parallax first-section wow fadeIn" style="background-image:url('${path_resources_lifecare}images/slider-bg.png');">
          <div class="container">
             <div class="row">
                <div class="col-md-12 col-sm-12">
