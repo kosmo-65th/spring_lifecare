@@ -5,17 +5,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-	<link rel="stylesheet" href="${path}css/bootstrap.min.css">
-    <link rel="stylesheet" href="${path}css/owl.carousel.min.css">
-    <link rel="stylesheet" href="${path}css/magnific-popup.css">
-    <link rel="stylesheet" href="${path}css/font-awesome.min.css">
-    <link rel="stylesheet" href="${path}css/themify-icons.css">
-    <link rel="stylesheet" href="${path}css/nice-select.css">
-    <link rel="stylesheet" href="${path}css/flaticon.css">
-    <link rel="stylesheet" href="${path}css/gijgo.css">
-    <link rel="stylesheet" href="${path}css/animate.css">
-    <link rel="stylesheet" href="${path}css/slicknav.css">
-    <link rel="stylesheet" href="${path}css/style.css">
+	<link rel="stylesheet" href="${path_resources}css/bootstrap.min.css">
+    <link rel="stylesheet" href="${path_resources}css/owl.carousel.min.css">
+    <link rel="stylesheet" href="${path_resources}css/magnific-popup.css">
+    <link rel="stylesheet" href="${path_resources}css/font-awesome.min.css">
+    <link rel="stylesheet" href="${path_resources}css/themify-icons.css">
+    <link rel="stylesheet" href="${path_resources}css/nice-select.css">
+    <link rel="stylesheet" href="${path_resources}css/flaticon.css">
+    <link rel="stylesheet" href="${path_resources}css/gijgo.css">
+    <link rel="stylesheet" href="${path_resources}css/animate.css">
+    <link rel="stylesheet" href="${path_resources}css/slicknav.css">
+    <link rel="stylesheet" href="${path_resources}css/style.css">
+    
 </head>
 <body>
     <!-- header-start -->
@@ -54,7 +55,7 @@
                         <div class="col-xl-3 col-lg-2">
                             <div class="logo">
                                 <a href="index.html">
-                                    <img src="${path}img/logo.png" alt="">
+                                    <img src="${path_resources}img/logo.png" alt="">
                                 </a>
                             </div>
                         </div>
@@ -101,32 +102,32 @@
         </div>
     </header>
     <!-- header-end -->
-    <script src="${path}js/vendor/modernizr-3.5.0.min.js"></script>
-    <script src="${path}js/vendor/jquery-1.12.4.min.js"></script>
-    <script src="${path}js/popper.min.js"></script>
-    <script src="${path}js/bootstrap.min.js"></script>
-    <script src="${path}js/owl.carousel.min.js"></script>
-    <script src="${path}js/isotope.pkgd.min.js"></script>
-    <script src="${path}js/ajax-form.js"></script>
-    <script src="${path}js/waypoints.min.js"></script>
-    <script src="${path}js/jquery.counterup.min.js"></script>
-    <script src="${path}js/imagesloaded.pkgd.min.js"></script>
-    <script src="${path}js/scrollIt.js"></script>
-    <script src="${path}js/jquery.scrollUp.min.js"></script>
-    <script src="${path}js/wow.min.js"></script>
-    <script src="${path}js/nice-select.min.js"></script>
-    <script src="${path}js/jquery.slicknav.min.js"></script>
-    <script src="${path}js/jquery.magnific-popup.min.js"></script>
-    <script src="${path}js/plugins.js"></script>
-    <script src="${path}js/gijgo.min.js"></script>
+    <script src="${path_resources}js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="${path_resources}js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="${path_resources}js/popper.min.js"></script>
+    <script src="${path_resources}js/bootstrap.min.js"></script>
+    <script src="${path_resources}js/owl.carousel.min.js"></script>
+    <script src="${path_resources}js/isotope.pkgd.min.js"></script>
+    <script src="${path_resources}js/ajax-form.js"></script>
+    <script src="${path_resources}js/waypoints.min.js"></script>
+    <script src="${path_resources}js/jquery.counterup.min.js"></script>
+    <script src="${path_resources}js/imagesloaded.pkgd.min.js"></script>
+    <script src="${path_resources}js/scrollIt.js"></script>
+    <script src="${path_resources}js/jquery.scrollUp.min.js"></script>
+    <script src="${path_resources}js/wow.min.js"></script>
+    <script src="${path_resources}js/nice-select.min.js"></script>
+    <script src="${path_resources}js/jquery.slicknav.min.js"></script>
+    <script src="${path_resources}js/jquery.magnific-popup.min.js"></script>
+    <script src="${path_resources}js/plugins.js"></script>
+    <script src="${path_resources}js/gijgo.min.js"></script>
     <!--contact js-->
-    <script src="${path}js/contact.js"></script>
-    <script src="${path}js/jquery.ajaxchimp.min.js"></script>
-    <script src="${path}js/jquery.form.js"></script>
-    <script src="${path}js/jquery.validate.min.js"></script>
-    <script src="${path}js/mail-script.js"></script>
+    <script src="${path_resources}js/contact.js"></script>
+    <script src="${path_resources}js/jquery.ajaxchimp.min.js"></script>
+    <script src="${path_resources}js/jquery.form.js"></script>
+    <script src="${path_resources}js/jquery.validate.min.js"></script>
+    <script src="${path_resources}js/mail-script.js"></script>
 
-    <script src="${path}js/main.js"></script>
+    <script src="${path_resources}js/main.js"></script>
     <script>
         $('#datepicker').datepicker({
             iconsLibrary: 'fontawesome',

@@ -1,7 +1,5 @@
 package com.spring.lifecare.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,17 +10,12 @@ public class UserController {
 	@RequestMapping("/")
 	public String main(Model model) {
 		
-		return "main";
+		return "guest/main";
 	}
 	
 	@RequestMapping("login")
 	public String login(Model model) {
 		
-		return "login";
-	}
-	
-	@RequestMapping("HiPassCard")
-	public String HiPassCard(Model model) {
-		return "HiPassCard";
+		return "guest/login";
 	}
 }
