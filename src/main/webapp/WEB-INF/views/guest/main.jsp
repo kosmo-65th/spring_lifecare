@@ -25,10 +25,8 @@
    <link rel="stylesheet" href="${path_resources_lifecare}css/custom.css">
    <!-- CSS -->
    
-   <!-- Modernizer for Portfolio -->
-   <script src="${path3}js/modernizer.js"></script>
    <!-- jQuery 추가 -->
-   <script src="${path}setting/jquery-3.5.1.min.js"></script>
+   <script src="${path}setting/jquery-3.5.1.js"></script>
    
    <!-- 팝업창 띄우는 자바스크립트 -->
     <script type="text/javascript">
@@ -64,10 +62,8 @@
          <img class="preloader" src="${path_resources_lifecare}images/loaders/heart-loading2.gif" alt="">
       </div>
       <!-- END LOADER -->
-      <header>
-      	<%@include file="../common/header.jsp" %>
-      </header>
-      <div id="home" class="parallax first-section wow fadeIn" data-stellar-background-ratio="0.4" style="background-image:url('${path_resources_lifecare}images/slider-bg.png');">
+      <%@include file="../common/header.jsp" %>
+      <div id="home" class="parallax first-section wow fadeIn" style="background-image:url('${path_resources_lifecare}images/slider-bg.png');">
          <div class="container">
             <div class="row">
                <div class="col-md-12 col-sm-12">

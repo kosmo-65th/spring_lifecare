@@ -64,6 +64,7 @@
                                 <nav>
                                     <ul id="navigation">
                                         <li><a class="active" href="index.html">HOME</a></li>
+                                        <li><a href="Doctors.html">코로나정보</a></li>
                                         <li><a href="Department.html">예약<i class="ti-angle-down"></i></a>
                                         	<ul class="submenu">
                                                <li><a href="blog.html">자가진단</a></li>
@@ -81,7 +82,6 @@
                                                 <li><a href="about.html">응급처치방법</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="Doctors.html">코로나정보</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -101,7 +101,7 @@
             </div>
         </div>
     </header>
-    <div style="margin-top:145px;"></div>
+    <div style="margin-top:165px;"></div>
     <!-- header-end -->
     <script src="${path_resources}js/vendor/modernizr-3.5.0.min.js"></script>
     <script src="${path_resources}js/vendor/jquery-1.12.4.min.js"></script>
