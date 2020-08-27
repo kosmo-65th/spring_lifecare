@@ -50,7 +50,7 @@
 	function popUp() {
     	var cookieCheck = getCookie("popupYN");
     	if (cookieCheck != "N"){
-         	window.open('${path}/popup', 'newpop', 'width=545,height=445,left=0,top=0');
+         	window.open('${path}/popup', 'newpop', 'width=630,height=570,left=0,top=0');
     	}
 	}
 	</script>

@@ -26,7 +26,7 @@ function closePopup2() {
 }
 </script>
 </head>
-<body>
+<body onresize="parent.resizeTo(630,570)" onload="parent.resizeTo(630,570)">
 <div id="popup">
 	<div class="head_box">
 		<p>코로나바이러스감염증-19 예방행동 수칙</p>

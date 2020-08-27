@@ -62,7 +62,7 @@
         0
       </div>
       <div class="cell1">
-        <a style="color:red;" onclick="window.open('${path}/kakaopay', 'kakaopay', 'resizable=no width=750, height=430'); return false;">4,000</a>
+        <a style="color:red;" onclick="window.open('${path}/kakaopay', 'kakaopay', 'resizable=no width=850, height=600'); return false;">4,000</a>
       </div>
     </div>
     
@@ -170,7 +170,7 @@
         <b>17,000</b>
       </div>
       <div class="cell1">
-        <b><a style="color:red;" onclick="window.open('${path}/kakaopay', 'kakaopay', 'resizable=no width=750, height=430'); return false;" class="red">4,000</a></b>
+        <b><a style="color:red;" onclick="window.open('${path}/kakaopay', 'kakaopay', 'resizable=no width=850, height=600'); return false;">4,000</a></b>
       </div>
     </div>
 </div>
@@ -181,7 +181,7 @@
 
 <fieldset class="payment">
 <h3>2020년 08월 27일 진료비 내역</h3>
-<div class="table">    
+<div class="tablePay">    
     <div class="row1 header green">
       <div class="cell1">
           	총진료비
@@ -233,7 +233,7 @@
         	0
       </div>
       <div class="cell1">
-        	<a style="color:red;" onclick="window.open('${path}/kakaopay', 'kakaopay', 'resizable=no width=750, height=430'); return false;" class="red">4,000</a>
+        	<a style="color:red;" onclick="window.open('${path}/kakaopay', 'kakaopay', 'resizable=no width=850, height=600'); return false;">4,000</a>
       </div>
       <div class="cell1">
         	0
