@@ -13,7 +13,7 @@ public class UserController {
 		return "guest/main";
 	}
 	
-	@RequestMapping("login")
+	@RequestMapping("/login")
 	public String login(Model model) {
 		
 		return "guest/login";

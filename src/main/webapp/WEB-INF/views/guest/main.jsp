@@ -26,7 +26,6 @@
    <!-- CSS -->
    
    <!-- Modernizer for Portfolio -->
-<<<<<<< HEAD:src/main/webapp/WEB-INF/views/main.jsp
    <script src="${path3}js/modernizer.js"></script>
    <!-- jQuery 추가 -->
    <script src="${path}setting/jquery-3.5.1.min.js"></script>
@@ -57,9 +56,6 @@
     	}
 	}
 	</script>
-=======
-   <script src="${path_resources_lifecare}js/modernizer.js"></script>
->>>>>>> d502f58bfe1d6e21dede3f283ad3001027675d4c:src/main/webapp/WEB-INF/views/guest/main.jsp
    <!-- [if lt IE 9] -->
    </head>
    <body class="clinic_version">

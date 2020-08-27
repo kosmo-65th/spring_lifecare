@@ -80,6 +80,12 @@
   	
   	<!-- 5. 에러처리 페이지 -->
   	<error-page>
+		<error-code>404</error-code>
+		<location>/</location>
+	</error-page>
+  	
+  	
+  	<error-page>
   		<error-code>500</error-code>
   		<location>/user/login</location>
   	</error-page>
