@@ -13,19 +13,20 @@
    <meta name="description" content="">
    <meta name="author" content="">
    <!-- Site Icons -->
-   <link rel="shortcut icon" href="${path3}images/fevicon.ico.png" type="image/x-icon" />
-   <link rel="apple-touch-icon" href="${path3}images/apple-touch-icon.png">
+   <link rel="shortcut icon" href="${path_resources_lifecare}images/fevicon.ico.png" type="image/x-icon" />
+   <link rel="apple-touch-icon" href="${path_resources_lifecare}images/apple-touch-icon.png">
    <!-- Site Icons -->
    <!-- CSS -->
-   <link rel="stylesheet" href="${path3}css/bootstrap2.min.css">
-   <link rel="stylesheet" href="${path3}style2.css">
-   <link rel="stylesheet" href="${path3}css/colors.css">
-   <link rel="stylesheet" href="${path3}css/versions.css">
-   <link rel="stylesheet" href="${path3}css/responsive.css">
-   <link rel="stylesheet" href="${path3}css/custom.css">
+   <link rel="stylesheet" href="${path_resources_lifecare}css/bootstrap2.min.css">
+   <link rel="stylesheet" href="${path_resources_lifecare}style2.css">
+   <link rel="stylesheet" href="${path_resources_lifecare}css/colors.css">
+   <link rel="stylesheet" href="${path_resources_lifecare}css/versions.css">
+   <link rel="stylesheet" href="${path_resources_lifecare}css/responsive.css">
+   <link rel="stylesheet" href="${path_resources_lifecare}css/custom.css">
    <!-- CSS -->
    
    <!-- Modernizer for Portfolio -->
+<<<<<<< HEAD:src/main/webapp/WEB-INF/views/main.jsp
    <script src="${path3}js/modernizer.js"></script>
    <!-- jQuery 추가 -->
    <script src="${path}setting/jquery-3.5.1.min.js"></script>
@@ -56,24 +57,27 @@
     	}
 	}
 	</script>
+=======
+   <script src="${path_resources_lifecare}js/modernizer.js"></script>
+>>>>>>> d502f58bfe1d6e21dede3f283ad3001027675d4c:src/main/webapp/WEB-INF/views/guest/main.jsp
    <!-- [if lt IE 9] -->
    </head>
    <body class="clinic_version">
       <!-- LOADER -->
       <div id="preloader">
-         <img class="preloader" src="${path3}images/loaders/heart-loading2.gif" alt="">
+         <img class="preloader" src="${path_resources_lifecare}images/loaders/heart-loading2.gif" alt="">
       </div>
       <!-- END LOADER -->
       <header>
-      	<%@include file="header.jsp" %>
+      	<%@include file="../common/header.jsp" %>
       </header>
-      <div id="home" class="parallax first-section wow fadeIn" data-stellar-background-ratio="0.4" style="background-image:url('${path3}images/slider-bg.png');">
+      <div id="home" class="parallax first-section wow fadeIn" data-stellar-background-ratio="0.4" style="background-image:url('${path_resources_lifecare}images/slider-bg.png');">
          <div class="container">
             <div class="row">
                <div class="col-md-12 col-sm-12">
                   <div class="text-contant">
                      <h2>
-                        <span class="center"><span class="icon"><img src="${path3}images/icon-logo.png" alt="#" /></span></span>
+                        <span class="center"><span class="icon"><img src="${path_resources_lifecare}images/icon-logo.png" alt="#" /></span></span>
                         <a href="" class="typewrite" data-period="2000" data-type='[ "Welcome life care", "Take care of you", "Hospital for you" ]'>
                         <span class="wrap"></span>
                         </a>
@@ -123,13 +127,13 @@
             </div>
          </div>
       </div>
-      <%@include file="footer.jsp" %>
+      <%@include file="../common/footer.jsp" %>
       <!-- end copyrights -->
       <a href="#home" data-scroll class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
       <!-- all js files -->
-      <script src="${path3}js/all.js"></script>
+      <script src="${path_resources_lifecare}js/all.js"></script>
       <!-- all plugins -->
-      <script src="${path3}js/custom.js"></script>
+      <script src="${path_resources_lifecare}js/custom.js"></script>
       <!-- map -->
      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNUPWkb4Cjd7Wxo-T4uoUldFjoiUA1fJc&callback=myMap"></script>
    </body>

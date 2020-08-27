@@ -846,6 +846,9 @@ h3 {
   text-align: center;
 }
 
+.logo img {
+	width:163px;	
+}
 @media (max-width: 767px) {
   /* line 31, C:/Users/SPN Graphics/Desktop/CL September/210 Medical/HTML/scss/_header.scss */
   .header-area .main-header-area .logo-img {
