@@ -41,8 +41,18 @@
                         <div class="col-xl-6 col-md-6">
                             <div class="short_contact_list">
                                 <ul>
-                                    <li><a href="${path}/guest/preJoinIn">회원가입</a></li>
-                                    <li><a href="#">로그인</a></li>
+                                	<!-- 로그인 안했을경우 -->
+                                	<c:if test="${sessionScope.userSession == null}">
+	                                    <li><a href="#">회원가입</a></li>
+	                                    <li><a href="${path}/login">로그인</a></li>
+                                    </c:if>
+                                    <!-- 로그인 완료후 -->
+                                    <c:if test="${sessionScope.userSession != null}">
+	                                    <li><a href="${path}/Mypage">마이페이지</a></li>
+	                                    <li><a href="${path}/Mypage">ID : ${sessionScope.userSession}</a></li>
+	                                    <li><a href="">고객센터</a></li>
+	                                    <li><a href="${path}/logout">로그아웃</a></li>
+                                    </c:if>
                                 </ul>
                             </div>
                         </div>
@@ -64,6 +74,7 @@
                                 <nav>
                                     <ul id="navigation">
                                         <li><a class="active" href="index.html">HOME</a></li>
+                                        <li><a href="Doctors.html">코로나정보</a></li>
                                         <li><a href="Department.html">예약<i class="ti-angle-down"></i></a>
                                         	<ul class="submenu">
                                                <li><a href="blog.html">자가진단</a></li>
@@ -81,7 +92,6 @@
                                                 <li><a href="about.html">응급처치방법</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="Doctors.html">코로나정보</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -101,7 +111,7 @@
             </div>
         </div>
     </header>
-    <div style="margin-top:145px;"></div>
+    <div style="margin-top:165px;"></div>
     <!-- header-end -->
     <script src="${path_resources}js/vendor/modernizr-3.5.0.min.js"></script>
     <script src="${path_resources}js/vendor/jquery-1.12.4.min.js"></script>

@@ -14,6 +14,9 @@ public class AOP {
 	@Pointcut("execution(* com.spring.lifecare.controller.*.*(..)) or execution(* com.spring.lifecare.service.*Impl.*(..)) or execution(* com.spring.lifecare.persistence.*Impl.*(..))")
 	public void log() {};
 	
+   @Pointcut("execution(* com.spring.lifecare.service.User*.*(..))")
+   public void sec_log() {};
+	
 	private static final Logger logger = LoggerFactory.getLogger(AOP.class);
 	static String name = ""; 
 	static String type = "";
@@ -32,4 +35,12 @@ public class AOP {
 		logger.info(name + type + "." + joinPoint.getSignature().getName() + "()"); 
 		return joinPoint.proceed(); 
 	}
+	
+	@Around("sec_log()")
+    public Object logSecPrint(ProceedingJoinPoint joinPoint) throws Throwable { 
+      type = joinPoint.getSignature().getDeclaringTypeName(); 
+      
+      logger.info(name + type + "." + joinPoint.getSignature().getName() + "()"); 
+      return joinPoint.proceed(); 
+   }
 }

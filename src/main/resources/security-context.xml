@@ -26,8 +26,8 @@
 		<sec:intercept-url pattern="/doctor/**" access="hasAnyRole('ROLE_DOCTOR')" />
 		
 		<!-- 로그인폼 -->
-		<sec:form-login login-page="/guest/login" 
-			login-processing-url="/guest/login_check"
+		<sec:form-login login-page="/login" 
+			login-processing-url="/login_check"
 			authentication-success-handler-ref="userLoginSuccessHandler"
 			authentication-failure-handler-ref="userLoginFailureHandler"
 			username-parameter="userid" password-parameter="passwd" />

@@ -37,12 +37,12 @@
 				<p>
 
 					<a href="/login.do?retUrl=/join/client.do">홈페이지
-						의견접수&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+						의견접수</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><img src="${path_resources}img/인증1.png"
+							width="30" height="30">Spring Security</a>
 
 				</p>
 				<ul>
-					<li><a href="#"><img src="${path_resources}img/인증1.png"
-							width="30" height="30">Spring Security</a></li>
+					<li></li>
 				</ul>
 			</address>
 			<ul>

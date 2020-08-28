@@ -6,5 +6,16 @@
  	  
 <mapper namespace="com.spring.lifecare.persistence.UserDAO">
 
- 
-</mapper>
+	<select id="logincheck" parameterType="String" resultType="com.spring.lifecare.vo.CustomerVO">
+			SELECT *
+			FROM customer
+			WHERE customer_id=#{id}
+	</select>
+	
+	<select id = "selectUser" parameterType="String" resultType = "java.util.Map">
+      SELECT customer_id as username, customer_pw as password, customer_name as name, enabled, authority
+        FROM customer
+       WHERE customer_id=#{userid}  
+   </select>
+</mapper>  	  
+

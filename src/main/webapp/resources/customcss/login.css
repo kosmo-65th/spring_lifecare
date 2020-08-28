@@ -9,6 +9,7 @@
 	}
 	
 	.loginform{
+		margin-top:300px;
 		border:1px solid #E6E6E6;
 		width:900px;
 		height:512px;
@@ -28,6 +29,8 @@
 	.idpwdfind{
 		margin-top:10px;
 		margin-bottom:10px;
+		width:500px;
+	
 	}
 	
 	.btnclass1{
@@ -56,6 +59,7 @@
 	.socialLogin{
 		margin-top:20px;
 		margin-bottom:10px;
+		width:558px;
 	}
 	
 	

@@ -30,30 +30,31 @@
    
    <!-- 팝업창 띄우는 자바스크립트 -->
     <script type="text/javascript">
-	function getCookie(name) {
-    	var cookie = document.cookie;
-    	if (document.cookie != "") {
-         	var cookieArray = cookie.split("; ");
-         	for ( var index in cookieArray) {
-            	var cookieName = cookieArray[index].split("=");
-            	if (cookieName[0] == "popupYN") {
-                	return cookieName[1];
-             	}
-         	}
-    	} return ;    
-	}
-	
-	$(document).ready(function(){
-		popUp();
-	});
- 
-	function popUp() {
-    	var cookieCheck = getCookie("popupYN");
-    	if (cookieCheck != "N"){
-         	window.open('${path}/popup', 'newpop', 'width=630,height=570,left=0,top=0');
-    	}
-	}
+		function getCookie(name) {
+	    	var cookie = document.cookie;
+	    	if (document.cookie != "") {
+	         	var cookieArray = cookie.split("; ");
+	         	for ( var index in cookieArray) {
+	            	var cookieName = cookieArray[index].split("=");
+	            	if (cookieName[0] == "popupYN") {
+	                	return cookieName[1];
+	             	}
+	         	}
+	    	} return ;    
+		}
+		
+		$(document).ready(function(){
+			popUp();
+		});
+	 
+		function popUp() {
+	    	var cookieCheck = getCookie("popupYN");
+	    	if (cookieCheck != "N"){
+	         	window.open('${path}/popup', 'newpop', 'width=630,height=570,left=0,top=0');
+	    	}
+		}
 	</script>
+	
    <!-- [if lt IE 9] -->
    </head>
    <body class="clinic_version">
@@ -62,10 +63,8 @@
          <img class="preloader" src="${path_resources_lifecare}images/loaders/heart-loading2.gif" alt="">
       </div>
       <!-- END LOADER -->
-      <header>
-      	<%@include file="../common/header.jsp" %>
-      </header>
-      <div id="home" class="parallax first-section wow fadeIn" data-stellar-background-ratio="0.4" style="background-image:url('${path_resources_lifecare}images/slider-bg.png');">
+      <%@include file="../common/header.jsp" %>
+      <div id="home" class="parallax first-section wow fadeIn" style="background-image:url('${path_resources_lifecare}images/slider-bg.png');">
          <div class="container">
             <div class="row">
                <div class="col-md-12 col-sm-12">

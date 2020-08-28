@@ -1,5 +1,7 @@
 package com.spring.lifecare.persistence;
 
+
+import com.spring.lifecare.vo.CustomerVO;
 import com.spring.lifecare.vo.UserVO;
 
 public interface UserDAO {	
@@ -10,9 +12,7 @@ public interface UserDAO {
 	// 회원가입 처리
 	public int insertMember(UserVO vo);
 
-	
-	
+	public CustomerVO logincheck(String id);
 	
 
-	
 }
