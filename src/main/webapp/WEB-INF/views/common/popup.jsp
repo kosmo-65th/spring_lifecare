@@ -15,10 +15,8 @@ function setCookie(name, value, expiredays) {
 }
 
 function closePopup(day) {
-    if (document.getElementById("check").value) {
         setCookie("popupYN", "N", day);
         self.close();
-    }
 }
 
 function closePopup2() {
