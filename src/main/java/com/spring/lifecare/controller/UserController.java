@@ -117,4 +117,26 @@ public class UserController {
 		
 		return "customer/Mypage";
 	}
+
+	//회원가입 방법
+	@RequestMapping("preJoinIn")
+	public String preJoinIn (Model model) {
+		return "preJoinIn";		
+	}
+	
+	//회원가입
+	@RequestMapping("JoinInForm")
+	public String joinInForm(Model model) {
+		return "JoinInForm";		
+	}
+	//아이디 찾기
+	@RequestMapping("findId")
+	public String findId(Model model) {
+		return "findId";		
+	}
+	//비밀번호 찾기
+	@RequestMapping("findPassword")
+	public String findPassword(Model model) {
+		return "findPassword";		
+	}
 }
