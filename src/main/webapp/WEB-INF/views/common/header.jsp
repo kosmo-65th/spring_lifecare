@@ -47,7 +47,7 @@
                                 	<!-- 로그인 안했을경우 -->
                                 	<c:if test="${sessionScope.userSession == null}">
 	                                    <li><a href="${path}/guest/preJoinIn">회원가입</a></li>
-	                                    <li><a href="${path}/guest/login">로그인</a></li>
+	                                    <li><a href="${path}/login">로그인</a></li>
                                     </c:if>
                                     <!-- 로그인 완료후 -->
                                     <c:if test="${sessionScope.userSession != null}">
