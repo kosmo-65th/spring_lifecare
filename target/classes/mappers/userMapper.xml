@@ -6,6 +6,5 @@
  	  
 <mapper namespace="com.spring.lifecare.persistence.UserDAO">
 
-
-	
+ 
 </mapper>

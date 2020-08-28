@@ -118,7 +118,7 @@
                                        
         <div class="press">
               <button type="submit" class="btn-type btn2 blue mr_2">확인</button>
-              <button type="reset" class="btn-type btn2 blue">취소</button>
+              <button type="reset" class="btn-type btn3 blue mr_3">취소</button>
           </div>
 </form>
  <%@include file="../common/footer.jsp" %>

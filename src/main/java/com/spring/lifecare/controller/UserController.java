@@ -30,6 +30,7 @@ public class UserController {
 	public String joinInForm(Model model) {
 		return "guest/JoinInForm";		
 	}
+	
 	//아이디 찾기
 	@RequestMapping("/guest/findId")
 	public String findId(Model model) {

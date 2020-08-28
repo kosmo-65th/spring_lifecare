@@ -41,7 +41,7 @@
                         <div class="col-xl-6 col-md-6">
                             <div class="short_contact_list">
                                 <ul>
-                                    <li><a href="#">회원가입</a></li>
+                                    <li><a href="${path}/guest/preJoinIn">회원가입</a></li>
                                     <li><a href="#">로그인</a></li>
                                 </ul>
                             </div>
