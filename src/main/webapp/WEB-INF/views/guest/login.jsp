@@ -6,6 +6,16 @@
 <head>
 <link type="text/css" rel="stylesheet" href="${path_resources_customcss}login.css">
 <meta charset="UTF-8">
+<script src="${path_resources}setting/jquery-3.5.1.js"></script>
+<script src="${path_resources}js/idsave-for-cookie.js"></script>
+<script type="text/javascript"></script>
+<!-- 로그인 실패시 메시지 -->
+<c:if test="${fail == 1}">
+	<script type="text/javascript">
+ 		alert("${errMsg}")
+	</script>
+</c:if>
+
 <!-- Site Icons -->
 <link rel="shortcut icon" href="${path_resources_lifecare}images/fevicon.ico.png" type="image/x-icon" />
 <link rel="apple-touch-icon" href="${path_resources_lifecare}images/apple-touch-icon.png">
@@ -19,10 +29,10 @@
 			<div class="loginform">
 				<div class="titles">로그인</div>
 				<h1 id="msg">Welcome Life Care</h1>
-				<input type="text" name="userid" class="idbox" placeholder="아이디"><br>
+				<input type="text" name="userid" id="label_id" class="idbox" placeholder="아이디"><br>
 				<input type="password" name="passwd" class="pwdbox" placeholder="패스워드"><br>
-				<input type="checkbox" name="idsave" checked=""> 아이디 저장
-				<input type="checkbox" name="idsave" checked=""> 자동 로그인
+				<input type="checkbox" id="idsave"> 아이디 저장
+				<input type="checkbox" name="autologin"> 자동 로그인
 				<ul class="idpwdfind">
 					<li>&nbsp;&nbsp;<a href="">아이디 찾기</a>&nbsp; | <a href="">비밀번호찾기</a></li>
 				</ul>

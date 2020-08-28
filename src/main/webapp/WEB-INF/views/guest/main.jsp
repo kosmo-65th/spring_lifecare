@@ -30,30 +30,31 @@
    
    <!-- 팝업창 띄우는 자바스크립트 -->
     <script type="text/javascript">
-	function getCookie(name) {
-    	var cookie = document.cookie;
-    	if (document.cookie != "") {
-         	var cookieArray = cookie.split("; ");
-         	for ( var index in cookieArray) {
-            	var cookieName = cookieArray[index].split("=");
-            	if (cookieName[0] == "popupYN") {
-                	return cookieName[1];
-             	}
-         	}
-    	} return ;    
-	}
-	
-	$(document).ready(function(){
-		popUp();
-	});
- 
-	function popUp() {
-    	var cookieCheck = getCookie("popupYN");
-    	if (cookieCheck != "N"){
-         	window.open('${path}/popup', 'newpop', 'width=630,height=570,left=0,top=0');
-    	}
-	}
+		function getCookie(name) {
+	    	var cookie = document.cookie;
+	    	if (document.cookie != "") {
+	         	var cookieArray = cookie.split("; ");
+	         	for ( var index in cookieArray) {
+	            	var cookieName = cookieArray[index].split("=");
+	            	if (cookieName[0] == "popupYN") {
+	                	return cookieName[1];
+	             	}
+	         	}
+	    	} return ;    
+		}
+		
+		$(document).ready(function(){
+			popUp();
+		});
+	 
+		function popUp() {
+	    	var cookieCheck = getCookie("popupYN");
+	    	if (cookieCheck != "N"){
+	         	window.open('${path}/popup', 'newpop', 'width=630,height=570,left=0,top=0');
+	    	}
+		}
 	</script>
+	
    <!-- [if lt IE 9] -->
    </head>
    <body class="clinic_version">

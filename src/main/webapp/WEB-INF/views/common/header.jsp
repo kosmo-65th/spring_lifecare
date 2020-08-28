@@ -49,6 +49,7 @@
                                     <!-- 로그인 완료후 -->
                                     <c:if test="${sessionScope.userSession != null}">
 	                                    <li><a href="${path}/Mypage">마이페이지</a></li>
+	                                    <li><a href="${path}/Mypage">ID : ${sessionScope.userSession}</a></li>
 	                                    <li><a href="">고객센터</a></li>
 	                                    <li><a href="${path}/logout">로그아웃</a></li>
                                     </c:if>
