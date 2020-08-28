@@ -17,11 +17,10 @@ public class UserLoginFailureHandler implements AuthenticationFailureHandler {
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
 		
+		request.setAttribute("fail", 1);
 		request.setAttribute("errMsg", "아이디 또는 비밀번호가 일치하지 않습니다.");
 		
-		System.out.print("아이디 또는 비밀번호가 일치하지 않습니다.");
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/user/login.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/guest/login.jsp");
 		dispatcher.forward(request, response);
 	}
 	
