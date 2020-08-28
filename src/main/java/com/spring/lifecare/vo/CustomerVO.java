@@ -82,4 +82,5 @@ public class CustomerVO {
 	public void setAuthority(String authority) {
 		this.authority = authority;
 	}
+
 }

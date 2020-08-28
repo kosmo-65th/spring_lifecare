@@ -34,7 +34,7 @@
 				<input type="checkbox" id="idsave"> 아이디 저장
 				<input type="checkbox" name="autologin"> 자동 로그인
 				<ul class="idpwdfind">
-					<li>&nbsp;&nbsp;<a href="">아이디 찾기</a>&nbsp; | <a href="">비밀번호찾기</a></li>
+					<li>&nbsp;&nbsp;<a href="${path}/guest/findId">아이디 찾기</a>&nbsp; | <a href="guest/findPassword">비밀번호찾기</a></li>
 				</ul>
 				<input type="submit" class="btnclass1" value="로그인" style="cursor: pointer"> 
 				<input type="button" class="btnclass2" value="회원가입" style="cursor: pointer">

@@ -4,7 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
+
 	<link rel="stylesheet" href="${path_resources}css/bootstrap.min.css">
     <link rel="stylesheet" href="${path_resources}css/owl.carousel.min.css">
     <link rel="stylesheet" href="${path_resources}css/magnific-popup.css">
@@ -17,6 +19,7 @@
     <link rel="stylesheet" href="${path_resources}css/slicknav.css">
     <link rel="stylesheet" href="${path_resources}css/style.css">
     <link rel="stylesheet" href="${path_resources_lifecare}css/custom.css">
+
 </head>
 <body>
     <!-- header-start -->
@@ -43,8 +46,8 @@
                                 <ul>
                                 	<!-- 로그인 안했을경우 -->
                                 	<c:if test="${sessionScope.userSession == null}">
-	                                    <li><a href="#">회원가입</a></li>
-	                                    <li><a href="${path}/login">로그인</a></li>
+	                                    <li><a href="${path}/guest/preJoinIn">회원가입</a></li>
+	                                    <li><a href="${path}/guest/login">로그인</a></li>
                                     </c:if>
                                     <!-- 로그인 완료후 -->
                                     <c:if test="${sessionScope.userSession != null}">

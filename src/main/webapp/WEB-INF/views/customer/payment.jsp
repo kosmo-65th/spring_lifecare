@@ -241,7 +241,7 @@
     </div>    
 </div>
 <div class="light">	  		
-		<ul>
+		<ul style="float: right;">
        		<li><a class="large button green" onclick="window.open('${path}/diagnosis', '진단서발급', 'resizable=no width=750, height=600'); return false;">진단서 발급</a></li>
        		<li><a class="large button green" onclick="window.open('${path}/medicalNote', '진료기록부발급', 'resizable=no width=750, height=600'); return false;">진료기록부 발급</a></li>
        		<li><a class="large button green" onclick="window.open('${path}/prescription', '처방전발급', 'resizable=no width=750, height=600'); return false;">처방전 발급</a></li>
