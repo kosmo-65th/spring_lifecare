@@ -41,8 +41,17 @@
                         <div class="col-xl-6 col-md-6">
                             <div class="short_contact_list">
                                 <ul>
-                                    <li><a href="#">회원가입</a></li>
-                                    <li><a href="#">로그인</a></li>
+                                	<!-- 로그인 안했을경우 -->
+                                	<c:if test="${sessionScope.userSession == null}">
+	                                    <li><a href="#">회원가입</a></li>
+	                                    <li><a href="${path}/login">로그인</a></li>
+                                    </c:if>
+                                    <!-- 로그인 완료후 -->
+                                    <c:if test="${sessionScope.userSession != null}">
+	                                    <li><a href="${path}/Mypage">마이페이지</a></li>
+	                                    <li><a href="">고객센터</a></li>
+	                                    <li><a href="${path}/logout">로그아웃</a></li>
+                                    </c:if>
                                 </ul>
                             </div>
                         </div>

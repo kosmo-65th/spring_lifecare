@@ -62,7 +62,7 @@
         0
       </div>
       <div class="cell1">
-        <a style="color:red;" onclick="window.open('${path}/kakaopay', 'kakaopay', 'resizable=no width=850, height=600'); return false;">4,000</a>
+        <a style="color:red;" onclick="window.open('${path}/kakaopay', 'kakaopay', 'resizable=no width=850, height=550'); return false;">4,000</a>
       </div>
     </div>
     
@@ -170,7 +170,7 @@
         <b>17,000</b>
       </div>
       <div class="cell1">
-        <b><a style="color:red;" onclick="window.open('${path}/kakaopay', 'kakaopay', 'resizable=no width=850, height=600'); return false;">4,000</a></b>
+        <b><a style="color:red;" onclick="window.open('${path}/kakaopay', 'kakaopay', 'resizable=no width=850, height=550'); return false;">4,000</a></b>
       </div>
     </div>
 </div>
@@ -233,7 +233,7 @@
         	0
       </div>
       <div class="cell1">
-        	<a style="color:red;" onclick="window.open('${path}/kakaopay', 'kakaopay', 'resizable=no width=850, height=600'); return false;">4,000</a>
+        	<a style="color:red;" onclick="window.open('${path}/kakaopay', 'kakaopay', 'resizable=no width=850, height=550'); return false;">4,000</a>
       </div>
       <div class="cell1">
         	0

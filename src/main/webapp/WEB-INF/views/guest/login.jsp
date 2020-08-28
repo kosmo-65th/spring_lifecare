@@ -14,18 +14,19 @@
 <body>
 	<%@include file="../common/header.jsp"%>
 	<div class="divclass1" align="center">
-		<form action="" method="post" name="">
-			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+		<form action="${path}/login_check" method="post" name="login">
+			<input type ="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 			<div class="loginform">
 				<div class="titles">로그인</div>
 				<h1 id="msg">Welcome Life Care</h1>
 				<input type="text" name="userid" class="idbox" placeholder="아이디"><br>
 				<input type="password" name="passwd" class="pwdbox" placeholder="패스워드"><br>
 				<input type="checkbox" name="idsave" checked=""> 아이디 저장
+				<input type="checkbox" name="idsave" checked=""> 자동 로그인
 				<ul class="idpwdfind">
 					<li>&nbsp;&nbsp;<a href="">아이디 찾기</a>&nbsp; | <a href="">비밀번호찾기</a></li>
 				</ul>
-				<input type="button" class="btnclass1" value="로그인" style="cursor: pointer"> 
+				<input type="submit" class="btnclass1" value="로그인" style="cursor: pointer"> 
 				<input type="button" class="btnclass2" value="회원가입" style="cursor: pointer">
 				<div class="socialLogin">
 					<a href="https://nid.naver.com/oauth2.0/authorize?client_id={g_0JHC9Ov3W6TK_HKZHh}&response_type=code&redirect_uri={http://localhost/lifecare/callback/ex}&state={nid/getUserProfile}">

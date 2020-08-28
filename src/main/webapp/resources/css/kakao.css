@@ -153,7 +153,7 @@ input[type=checkbox]:checked { background: #3A3635; }
 .mnPayment > section { box-sizing: border-box; }
 .mnPayment .sectionHeader .sectionTitle { padding-top: 19px; font-size: 15px; font-weight: normal; color: #757271; line-height: 26px; }
 .mnPayment .logoPayco { display: inline-block; overflow: hidden; margin-right: 5px; text-indent: -1000em; vertical-align: top; background: url("//file.bugsm.co.kr/wbugs/billing/sprite_payment.png") no-repeat; }
-.pgPayment { position: relative; min-width: 834px; }
+.pgPayment { position: relative; min-width: 850px; }
 .pgPayment:after { content: ''; position: fixed; top: 0; right: 0; bottom: 0; width: 278px; margin: 0; padding-right: 0; border-left: 1px solid #e1e1e1; background: #fafafc; z-index: 1; }
 .pgPayment .sectionDivider { min-width: 500px; margin: 0 308px 0 25px; padding: 5px 0 11px; border-top: 1px solid #E5E5E5; }
 .pgPayment .logoPayco { height: 15px; width: 66px; background-position: -40px 0; }

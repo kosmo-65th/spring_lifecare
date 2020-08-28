@@ -1,5 +1,9 @@
 package com.spring.lifecare.controller;
 
+import javax.servlet.http.HttpSession;
+
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +17,7 @@ public class UserController {
 		return "guest/main";
 	}
 	
-	@RequestMapping("login")
+	@RequestMapping("/login")
 	public String login(Model model) {
 		
 		return "guest/login";
@@ -54,5 +58,19 @@ public class UserController {
 	public String prescription(Model model) {
 		
 		return "customer/prescription";
+	}
+	
+	@RequestMapping("/logout")
+	public String logout(HttpServletRequest req,Model model,HttpSession session) {
+		session.invalidate();
+		SecurityContextHolder.clearContext();
+		
+		return "guest/main";
+	}
+	
+	@RequestMapping("/Mypage")
+	public String Mypage(Model model) {
+		
+		return "customer/Mypage";
 	}
 }

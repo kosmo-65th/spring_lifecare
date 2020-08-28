@@ -39,7 +39,7 @@ public class UserAuthenticationService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String userid) throws UsernameNotFoundException {
 		
-		Map<String, Object> user = sqlSession.selectOne("com.security.encrypt.persistence.UserDAO.selectUser", userid);
+		Map<String, Object> user = sqlSession.selectOne("com.spring.lifecare.persistence.UserDAO.selectUser", userid);
 		System.out.println("로그인 체크 ==> " + userid);
 		
 		// 인증실패시 인위적으로 예외 발생

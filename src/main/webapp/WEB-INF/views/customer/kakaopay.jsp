@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+<body onresize="parent.resizeTo(870,550)" onload="parent.resizeTo(870,550)">
 
 <article id="container" class="mnPayment pgPayment">
 	<section class="productName">
