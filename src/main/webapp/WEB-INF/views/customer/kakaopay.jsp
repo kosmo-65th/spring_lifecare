@@ -24,7 +24,7 @@
 
 		<div class="selectMethod">
 		<div class="smPayco">
-			<input type="radio" id="payco" name="payment" class="radio selected">
+			<input type="radio" checked id="payco" name="payment" class="radio selected" >
 			<label for="KAKAO"><img src="${path_resources}img/kakaopay.png">간편결제</label>
 			<input type="hidden" id="pgMethod" value="PA">
 			<input type="hidden" id="pgId" value="PG039">
@@ -69,11 +69,12 @@
         <span id="pointDiscount"><em>0원</em></span>
       </li>
     </ul>
-
+<form action="${path}/kakaoPayGo" method="post" name="pay">
+<input type = "hidden" name="${_csrf.parameterName}" value = "${_csrf.token}">
 	<div class="btns">
-	  <button class="btnAccent--l" id="btnBuy">결제하기</button>
+	  <button class="btnAccent--l" id="btnBuy" onClick="javascript:document.pay.submit()">결제하기</button>
 	</div>
-
+</form>
   <div class="cardPointUsed" style="display:none">
     <input type="checkbox" id="pointUsed" class="checkbox">
     <label for="pointUsed" id="cardPointUseGuide">마이신한포인트 100% 사용합니다.</label>

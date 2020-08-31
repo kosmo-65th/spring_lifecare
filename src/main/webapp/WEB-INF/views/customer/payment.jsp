@@ -62,7 +62,7 @@
         0
       </div>
       <div class="cell1">
-        <a style="color:red;" onclick="window.open('${path}/kakaopay', 'kakaopay', 'resizable=no width=850, height=550'); return false;">4,000</a>
+        <a href="javascript:void(0)" style="color:red;" onclick="window.open('${path}/kakaopay', 'kakaopay', 'resizable=no width=850, height=550'); return false;">4,000</a>
       </div>
     </div>
     
@@ -147,32 +147,6 @@
       </div>
    </div>
    
-   <div class="row1">
-      <div class="cell1">
-        	<b>합계</b>
-      </div>
-      <div class="cell1">
-        
-      </div>
-      <div class="cell1">
-        	
-      </div>
-      <div class="cell1">
-        <b>45,000</b>
-      </div>
-      <div class="cell1">
-        <b>34,000</b>
-      </div>
-      <div class="cell1">
-        <b>21,000</b>
-      </div>
-      <div class="cell1">
-        <b>17,000</b>
-      </div>
-      <div class="cell1">
-        <b><a style="color:red;" onclick="window.open('${path}/kakaopay', 'kakaopay', 'resizable=no width=850, height=550'); return false;">4,000</a></b>
-      </div>
-    </div>
 </div>
 <p class="tail">* 미수금을 클릭하면 결제페이지로 이동하여 결제가 가능합니다.</p>
 </fieldset>
@@ -233,7 +207,7 @@
         	0
       </div>
       <div class="cell1">
-        	<a style="color:red;" onclick="window.open('${path}/kakaopay', 'kakaopay', 'resizable=no width=850, height=550'); return false;">4,000</a>
+        	<a href="javascript:void(0)" style="color:red;" onclick="window.open('${path}/kakaopay', 'kakaopay', 'resizable=no width=850, height=550'); return false;">4,000</a>
       </div>
       <div class="cell1">
         	0

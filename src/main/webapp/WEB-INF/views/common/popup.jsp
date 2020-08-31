@@ -45,12 +45,12 @@ function closePopup2() {
 		                        <p>페이지 바로가기<img src="${path_resources}img/popup/ico_arrow.png" alt=""></p>
 		                    </a>
 						</li>
-		                <li><a href="https://www.safekorea.go.kr/idsiSFK/neo/sfk/cs/csc/bbs_conf.jsp?menuSeq=593&amp;bbs_no=9&amp;bbs_ordr=2589&amp;viewtype=read" title="신종코로나바이러스감염증-19 예방수칙 다운로드 페이지로 이동" tabindex="0"><img src="${path_resources}img/popup/ico_check.png" alt="">
+		                <li><a href="https://www.safekorea.go.kr/idsiSFK/neo/sfk/cs/csc/bbs_conf.jsp?menuSeq=593&amp;bbs_no=9&amp;bbs_ordr=2589&amp;viewtype=read" target="_blank" title="신종코로나바이러스감염증-19 예방수칙 다운로드 페이지로 이동" tabindex="0"><img src="${path_resources}img/popup/ico_check.png" alt="">
 		                        <p>예방수칙</p>
 		                        <p>다운로드 바로가기<img src="${path_resources}img/popup/ico_arrow.png" alt=""></p>
 		                    </a>
 						</li>
-						<li><a href="http://www.safekorea.go.kr/idsiSFK/neo/sfk/cs/sfc/emd/covid19ClnicCenter.html?menuSeq=822" title="신종코로나바이러스감염증-19 선별진료소 안내페이지로 이동" tabindex="0"><img src="${path_resources}img/popup/careCenter.png" alt="">
+						<li><a href="http://www.safekorea.go.kr/idsiSFK/neo/sfk/cs/sfc/emd/covid19ClnicCenter.html?menuSeq=822" target="_blank" title="신종코로나바이러스감염증-19 선별진료소 안내페이지로 이동" tabindex="0"><img src="${path_resources}img/popup/careCenter.png" alt="">
 		                        <p>선별진료소</p>
 		                        <p>페이지 바로가기<img src="${path_resources}img/popup/ico_arrow.png" alt=""></p>
 		                    </a>
@@ -58,8 +58,8 @@ function closePopup2() {
 		            </ul>
 		        </div>
 		    </div>
-		    <a id="close_popup1" tabindex="0" onclick="closePopup(1);">하루 닫기</a>
-		    <a id="close_popup2" tabindex="0" onclick="closePopup2();">닫기</a>
+		    <a id="close_popup1" href="javascript:void(0)" tabindex="0" onclick="closePopup(1);">하루 닫기</a>
+		    <a id="close_popup2" href="javascript:void(0)" tabindex="0" onclick="closePopup2();">닫기</a>
 </div>
 </body>
 </html>
