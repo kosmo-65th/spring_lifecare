@@ -75,4 +75,25 @@ public class JinController {
 		
 		return "customer/prescription";
 	}
+	
+    // 의사 로그인후 메인페이지
+    @RequestMapping("/doctor_main")
+    public String doctor_main() {
+    	
+    	return "doctor/doctor_main";
+    }
+    
+    // 의사 로그인후 스케쥴러
+    @RequestMapping("/doctor_schedule")
+    public String doctor_schedule() {
+    	
+    	return "doctor/doctor_schedule";
+    }
+    
+    // 의사 로그인후 진료기록부
+    @RequestMapping("/doctor_medicalNote")
+    public String doctor_medicalNote() {
+    	
+    	return "doctor/doctor_medicalNote";
+    }
 }
