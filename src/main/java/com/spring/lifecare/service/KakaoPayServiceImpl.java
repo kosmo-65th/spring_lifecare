@@ -19,7 +19,7 @@ import lombok.extern.java.Log;
 
 @Service
 @Log
-public class KakaoPay {
+public class KakaoPayServiceImpl implements KakaoPayService{
     private static final String HOST = "https://kapi.kakao.com";
     
     private KakaoPayReadyVO kakaoPayReadyVO;
