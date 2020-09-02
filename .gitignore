@@ -1,12 +1,14 @@
-/target/
-# MANIFEST.MF 무시하게
-*.MF
 *.properties
 
 ### Java ###
 # Complied class file
 *.class
+.classpath
+.project
+.metadata
+.settings/
 
 # Log file
 *.log
 
+target/
