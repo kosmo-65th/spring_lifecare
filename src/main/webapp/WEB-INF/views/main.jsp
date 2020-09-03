@@ -12,10 +12,6 @@
    <meta name="keywords" content="">
    <meta name="description" content="">
    <meta name="author" content="">
-   <!-- Site Icons -->
-   <link rel="shortcut icon" href="${path_resources_lifecare}images/fevicon.ico.png" type="image/x-icon" />
-   <link rel="apple-touch-icon" href="${path_resources_lifecare}images/apple-touch-icon.png">
-   <!-- Site Icons -->
    <!-- CSS -->
    <link rel="stylesheet" href="${path_resources_lifecare}css/bootstrap2.min.css">
    <link rel="stylesheet" href="${path_resources_lifecare}style2.css">
@@ -63,7 +59,7 @@
          <img class="preloader" src="${path_resources_lifecare}images/loaders/heart-loading2.gif" alt="">
       </div>
       <!-- END LOADER -->
-      <%@include file="../common/header.jsp" %>
+      <%@include file="./common/header.jsp" %>
       <div id="home" class="parallax first-section wow fadeIn" style="background-image:url('${path_resources_lifecare}images/slider-bg.png');">
          <div class="container">
             <div class="row">
@@ -120,7 +116,7 @@
             </div>
          </div>
       </div>
-      <%@include file="../common/footer.jsp" %>
+      <%@include file="./common/footer.jsp" %>
       <!-- end copyrights -->
       <a href="#home" data-scroll class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
       <!-- all js files -->

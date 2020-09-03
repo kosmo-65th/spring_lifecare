@@ -6,7 +6,6 @@
 <head>
 <link type="text/css" rel="stylesheet" href="${path_resources_customcss}login.css">
 <meta charset="UTF-8">
-<script src="${path_resources}setting/jquery-3.5.1.js"></script>
 <script src="${path_resources}js/idsave-for-cookie.js"></script>
 <script type="text/javascript"></script>
 <!-- 로그인 실패시 메시지 -->
@@ -15,11 +14,6 @@
  		alert("${errMsg}")
 	</script>
 </c:if>
-
-<!-- Site Icons -->
-<link rel="shortcut icon" href="${path_resources_lifecare}images/fevicon.ico.png" type="image/x-icon" />
-<link rel="apple-touch-icon" href="${path_resources_lifecare}images/apple-touch-icon.png">
-<!-- Site Icons -->
 </head>
 <body>
 	<%@include file="../common/header.jsp"%>

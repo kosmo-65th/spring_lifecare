@@ -81,7 +81,7 @@
   	<!-- 5. 에러처리 페이지 -->
   	<error-page>
 		<error-code>404</error-code>
-		<location>/</location>
+		<location>/error_404</location>
 	</error-page>
   	
   	
