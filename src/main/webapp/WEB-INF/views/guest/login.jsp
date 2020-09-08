@@ -36,7 +36,7 @@
 					<a href="https://nid.naver.com/oauth2.0/authorize?client_id={g_0JHC9Ov3W6TK_HKZHh}&response_type=code&redirect_uri={http://localhost/lifecare/callback/ex}&state={nid/getUserProfile}">
 						<img src="${path_resources}img/btn_naver.png" border="0" title="네이버 아이디로 로그인" width="185" height="40" style="cursor: pointer">
 					</a> 
-					<a>
+					<a href="https://kauth.kakao.com/oauth/authorize?client_id=db39a7b6654b2f994af177b271416561&redirect_uri=http://localhost/lifecare/kakaoLogin&response_type=code">
 						<img src="${path_resources}img/btn_kakao.png" alt="" style="cursor: pointer">
 					</a>
 				</div>
