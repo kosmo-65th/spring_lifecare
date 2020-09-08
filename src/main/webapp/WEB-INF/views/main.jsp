@@ -49,9 +49,7 @@
 	         	window.open('${path}/popup', 'newpop', 'width=630,height=570,left=0,top=0');
 	    	}
 		}
-		function chatbot(){
-			window.open("http://192.168.219.124:3000/","chat-bot","resiable=no,width=650,height=650,menubar=no")
-		}
+		
 		</script>
 	
    <!-- [if lt IE 9] -->
@@ -115,7 +113,7 @@
                      <h3>클리닉 시간표</h3>
                      <p>우리가 홈런에 합당하다고 생각하는 것처럼, 아첨으로 이러한 고통의 시급함과 볼타의 질량뿐만 아니라 그는.</p>
                   </div>
-                  <a href="javascript:void(0)" onclick="chatbot();"><img src="${path_resources}img/chatBot.png" style="width: 120px; height: 120px; margin-top:-120px; position: fixed;"></a>
+					<%@include file="./common/chatbot.jsp" %>
                </div>
             </div>
          </div>
