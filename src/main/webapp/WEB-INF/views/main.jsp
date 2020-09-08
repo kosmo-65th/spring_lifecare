@@ -115,7 +115,7 @@
                      <h3>클리닉 시간표</h3>
                      <p>우리가 홈런에 합당하다고 생각하는 것처럼, 아첨으로 이러한 고통의 시급함과 볼타의 질량뿐만 아니라 그는.</p>
                   </div>
-                  <a href="" onclick="chatbot();"><img src="${path_resources}img/chatBot.png" style="width: 120px; height: 120px; margin-left: 400px; z-index: 999;"></a>
+                  <a href="" onclick="chatbot();"><img src="${path_resources}img/chatBot.png" style="width: 120px; height: 120px; margin-top:-120px; position: fixed;"></a>
                </div>
             </div>
          </div>
