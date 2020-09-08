@@ -41,13 +41,13 @@ public class KakaoPayServiceImpl implements KakaoPayService{
         params.add("cid", "TC0ONETIME");
         params.add("partner_order_id", "1001");
         params.add("partner_user_id", "gorany");
-        params.add("item_name", "갤럭시S9");
+        params.add("item_name", "진료비 계산");
         params.add("quantity", "1");
-        params.add("total_amount", "2100");
+        params.add("total_amount", "4000");
         params.add("tax_free_amount", "100");
-        params.add("approval_url", "http://localhost/lifecare/payment");
-        params.add("cancel_url", "http://localhost/lifecare/payment");
-        params.add("fail_url", "http://localhost/lifecare/payment");
+        params.add("approval_url", "http://localhost/lifecare/kakaopaySuccess");
+        params.add("cancel_url", "http://localhost/lifecare/kakaopayCencel");
+        params.add("fail_url", "http://localhost/lifecare/kakaopayFail");
         System.out.println("바디 확인");
         HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String, String>>(params, headers);
         System.out.println("header :"+ headers.toString());
