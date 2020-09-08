@@ -125,7 +125,7 @@
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
           	<br><br>
-            <h1 class="h3 mb-0 text-gray-800" style="margin:0 auto;">결산</h1>
+            <h1 class="h3 mb-0 text-gray-800" style="margin:0 auto;"></h1>
             
           </div>
 
