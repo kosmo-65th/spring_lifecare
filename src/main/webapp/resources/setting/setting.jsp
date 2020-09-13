@@ -11,7 +11,7 @@
   <c:set var="path_resources" value="/lifecare/resources/"/>
   <c:set var="path_resources_lifecare" value="/lifecare/resources/lifecare/" />
   <c:set var="path_resources_asset" value="/lifecare/resources/asset/" />
-  <c:set var="path_resources_customcss" value="/lifecare/resources/customcss/" />
+	 <c:set var="path_resources_customcss" value="/lifecare/resources/customcss/" />
 	<script src="${path_resources}setting/jquery-3.5.1.js"></script>
 	
 	<!-- Site Icons -->
