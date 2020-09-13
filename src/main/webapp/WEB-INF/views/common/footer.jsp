@@ -17,7 +17,7 @@
 	<ul class="innerWrap footerLink2">
 		<li><a href="/reservation/unPaid/list.do" class="colorPoint04"
 			target="_blank">비급여진료비용</a></li>
-		<li><a href="/content/M004005.do" target="_blank">환자권리장전</a></li>
+		<li><a href="${path}/guest/pbor" target="_blank">환자권리장전</a></li>
 		<li><a href="/footer/service.do" target="_blank">이용약관</a></li>
 		<li><a href="/footer/privacy.do" class="colorPoint04"
 			target="_blank">개인정보 처리방침</a></li>

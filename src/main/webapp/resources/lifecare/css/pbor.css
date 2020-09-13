@@ -1,0 +1,149 @@
+@charset "UTF-8";
+
+.class{
+	visibility: visible;
+	color: #000;
+	font-size: 16px;
+	word-spacing: 0;
+	letter-spacing: -.5px;
+	vertical-align: baseline;
+	margin: 0;
+	border-radius: 0;
+	-webkit-font-smoothing: antialiased;
+	text-size-adjust: none;
+	list-style: none;
+	-webkit-tap-highlight-color: transparent;
+	font-family: 'Noto Sans KR Regular','Noto Sans CJK KR','Noto Sans KR','맑은 고딕',sans-serif;
+	font-weight: 400;
+	outline: 0!important;
+	min-height: 167px;
+	margin-top: 0;
+	padding: 37px 40px;
+	background: url(/asset/img/common/bg_type05.jpg) no-repeat 100% 0 #d2d6e1;
+}
+
+.boxTit{
+	visibility: visible;
+	word-spacing: 0;
+	padding: 0;
+	border-radius: 0;
+	-webkit-font-smoothing: antialiased;
+	text-size-adjust: none;
+	list-style: none;
+	-webkit-tap-highlight-color: transparent;
+	font-family: 'Noto Sans KR Bold','Noto Sans CJK KR','Noto Sans KR','맑은 고딕',sans-serif;
+	outline: 0!important;
+	font-weight: 700;
+	letter-spacing: -1px;
+	display: block;
+	margin: 15px 0;
+	color: #000;
+	font-size: 28px;
+		
+}
+.title{
+	visibility: visible;
+	word-spacing: 0;
+	letter-spacing: -.5px;
+	word-break: keep-all;
+	vertical-align: baseline;
+	margin: 0;
+	padding: 0;
+	border-radius: 0;
+	-webkit-font-smoothing: antialiased;
+	text-size-adjust: none;
+	list-style: none;
+	-webkit-tap-highlight-color: transparent;
+	font-family: 'Noto Sans KR Regular','Noto Sans CJK KR','Noto Sans KR','맑은 고딕',sans-serif;
+	font-weight: 400;
+	outline: 0!important;
+	color: #000;
+	font-size: 20px;
+}
+
+
+.listText col2{
+	
+	visibility: visible;
+	font-size: 16px;
+	word-spacing: 0;
+	letter-spacing: -.5px;
+	vertical-align: baseline;
+	margin: 0;
+	padding: 0;
+	border-radius: 0;
+	-webkit-font-smoothing: antialiased;
+	text-size-adjust: none;
+	list-style: none;
+	-webkit-tap-highlight-color: transparent;
+	font-family: 'Noto Sans KR Regular','Noto Sans CJK KR','Noto Sans KR','맑은 고딕',sans-serif;
+	font-weight: 400;
+	outline: 0!important;
+	color: #666;
+	overflow: hidden;
+	padding-top: 185px;
+	background-image:url('/lifecare/resources/img/pbor.png') no-repeat 0 0; 
+	/* background-image: url(/lifecare/resources/img/pbor.png) no-repeat 0 0; */
+	
+}
+.boxTypeGray paRightsImg bgType05{
+	visibility: visible;
+	color: #000;
+	font-size: 16px;
+	word-spacing: 0;
+	letter-spacing: -.5px;
+	vertical-align: baseline;
+	margin: 0;
+	border-radius: 0;
+	-webkit-font-smoothing: antialiased;
+	text-size-adjust: none;
+	list-style: none;
+	-webkit-tap-highlight-color: transparent;
+	font-family: 'Noto Sans KR Regular','Noto Sans CJK KR','Noto Sans KR','맑은 고딕',sans-serif;
+	font-weight: 400;
+	outline: 0!important;
+	min-height: 167px;
+	margin-top: 0;
+	padding: 37px 40px;
+	background-image: url(/lifecare/resources/img/bg_type05.jpg) no-repeat 100% 0 #d2d6e1;
+}
+
+.listText[class*=col] {
+    overflow: hidden;
+}
+.listText {
+    color: #666;
+}
+.disableOutline * {
+    outline: 0!important;
+}
+* {
+    font-family: 'Noto Sans KR Regular','Noto Sans CJK KR','Noto Sans KR','맑은 고딕',sans-serif;
+    font-weight: 400;
+}
+* {
+    vertical-align: baseline;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+    text-size-adjust: none;
+    list-style: none;
+    -webkit-tap-highlight-color: transparent;
+}
+user agent stylesheet
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+#content {
+    word-spacing: 0;
+    letter-spacing: -.5px;
+}
