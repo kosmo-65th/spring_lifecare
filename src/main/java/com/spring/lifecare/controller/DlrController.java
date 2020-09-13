@@ -23,6 +23,6 @@ public class DlrController {
 		session.invalidate();
 		SecurityContextHolder.clearContext();
 		
-		return "guest/main";
+		return "main";
 	}
 }
