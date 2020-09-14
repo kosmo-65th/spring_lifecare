@@ -2,31 +2,29 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:sec="http://www.springframework.org/schema/security"
-	xsi:schemaLocation="http://www.springframework.org/schema/security https://www.springframework.org/schema/security/spring-security-5.2.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xsi:schemaLocation="http://www.springframework.org/schema/security 
+	https://www.springframework.org/schema/security/spring-security-5.2.xsd
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<!-- 주의 : 네임스페이스 security => sec로 수정 -->
 	<!-- 정적 리소스 파일들에는 보안 설정을 하지 않음 -->
 	<sec:http pattern="/include/**" security="none" />
 	<sec:http pattern="/common/**" security="none" />
 	<sec:http pattern="/guest/**" security="none" />
-	<sec:http auto-config="true" use-expressions="true" create-session="never">
+	<sec:http auto-config="true" use-expressions="true" create-session="never">		
 		
-		<!-- 관리자 영역 설정 -->
-		<sec:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
+		<!-- 로그인한 사용자 영역(일반) -->                                
+		<sec:intercept-url pattern="/customer/**" access="hasRole('ROLE_CUSTOMER')" />
+		
+		<!-- 로그인한 사용자 영역(의사) -->
+		<sec:intercept-url pattern="/doctor/**" access="hasRole('ROLE_DOCTOR')" />
+		
+		<!-- 로그인한 사용자 영역(관리자) -->
+		<sec:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
 		
 		<!-- 권한에 관계없이 접속 가능한 영역(guest도 접속 가능) -->
 		<sec:intercept-url pattern="/**" access="permitAll" />
-		<sec:intercept-url pattern="/guest/**" access="permitAll" />
-		
-		<!-- 로그인한 사용자 영역(일반) -->
-		<sec:intercept-url pattern="/customer/**" access="hasAnyRole('ROLE_CUSTOMER')" />
-		
-		<!-- 로그인한 사용자 영역(의사) -->
-		<sec:intercept-url pattern="/doctor/**" access="hasAnyRole('ROLE_DOCTOR')" />
-		
-		<!-- 로그인한 사용자 영역(관리자) -->
-		<sec:intercept-url pattern="/admin/**" access="hasAnyRole('ROLE_ADMIN')" />
 		
 		<!-- 로그인폼 -->
 		<sec:form-login login-page="/login" 
@@ -41,7 +39,7 @@
 			     error-if-maximum-exceeded="true" => 최대 세션 초과시 에러 옵션 
 			-->
 			<sec:concurrency-control max-sessions="1"
-			 	expired-url="/guest/login"
+			 	expired-url="/login"
 			 	error-if-maximum-exceeded="true"
 			/>        
 		</sec:session-management>

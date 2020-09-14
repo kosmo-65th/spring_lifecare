@@ -13,7 +13,7 @@
     <div class="infoWrap">
        <p class="myThumb"><img src="//img.echosting.cafe24.com/skin/base_ko_KR/member/img_member_default.gif"></p>
        <div class="myInfo">
-           <strong class="id"><span>${sessionScope.memId}</span></strong>님 저희 LIFECARE를 이용해 주셔서 감사합니다.
+           <strong class="id"><span>${sessionScope.userSession}</span></strong>님 저희 LIFECARE를 이용해 주셔서 감사합니다.
            <p>원하시는 메뉴를 선택해주세요.</p>
        </div>
     </div>
@@ -21,7 +21,12 @@
     <br><br><br><br>
      
     <div class="shopMain_left">
-       
+    
+    <div class="shopMain">
+        <h3><a href="${pathA}/user/cartList"><strong>CONFIRM</strong> 예약 조회</a></h3>
+        <p><a href="${pathA}/user/cartList">고객님께서 예약하셨던 예약내역을 보여드립니다.</a></p>
+    </div>
+      
     <div class="shopMain">
         <h3><a href="${pathA}/user/cartList"><strong>DIAGNOSIS</strong> 진료결과 조회</a></h3>
         <p><a href="${pathA}/user/cartList">고객님께서 진료받으셨던 진료내역 목록을 보여드립니다.</a></p>
@@ -46,8 +51,8 @@
     </div>
     
     <div class="shopMain">
-        <h3><a href="${pathA}/user/modifyForm.do"><strong>PAYMENT</strong> 결제내역 조회</a></h3>
-        <p><a href="${pathA}/user/modifyForm.do">고객님의 결제정보를 관리하는 공간입니다.</a></p>
+        <h3><a href="${path}/customer/payment"><strong>PAYMENT</strong> 결제내역 조회</a></h3>
+        <p><a href="${path}/customer/payment">고객님의 결제정보를 관리하는 공간입니다.</a></p>
     </div> 
     
     <div class="shopMain">

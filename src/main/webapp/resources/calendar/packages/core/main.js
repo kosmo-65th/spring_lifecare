@@ -3847,7 +3847,7 @@ Docs & License: https://fullcalendar.io/
             applyStyle(this.el, { overflowX: overflowX, overflowY: overflowY });
         };
         ScrollComponent.prototype.setHeight = function (height) {
-            applyStyleProp(this.el, 'height', 600); // 캘린더 높이 조절
+            applyStyleProp(this.el, 'height', 'auto'); // 캘린더 높이 조절
         };
         ScrollComponent.prototype.getScrollbarWidths = function () {
             var edges = computeEdges(this.el);

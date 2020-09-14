@@ -23,6 +23,7 @@
 .fc .fc-list-table {
   table-layout: auto;
   /* for shrinkwrapping cell content */
+  margin-bottom: 0;
 }
 
 .fc-list-table td {
