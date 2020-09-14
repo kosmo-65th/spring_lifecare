@@ -17,5 +17,5 @@ public interface KakaoLoginService {
     public Map<String, String> checkKakaoId(HashMap<String, Object> userInfo);
     
     //userInfo에 권한 주기
-    public void kakaoAutehntication(HttpServletRequest request, HttpServletResponse response, HashMap<String, String> user);
+    public void kakaoAutehntication(HttpServletRequest request, HttpServletResponse response, Map<String, String> user);
 }

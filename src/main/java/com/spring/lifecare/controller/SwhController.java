@@ -23,14 +23,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.spring.lifecare.service.KakaoLoginServiceImpl;
+import com.spring.lifecare.service.KakaoLoginService;
+import com.spring.lifecare.service.NaverLoginService;
 import com.spring.lifecare.vo.UserVO;
 
 @Controller
 public class SwhController {
 	
 	@Autowired
-	private KakaoLoginServiceImpl kakao;
+	KakaoLoginService kakao;
+	
+	@Autowired
+	NaverLoginService naver;
 
 	//메인페이지
 	@RequestMapping(value= {"/","/guest/main","/main"})
@@ -88,6 +92,16 @@ public class SwhController {
         return "main";
     }
 
+	//네이버 로그인
+	@RequestMapping("/naverLogin")
+	public String naverLogin(HttpServletRequest request, HttpServletResponse response) {
+		
+		
+		
+		
+		return "main";
+	}
+	
 	@RequestMapping("/main_reset")
 	public String main_reset(HttpServletRequest request, Model model) {
 		return "/";
