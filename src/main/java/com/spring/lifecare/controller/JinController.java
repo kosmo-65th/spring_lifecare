@@ -7,17 +7,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.spring.lifecare.service.KakaoPayServiceImpl;
+import com.spring.lifecare.service.KakaoPayService;
 
-import lombok.Setter;
 import lombok.extern.java.Log;
 
 @Log
 @Controller
 public class JinController {
 	//카카오페이 관련 Autowired
-    @Setter(onMethod_ = @Autowired)
-    private KakaoPayServiceImpl kakaopay;
+    @Autowired
+    KakaoPayService kakaopay;
     
     //메인페이지 팝업
     @RequestMapping("/popup")
