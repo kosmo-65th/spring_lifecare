@@ -9,25 +9,23 @@
 
 	//챗봇띄우는 펑션(챗봇은 common에서 include한 이미지로 킨다.)
 	function chatbot(){
-	window.open("http://192.168.219.124:3000/","chat-bot","resiable=no,width=650,height=650,menubar=no")
+	window.open("http://192.168.219.123:3000/","chat-bot","resiable=no,width=650,height=650,menubar=no")
 	}
 </script>
 <style type="text/css">
+
 	.chatbot{
 		float: right;
 		position: fixed;
-		margin-left: 1750px;
-		bottom:70px;
-		
-	}
-
+		margin-left: 85%;
+	}	
 </style>
 </head>
 <body>
 	<div class="chatbot">
-  		<a href="javascript:void(0)" onclick="chatbot();"><img src="${path_resources}img/chatBot.png" 
+  		<a href="javascript:void(0)" onclick="chatbot();"><img title="chat-bot" src="${path_resources}img/chatBot.png" 
   		style="width: 120px; height: 120px;"></a>
   	</div>
-
+  	
 </body>
 </html>

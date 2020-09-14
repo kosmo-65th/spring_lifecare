@@ -117,6 +117,7 @@
             </div>
          </div>
       </div>
+      
       <%@include file="./common/chatbot.jsp"%>
       <%@include file="./common/footer.jsp" %>
       <!-- end copyrights -->

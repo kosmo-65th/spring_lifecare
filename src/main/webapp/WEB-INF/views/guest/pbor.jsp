@@ -62,36 +62,54 @@
       </div>
       <!-- END LOADER -->
       <%@include file="../common/header.jsp" %>
-      <div id="home" class="parallax first-section wow fadeIn" style="background-image:url('${path_resources_lifecare}images/slider-bg.png');">
-         <div class="container" style="background: white;">
-         
-      		<div class="boxTypeGray paRightsImg bgType05"> 
-      		<strong class="boxTit">life-care는</strong>
-				<p> <span class="colorPoint">환자중심, 인간존중, 지식창조, 사회봉사</span> 라는  경영이념을 통해 신체적/정신적 어려움으로 병원을 찾는 <br> <span class="colorPoint">모든 환자의 권리를 존중</span>하고,&nbsp;
-				<span class="colorPoint">최선의 진료를 제공</span>하기 위하여 다음과 같이 선언한다.</p> 
+      <div style="background-image:url('${path_resources_lifecare}images/slider-bg.png') !important; height:1000px">
+        
+         <div class="pbor" style="background: white;">
+         <h1 style="font-size:40px;">환자권리장전</h1>
+      		<div class="boxTypeGray paRightsImg bgType05" style="background-image: url('${path_resources}img/bg_type05.jpg'); "> 
+      			<strong class="boxTit">life-care는</strong>
+				<p> <span class="colorPoint">환자중심, 인간존중, 지식창조, 사회봉사</span> 라는  경영이념을 <br>통해 신체적/정신적 어려움으로 병원을 찾는 <br> <span class="colorPoint">모든 환자의 권리를 존중</span>하고,&nbsp;
+				<span class="colorPoint">최선의 진료를 제공</span>하기 위하여 <br> 다음과 같이 선언한다.</p> 
 			</div> 
-				<ul class="listText col2">
-					<li> 
-						<div class="title"><i>01</i>존엄의 권리</div> 
-						<p> 환자는 존엄한 인간으로서 예우받을 권리가 있다. </p>
-					</li>
-					<li> 
-						<div class="title"><i class="colorPoint03">02</i>평등의 권리</div> 
-						<p>환자는 성별, 연령, 종교 또는 사회적 신분을 떠나 평등한 진료를 받을 권리가 있다.</p>
-					</li> 
-					<li> 
-						<div class="title"><i>03</i>설명을 들을 권리</div> 
-						<p>환자는 의료진으로부터 질병의 진단, 치료계획, 결과, 예후에 대한 설명을 들을 권리가 있다.</p>
-					</li> 
-					<li> 
-						<div class="title"><i class="colorPoint03">04</i>개인신상 비밀을 보호받을 권리</div> 
-						<p>환자는 진료내용, 신체의 비밀 및 개인생활의 비밀을 보호받을 권리가 있다.</p>
-					</li> 
-				</ul>
+				<br>
+				
+				<div align="center">
+					<img src="${path_resources}img/pbor.png">
+				</div>
+				<br><br>
+				<div align="center">	
+					<div style="width: 700px; align:center; background-color:white; height: 350px">
+						<div style="float: left;">
+							<ul class="listText col2" style="width: 300;">
+								<li> 
+									<div class="title"><i>01</i>존엄의 권리</div> 
+									<p> 환자는 존엄한 인간으로서 예우받을 권리가 있다.</p>
+								</li>
+								<li> 
+									<div class="title"><i class="colorPoint03">02</i>평등의 권리</div> 
+									<p>환자는 성별, 연령, 종교 또는 사회적 신분을 떠나 평등한 진료를 받을 권리가 있다.</p>
+								</li>
+							</ul>
+						</div>
+						<div style="float: right; ">
+							<ul class="listText col2"  style="width: 300;"> 
+								<li> 
+									<div class="title"><i>03</i>설명을 들을 권리</div> 
+									<p>환자는 의료진으로부터 질병의 진단, 치료계획, 결과, 예후에 대한 설명을 들을 권리가 있다.</p>
+								</li> 
+								<li> 
+									<div class="title"><i class="colorPoint03">04</i>개인신상을 보호받을 권리</div> 
+									<p>환자는 진료내용, 신체의 비밀 및 개인생활의 비밀을 보호받을 권리가 있다.</p>
+								</li> 
+							</ul>
+						</div>
+					</div>
+				</div>		
 		</div>
-      </div>
+			<div style="height:300px;"></div>
+		</div>
       <%@include file="../common/chatbot.jsp"%>
-      <%@include file="../common/footer.jsp" %>
+      <%@include file="../common/footer.jsp"%>
       <!-- end copyrights -->
       <a href="#home" data-scroll class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
       <!-- all js files -->
