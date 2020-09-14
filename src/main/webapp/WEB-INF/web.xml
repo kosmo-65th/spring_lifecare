@@ -88,7 +88,7 @@
   	
   	<error-page>
   		<error-code>500</error-code>
-  		<location>/user/login</location>
+  		<location>/error_500</location>
   	</error-page>
   	
   	<!-- 6. 세션 타임 아웃 설정(120분) -->

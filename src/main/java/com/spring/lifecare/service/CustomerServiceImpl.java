@@ -2,6 +2,7 @@ package com.spring.lifecare.service;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Map;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +26,7 @@ public class CustomerServiceImpl implements CustomerService{
 	
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
-
+	
 	@Override
 	public int confirmId(String customer_id) {
 		return userDAO.idCheck(customer_id);
@@ -125,4 +126,6 @@ public class CustomerServiceImpl implements CustomerService{
 		
 		
 	}
+
+	
 }

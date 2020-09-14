@@ -68,7 +68,7 @@
                   <div class="text-contant">
                      <h2>
                         <span class="center"><span class="icon"><img src="${path_resources_lifecare}images/icon-logo.png" alt="#" /></span></span>
-                        <a href="" class="typewrite" data-period="2000" data-type='[ "Welcome life care", "Take care of you", "Hospital for you" ]'>
+                        <a href="" class="typewrite" data-period="2000" data-type='[ "Welcome to life care", "Take care of you", "Hospital for you" ]'>
                         <span class="wrap"></span>
                         </a>
                      </h2>

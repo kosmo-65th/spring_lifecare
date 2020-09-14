@@ -16,13 +16,14 @@ public class DlrController {
 		
 		return "guest/login";
 	}
-	
+	/*
 	//로그아웃
 	@RequestMapping("/logout")
 	public String logout(HttpServletRequest req,Model model,HttpSession session) {
-		session.invalidate();
-		SecurityContextHolder.clearContext();
+		//session.invalidate();
+		//SecurityContextHolder.clearContext();
 		
 		return "main";
 	}
+	*/
 }

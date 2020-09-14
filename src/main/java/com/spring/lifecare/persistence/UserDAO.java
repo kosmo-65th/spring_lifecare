@@ -1,9 +1,14 @@
 package com.spring.lifecare.persistence;
 
+import java.util.Map;
+
 import com.spring.lifecare.vo.CustomerVO;
 
 public interface UserDAO {	
-	 //아이디 중복확인
+	//카카오 회원찾기
+	public Map<String, String> kakaoFindId(String kakaoId);
+	
+	//아이디 중복확인
     public int idCheck(String customer_id);
 		
 	 //휴대폰 번호 중복 확인

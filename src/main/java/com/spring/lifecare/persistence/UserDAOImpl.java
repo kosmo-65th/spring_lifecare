@@ -1,5 +1,7 @@
 package com.spring.lifecare.persistence;
 
+import java.util.Map;
+
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMessage.RecipientType;
@@ -19,6 +21,11 @@ public class UserDAOImpl implements UserDAO {
 
 	@Autowired
 	private SqlSession sqlSession;
+	
+	@Override
+	public Map<String, String> kakaoFindId(String kakaoId) {
+		return sqlSession.selectOne("com.spring.lifecare.persistence.UserDAO.kakaoFindId", kakaoId);
+	}
 	
     //아이디 중복확인
 	@Override

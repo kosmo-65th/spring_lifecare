@@ -112,7 +112,7 @@ public class JinController {
     }
     
     // 마이페이지
- 	@RequestMapping("/mypage")
+ 	@RequestMapping("customer/mypage")
  	public String mypage(Model model) {
  		
  		return "customer/Mypage";

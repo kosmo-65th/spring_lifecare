@@ -53,7 +53,12 @@
                                     <c:if test="${sessionScope.userSession != null}">
 	                                    <li><a href="${path}/Mypage">${sessionScope.userSession}의 마이페이지</a></li>
 	                                    <li><a href="">고객센터</a></li>
-	                                    <li><a href="${path}/logout">로그아웃</a></li>
+	                                    <%-- <li><a href="${path}/logout">로그아웃</a></li> --%>
+	                                    <li><a href="#" onclick="document.getElementById('logout-form').submit();">로그아웃</a></li>
+	                                    <form id="logout-form" action="${path}/logout" method="POST">
+	  										 <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+										</form>
+                                    
                                     </c:if>
                                 </ul>
                             </div>
