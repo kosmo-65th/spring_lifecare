@@ -164,7 +164,7 @@ html {
     display: inline-block;
     width: 24px;
     height: 24px;
-    background: url(/asset/img/common/spr_common.png) no-repeat -169px -27px;
+    /* background: url(/resources/asset/img/common/spr_common.png) no-repeat -169px -27px; */
 }
 .feFoRadio.checked {
     background-position: -169px -53px;
@@ -179,7 +179,7 @@ html {
     width: 24px;
     height: 24px;
     margin-right: 9px;
-    background: url(/asset/img/common/spr_common.png) no-repeat -195px -27px;
+    /* background: url(/asset/img/common/spr_common.png) no-repeat -195px -27px; */
 }
 .feFoCheck.checked {
     background-position: -195px -53px;
@@ -214,7 +214,7 @@ html {
     width: 7px;
     height: 4px;
     margin-top: -2px;
-    background: url(/asset/img/common/spr_common.png) no-repeat -65px -70px;
+    /* background: url(/asset/img/common/spr_common.png) no-repeat -65px -70px; */
 }
 .feFoSelect select {
     display: inline-block;

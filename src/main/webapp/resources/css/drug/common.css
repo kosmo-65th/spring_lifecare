@@ -1,0 +1,613 @@
+@charset "UTF-8";
+#wrap{
+	min-width:1000px;
+}
+#skip_nav{
+	position:absolute;
+	top:-50px;
+}
+/*최상단 GNB바*/
+section#top{
+	width:100%;
+	border-bottom:1px solid #dedede;
+	font-size:13px;
+	color:#808080;
+}
+#top_cont{
+	width:1000px;
+	height:33px;
+	margin:0 auto;
+}
+#top_cont > div ul li{
+	float:left;
+}
+#top_cont #viewSize{
+	float:left;
+}
+#top_cont #viewSize p{
+	width:66px;
+	background-position:0 11px;
+	padding-left:18px;
+	line-height:33px;
+	float:left;
+}
+#top_cont #viewSize ul{
+	float:left;
+}
+#top_cont #viewSize li.plus a{
+	display:block;
+	width:36px;
+	height:33px;
+	background-position:-111px 0;
+}
+#top_cont #viewSize li.plus a:active{
+	background-position:-147px 0;
+}
+#top_cont #viewSize li.minus a{
+	display:block;
+	width:37px;
+	height:33px;
+	background-position:-188px 0;
+}
+#top_cont #viewSize li.minus a:active{
+	background-position:-224px 0;
+}
+#top_cont #gnb{
+	float:right;
+}
+#top_cont #gnb li a{
+	display:block;
+	border-right:1px solid #dedede;
+	line-height:33px;
+	padding:0 18px;
+	color:#808080;
+}
+#top_cont li.app a{
+	padding-left:28px !important;
+	background-position:-416px -30px;
+	color:#435cc8 !important;
+}
+#top_cont #gnb li:first-child a{
+	border-left:1px solid #dedede;
+}
+#top_cont #gnb li a:active{
+	background-color:#f8f7f6;
+}
+/*검색바*/
+#mainSearch{
+	width:100%;
+	background:#f4f1ed;
+}
+#mainSearch2_cont{
+	width:1000px;
+	height:85px;
+	margin:0 auto;
+	padding-top:25px;
+}
+#mainSearch2_cont h1{
+	float:left;
+	margin-right:50px;
+}
+#mainSearch2_cont #search{
+	margin-top:11px;
+}
+#searchBar{
+	position:relative;
+}
+#searchBar #category{
+	width:105px;
+	height:30px;
+	border:3px solid #435cc8;
+	background:#fff;
+	float:left;
+}
+#searchBar #category a{
+	display:inline-block;
+	line-height:30px;
+	padding-left:10px;
+}
+#searchBar #category .arr{
+	float:right;
+	width:18px;
+	height:7px;
+	background-position:-12px -54px;
+	margin-top:12px;
+}
+#searchBar #category_list{
+	width:105px;
+	border:3px solid #435cc8;
+	border-top:0;
+	background:#fff;
+	position:absolute;
+	left:0;
+	top:31px;
+	z-index:1000;
+	padding-bottom:2px;
+}
+#searchBar #category_list li a{
+	line-height:20px;
+	padding-left:10px;
+}
+#searchBar #searchbox{
+	width:380px;
+	height:30px;
+	border-top:3px solid #435cc8;
+	border-bottom:3px solid #435cc8;
+	background:#fff;
+	float:left;
+	position:relative;
+}
+#searchBar #searchbox input{
+	width:360px;
+	border: 1px solid transparent;
+	margin:3px 0 0 2px;
+}
+#searchBar #searchbox .category_list{
+	border: 3px solid #435cc8;
+    border-top: 0;
+    background: #fff;
+    position: absolute;
+    left: -3px;
+    top: 30px;
+    z-index: 1000;
+    padding-bottom: 2px;
+    overflow-y: auto;
+    max-height: 113px;
+    width: 433px;
+}
+#searchBar #searchbox .category_list li{
+	text-indent:10px;
+}
+#searchBar button.search{
+	float:left;
+	width:56px;
+	height:36px;
+	color:#fff;
+	background:#435cc8;
+	border:0;
+	font-size:15px;
+	font-weight:bold;
+}
+#searchBar button.searchDeatil{
+	width:80px;
+	height:36px;
+	background:#43c8ba;
+    color:#fff;
+    border:2px solid #43c8ba;
+	font-size:15px;
+	font-weight:bold;
+	margin-left:5px;
+}
+
+/*네비게이션*/
+/* nav{
+	width:100%;
+	height:50px;
+	background:#435cc8;
+	position:relative;
+	z-index:999;
+} */
+#nav_cont{
+	width:1000px;
+	height:50px;
+	margin:0 auto;
+}
+#nav_cont > ul > li{
+	float:left;
+	width:10.5%;
+	position:relative;
+}
+#nav_cont > ul > li > a{
+	display:block;
+	color:#fff;
+	font-size:15px;
+	font-weight:bold;
+	line-height:50px;
+	text-align:center;
+	margin-bottom:10px;
+}
+#nav_cont > ul > li.current{
+	background:url(../images/ico_navi.png) no-repeat 50% 97%;
+}
+#nav_cont > ul > li.current > a{
+	background:#43c8ba;
+}
+#nav_cont .bar{
+	position:absolute;
+    top:50px;
+    left:0;
+    width:100%;
+    height:45px;
+    border-bottom:1px solid #cbcbcb;
+    background:#fff;
+    z-index:-1;
+    box-shadow:0 1px 1px #dcdcdc;
+}
+.secDepth > ul{
+	position:absolute;
+	top:50px;
+}
+.secDepth > ul.searchDrug{width:480px;left:-15px;}
+.secDepth > ul.searchIdentity{width:220px;left:-15px;}	
+.secDepth > ul.mediCounsel{width:430px;left:-15px;}	
+.secDepth > ul.searchIngredient{width:220px;left:-15px;}	
+.secDepth > ul.interaction{width:315px;left:-15px;}
+.secDepth > ul.researchInfo{width:970px;left:-496px;}
+.secDepth > ul.resource{width:440px;right:-26px;}
+.secDepth > ul.notice{width:825px;right:-26px;}
+.secDepth > ul.company{width:615px;right:-26px;}
+.secDepth > ul > li{
+	display:inline-block;
+	margin:0 15px;
+}
+.secDepth > ul > li a{
+	display:inline-block;
+	line-height:45px;
+	padding:0 5px;
+	font-weight:bold;
+	color:#666;
+}
+.secDepth > ul > li a.current{
+	border-bottom:2px solid #435cc8;
+	box-sizing:border-box;
+	line-height:44px;
+	color:#435cc8;
+}
+/*사이트맵*/
+#sitemap{
+	float:right;
+	position:relative;
+}
+#sitemap > a{
+	width:50px;
+	height:50px;
+	background-position:-269px 15px;
+	position:absolute;
+	right:0;
+	z-index:20;
+}
+#sitemap > a:hover{
+	background-position:-304px 15px;
+}
+#sitemap > a.selected{
+	background-position:-341px 13px;
+	background-color:#fff;
+	border:2px solid #2b42a5;
+	border-bottom:0;
+	box-sizing:border-box;
+}
+#sitemap #map{
+	width:1000px;
+	height:540px;
+	background:#fff;
+	border:2px solid #2b42a5;
+	box-sizing:border-box;
+	position:absolute;
+	right:0;
+	top:48px;
+	z-index:10;
+	padding:50px;
+}
+#sitemap #map > ul > li{
+	float:left;
+	width:154px;
+	height:185px;
+	margin-right:31px;
+}
+#sitemap #map ul li h5{
+	font-size:17px;
+	color:#435cc8;
+	border-bottom:1px solid #43c8ba;
+	margin-bottom:5px;
+}
+#sitemap #map ul li ul li{
+	line-height:25px;
+	font-size:13px;
+}
+
+nav.fixed{
+	position:fixed;
+	top:0;
+}
+
+
+
+#subtab.fixed{
+	position:fixed;
+	top:95px;
+	width:758px;
+	z-index:9999;
+}
+
+/*컨텐츠*/
+section#contens{
+	width:1000px !important;
+	margin:0 auto !important;
+	margin-top:80px !important;
+	min-height:840px !important;
+}
+/* section#articles_sub{
+	float:left !important;
+	width:758px !important;
+	margin-right:25px !important;
+} */
+#lnb{
+	width:100%;
+	height:26px;
+	background:#f8f7f6;
+	margin-top:10px;
+	margin-bottom:25px;
+	font-size:12px;
+	padding-top:4px;
+}
+#lnb ul li{
+	float:left;
+}
+#lnb ul li.home a{
+	width:20px;
+	height:20px;
+	background-position:-425px -209px;
+	display:block;
+	margin-left:10px;
+	cursor: default;
+}
+#lnb ul li.nxt span{
+	width:5px;
+	height:20px;
+	background-position:-445px -209px;
+	display:block;
+	margin:0 10px;
+}
+#lnb > span{
+	float:right;
+	margin-right:15px;
+}
+
+/*aside_sub*/
+aside#aside_sub{
+	float:left;
+	width:217px;
+}
+#CommonBtns{
+	overflow:hidden;
+	margin-bottom:8px;
+}
+#CommonBtns li{
+	float:left;
+}
+#CommonBtns li a{
+	display:block;
+	height:30px;
+	/* width:29px; 좋아요,링크버튼 추가시 복구하기*/
+	width:30px;
+}
+#CommonBtns li.like a{
+	width:30px;
+	background-position:-305px -262px;
+}
+#CommonBtns li.share a{
+	background-position:-335px -262px;
+}
+#CommonBtns li.print a{
+	background-position:-363px -262px;
+}
+aside#aside_sub .recentView{
+	width:100%;
+	height:175px;
+	background:aliceblue;
+	border:1px solid #d1ceca;
+	box-sizing:border-box;
+	padding:15px;
+	margin-top:-1px;
+}
+aside#aside_sub .recentView h3{
+	color:#435cc8;
+	font-size:15px;
+	line-height:15px;
+	margin-bottom:10px;
+}
+aside#aside_sub .recentView ul li{
+	line-height:24px;
+}
+aside#aside_sub .recentView ul li a{
+	font-size:12px;
+	color:#888;
+	max-width:180px;
+}
+#totalBestPharmReview ul li a{
+	display:block;
+}
+aside#aside_sub .recentView ul li .delete{
+	width:13px;
+	height:16px;
+	background-position:-425px -229px;
+	display:inline-block;
+	margin-left:5px;
+    vertical-align:middle;
+	cursor:pointer;
+}
+aside#aside_sub #ads{
+	margin-bottom:40px;
+}
+#ads ul li{
+	margin-top:15px;
+}
+aside.fixed{
+	position:fixed;
+	margin-left:1650px;
+	/* top:110px; */
+	top:274px;
+}
+aside#aside_sub #recentView_word ul li a.overtxt{
+	max-width: 165px;
+    display: block;
+    float: left;
+}
+/*go_top*/
+a.go_top{
+	width:45px;
+	height:89px;
+	background-position:-60px -860px;
+	position:fixed;
+	bottom:100px;
+	margin-left:1030px;
+	display:none;
+	cursor:pointer;
+}
+/*footer*/
+footer{
+	width:100%;
+	background-color:#f9f8f6;
+	float:left;
+	margin-top:30px;
+	padding:25px 0;
+}
+#footer_cont{
+	width:1000px;
+	margin:0 auto;
+}
+#footer_cont #service{
+	width:100%;
+	border-top:2px solid #c7c2bd;
+	border-bottom:1px solid #d8d5d1;
+	float:left;
+	margin-bottom:15px;
+}
+#footer_cont #service ul li{
+	float:left;
+	text-align:center;
+	line-height:42px;
+	margin:0 10px;
+}
+#footer_cont #service ul li a{
+	color:#7b7978;
+}
+#footer_cont address{
+	float:left;
+}
+#footer_cont address h6{
+	width:149px;
+	height:33px;
+	background-position:-304px -168px;
+	float:left;
+}
+#footer_cont address > div{
+	float:left;
+	margin-left:30px;
+}
+#footer_cont address > div p{
+	color:#928f8e;
+	font-style:normal;
+	font-size:14px;
+	letter-spacing:0;
+}
+#footer_cont address > div p strong{
+	color:#7b7978;
+	margin-left:10px;
+}
+#footer_cont address > div p:last-child{
+	font-size:12px;
+	letter-spacing:0.5px;
+}
+
+/*사용자 파악*/
+#user #glaylayer{
+	position:fixed;
+	z-index:9999;
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;
+	background:#000;
+	opacity:0.5;
+	filter:alpha(opacity=50);
+}
+#user #overlayer{
+	position:fixed;
+	z-index:10000;
+	top:50%;
+	left:50%;
+	margin-top:-225px;
+	margin-left:-285px;
+	width:570px;
+	height:450px;
+	background:#fff;
+	border-radius:10px;
+}
+#user #overlayer > h6{
+	height:95px;
+	border-top-left-radius:10px;
+	border-top-right-radius:10px;
+	background:#435cc8;
+	/* background:#435cc8 url(../images/ico_collect.png) 50px 32px no-repeat; */
+	color:#fff;
+	padding-top:20px;
+    padding-left:30px;
+	box-sizing:border-box;
+	font-size:13px;
+	font-weight:normal;
+	/* letter-spacing:0; */
+	position:relative;
+	line-height:19px;
+}
+#user #overlayer > h6 span.ci{
+	background:url(../images/ci3.png) 0 0 no-repeat;
+	width:148px;
+	height:30px;
+	position:absolute;
+	top:32px;
+	right:30px;
+}
+#user #overlayer fieldset > ul{
+	padding-left:45px;
+	margin:35px 0 0;
+}
+#user #overlayer fieldset > ul > li{
+	height:53px;
+	margin-bottom:25px;
+}
+#user #overlayer fieldset > ul > li h6{
+	float:left;
+	font-size:15px;
+	color:#435cc8;
+	margin-left:-60px;
+	font-weight:bold;
+	line-height:65px;
+}
+#user #overlayer ul li ul li{
+	float:left;
+	margin-right:15px;
+}
+#user #overlayer input[type="radio"]+label{
+	display:inline-block;
+	width:80px;
+	height:38px;
+	background:#e9e9e9;
+	/* background:#e9e9e9 url(../images/ico.png) no-repeat; */
+	/* background-position:-108px -862px; */
+	margin-left:-30px;
+}
+#user #overlayer input[type="radio"]:checked+label{
+	background-color:#43c8ba;
+	color:#fff;
+}
+#user #overlayer label{
+	text-align: center;
+    font-size: 15px;
+    padding-top:15px;
+    font-weight: bold;
+    color: #666;
+    letter-spacing: 0;
+}
+#user #overlayer li.etc label{
+	padding-top:12px;
+    height: 41px;
+    line-height: 16px;
+}
+/* #user #overlayer span.ci{ */
+	/* display:block; */
+	/* width:174px; */
+	/* height:39px; */
+	/* background-position:0 -821px; */
+	/* margin:0 auto; */
+/* } */
