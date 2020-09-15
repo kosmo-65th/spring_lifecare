@@ -75,7 +75,7 @@ function loadCalendar(syear,smonth){
 		syear:syear,
 		smonth:smonth
 	};
-	reqAjax('/gw/med/treat/calendarInfo.json', param, true, new resultCalendar());
+	reqAjax('${path_resources}/js/calendarInfo.json', param, true, new resultCalendar());
 }
 
 //달력결과

@@ -10,7 +10,7 @@
 
 <script type="text/javascript" src="${path_resources}js/appointment.js"></script>
 <script type="text/javascript" src="${path_resources}js/appointment2.js"></script>
-<script type="text/javascript" src="${path_resources}js/appointment_layout.js"></script>
+<%-- <script type="text/javascript" src="${path_resources}js/appointment_layout.js"></script> --%>
 <script type="text/javascript">
 
 p_medDp="";
@@ -177,7 +177,7 @@ function getDeptDoctorList(dcDept){
 	var param = {
 		dcDept1:dcDept
 	};
-	reqAjax('/gw/med/treat/deptDoctorList.json', param, true, new resultDoctor());
+	reqAjax('${path_resources}js/deptDoctorList.json', param, true, new resultDoctor());
 }
 
 // 2. 의사리스트 결과
@@ -237,7 +237,7 @@ function selectDoctor(medDr, medDrNm, medDrRk, spcYn, chk, medDrRes){
 	
 	var medDpRes = $('input[name=medDpRes]').val();	//진료과 진료타입체크
 	
-	if(chk == "A"){
+	if(chk == "A"){ // 의사선택하면 달력에 예약가능한 일자 뿌리기
 		drawCalendar($.parseJSON(jsonStr));
 	}else{
 		loadCalendar();
@@ -540,17 +540,7 @@ function resReset(){
 		<h2>3.의료진 선택</h2>
 		<div class="reserArea pz">
 			<div class="reserDen">
-<ul>
-<li>
-	<span class="imgDen" id="imgDenP6049"><img src="${path_resources}images/doctor.png"></span>
-	<dl>
-		<dt><strong>김문종</strong> 교수</dt>
-		<dd class="btnRe">
-			<span><a href="javascript:void(0);" onclick="selectDoctor('P6049','김문종','교수','02','C','F');" class="btnRd btnRd_blue"><span class="ico_check"></span>예약</a></span>
-		</dd>
-	</dl>
-</li>
-</ul>
+				<!-- 의사리스트 뿌려주는 곳 -->
 			</div>
 		</div>
 	</div>

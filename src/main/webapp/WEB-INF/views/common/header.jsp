@@ -44,7 +44,7 @@
                                     </c:if>
                                     <!-- 로그인 완료후 -->
                                     <c:if test="${sessionScope.userSession != null}">
-	                                    <li><a href="${path}/Mypage">${sessionScope.userSession}의 마이페이지</a></li>
+	                                    <li><a href="${path}/customer/mypage">${sessionScope.userSession}의 마이페이지</a></li>
 	                                    <li><a href="">고객센터</a></li>
 	                                    <%-- <li><a href="${path}/logout">로그아웃</a></li> --%>
 	                                    <li><a href="#" onclick="document.getElementById('logout-form').submit();">로그아웃</a></li>
@@ -88,7 +88,7 @@
                                         </li>
                                         <li><a href="#">의료정보 <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="drugSearch">약정보</a></li>
+                                                <li><a href="${path}/drugSearch">약정보</a></li>
                                                 <li><a href="about.html">응급처치방법</a></li>
                                                 <li><a href="${path}/questionnaire">자가진단</a></li>
                                             </ul>
