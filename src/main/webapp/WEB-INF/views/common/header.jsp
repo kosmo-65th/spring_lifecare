@@ -101,7 +101,6 @@
                             <div class="Appointment">
                                 <div class="book_btn d-none d-lg-block">
                                     <a class="popup-with-form" href="${path}/customer/appointment">예약하기</a>
-                                    <a class="popup-with-form" href="#">예약하기</a>
                                 </div>
                             </div>
                         </div>

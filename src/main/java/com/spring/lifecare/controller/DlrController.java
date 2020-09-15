@@ -25,9 +25,7 @@ public class DlrController {
 		
 		return "main";
 	}
-<<<<<<< HEAD
 	*/
-=======
 	
 	//문진표
 	@RequestMapping("/questionnaire")
@@ -63,5 +61,4 @@ public class DlrController {
 		
 		return "customer/Questionnaire/index4";
 	}
->>>>>>> dlr
 }
