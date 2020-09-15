@@ -36,7 +36,11 @@
 	<script src='${path_resources}calendar/packages/interaction/main.js'></script>
 	<script src='${path_resources}calendar/packages/daygrid/main.js'></script>
 	<script src='${path_resources}calendar/packages/timegrid/main.js'></script>
-	
+	<style type="text/css">	
+	.fc-scroller { 
+		overflow-y: hidden !important;
+	}
+	</style>
 <script>
 
 document.addEventListener('DOMContentLoaded', function() {

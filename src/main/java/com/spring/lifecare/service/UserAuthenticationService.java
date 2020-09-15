@@ -52,6 +52,7 @@ public class UserAuthenticationService implements UserDetailsService {
 		List<GrantedAuthority> authority = new ArrayList<GrantedAuthority>();
 				
 		authority.add(new SimpleGrantedAuthority(user.get("AUTHORITY").toString()));
+		System.out.println("authority : "+  user.get("AUTHORITY").toString());
 		
 		// 오라클에서는 필드명을 대문자로 취급
 		// 오라클에서는 BigInteger 관련 오류가 발생할수 있으므로 아래와 같이 처리

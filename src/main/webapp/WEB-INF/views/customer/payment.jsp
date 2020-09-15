@@ -62,7 +62,7 @@
         0
       </div>
       <div class="cell1">
-        <a href="javascript:void(0)" style="color:red;" onclick="window.open('${path}/kakaopay', 'kakaopay', 'resizable=no width=850, height=550'); return false;">4,000</a>
+        <a href="javascript:void(0)" style="color:red;" onclick="window.open('${path}/customer/kakaopay', 'kakaopay', 'resizable=no width=850, height=550'); return false;">4,000</a>
       </div>
     </div>
     
@@ -207,7 +207,7 @@
         	0
       </div>
       <div class="cell1">
-        	<a href="javascript:void(0)" style="color:red;" onclick="window.open('${path}/kakaopay', 'kakaopay', 'resizable=no width=850, height=550'); return false;">4,000</a>
+        	<a href="javascript:void(0)" style="color:red;" onclick="window.open('${path}/customer/kakaopay', 'kakaopay', 'resizable=no width=850, height=550'); return false;">4,000</a>
       </div>
       <div class="cell1">
         	0
@@ -216,9 +216,9 @@
 </div>
 <div class="light">	  		
 		<ul style="float: right;">
-       		<li><a class="large button green" onclick="window.open('${path}/diagnosis', '진단서발급', 'resizable=no width=750, height=600'); return false;">진단서 발급</a></li>
-       		<li><a class="large button green" onclick="window.open('${path}/medicalNote', '진료기록부발급', 'resizable=no width=750, height=600'); return false;">진료기록부 발급</a></li>
-       		<li><a class="large button green" onclick="window.open('${path}/prescription', '처방전발급', 'resizable=no width=750, height=600'); return false;">처방전 발급</a></li>
+       		<li style="display:inline;"><a class="large button green" onclick="window.open('${path}/customer/diagnosis', '진단서발급', 'resizable=no width=750, height=600'); return false;">진단서 발급</a></li>
+       		<li style="display:inline;"><a class="large button green" onclick="window.open('${path}/customer/medicalNote', '진료기록부발급', 'resizable=no width=750, height=600'); return false;">진료기록부 발급</a></li>
+       		<li style="display:inline;"><a class="large button green" onclick="window.open('${path}/customer/prescription', '처방전발급', 'resizable=no width=750, height=600'); return false;">처방전 발급</a></li>
 		</ul>
 		<p class="tail">* 미수금을 클릭하면 결제페이지로 이동하여 결제가 가능합니다.</p>
 </div>

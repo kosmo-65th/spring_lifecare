@@ -15,7 +15,7 @@ public class CustomerVO {
 	private Timestamp customer_logindate;
 	private String authority;
 	private int enabled;
-
+	
 	public int getEnabled() {
 		return enabled;
 	}
@@ -82,5 +82,4 @@ public class CustomerVO {
 	public void setAuthority(String authority) {
 		this.authority = authority;
 	}
-
 }
