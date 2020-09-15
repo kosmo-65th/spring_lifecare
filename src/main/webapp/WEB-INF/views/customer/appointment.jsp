@@ -190,9 +190,9 @@ var resultDoctor = function(){
 				
 				var dcCode = v.dcCode;
 				
-				if(v.dcDept1rtp == ""){
+				if(v.dcDept1rtp == ""){                                            
 					dcCode = "-99";
-				}
+				}				
 				
 				str += "<li>\n";
 				str += "	<span class=\"imgDen\" id=\"imgDen"+ dcCode +"\">";
@@ -205,7 +205,7 @@ var resultDoctor = function(){
 				
 				str += "</span>\n";
 				str += "	<dl>\n";
-				str += "		<dt><a href=\"javascript:void(0);\" onclick=\"detailView('"+ dcCode +"');\" class=\"layerView\" ><strong>"+ v.dcName +"</strong> "+ v.dcRank +"</a></dt>\n";
+				str += "		<dt><strong>"+ v.dcName +"</strong> "+ v.dcRank +"</dt>\n";
 				str += "		<dd>"+ v.dcSpecial +"</dd>\n";
 				str += "		<dd class=\"btnRe\">\n";
 				if(v.choiSel == "01"){
@@ -539,11 +539,12 @@ function resReset(){
 	<div class="reserStep">
 		<h2>3.의료진 선택</h2>
 		<div class="reserArea pz">
-			<div class="reserDen"><ul>
+			<div class="reserDen">
+<ul>
 <li>
 	<span class="imgDen" id="imgDenP6049"><img src="${path_resources}images/doctor.png"></span>
 	<dl>
-		<dt><a href="javascript:void(0);" onclick="detailView('P6049');" class="layerView"><strong>김문종</strong> 교수</a></dt>
+		<dt><strong>김문종</strong> 교수</dt>
 		<dd class="btnRe">
 			<span><a href="javascript:void(0);" onclick="selectDoctor('P6049','김문종','교수','02','C','F');" class="btnRd btnRd_blue"><span class="ico_check"></span>예약</a></span>
 		</dd>
