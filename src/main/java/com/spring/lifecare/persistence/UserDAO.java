@@ -1,10 +1,12 @@
 package com.spring.lifecare.persistence;
 
 import com.spring.lifecare.vo.CustomerVO;
+import com.spring.lifecare.vo.DoctorVO;
 
 public interface UserDAO {	
+	
 	 //아이디 중복확인
-    public int idCheck(String customer_id);
+     public int idCheck(String customer_id);
 		
 	 //휴대폰 번호 중복 확인
 	 public int phoneCheck(String customer_phone);
@@ -24,6 +26,21 @@ public interface UserDAO {
 	 // 아이디 찾기
 	 public String findId(String customer_phone); 
 	 
-	 //회원이 직접 정보 수정
-	 public int modify(CustomerVO vo);
+	 //의사 아이디 중복확인
+     public int CheckId(String doctor_id);
+		
+	 //의사 휴대폰 번호 중복 확인
+	 public int CheckPhone(String doctor_phone);
+		
+	 //의사 이메일 주소 중복확인
+	 public int CheckEmail(String doctor_email);
+	 
+	 //의사 면허 번호 중복확인
+	 public int CheckNum(String doctor_num);
+	 
+	 //의사 회원가입 처리
+	 public int insertDoctor(DoctorVO vo);
+	 
+	 
+	 
 }

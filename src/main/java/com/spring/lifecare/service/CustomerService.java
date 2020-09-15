@@ -22,7 +22,7 @@ public interface CustomerService{
 	  public void emailCheck(HttpServletRequest req, Model model);
 	  
 	  //이메일 인증 후 로그인 처리
-	  public int approvalLogin(String customer_email);
+	  public void approvalLogin(HttpServletRequest req, Model model);
 					
 	  //회원가입 처리
 	  public void joinInPro(HttpServletRequest req, Model model);

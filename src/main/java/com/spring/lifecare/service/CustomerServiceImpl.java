@@ -88,13 +88,18 @@ public class CustomerServiceImpl implements CustomerService{
 		int cnt = userDAO.insertMember(vo);
 			
 		model.addAttribute("insertCnt", cnt);
+		System.out.println("cnt : " + cnt);
+		
+		
 							
 	}
 	//이메일 인증 후 로그인
 	@Override
-	public int approvalLogin(String customer_email) {
+	public void approvalLogin(HttpServletRequest req, Model model) {
 		
-		return userDAO.approvalMember(customer_email) ;
+        String customer_email = req.getParameter("customer_email");		
+		userDAO.approvalMember(customer_email);	
+		System.out.println(customer_email);		
 	}
 	
 

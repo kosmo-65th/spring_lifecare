@@ -35,5 +35,24 @@
    <select id ="findId"  parameterType="String" resultType="String">
       SELECT customer_id FROM customer WHERE customer_phone=#{customer_phone}
    </select>
+   
+   <!-- 의사 아이디 중복확인 -->
+   <select id ="CheckId" parameterType="String" resultType="int" >
+     SELECT count(*)  FROM doctor WHERE doctor_id=#{doctor_id} 
+   </select>
+   <!-- 의사 핸드폰 번호 중복확인  -->
+   <select id ="CheckPhone" parameterType="String" resultType="int" >
+     SELECT count(*)  FROM doctor WHERE doctor_phone=#{doctor_phone} 
+   </select>
+   <!-- 의사 이메일 중복확인 -->
+   <select id ="CheckEmail" parameterType="String" resultType="int" >
+     SELECT count(*)  FROM doctor WHERE doctor_email=#{doctor_email} 
+   </select>
+   
+   <!-- 의사 면허번호 중복확인 -->
+   <select id ="CheckNum" parameterType="String" resultType="int" >
+     SELECT count(*)  FROM doctor WHERE doctor_num=#{doctor_num} 
+   </select>
+   
 </mapper>  	  
 
