@@ -110,8 +110,6 @@
 	    }
 	}
 	
-	
-	$("#button1").click()
 </script>
 <head>
 <meta charset="UTF-8">

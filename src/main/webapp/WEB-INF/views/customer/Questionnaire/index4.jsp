@@ -96,19 +96,34 @@
 	}
 </style>
 <script type="text/javascript">
-    function setColor(btn) {
-        var property = document.getElementById(btn);
-		var test = property.style.backgroundColor;
-        if (test == "rgb(0, 154, 255)") {
-            property.style.backgroundColor = "#F2F2F2"
-            document.getElementById(btn).value = 0;
-            console.log(document.getElementById(btn).value);
-        }else {
-            property.style.backgroundColor = "#009aff"
-            document.getElementById(btn).value = 1;
-            console.log(document.getElementById(btn).value);
-        }
-    }
+
+	/* 한가지만 선택 할수있도록 */
+    $(function(){
+    	
+    	$("#button0").click(function(){
+			$("#button0").css('background-color','#009aff');
+			$("#button1").css('background-color','#F2F2F2');
+			$("#button0").val(1);
+			$("#button1").val(0);
+			
+			console.log("button0 val");
+			console.log(document.getElementById("button0").value);
+			console.log("button1 val");
+			console.log(document.getElementById("button1").value);
+		});
+    	
+    	$("#button1").click(function(){
+			$("#button1").css('background-color','#009aff');
+			$("#button0").css('background-color','#F2F2F2');
+			$("#button0").val(0);
+			$("#button1").val(1);
+			
+			console.log("button0 val");
+			console.log(document.getElementById("button0").value);
+			console.log("button1 val");
+			console.log(document.getElementById("button1").value);
+		});
+    })
     
 </script>
 <head>
