@@ -29,10 +29,10 @@
 				<input type="checkbox" id="idsave"> 아이디 저장
 				<input type="checkbox" name="autologin"> 자동 로그인
 				<ul class="idpwdfind">
-					<li>&nbsp;&nbsp;<a href="${path}/guest/findId">아이디 찾기</a>&nbsp; | <a href="guest/findPassword">비밀번호찾기</a></li>
+					<li>&nbsp;&nbsp;<a href="${path}/findId">아이디 찾기</a>&nbsp; | <a href="${path}/findPassword">비밀번호찾기</a></li>
 				</ul>
 				<input type="submit" class="btnclass1" value="로그인" style="cursor: pointer"> 
-				<input type="button" class="btnclass2" value="회원가입" style="cursor: pointer">
+				<input type="button" class="btnclass2" value="회원가입" style="cursor: pointer" onClick="location.href='${path}/preJoinIn'">
 				<div class="socialLogin">
 					<a href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=LFKH6Ooda771daTdxSSO&redirect_url=http://127.0.0.1//lifecare/naverLogin&state=3">
 						<img src="${path_resources}img/btn_naver.png" border="0" title="네이버 아이디로 로그인" width="185" height="40" style="cursor: pointer">

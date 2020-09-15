@@ -12,6 +12,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Repository;
 
 import com.spring.lifecare.vo.CustomerVO;
+import com.spring.lifecare.vo.DoctorVO;
 
 
 @Repository
@@ -42,22 +43,23 @@ public class UserDAOImpl implements UserDAO {
 	public int emailCheck(String customer_email) {
 		return sqlSession.selectOne("com.spring.lifecare.persistence.UserDAO.emailCheck", customer_email);
 	}
+	
 	//회원가입 이메일 발송확인
 	public void sendmail(String customer_email, String key) {
-		try {
-			
-			MimeMessage message = mailSender.createMimeMessage();
-			String txt = "환영합니다!! LifeCare 회원가입 인증 메일입니다. 링크를 눌러 회원가입을 완료하세요" 
-			+ "<a href=http://localhost/lifecare/guest/login?key=" +key+ "'>Please click to the member verification</a>";
-			message.setSubject("LifeCare 회원가입 인증 메일입니다");
-			message.setText(txt, "UTF-8", "html");
-			message.setFrom(new InternetAddress("admin@mss.com"));
-			message.addRecipient(RecipientType. TO, new InternetAddress(customer_email));
-			mailSender.send(message);					
-		}catch(Exception e) {
-			e.printStackTrace();
-		}		
-	}
+	   try {		
+			  MimeMessage message = mailSender.createMimeMessage();
+			  String txt = "환영합니다!! LifeCare 회원가입 인증 메일입니다. 링크를 눌러 회원가입을 완료하세요" 
+			+ "<a href=http://localhost/lifecare/emailcheck?customer_email=" +customer_email+ ">Please click to the member verification</a>";
+			  message.setSubject("LifeCare 회원가입 인증 메일입니다");
+			  message.setText(txt, "UTF-8", "html");
+			  message.setFrom(new InternetAddress("admin@mss.com"));
+			  message.addRecipient(RecipientType. TO, new InternetAddress(customer_email));
+			  mailSender.send(message);					
+			}catch(Exception e) {
+				e.printStackTrace();
+			}		
+		}
+	
     //회원가입 처리 확인
 	@Override
 	public int insertMember(CustomerVO vo) {
@@ -75,15 +77,30 @@ public class UserDAOImpl implements UserDAO {
 		return sqlSession.update("com.spring.lifecare.persistence.UserDAO.approvalMember", customer_email);  
 		
 	}
-	//회원이 직접 수정
+	
 	@Override
-	public int modify(CustomerVO vo) {
-		
-		int updateCnt = 0;
-		UserDAO dao = sqlSession.getMapper(UserDAO.class);
-	    updateCnt = dao.modify(vo);
-		
-		return updateCnt;
+	public int CheckId(String doctor_id) {
+		return sqlSession.selectOne("com.spring.lifecare.persistence.UserDAO.CheckId", doctor_id);
 	}
+	@Override
+	public int CheckPhone(String doctor_phone) {
+		return sqlSession.selectOne("com.spring.lifecare.persistence.UserDAO.CheckPhone", doctor_phone);
+	}
+	@Override
+	public int CheckEmail(String doctor_email) {
+		return sqlSession.selectOne("com.spring.lifecare.persistence.UserDAO.CheckEmail", doctor_email);
+	}
+	
+	@Override
+	public int CheckNum(String doctor_num) {
+		return sqlSession.selectOne("com.spring.lifecare.persistence.UserDAO.CheckNum", doctor_num);
+		
+	}
+	//의사 회원가입 처리
+	@Override
+	public int insertDoctor(DoctorVO vo) {
+		return sqlSession.insert("com.spring.lifecare.persistence.UserDAO.insertDoctor", vo);
+	}
+	
 }
 
