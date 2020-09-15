@@ -1,0 +1,149 @@
+@charset "UTF-8";
+
+/* contents */
+#contents {
+    width: 1400px;
+    padding: 1.5% 2%;
+    margin-bottom: 45px;
+    min-height: 500px;
+    font-size: 1em;
+    background: #fff;
+}
+
+/*진료예약*/
+.reserBox{clear:both;display:block;width:100%;}
+.reserBox:before,.reserBox:after{content:"."; display:block; height:0; clear:both; visibility:hidden}
+.reserBox .reserStep{float:left;width:24%;margin:0.5%;min-height:480px;background:#ececec ;}
+.reserBox .reserStep h2{background:#20385f;color:#fff;font-size:small;padding:10px;font-weight:600;}
+.reserBox .reserStep .reserArea{background:#ececec;}
+.reserBox .reserStep .reserArea.pz{padding:0;}
+.reserBox .reserStep .reserArea.rline{border-bottom:1px/ solid #fff;}
+.reserBox .reserStep .reserArea .radiobox{display:block;margin: 6px 20px;}
+.reserBox .reserStep .myInfo dt, .reserBox .reserStep .myInfo dd{padding:3px 0;}
+.reserBox .reserStep .myInfo dt{float:left;display:block;width:70px;color:#666;font-weight:normal;margin-left: 20px;}
+.reserBox .reserStep .myInfo dt.all{width:100%}
+.reserBox .reserStep .myInfo dd{display: block;margin-left:70px;}
+.reserBox .reserStep .myInfo dd.etcInfo{clear:both;margin-left:0;}
+.reserBox .reserStep .myInfo dd.etcInfo textarea{width:100%;height:150px}
+.reserBox .imgDen{float:left;display:inline-block;padding-right:0;position:relative;}
+.reserBox .imgDen img{width:90px;height:120px;}
+.reserBox .imgDen.imgChoice{}
+.reserBox .imgDen.imgChoice:before{content:'';display:block;border:2px solid #1598dc;width:100%;height:100%;position:absolute;left:0;top:0;}
+.reserBox .imgDen.imgChoice:after{content:'';display:block;border:2px solid #1598dc;width:20px;height:20px;position:absolute;left:0;top:0;background:url(https://www.snudhgw.org/static/img/gw/common/choice.gif) no-repeat left top}
+.reserBox .reserDen li{clear:both;padding:10px;overflow:hidden;border-bottom:1px solid #fff;}
+.reserBox .reserDen dl{margin-left:100px;}
+.reserBox .reserDen dt{margin-bottom:5px;}
+.reserBox .reserDen dt a{display:inline-block;background:url(/static/img/gw/ico/ico_magAdd.png) no-repeat right center;padding-right:20px;letter-spacing: -1px;font-size:0.95em;}
+.reserBox .reserDen dd{line-height:129%;letter-spacing: -1px}
+.reserBox .reserDen dd.btnRe{text-align: right;margin-top:10px;}
+.reserBox .calen{padding:5px; border-bottom:1px solid #fff;}
+.reserBox .calen .calenCtrl{width:100%;text-align:center;}
+.reserBox .calen .calenCtrl span{font-size:1.9em;padding:0 5%;line-height:100%;font-weight:500;}
+.reserBox .calen .calenCtrl a{vertical-align: top;display:inline-block;}
+.reserBox .calen .calenCtrl a img{vertical-align: middle;padding-top:3px;}
+.reserBox .calen .tbCalen{width:100%;table-layout: fixed}
+.reserBox .calen .tbCalen thead th{font-size:0.9em;border-bottom:2px solid #333;text-align:center;padding:2px 0;}
+.reserBox .calen .tbCalen thead th.sun{border-bottom:2px solid #f35b5b}
+.reserBox .calen .tbCalen thead th.sat{border-bottom:2px solid #7eb9fb}
+.reserBox .calen .tbCalen tbody td{border:1px solid #e5e5e5;background:#fff;padding:2px;font-size:0.8em;height:36px;vertical-align: top;}
+.reserBox .calen .tbCalen .sun{color:#e02f2f;}
+.reserBox .calen .tbCalen .sat{color:#4386d0;}
+.reserBox .calen .tbCalen .today{border:2px solid #333;padding:0;}
+/*.reserBox .calen .tbCalen .today:before{display:block;content:'';position:absolute;left:-1px;top:-2px;width:103%;height:103%;border:1px solid #333;}*/
+.reserBox .calen .tbCalen a{display:block;}
+.reserBox .calen .tbCalen span{display:block;text-align:center;font-size:1.1em;}
+.reserBox .calen .tbCalen .nsp{background:#fff url(/static/img/gw/common/nsp_line.png) 0 0 no-repeat;background-size: 100% 100%}
+.reserBox .calen .tbCalen .nsp span{color:#ea4444;}
+.reserBox .calen .tbCalen .sp span{text-decoration: underline;font-weight:600;color:#3db03d;}
+.reserBox .calen .tbCalen .dateCh {background:#fff url(/static/img/gw/ico/ico_checkGreen2.png) center 70% no-repeat;background-size:50%;}
+/*20170605달력수정*/
+.reserBox .calen .ex{font-size:0.8em;line-height:1.3;margin-top:5px}
+/*20170605달력수정*/
+.reserBox .denTime{padding:5px;}
+.reserBox .denTime h3{margin:10px 0 10px 5px;font-size:small;}
+.reserBox .denTlist{overflow:hidden;list-style-type: none;padding: 0;margin: 0;width: auto;}
+.reserBox .denTlist li {float:left;width:24.8%;border:1px solid #ececec;background:#fff;text-align: center;}
+.reserBox .denTlist li a{display:block;text-align:center;padding:1.5px;font-size:1.05em;}
+.reserBox .denTlist li a.on{background:#7eb9fb;color:#000;font-weight: 600}
+.reserBox .btnArea{padding:0.6em;}
+.reserBox .btnArea a{width:95%;}
+.reserBox.type{background:#ececec;font-size:1.25em;}
+.reserBox.type .calen{padding:1%;}
+.reserBox.type .calen .tbCalen{border-collapse:separate;}
+.reserBox.type .calen .tbCalen thead th{font-size:1.1em;}
+.reserBox.type .calen .tbCalen tbody td{height: 100px;padding:1%;position:relative;vertical-align: top}
+/*.reserBox.type .calen .tbCalen .today{border:1px solid #333;position: relative;;border:2px solid #333;}*/
+/*.reserBox.type .calen .tbCalen .today:before{display:none;left:0;top:0;}*/
+.reserBox.type .calen .tbCalen .nsp{background:#fff url(/static/img/gw/common/nsp_line2.png) 0 0 no-repeat;background-size: 100% 100%}
+.reserBox.type .calen .tbCalen .dateCh {background-position:center 50%;background-size:22%;}
+.reserBox.type .calen .calenCtrl{padding:0.9em;}
+.reserBox.type .calen .calenCtrl span{padding:0 2%;font-size:1.7em;}
+.reserBox.type .calen .reserIng{background:#d5e1ef;}
+.reserBox.type .calen .reserIng a{text-align:center}
+.reserBox.type .denTime{padding:1%;}
+.reserBox.type .denTlist li {float:left;width:12.5%;border:1px solid #ececec;background:#fff;}
+.reserBox.type .denTlist li a{padding:2%;}
+.reserBox.type h3{font-size:0.9em;}
+.reserBox.type .comment{padding:1%;border-top:10px solid #fff;}
+.reserBox.type .comment textarea{height:80px;}
+
+.btnRd_blue {
+    border-radius: 15px;
+    background: #7eb9fb;
+    color: #20385f;
+}
+
+.btnRd {
+    padding: 3px 13px 3px 5px;
+    font-size: 0.90em;
+    font-weight: 600;
+}
+
+.btn-lg4 {
+    padding: 10px 30px;
+    min-width: 160px;
+    font-size: 1.1em;
+}
+
+.btn-blue, .btn-blue:hover, .btn-blue:focus {
+    border: 1px solid #172b4c;
+    background: #172b4c;
+    color: #fff;
+    font-weight: normal;
+}
+
+.btn-br {
+    border-radius: 3px;
+}
+
+.btn-black, .btn-black:hover, .btn-black:focus {
+    border: 1px solid #333;
+    background: #333;
+    color: #fff;
+    font-weight: normal;
+    min-width: 80px;
+}
+
+span[class*="ico"] {
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.ico_mouse {
+    background: url(https://www.snudhgw.org/static/img/gw/ico/ico_mouseOk.png) no-repeat left top;
+    width: 30px; 
+    height: 35px;
+    vertical-align: middle;
+}
+
+span[class*="ico1"] {
+    display: inline-block;
+    margin-right: 4px;
+}
+
+.ico1_return2 {
+    background: url(https://www.snudhgw.org/static/img/gw/ico/ico1_return2.png) no-repeat center center;
+    width: 30px;
+    height: 35px;
+    vertical-align: middle;
+}

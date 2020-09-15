@@ -23,9 +23,11 @@ public class UserDeniedHandler implements AccessDeniedHandler {
 		out.println("<script>");
 		out.println("alert('접근권한이 없습니다.');");
 		out.println("</script>");
+
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/main");
 		dispatcher.forward(request, response);
+		out.close();
 	}
 
 	

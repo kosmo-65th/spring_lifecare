@@ -102,12 +102,13 @@
 			                        <img class="img-thumbnail md-margin-bottom-10" src="https://bootdey.com/img/Content/user-453533-fdadfd.png" alt="">
 			                    </div>
 			                    <div class="col-md-7">
-			                        <h2>Edward Rooster</h2>
-			                        <span><strong>Job:</strong> Web Developer</span>
-			                        <span><strong>Position:</strong> Web Designer</span>
+			                        <h2>Edward Rooster(남)</h2>
+			                        <span><strong>나이:</strong> 23세</span> &nbsp;&nbsp;&nbsp;&nbsp;
+			                        <span><strong>직업:</strong> 웹 디자이너</span>
 			                        <hr>
-			                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget massa nec turpis congue bibendum. Integer nulla felis, porta suscipit nulla et, dignissim commodo nunc. Morbi a semper nulla.</p>
-			                        <p>Proin mauris odio, pharetra quis ligula non, vulputate vehicula quam. Nunc in libero vitae nunc ultricies tincidunt ut sed leo. Sed luctus dui ut congue consequat. Cras consequat nisl ante, nec malesuada velit pellentesque ac. Pellentesque nec arcu in ipsum iaculis convallis.</p>
+			                        <span><strong>최근내원일:</strong> 2020-09-11</span> &nbsp;&nbsp;&nbsp;&nbsp;
+			                        <span><strong>진단명:</strong> 당뇨</span>
+			                        <p>(최근내원일 현병력 기재)Proin mauris odio, pharetra quis ligula non, vulputate vehicula quam. Nunc in libero vitae nunc ultricies tincidunt ut sed leo. Sed luctus dui ut congue consequat. Cras consequat nisl ante, nec malesuada velit pellentesque ac. Pellentesque nec arcu in ipsum iaculis convallis.</p>
 			                    </div>
 			                </div>    
 			            </div>
@@ -126,12 +127,12 @@
 							<form>
 								<fieldset>
 									<input type="text" placeholder="질병코드" id="nameField">
+									<input type="text" placeholder="주증상(C.C)" id="nameField">
 									<input type="text" placeholder="혈압(BP)" id="nameField">
 									<input type="text" placeholder="호흡(RR)" id="nameField">
 									<input type="text" placeholder="맥박(PR)" id="nameField">
 									<input type="text" placeholder="체온(BT)" id="nameField">
-									<input type="text" placeholder="주증상(C.C)" id="nameField">
-												<!--Charts-->
+
 			<div class="row grid-responsive">
 				<div class="column column-50">
 					<div class="card">
@@ -216,7 +217,7 @@
 				<div class="column ">
 					<div class="card">
 						<div class="card-title">
-							<h3>Current Members</h3>
+							<h3>최근 진료 내역</h3>
 						</div>
 						<div class="card-block">
 							<table>

@@ -82,12 +82,11 @@ h3 {
 	text-align: left;
 	font-size: 12px;
 }
-li{ 
-	display: inline; 
+.right li{ 
+	display:inline;
 	list-style:none;
 	padding-top:10px;
 	padding-bottom:10px;
-	float: right;
 	margin-right: 10px;
 }
 .button, .button:visited {

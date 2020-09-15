@@ -1,6 +1,9 @@
 package com.spring.lifecare.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,13 +29,13 @@ public class JinController {
 	}
     
     //카카오페이- QR코드 페이지 이동
-    @RequestMapping("/kakaoPayGo")
+    @RequestMapping("/customer/kakaoPayGo")
     public String kakaoPay() {
         return "redirect:" + kakaopay.kakaoPayReady();
     }
     
     //카카오페이 - 결제완료 페이지
-    @GetMapping("/kakaopaySuccess")
+    @GetMapping("/customer/kakaopaySuccess")
     public String kakaoPaySuccess(@RequestParam("pg_token") String pg_token, Model model) {
         log.info("kakaoPaySuccess get............................................");
         log.info("kakaoPaySuccess pg_token : " + pg_token);
@@ -42,14 +45,14 @@ public class JinController {
     }
     
     //카카오 페이 결제 취소
- 	@RequestMapping("/kakaopayCancel")
+ 	@RequestMapping("/customer/kakaopayCancel")
  	public String kakaopayCancel(Model model) {
  		
  		return "customer/kakaopayCancel";
  	}
  	
     //카카오 페이 결제 실패
- 	@RequestMapping("/kakaopayFail")
+ 	@RequestMapping("/customer/kakaopayFail")
  	public String kakaopayFail(Model model) {
  		
  		return "customer/kakaopayFail";
@@ -63,7 +66,7 @@ public class JinController {
  	}
  	
  	//카카오 결제 - popup
- 	@RequestMapping("/kakaopay")
+ 	@RequestMapping("/customer/kakaopay")
  	public String kakaopay(Model model) {
  		
  		return "customer/kakaopay";
@@ -77,14 +80,14 @@ public class JinController {
 	}
 	
  	//진료기록부 폼 - 프린트
-	@RequestMapping("/medicalNote")
+	@RequestMapping("/customer/medicalNote")
 	public String medicalNote(Model model) {
 		
 		return "customer/medicalNote";
 	}
 	
 	//처방전 폼 - 프린트
-	@RequestMapping("/prescription")
+	@RequestMapping("/customer/prescription")
 	public String prescription(Model model) {
 		
 		return "customer/prescription";
@@ -112,10 +115,16 @@ public class JinController {
     }
     
     // 마이페이지
- 	@RequestMapping("customer/mypage")
- 	public String mypage(Model model) {
- 		
+ 	@RequestMapping("/customer/mypage")
+ 	public String mypage(HttpServletRequest req, Model model) {
+ 		req.getSession();
  		return "customer/Mypage";
+ 	}
+ 	
+    // 예약페이지
+ 	@RequestMapping("/customer/appointment")
+ 	public String appointment(Authentication auth, Model model) {
+ 		return "customer/appointment";
  	}
  	
  	// 관리자 결산페이지

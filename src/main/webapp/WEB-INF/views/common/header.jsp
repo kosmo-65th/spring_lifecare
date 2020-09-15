@@ -75,8 +75,9 @@
                                     <ul id="navigation">
                                         <li><a class="active" href="index.html">HOME</a></li>
                                         <li><a href="Doctors.html">코로나정보</a></li>
-                                        <li><a href="Department.html">예약<i class="ti-angle-down"></i></a>
+                                        <li><a href="${path}/customer/appointment">예약<i class="ti-angle-down"></i></a>
                                         	<ul class="submenu">
+                                        		<li><a href="${path}/customer/appointment">예약하기</a></li>
                                                <li><a href="blog.html">자가진단</a></li>
                                             </ul>
                                         </li>     
@@ -99,7 +100,7 @@
                         <div class="col-xl-3 col-lg-3 d-none d-lg-block">
                             <div class="Appointment">
                                 <div class="book_btn d-none d-lg-block">
-                                    <a class="popup-with-form" href="#test-form">예약하기</a>
+                                    <a class="popup-with-form" href="${path}/customer/appointment">예약하기</a>
                                 </div>
                             </div>
                         </div>
