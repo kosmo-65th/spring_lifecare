@@ -12,7 +12,7 @@
 
 <body>
 <%@include file="../common/header.jsp" %>
-    <form action="${pageContext.request.contextPath}/guest/findIdResult?${_csrf.parameterName}=${_csrf.token}" method="post" name="idResultForm">
+    <form action="${pageContext.request.contextPath}/findIdResult?${_csrf.parameterName}=${_csrf.token}" method="post" name="idResultForm">
       <div class="title">아이디 찾기</div>
         <div class="findId_area">
           <p>FORGOT YOUR ID?</p>

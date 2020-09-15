@@ -92,8 +92,8 @@
 	                  
              <table class="tablestyle">
 	     		<tr>
-	     			<td><a href="${path}/guest/JoinInForm"><img src="${path_resources}images/client.png" width="200px" height="250px" /></a></td>
-	     			<td><a href="${path}/guest/doctorJoin"><img src="${path_resources}images/doc.png" width="200px" height="250px" /></a></td>
+	     			<td><a href="${path}/JoinInForm"><img src="${path_resources}images/client.png" width="200px" height="250px" /></a></td>
+	     			<td><a href="${path}/doctorJoin"><img src="${path_resources}images/doc.png" width="200px" height="250px" /></a></td>
 	     		</tr>
 	     	</table>
 	        </div>	
