@@ -2,6 +2,7 @@ package com.spring.lifecare.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.Collection;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -96,8 +97,16 @@ public class SwhController {
 	@RequestMapping("/naverLogin")
 	public String naverLogin(HttpServletRequest request, HttpServletResponse response) {
 		
+		HashMap<String, Object> userInfo= null;
+		try {
+			userInfo = naver.callback(request);
+		}catch(UnsupportedEncodingException e) {
+			System.out.println("encodingException");
+		}
 		
-		
+		if(userInfo != null) {
+			
+		}
 		
 		return "main";
 	}

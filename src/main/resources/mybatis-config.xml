@@ -10,7 +10,7 @@
     </settings>
     
   <typeAliases>
-    <package name="spring.project.bookshop4"/>    
+    <package name="com.spring.lifecare"/>    
   </typeAliases>
  
 </configuration>
