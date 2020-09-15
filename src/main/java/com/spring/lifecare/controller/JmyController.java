@@ -14,7 +14,7 @@ public class JmyController {
 	public String pbor() {
 		
 		
-		return "/guest/pbor";
+		return "/guest/patientBillOfRight";
 	}
 	//이용약관
 	@RequestMapping("/guest/conditions")
@@ -27,7 +27,7 @@ public class JmyController {
 	@RequestMapping("/guest/PI")
 	public String PI() {
 		
-		return "/guest/PI";
+		return "/guest/personaLinfomation";
 	}
 	
 	//정보공개
@@ -35,7 +35,7 @@ public class JmyController {
 	public String OI() {
 		
 		
-		return "/guest/OI";
+		return "/guest/openInfomation";
 	}
 	@RequestMapping("/guest/nonpayment")
 	public String nonpayment(HttpServletRequest req, Model model) {
