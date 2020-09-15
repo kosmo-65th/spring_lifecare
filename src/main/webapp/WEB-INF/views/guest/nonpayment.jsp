@@ -66,9 +66,10 @@
       <div class="ul" style="background-image:url('${path_resources_lifecare}images/slider-bg.png') !important; ">
       	<div class="container" style="background-color: white; padding: 20px">
 			
-			
+			<h1 style="font-size: 33px">비급여 진료비용 항목</h1>
 			<!--메뉴------------------>
 			<div class="tabTypeCol4 a">
+			
 				<ul class="clearFix">
 				<c:choose>
 					<c:when test="${code==1}">
