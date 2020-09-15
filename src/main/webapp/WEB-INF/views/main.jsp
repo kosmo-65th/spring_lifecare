@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/resources/setting/setting.jsp" %> 
+<!DOCTYPE html>
+<html>
    <!-- Basic -->
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -53,7 +55,6 @@
 		</script>
 	
    <!-- [if lt IE 9] -->
-   </head>
    <body class="clinic_version">
       <!-- LOADER -->
       <div id="preloader">
@@ -128,3 +129,4 @@
       <!-- map -->
      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNUPWkb4Cjd7Wxo-T4uoUldFjoiUA1fJc&callback=myMap"></script>
    </body>
+   </html>

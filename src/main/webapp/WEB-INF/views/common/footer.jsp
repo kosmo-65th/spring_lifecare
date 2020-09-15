@@ -6,13 +6,7 @@
 <!-- css 적용 -->
 <link rel="stylesheet" href="${path_resources_asset}base.min.css">
 <link rel="stylesheet" href="${path_resources_asset}common.min.css">
-<link rel="stylesheet" href="${path_resources_asset}content.min.css">
 <!-- css 적용 -->
-<!-- 스크립트 -->
-<script src="${path_resources_asset}jquery.min.js"></script>
-<script src="${path_resources_asset}jquery-ui.min.js"></script>
-<script src="${path_resources_asset}snuh-components-v1.0.0.js"></script>
-<!-- 스크립트 -->
 <footer id="footer">
 	<ul class="innerWrap footerLink2">
 		<li><a href="/reservation/unPaid/list.do" class="colorPoint04"
@@ -53,4 +47,4 @@
 	</div>
 </footer>
 <script src="${path_resources_asset}feSeries.min.js"></script>
-<script src="${path_resources_asset}feCommon.min.js"></script>
+<script src="${path_resources_asset}feCommon.min.js"></script> 
