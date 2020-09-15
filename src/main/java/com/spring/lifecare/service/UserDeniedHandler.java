@@ -23,6 +23,4 @@ public class UserDeniedHandler implements AccessDeniedHandler {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/user/denied.jsp");
 		dispatcher.forward(request, response);
 	}
-
-	
 }
