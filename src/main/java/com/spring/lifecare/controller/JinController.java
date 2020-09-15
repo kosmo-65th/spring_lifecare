@@ -59,7 +59,7 @@ public class JinController {
  	}
  	
     //결제할 내용 리스트 출력
- 	@RequestMapping("/payment")
+ 	@RequestMapping("/customer/payment")
  	public String payment(Model model) {
  		
  		return "customer/payment";
@@ -73,7 +73,7 @@ public class JinController {
  	}
  	
  	//진단서 폼 - 프린트
- 	@RequestMapping("/diagnosis")
+ 	@RequestMapping("/customer/diagnosis")
 	public String diagnosis(Model model) {
 		
 		return "customer/diagnosis";
