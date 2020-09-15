@@ -1,6 +1,7 @@
 package com.spring.lifecare.service;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,12 +18,15 @@ public class UserDeniedHandler implements AccessDeniedHandler {
 	@Override
 	public void handle(HttpServletRequest request, HttpServletResponse response,
 			AccessDeniedException accessDeniedException) throws IOException, ServletException {
-
-		request.setAttribute("errMsg", "관리자만 접근할 수 있는 페이지입니다.");		
+		PrintWriter out = response.getWriter();
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/user/denied.jsp");
-		dispatcher.forward(request, response);
-	}
+		out.println("<script>");
+		out.println("alert('접근권한이 없습니다.');");
+		out.println("</script>");
 
-	
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/main");
+		dispatcher.forward(request, response);
+		out.close();
+	}
 }

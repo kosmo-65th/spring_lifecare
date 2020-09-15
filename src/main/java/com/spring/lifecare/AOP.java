@@ -10,10 +10,6 @@ import org.slf4j.LoggerFactory;
 
 @Aspect
 public class AOP {
-	
-	@Pointcut("execution(* com.spring.lifecare.controller.*.*(..)) or execution(* com.spring.lifecare.service.*Impl.*(..)) or execution(* com.spring.lifecare.persistence.*Impl.*(..))")
-	public void log() {};
-	
    @Pointcut("execution(* com.spring.lifecare.service.User*.*(..))")
    public void sec_log() {};
 	
@@ -21,8 +17,7 @@ public class AOP {
 	static String name = ""; 
 	static String type = "";
 
-	//@Around("execution(* com.spring.lifecare.controller.*.*(..)) or execution(* com.spring.lifecare.service.*Impl.*(..)) or execution(* com.spring.lifecare.persistence.*Impl.*(..))")
-	@Around("log()")
+	@Around("execution(* com.spring.lifecare.controller.*.*(..)) or execution(* com.spring.lifecare.service.*.*(..)) or execution(* com.spring.lifecare.persistence.*Impl.*(..))")
 	public Object logPrint(ProceedingJoinPoint joinPoint) throws Throwable { 
 		type = joinPoint.getSignature().getDeclaringTypeName(); 
 		if (type.indexOf("Controller") > -1) { 

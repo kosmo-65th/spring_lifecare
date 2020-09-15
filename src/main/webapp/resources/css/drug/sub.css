@@ -1,0 +1,1883 @@
+@charset "UTF-8";
+
+
+/*의약품상세검색*/
+.search_table{
+	margin-bottom:80px !important;
+}
+.search_table table{
+	box-sizing:border-box !important;
+	border:2px solid #435cc8 !important;
+}
+.search_table table th{
+	background:#f4f1ed  !important;
+	border-bottom:1px solid #dcdad7  !important;
+	width:90px  !important;
+	padding-left:8px  !important;
+	box-sizing:border-box  !important;
+	color:#435cc8  !important;
+	font-weight:normal  !important;
+	text-align:left  !important;
+}
+.search_table table td{
+	border-bottom:1px solid #e6e6e6  !important;
+	box-sizing:border-box  !important;
+	padding:10px 15px  !important;
+	width:280px !important;
+}
+.search_table table td input[type="text"]{
+	border:1px solid #bdbab6 !important;
+	float:left !important;
+	width:188px !important;
+}
+.search_table table td > ul li{
+	float:left !important;
+	margin-right:10px !important;
+}
+.search_table table td.td12 ul li{
+	letter-spacing:-2px !important;
+	margin-right:4px !important;
+}
+.search_table table td.td16 ul li{
+	margin-right:5pxv !important;
+}
+.search_table table td ul li label{
+	color:#333 !important;
+	font-size:13px !important;
+	margin-top : 11;
+}
+
+.search_table table td.letters p{
+	font-size:12px !important;
+	color:#adadad !important;
+	line-height:14px !important;
+	padding:4px 0 4px 5px !important;
+    text-indent: -7px !important;
+}
+.search_table table td.letters ul li{
+	margin-right:2px !important;
+	border:1px solid #435cc8 !important;
+	text-align:center !important;
+}
+.search_table table td.letters ul li a{
+	color:#435cc8 !important;
+	display:block !important;
+	width:14px !important;
+	height:14px !important;
+	line-height:13px !important;
+	font-size:11px !important;
+}
+.search_table table td.letters ul li.selected{
+	background:#435cc8;
+}
+.search_table table td.letters ul li.selected a{
+	color:#fff;
+}
+.search_table table td.ingred input[ type="text"]{
+	width:149px;
+}
+.search_table table td.ingred .category{
+	width:52px;
+	margin-right:5px;
+}
+.search_table table td.ingred .category .category_list{
+	width:50px;
+}
+.search_table table td.td1{
+	padding-bottom:0;
+}
+.search_table table td.td2{
+	padding-bottom:2px;
+}
+.search_table table td.td2 input[type="text"]{
+	margin-left:57px ;
+}
+.search_table table td.td2_2{
+	padding:2px 15px;
+}
+.search_table table td.td2_3{
+	padding-top:2px;
+}
+.search_table table td.td3 input,.search_table table td.td4 input,.search_table table td.td8 input,.search_table table td.td15 input,#search_identity .idty_td5 input, #search_identity .idty_td6 input{
+	width:100%;
+}
+.search_table table td.td9 .category,.search_table table td.td10 .category{
+	width:100%;
+}
+.search_table table td.td9 .category .category_list,.search_table table td.td10 .category .category_list{
+	width:100%;
+}
+.search_table table td.td3 .category_list li,.search_table table td.td9 .category .category_list li,.search_table table td.td10 .category .category_list li{
+	float:none;
+}
+.search_table table td.td3{
+	position:relative;
+}
+.search_table table td.td3 .category_list{
+	width:251px;
+    left:15px;
+    top:34px;
+	padding-left:5px;
+}
+.search_table #ul_drugList li{
+	float:none  !important;
+	clear:both  !important;
+}
+
+
+#search_detail .category_list li a.overtxt{
+	display:block;
+}
+/*의약품상세정보_기본정보*/
+#search_detail_result .tab1 li{
+	width:25%;
+}
+.infotable td.img{
+	width:225px;
+	position:relative;
+	padding:0 0 10px 10px;
+	vertical-align: top;
+	overflow:auto;
+}
+#druginfo01 .infotable td.img ul{
+	/* position:absolute; */
+	/* top:0; */
+	/* left:4%; */
+	/* bottom:0; */
+	overflow-y:auto;
+	overflow-x:hidden;
+	width:100%;
+	height:420px;
+}
+
+.infotable #ingr_mg h3{
+    padding-left: 12px;
+    color: #008073;
+    background: #fff url(/lifecare/resources/images/pills/ico.png) no-repeat 0 -457px;
+}
+
+.infotable td.img ul li{
+	position:relative;
+	width:96%;
+	float:left;
+}
+.infotable td.img ul li > img{
+	width:100%;
+	margin-top:10px;
+}
+.view_drugimg{
+	width:16px;
+	height:16px;
+	position:absolute;
+	top:10px;
+    right:0;
+}
+.view_drugimg > a{
+	width:100%;
+	height:100%;
+	background-position:-462px -248px;
+}
+.view_drugimg .popupbx{
+	position:fixed;
+	top:50%;
+	left:50%;
+	width:440px;
+	margin-left:-220px;
+	margin-top:-200px;
+	z-index:1000;
+}
+.view_drugimg .popupbx h6{
+	font-size:16px;
+	font-weight:bold;
+	line-height:17px;
+	letter-spacing:0;
+}
+.view_drugimg .popupbx img{
+	width:100%;
+}
+.view_drugimg .popupbx table{
+	text-align:center;
+	margin-bottom:15px;
+}
+.view_drugimg .popupbx table th{
+	background:#f8f7f6;
+	border:1px solid #d1ceca;
+    width:16.666%;
+	height:30px;
+	font-weight:normal;
+	padding:0;
+	letter-spacing:-1px;
+}
+.view_drugimg .popupbx table td{
+	border:1px solid #d1ceca;
+	width:16.666%;
+	letter-spacing:0;
+}
+.view_drugimg .popupbx table td.txtL{
+	padding-left:8px;
+    padding-right:8px;
+	line-height:17px;
+}
+.view_drugimg .popupbx table.identity td{
+	font-size:16px;
+	font-weight:bold;
+	height:27px;
+	line-height:17px;
+	padding:5px;
+}
+.view_drugimg .popupbx table.identity td img{
+	width:40px;
+	height:40px;
+	vertical-align:middle;
+}
+img.linev{
+	width:4px !important;
+	height:20px !important;
+} 
+img.lineh{
+	width:25px !important;
+    height:4px !important;
+	vertical-align:3px !important;
+}
+.view_drugimg .popupbx table.identity td img.lineh, #search_identity_result td#idfy_print_back img.lineh,#search_identity_result td#idfy_print_front img.lineh, #print_section img.lineh{
+    display:block !important;
+	margin:0 auto !important;
+}
+.infotable td.img a.btn04{
+	width:100%;
+	text-align:center;
+	letter-spacing:0;
+	box-sizing:border-box;
+	height:23px;
+}
+.infotable #newdrug_class_code{
+	color:#5877ff;
+}
+.infotable .drugPrice > a{
+	width:68px;
+	height:21px;
+}
+.infotable .drugPrice .popupbx{
+	width:240px;
+	top:24px;
+    left:80px;
+}
+.infotable a.btn_manual{
+	padding-right:30px;
+	background:#f2f2f2 url(/lifecare/resources/images/pills/ico.png) -384px -315px no-repeat;
+}
+.infotable td.dur{
+	vertical-align:top;
+	text-align:right;
+	border-left:0;
+}
+.infotable td.fda h4{
+	font-size:15px;
+	padding-left:10px;
+	margin-bottom:15px;
+	margin-right:5px;
+	background:url(/lifecare/resources/images/pills/bullet.png) no-repeat 0 49%;
+	color:#435cc8;
+	display:inline-block;
+}
+.infotable td.fda ul.fda{
+	margin-bottom:20px;
+}
+#search_detail_result .rankSafety .popupbx tbody th span{
+	opacity:0.2;
+	filter:alpha(opacity=20);
+}
+.infotable td.fda > dl dt{
+	float:left;
+	margin-right:5px;
+	color:#000;
+	font-weight:bold;
+}
+.infotable td.fda > dl dd{
+	margin-bottom:10px;
+}
+.infotable td.fda a.btn04{
+	margin-bottom:8px;
+}
+.fda_ingred{
+	display:block;
+	clear:both;
+}
+.fda_ingred .popupbx{
+	width:555px;
+	top:22px;
+	left:172px;
+}
+.fda_ingred .popupbx tbody td{
+	text-align:center;
+	line-height:17px;
+}
+.fda_ingred .popupbx tbody td span{
+	width:50px;
+    height:20px;
+    border-radius:10px;
+    display:inline-block;
+    color:#333;
+    font-weight:bold;
+	line-height:17px;
+	margin-right:3px;
+}
+.package .popupbx{
+	width:615px;
+	top:26px;
+	right:0;
+}
+.package .popupbx p{
+	font-size:12px;
+    line-height:16px;
+}
+.package .popupbx table th{
+	padding:5px 2px;
+}
+.package .popupbx table td{
+	text-align:center;
+	padding:5px 2px;
+	word-break:break-all;
+}
+.package .popupbx table .name{width:150px;}
+.package .popupbx table .size{width:70px;}
+.package .popupbx table .amount{width:65px;}
+.package .popupbx table .form{width:35px;}
+.package .popupbx table .pack{width:43px;}
+.package .popupbx table .code{width:82px;}
+.package .popupbx table .etc{width:30px;}
+/*허가 및 복약정보*/
+#druginfo02 ul.tab2 li{
+	width:16.6666%
+}
+.druginfo h4{
+	margin-left:-12px;
+}
+.druginfo h4 span{
+	font-weight:normal;
+	font-size:13px;
+	margin-left:10px;
+}
+.druginfo{
+	border-bottom:1px solid #d1ceca;
+	padding:20px;
+	font-size:13px;
+	overflow:hidden;
+}
+.druginfo > div{
+	margin-bottom:20px;
+}
+.pictogram{
+	overflow:hidden;
+	/* margin-bottom:20px; */
+}
+.pictogram li{
+	float:left;
+	width:89px;
+}
+.pictogram li img{
+	width:100%;
+}
+.infoBtns{
+	width:100%;
+	overflow:hidden;
+	margin-top:10px;
+}
+.infoBtns li{
+	float:left;
+	width:29%;
+	text-align:center;
+	margin:5px;
+	background
+}
+.druginfo input[type="button"]{
+	width:100%;
+	height:30px;
+	color:#fff;
+	font-weight:bold;
+	background:#435cc8;
+	border:0;
+}
+.druginfo input.btn_mv{
+	width:150px;
+	padding-right:23px;
+	background:#435cc8 url(/lifecare/resources/images/pills/ico.png) -336px -392px;
+	margin-top:10px;
+}
+.druginfo input.btn_instruct{
+	width:150px;
+	padding-right:23px;
+	background:#435cc8 url(/lifecare/resources/images/pills/ico.png) -26px -479px;
+	margin-top:10px;
+}
+.comp dl, .popupbx dl{
+	overflow:hidden;
+}
+.comp dl dt, .popupbx dl dt{
+	font-weight:bold;
+	float:left;
+	width:65px;
+	margin-right:10px;
+}
+.comp dl dd, .popupbx dl dd{
+	padding-left:75px;
+	display:block;
+}
+ul.kpic h6{
+	font-size:13px;
+	font-weight:normal;
+}
+ul.kpic li ul li{
+	display:inline;
+}
+
+/*의약품상세정보_복약안내문*/
+#instruction02 .druginfo a.btn_printwith{
+	padding-right:28px;
+	background:#7fcec5 url(/lifecare/resources/images/pills/ico.png) -284px -481px no-repeat;
+}
+#instruction02 .pictogram{
+	margin-left:-20px;
+}
+/*의약품상세정보_동일성분 의약품*/
+#sameIngred .ingrd{
+	margin-bottom:20px;
+	clear:both;
+}
+#sameIngred .ingrd strong{
+	font-size:17px;
+}
+#sameIngred .ingrd ul{
+	margin-top:5px;
+}
+#sameIngred #notice{
+	margin:5px 0 40px 0;
+	font-size:13px;
+	padding:0 10px 0 23px;
+}
+#sameIngred #notice ul li{
+	margin:10px;
+	text-indent:-13px;
+	text-align:left;
+}
+#sameIngred p.blue,#sameIngred p.blue a{
+	color:#435cc8;
+	font-size:13px;
+}
+#sameIngred .tab2 li{
+	width:36%;
+}
+#sameIngred .tab2 li:first-child{
+	width:28%;
+}
+#sameIngred .alignTable{
+	float:right;
+	margin-right:10px;
+}
+#sameIngred .alignTable li{
+	float:left;
+	padding:0 5px;
+	vertical-align:middle;
+	font-size:13px;
+	margin-bottom:5px;
+}
+#sameIngred .alignTable li a{
+	display:block;
+	line-height:23px;
+}
+#sameIngred .alignTable li a.current{
+	font-weight:bold;
+	color:#435cc8;;
+}
+
+
+#sameIngred #result_sunb_nm h3{
+    padding-left: 12px;
+    color: #008073;
+    background: #fff url(/lifecare/resources/images/pills/ico.png) no-repeat 0 -457px;
+	margin-top:10px;
+}
+
+
+/*의약품상세정보_상호작용 - 상호작용 메뉴에서 공통 적용부분 있음*/
+#interaction > article{
+	margin-bottom:50px;
+}
+#interaction .blueBox .title strong{
+	font-weight:bold;
+	font-size:17px;
+}
+#interaction .blueBox strong{
+	/* font-size:17px; */
+}
+#interaction .blueBox .vs{
+	display:inline-block;
+	width:51px;
+	height:17px;
+	background-position:-79px -520px;
+	vertical-align:middle;
+	margin:0 20px;
+}
+#interaction .blueBox .icon{
+	display:inline-block;
+	margin-left:7px;
+	margin-bottom:5px;
+	vertical-align:middle;
+	height:31px;
+	width:41px;
+}
+#interaction_food .blueBox .icon{
+	background-position:0px -520px;
+}
+#interaction_drug{
+	margin-bottom:20px !important;
+}
+#interaction_drug .blueBox .icon{
+	background-position:-41px -520px;
+}
+#interaction_food #ingreds .druginfo{
+	padding:15px 20px;
+}
+#interaction_food #ingreds .druginfo h4{
+	/* margin-bottom:0; */
+}
+#interaction_food img.view_table{
+	width:15px;
+	vertical-align:-3px;
+}
+#interaction_drug .blueBox{
+	padding:15px 0 0 0;
+}
+#interaction_drug .blueBox table{
+	background:#f9f8f6;
+	margin-top:10px;
+}
+#interaction_drug .blueBox table th{
+	border-right:1px solid #43c8ba;
+	width:30%;
+}
+#interaction_drug .blueBox table td{
+	padding:5px 10px;
+	text-align:left;
+}
+#interaction_drug .blueBox #sunb_new_tbl h3{
+    padding-left: 12px;
+    color: #008073;
+    background: url(/lifecare/resources/images/pills/ico.png) no-repeat 0 -457px;
+}
+#interaction_drug #btns button{
+	width:168px;
+	background-position:-330px -58px;
+}
+#interaction #result table td button{
+	width:60px;
+	margin-right:10px;
+}
+#interaction #result table td{
+	text-align:left;
+	padding:7px 5px;
+}
+#interaction #result table td.ingred1,#interaction #result table td.ingred2{
+	word-break:keep-all;
+	width:95px;
+}
+#interaction #result table td.info ul li{
+	margin-bottom:5px;
+	background:url(/lifecare/resources/images/pills/bullet4.png) 0 7px  no-repeat;
+	text-indent:8px;
+}
+#interaction #result table td.info ul li strong{
+	color:#435cc8;
+}
+#interaction #result table td.info ul li.ingre{
+	background:url(/lifecare/resources/images/pills/bullet3.png) 0 7px  no-repeat;
+	margin-bottom:10px;
+}
+#interaction #result table td.info ul li.ingre strong{
+	color:inherit;
+}
+/*임부약물사용*/
+#search_pregnants .search_table{
+	margin-bottom:30px !important;
+}
+#search_pregnants #result{
+	margin-top:80px;
+}
+#search_pregnants .tab2 li{
+	width:36%;
+}
+#search_pregnants .tab2 li:first-child{
+	width:28%;
+}
+#chooseRank th a{
+	margin-left:10px;
+}
+#chooseRank td{
+	width:550px;
+}
+#chooseRank .dur li, #chooseRank .fda li{
+	opacity:1;
+	filter:alpha(opacity=100);
+	box-sizing:border-box;
+	line-height:22px;
+	background:#fff;
+}
+#chooseRank .dur li a,#chooseRank .fda li a{display:block;}
+/* #chooseRank ul.dur .durAll{border:2px solid #435cc8;}
+#chooseRank ul.dur .dur2{border:2px solid #ffee00;}
+#chooseRank ul.dur .durM{border:2px solid #ff9019;}
+#chooseRank ul.dur .dur1{border:2px solid #f00;} */
+
+.durAll.selected{background-color:#435cc8 !important;border-color:#0021af !important;}
+.dur2.selected{background-color:#ffee00 !important;border-color:#b3a700 !important;}
+.durM.selected{background-color:#ff9019 !important;border-color:#b75f00 !important;}
+.dur1.selected{background-color:#f00 !important;border-color:#a70000 !important;}
+.durAll.selected a,.dur .dur1.selected a{color:#fff;}
+
+/* #chooseRank ul.fda .fdaAll{border:2px solid #435cc8;}
+#chooseRank ul.fda .fdaA{border:2px solid #ffee00;}
+#chooseRank ul.fda .fdaB{border:2px solid #ffc619;}
+#chooseRank ul.fda .fdaC{border:2px solid #ff9019;}
+#chooseRank ul.fda .fdaD{border:2px solid #ff5d1d;}
+#chooseRank ul.fda .fdaX{border:2px solid #f00;} */
+
+.fdaAll.selected{background-color:#435cc8 !important;border-color:#0021af !important;}
+.fdaA.selected{background-color:#ffee00 !important;border-color:#b3a700 !important;}
+.fdaB.selected{background-color:#ffc619 !important;border-color:#ab8000 !important;}
+.fdaC.selected{background-color:#ff9019 !important;border-color:#b75f00 !important;}
+.fdaD.selected{background-color:#ff5d1d !important;border-color:#bb3500 !important;}
+.fdaX.selected{background-color:#f00 !important;border-color:#a70000 !important;}
+.fdaAll.selected a,.fda .fdaX.selected a{color:#fff;}
+
+#search_pregnants .tab3_cont td span{
+	display:inline-block;
+	border-radius:15px;
+	width:46px;
+    height:20px;
+    line-height:20px;
+	font-weight:bold;
+}
+#search_pregnants_result td.img ul{
+	height: auto !important;
+    min-height: 165px;
+}
+/*임부 약물사용_제품보기*/
+#infoSafety{
+	overflow:hidden;
+}
+#infoSafety h3{
+	display:block;
+}
+#infoSafety > article{
+	width:370px;
+	height:396px;
+	box-sizing:border-box;
+	border:1px solid #d1ceca;
+	border-top:1px solid #43c8ba;
+}
+#infoSafety #DURSafety{float:left;}
+#infoSafety #FDASafety{float:right;}
+#infoSafety > article .hgroup{
+	height:45px;
+	width:100%;
+	background:#f8f7f6;
+	padding:10px;
+	box-sizing:border-box;
+}
+#infoSafety > article .hgroup .infoOver {
+	float:right;
+}
+#infoSafety > article .rank{
+	text-align:center;
+	margin:25px 0 15px 0;
+}
+#infoSafety > article .rank ul{
+	display:inline-block;
+}
+#infoSafety > article > dl{
+	padding-left:15px;
+	font-size:13px;
+}
+#infoSafety > article > dl > dt{
+	color:#f00;
+	display:block;
+	font-weight:bold;
+}
+#infoSafety > article > dl > dd{
+	padding-right:15px;
+	padding-bottom:15px;
+}
+#infoSafety > article > dl > dd.safety_cont{
+	overflow-y:auto;
+	height:205px;
+}
+#infoSafety > article > dl > dd.safety_cont dl{
+	margin-bottom:10px;
+}
+#infoSafety > article > dl > dd.safety_cont dt{
+	font-weight:bold;
+	font-size:15px;
+	display:block;
+}
+#infoSafety > article > dl > dd.safety_cont dl.no dt,#infoSafety > article > dl > dd.safety_cont dl.no dd{
+	display:inline;
+	font-size:14px;
+}
+#ingredFDA th{width:35%;}
+#ingredFDA th.cate{width:10%;}
+#ingredFDA th.route{width:20%;}
+#ingredFDA td span{
+	display:inline-block;
+    border-radius:15px;
+    width:46px;
+    height:20px;
+    line-height:20px;
+    font-weight:bold;
+}
+
+/*의약품안전사용서비스(DUR)*/
+#search_DUR .tab{
+	width:100%;
+	margin-bottom:20px;
+	height:34px;
+}
+#search_DUR #result{
+	margin-top:80px;
+}
+#search_DUR #result .tab > li{
+	float:left;
+	background:#f8f7f6;
+	text-align:center;
+	border:1px solid #d1ceca;
+	border-right:0;
+	box-sizing:border-box;
+	width:20%;
+}
+#search_DUR #result .tab > li:last-child{
+	border-right:1px solid #d1ceca;
+}
+#search_DUR #result .tab > li > a{
+	color:#acaaa8;
+	display:block;
+	line-height:12px;
+	padding:10px 0;
+	font-weight:bold;
+	cursor:default;
+	text-decoration:none;
+}
+#search_DUR #result .tab > li.selected{
+	background:#43c8ba;
+}
+#search_DUR #result .tab > li.selected a{
+	color:#0034a8;
+	font-weight:bold;
+	cursor:pointer;
+}
+#search_DUR #result .tab > li.selected a span{
+	color:#0042ff;
+}
+#search_DUR #result .tab > li.selected a:active{
+	text-decoration:underline;
+}
+#search_DUR #result > div{
+	margin-bottom:40px;
+}
+#search_DUR #result h4{
+	margin-bottom:0;
+}
+#search_DUR #result p{
+	font-size:12px;
+	padding-left:10px;
+	margin:5px 0;
+	line-height:17px;
+}
+#search_DUR #result table.list_basic > tbody > tr > th{
+	background-color:#008073;
+	color:#fff;
+	border-right:1px solid #579c95;
+}
+#search_DUR #result table td{
+	padding:7px 5px;
+}
+#search_DUR #result table .name1,#search_DUR #result table .name2,#search_DUR #result table .cont{
+	word-break:break-word;
+	text-align:left;
+}
+#search_DUR #result table .name1,#search_DUR #result table .name2{
+	width:200px;
+	font-size:14px;
+}
+#search_DUR #result table .no{
+	width:120px;
+}
+#search_DUR #result .cont{
+	width:300px;
+}
+#search_DUR #result #dur_cont3 .infoOver > a{
+	width:15px;
+	height:15px;
+	background-position:-425px -248px;
+}
+#search_DUR #result #dur_cont3 .type{
+	width:24px;
+} 
+#search_DUR #result #dur_cont3 td span{
+	display:inline-block;
+    border-radius:15px;
+    width:46px;
+    height:20px;
+    line-height:20px;
+    font-weight:bold;
+}
+#search_DUR #result #dur_cont1_2 h5,#search_DUR #result h5.drug{
+	color:#f00;
+	font-size:16px;
+	margin-bottom:5px;
+}
+#search_DUR #result #dur_cont1_2 .infoOver > a{
+	width:44px;
+}
+#search_DUR #result #dur_cont1_2 .popupbx{
+	top:26px;
+    left:56px;
+}
+#search_DUR #result .popupbx .scroll{
+	overflow-y:auto;
+	max-height:194px;
+	margin-top: 6px;
+	padding-right:15px;
+	margin-right:-15px;
+	margin-bottom: -15px;
+    padding-bottom: 15px;
+}
+#search_DUR #result #dur_cont1_2 .popupbx table td{
+	text-align:left;
+}
+#search_DUR #result .popupbx table td{
+	text-align:left;
+}
+#search_DUR #result .popupbx table td .overtxt{
+	width:120px;
+	text-align:left;
+}
+
+/*의약품식별정보검색*/
+#search_identity .search_table .idty_td1,#search_identity .search_table .idty_td3{
+	border-right:1px solid #e6e6e6 !important;
+}
+#search_identity .search_table .idty_td1 ul li{
+	margin-bottom:10px !important;
+}
+#search_identity .search_table .idty_td2 h5{
+	background-position:-180px -538px !important;
+	font-size:13px !important;
+	color:#435cc8 !important;
+	display:inline-block !important;
+}
+#search_identity .search_table .idty_td2 > span{
+	float:left !important;
+	margin-right:7px !important;
+	margin-top:7px !important;
+}
+#search_identity .search_table .idty_td2 > span > img{
+	margin-left:5px !important;
+}
+#search_identity .search_table .idty_td2 .sample{
+	font-size:12px !important;
+}
+#search_identity .search_table .idty_td2 .sample h6{
+	font-size:12px !important;
+	background-position:-268px -538px !important;
+	padding-left:10px !important;
+}
+#search_identity .search_table .idty_td2 .sample p span{
+	font-weight:bold !important;
+}
+#search_identity .search_table .idty_td2 .sample p img{
+	vertical-align:middle !important;
+}
+.searchMark .popupbx{
+	height:585px;
+	width:630px;
+	padding:25px;
+	position:fixed;
+	top:50%;
+    left:50%;
+	margin-top:-355px;
+    margin-left:-340px;
+	z-index:1000;
+	overflow-x:hidden;
+}
+.searchMark .popupbx h6{
+	font-size:17px;
+    font-weight:bold;
+	background:#43c8ba;
+    position:absolute;
+	top:0;	
+    left:0;
+    width:100%;
+    height:50px;
+	line-height:50px;
+    color:#fff;
+    padding-left:15px;
+}
+.searchMark .popupbx .searchopt{
+	margin-top:40px;
+	overflow:hidden;
+}
+.searchMark .alignTable li{
+	margin-top:0;
+	float:left;
+    margin-right:20px;
+}
+.searchMark .alignTable li a{
+    display:block;
+    line-height:23px;
+	padding:0 5px;
+}
+.searchMark .alignTable li a:hover{
+	color:#435cc8;
+}
+.searchMark .alignTable li a.current{
+	font-weight:bold;
+	color:#435cc8;
+	border-bottom:2px solid #435cc8;
+}
+.searchMark .searchtxt{
+	float:right;
+}
+.searchMark .searchtxt button{
+	line-height:27px;
+}
+.searchMark .popupbx #popup_mark{
+	height:500px;
+    overflow:auto;
+    margin-top:20px;
+}
+.searchMark .popupbx ul.markList{
+	display:inline-block;
+	background:#fff;
+	padding:5px;
+}
+.searchMark .popupbx ul.markList li{
+	width:55px;
+	height:55px;
+	border:1px solid #ccc;
+	margin:5px;
+	float:left;
+}
+.searchMark .popupbx ul.markList li:hover{
+	border:1px solid #435cc8;
+}
+.searchMark .popupbx ul.markList li a{
+	display:block;
+}
+.searchMark .popupbx ul.markList li img{
+	width:100%;
+}
+#search_identity .search_table .idty_td3 .mark{
+	position:relative;
+	border:1px solid #e6e6e6;
+	display:inline-block;
+	margin-left:5px;
+	vertical-align:middle;
+}
+#search_identity .search_table .idty_td3 .mark img{
+	height:48px;
+}
+#search_identity .search_table .idty_td3 a.delete{
+	width:15px;
+	height:15px;
+	background-position:-445px -307px;
+	position:absolute;
+	top:-2px;
+	right:-16px;
+}
+#search_identity .search_table .idty_td5,#search_identity .search_table .idty_td6{
+	width:200px;
+}
+#search_identity ul.idty > li, .shapeETC > a{
+	border:1px solid #dcdcdc;
+	width:53px;
+	height:53px;
+	border-radius:3px;
+	margin-right:3px;
+	box-sizing:border-box;
+}
+#search_identity .idty_td8 ul.idty > li{
+	margin:2px 3px 2px 0;
+}
+#search_identity ul.idty > li:hover, .shapeETC > a:hover{
+	border:1px solid #435cc8;
+}
+#search_identity ul.idty > li.selected{
+	border:2px solid #435cc8;
+}
+#search_identity ul.idty > li > a{
+	display:block;
+	text-align:center;
+}
+#search_identity ul.idty > li a.etc,#search_identity ul.idty > li a.all,li.shapeETC > a{
+	line-height:53px;
+}
+#search_identity ul.idty > li.selected a.etc,#search_identity ul.idty > li.selected a.all	{
+	line-height:51px;
+}
+#search_identity ul.idty > li a img{
+	padding-top:1px;
+}
+#search_identity ul.idty > li.selected a img{
+	padding-top:0px;
+}
+#search_identity ul.idty > li a span{
+	width:100%;
+	height:30px;
+	display:block;
+}
+#search_identity ul.idty > li a span.transp{
+	background:url(/lifecare/resources/images/pills/transp.png) 0 0 repeat-y;
+}
+#search_identity ul.idty > li.selected > a span{
+	height:29px;
+}
+#search_identity ul.idty > li > input{
+	visibility:hidden;
+}
+#search_identity .search_table td.shape{
+	position:relative;
+}
+.shapeETC > a {
+	margin-top:3px;
+	line-height: 51px;
+	text-align:center;
+}
+.shapeETC .popupbx{
+	width:150px;
+	top:30px;
+	left:60px;
+	padding-bottom:50px;
+}
+.shapeETC .popupbx ul{
+	height:200px;
+	overflow-y:scroll;
+}
+.shapeETC .popupbx ul li{
+	float:none !important;
+	margin:0;
+}
+.shapeETC .popupbx ul li.all{
+	/* text-align:right; */
+	margin-right:5px;
+	border-bottom:1px dotted #aaa;
+	margin-bottom:5px;
+}
+.shapeETC .popupbx a.btn04{
+    right:14px;
+    top:280px;
+    width:50px;
+    height:21px;
+}
+#shape_etc_text{
+	position:absolute;
+	left:150px;
+	top:67px;
+	width:560px;
+}
+#shape_etc_text ul li{
+	float:left;
+	margin-right:8px;
+    line-height:17px;
+	font-size:12px;
+    margin-top: 15;
+}
+
+#shape_etc_text ul li span{
+	width:13px;
+    height:13px;
+    background-position:-425px -229px;
+    display:inline-block;
+    margin-left:2px;
+    cursor:pointer;
+}
+#search_identity .idty_td5, #search_identity .idty_td6{
+	position:relative;
+}
+#search_identity .idty_td5 .category_list, #search_identity .idty_td6 .category_list {
+   width:194px;
+   left:15px;
+   top:34px;
+   padding-left:5px;
+   overflow-y: auto;
+   max-height: 100px;
+}
+#search_identity .idty_td5 .category_list li, #search_identity .idty_td6 .category_list li{
+	float:none;
+} 
+#search_identity .idty_td5 .category_list li a.overtxt, #search_identity .idty_td6 .category_list li a.overtxt{
+	width:172px;
+    display:block;
+}
+#search_identity #result{
+	position:relative;
+}
+.printList{
+	position:absolute;
+	right:0;
+	top:88px;
+	padding-bottom:1px;
+	z-index:999;
+}
+.printList > a {
+	height:23px;
+	line-height:23px;
+	width:105px;
+	background-position:-359px -558px;
+	padding-right:28px;
+}
+.printList .popupbx{
+	width:180px;
+	top:27px;
+	left:0;
+}
+.printList .popupbx ul{
+	height:100px;
+	overflow-y:auto;
+}
+.printList .popupbx ul li{
+	margin:0;
+	font-size:13px;
+}
+.printList .popupbx ul li span.overtxt{
+	max-width:140px;
+	vertical-align:middle;
+}
+.printList .popupbx ul li span.delete{
+	width:13px;
+    height:13px;
+    background-position:-425px -229px;
+    display:inline-block;
+    margin-left:5px;
+    vertical-align:middle;
+    cursor:pointer;
+}
+#search_identity .tab2 li {
+    width: 36%;
+}
+ #search_identity .tab2 li:first-child {
+    width: 28%;
+}
+.tab3Group{
+	position:relative;
+	height:35px;
+}
+.tab3Group .category{
+	position:absolute;
+	right:0;
+	bottom:10px;
+}
+#search_identity .tab3Group .category{right:150px;}
+#search_identity th.infoOver{
+	display:table-cell;
+}
+#search_identity th.info_print .popupbx{
+	width:200px;
+	text-align:left;
+	top:28px;
+    left:50px;
+}
+#search_identity td.print label{
+	color:#fff;
+}
+#search_identity .tab3_cont td.img{
+	position:relative;
+}
+#search_identity .tab3_cont td.img .infoOver {
+    width:100%;
+    height:55px;
+    position:static;
+}
+#search_identity .tab3_cont td.img .infoOver .popupbx{
+	text-align:left;
+}
+#search_identity .tab3_cont td.img .infoOver .popupbx a{
+	/* margin-right:4px; */
+	letter-spacing:-1px;
+}
+#search_identity .tab3_cont .mark img.lineh{
+	width: 20px !important;
+    height: 4px !important;
+    margin: 0 2px;
+}
+#search_identity .tab3_cont .mark span.line_cross{
+	font-size: 20px;
+    font-weight: bold;
+    line-height: 15px;
+    vertical-align: top;
+}
+#search_identity .tab3_cont .name{
+	padding:0 10px;
+	cursor:pointer;
+	width:200px !important;
+}
+#search_identity .tab3_cont .ingre{width:120px;word-break:keep-word;}
+/* #search_identity .tab3_cont .comp{width:70px;} */
+#search_identity .tab3_cont .categ{padding:0 5px;}
+#search_identity .tab3_cont th.size{
+	border-bottom:1px solid #f4f1ed;
+	width:100px;
+}
+
+/*의약품식별정보검색_식별상세정보*/
+#search_identity_result .infotable td.img {
+    height:170px;
+}
+#search_identity_result .hgroup a{
+	margin-right:5px;
+}
+.infotable #idfy_sunb_list h3{
+    padding-left:12px;
+    color: #008073;
+    background: #fff url(/lifecare/resources/images/pills/ico.png) no-repeat 0 -457px;
+}
+#search_identity_result th.subth{
+	background:#f2fbfa;
+	border-left: 1px solid #d1ceca;
+	border-bottom: 1px solid #e4e4e4 !important;
+}
+#search_identity_result td#idfy_print_back,#search_identity_result td#idfy_print_front{
+	text-align:center;
+	font-size:16px;
+	line-height:17px;
+}
+#search_identity_result td#idfy_print_back img,#search_identity_result td#idfy_print_front img{
+	width:40px;
+	height:40px;
+	vertical-align:middle;
+}
+p#gosi{
+	background-position:-444px -287px;
+    line-height:1.4;
+    margin-top:15px;
+    padding-left:20px;
+	font-size:13px;
+}
+#change td.img{
+	position:relative;
+}
+#change td.img .infoOver{
+	width:100%;
+	height:55px;
+	position:static;
+}
+#change td.img .popupbx{
+	text-align:left;
+}
+#change .changeinfo{
+	cursor:pointer;
+}
+#change .changeinfo:hover > td,#change .changeinfo:active > td{
+	background:#f9f9f9;
+}
+#change .changeinfo td.front,#change .changeinfo td.back{
+	width:70px;
+}
+#change .changeinfo td.date{
+	width:110px;
+}
+#change .changeinfo .popupbx a{
+	margin-right:4px;
+}
+#change .infoExra > td{
+	padding:3px 0 0 0;
+}
+#change .infoExra .infotable th{
+	height:22px;
+	border-bottom:1px solid #c7c7c7;
+}
+#change .infoExra .infotable td{
+	line-height:1.7;
+	text-align:left;
+	padding:5px 10px;
+	border-bottom:1px solid #e6e6e6;
+}
+
+/*제품별 복약정보*/
+#print_section > article{
+	margin-bottom:20px !important;
+}
+#searchProdt #picked .searchList span a.btn03{
+	margin-right:5px;
+	height:14px;
+    line-height:14px;
+}
+#searchProdt #btns button{
+	width:137px;
+	background-position: -360px -58px;
+}
+#searchProdt #btns button.print{
+	background-position:-362px -533px;
+}
+/*픽토그램 복약정보*/
+.pictoIntro{
+	padding:20px;
+	background:#f4f1ed;
+}
+.pictoIntro > span{
+	background-position:-445px -271px;
+	float:left;
+	width:15px;
+	height:15px;
+}
+.pictoIntro p{
+	font-size:13px;
+	/* color:#fff; */
+	margin-bottom:20px;
+}
+.pictoIntro p span{
+	font-weight:bold;
+}
+.pictoIntro p strong{
+	text-decoration:underline;
+}
+#counsel_pictogram .blueBox ol li{
+	text-align:left;
+	font-weight:bold;
+}
+#counsel_pictogram #btns button{
+	width:230px;
+	background-position:-270px -533px;
+	background-color: #435cc8;
+}
+/*제형별 복약정보*/
+#counsel_form .tab1 li{
+	width:50%;
+}
+.counsel_tab > div{
+	border-top:2px solid #43c8ba;
+	overflow:hidden;
+    margin-bottom:10px;
+    position:relative;
+}
+.counsel_tab > div h4{
+	width:96px;
+	height:100%;
+	padding:10px;
+	box-sizing:border-box;
+	background-color:#43c8ba;
+	color:#fff;
+	font-size:16px;
+	position:absolute;
+}
+.counsel_tab > div#form1 h4{background-position:0 -566px;}
+.counsel_tab > div#form2 h4{background-position:-195px -564px;}
+.counsel_tab > div#form3 h4{background-position:-99px -564px;}
+.counsel_tab > div#form4 h4{background-position:0 -674px;}
+.counsel_tab > div ul{
+	display:inline-block;
+	width:663px;
+	float:right;
+	margin-right:-3px;
+}
+.counsel_tab > div ul li{
+	float:left;
+	width:33%;
+	height:35px;
+	background:#f8f7f6;
+	border:1px solid #d1ceca;
+	margin-right:-1px;
+	margin-top:-1px;
+	text-align:center;
+}
+.counsel_tab > div ul li a{
+	display:block;
+	line-height:35px;
+}
+.counsel_tab > div ul li a:hover, .counsel_tab > div ul li a.selected{
+	background:#d1ceca;
+}
+#counsel_form #result .intro{
+	margin-top:20px;
+}
+#counsel_form .MVclip > div{
+	margin-top:20px;
+}
+#counsel_form .druginfo a{
+	float:right;
+}
+#counsel_form .druginfo ul{
+	margin-top:20px;
+	float:left;
+}
+#counsel_form .druginfo ul li.infoImg{
+	margin-bottom:20px;
+	width:50%;
+	float:left;
+	height:240px;
+}
+#counsel_form .druginfo ul li.infoImg img{
+	display:block;
+	margin:0 auto;
+	margin-bottom:5px;
+	width:262px;
+}
+#counsel_form .druginfo ul li.infoImg p{
+	padding:0 50px;
+	font-size:14px;
+}
+#counsel_form .druginfo ul.caution li{
+	margin-bottom:20px;
+	padding: 0 50px;
+}
+#counsel_form .druginfo ul.caution li h5{
+	font-size:15px;
+}
+#counsel_form .druginfo ul.caution li p{
+	font-size:14px;
+	text-indent: -13px;
+    margin-left: 30px;
+}
+#counsel_form .druginfo > p, #interaction_food #ingreds li p{
+	background:url(/lifecare/resources/images/pills/ico_number.png) no-repeat -176px -46px;
+	padding-left:13px;
+} 
+
+
+/*성분정보/학술-질병정보,한약정보*/
+#search_ingredient .search_table th, #disease .search_table th, #herbalMedicine .search_table th{
+	width:60px;
+}
+#search_ingredient td.letters ul, #disease td.letters ul, #herbalMedicine td.letters ul{
+	float:left;
+}
+#search_ingredient td.letters ul:first-child, #disease td.letters ul:first-child, #herbalMedicine td.letters ul:first-child{
+	margin-bottom:5px;
+}
+#search_ingredient td.letters ul li, #disease td.letters ul li, #herbalMedicine td.letters ul li{
+	margin-right:4px;
+}
+#search_ingredient td.letters ul li a, #disease td.letters ul li a, #herbalMedicine td.letters ul li a{
+	width:16px;
+    height:16px;
+    line-height:15px;
+    font-size:13px;
+}
+#search_ingredient .efftAll input[type="checkbox"]+label,
+#disease .disAll input[type="checkbox"]+label,
+.terms input[type="checkbox"]+label{
+	background-position:-345px -605px;
+	font-size:15px;
+	line-height:18px;
+	padding-left:22px;
+	color:#333;
+	font-weight:bold;
+}
+#search_ingredient .efftAll input[type="checkbox"]:checked+label,
+#disease .disAll input[type="checkbox"]:checked+label,
+.terms input[type="checkbox"]:checked+label{
+	background-position:-345px -626px;
+}
+#search_ingredient .efftAll > a, #disease .disAll > a{
+	background-color:#aaa;
+	background-position:-414px -480px;
+    padding-right:30px;
+	height:23px;
+	line-height:23px;
+}
+
+#search_ingredient .KPICeffect ul, #disease .disCtg ul{
+	float:left;
+	/* margin-right:11px; */
+}
+#search_ingredient .KPICeffect ul li, #disease .disCtg ul li{
+	float:none;
+	line-height:1.7;
+	height:22px;
+}
+/*성분 상세정보*/
+#ingredient_detail .popupbx{
+	margin-top:-200px;
+}
+#ingredient_detail .popupbx thead{
+	display:block;
+}
+#ingredient_detail .popupbx tbody{
+	display:block;
+    overflow-y:auto;
+	max-height:300px;
+}
+#ingredient_detail .popupbx .same{
+	width:200px;
+}
+#ingredient_detail .popupbx .from{
+	width:400px;
+}
+#ingredient_detail .popupbx td{
+	word-break:keep-all;
+}
+#ingredient_detail td.img{
+	/* height:280px; */
+}
+#ingredient_detail .formula{
+	/* position:absolute; */
+    /* bottom:10px; */
+    line-height:17px;
+}
+#ingredient_detail td h5{
+	font-size:14px;
+}
+/*약물-약물, 약물-음식 상호작용*/
+#interaction #search #btns .search, #interaction_food #search #btns .search{
+	width:155px;
+    background-position:-342px -58px;
+}
+#interaction #result .hgroup p{
+	color:#008073;
+    line-height:24px;
+	font-size:12px;
+}
+#interaction_food #result h3{
+	margin-bottom:0;
+}
+#interaction_food #result ul li ul li:last-child{
+	margin-bottom:40px;
+}
+
+/*학술정보 공통*/
+#pharmreview h3, #newdrug h3, #globalnews h3, #issuentrend h3, #encyclopedia h3, #adverse h3, #drugRV h3{
+	margin-bottom:30px;
+}
+.list_top{
+	overflow:hidden;
+}
+.list_top > ul > li > a{
+	text-decoration:none;
+	display:block;
+}
+.new{
+	background-color:#f06;
+	color:#fff;
+	font-size:11px;
+	width:30px;
+	height:14px;
+	line-height:14px;
+	text-align:center;
+	display:inline-block;
+}
+.list_top .date{
+	font-size:13px;
+	position:absolute;
+    right:15px;
+    top:5px;
+}
+.list_top h4{
+	font-size:17px;
+	font-weight:normal;
+	color:#435cc8;
+	line-height:22px;
+	word-break:keep-all;
+	height:50px;
+}
+.list_top span.more{
+	width:11px;
+    height:11px;
+    background-position:-284px -65px;
+	display:inline-block;
+	float:right;
+}
+.list_top p{float:left;}
+.list_top span.more{margin-top:29px;}
+.list_top .tag li{
+	float:left;
+	color:#43c8ba;
+	font-size:13px;
+	line-height:18px;
+	margin-right:10px;
+}
+.list_bottom #rebrows{
+	float:left;
+	margin-bottom:13px;
+}
+.list_bottom .searchBar .category, .list_bottom .searchBar .category_list{width:105px;box-sizing:border-box;}
+.list_bottom #rebrows .searchBar button.search{
+	margin-left:0;
+}
+.list_bottom .list_basic .new{
+	margin-left:10px;
+}
+.list_bottom .list_basic td.txtL{
+	padding-left:15px;
+}
+/*팜리뷰, 부작용 리포트*/
+#pharmreview .list_top > ul > li,#adverse .list_top > ul > li{
+	float:left;
+	border:1px solid #d1ceca;
+	width:370px;
+	/* height:295px; */
+	height:150px;
+	margin-right:18px;
+	margin-bottom:18px;
+	position:relative;
+	padding:15px;
+	box-sizing:border-box;
+}
+#pharmreview .list_top .new,#adverse .list_top .new{
+	position:absolute;
+	top:-1px;
+	left:-1px;
+}
+#pharmreview .list_top h4,#adverse .list_top h4{
+	margin-top:17px;
+}
+#pharmreview .list_top p,#adverse .list_top p{
+	width:320px;
+	height:46px;
+	overflow:hidden;
+}
+#pharmreview .list_top .writer{
+	text-align:right;
+	display:block;
+	font-size:16px;
+	line-height:16px;
+	font-weight:bold;
+	margin:20px 0;
+    border-bottom:1px dashed #dfddda;
+    padding-bottom:15px;
+}
+#pharmreview .list_top .tagtag {
+	position:absolute;
+	bottom:15px;
+	width:336px;
+}
+
+
+/*약물사전*/
+#encyclopedia .list_top > ul > li{
+	float:left;
+	border:1px solid #d1ceca;
+	width:370px;
+	/* height:295px; */
+	height:150px;
+	margin-right:18px;
+	margin-bottom:18px;
+	position:relative;
+	padding:15px;
+	box-sizing:border-box;
+}
+#encyclopedia .list_top .new{
+	position:absolute;
+	top:-1px;
+	left:-1px;
+}
+#encyclopedia .list_top h4{
+	margin-top:17px;
+}
+#encyclopedia .list_top p{
+	width:320px;
+	height:46px;
+	overflow:hidden;
+}
+#encyclopedia .list_top .writer{
+	text-align:right;
+	display:block;
+	font-size:16px;
+	line-height:16px;
+	font-weight:bold;
+	margin:20px 0;
+    border-bottom:1px dashed #dfddda;
+    padding-bottom:15px;
+}
+#encyclopedia .list_top .tag {
+	position:absolute;
+	bottom:15px;
+	width:336px;
+}
+
+
+/*신약평론,이슈&트렌드*/
+#newdrug .list_top span.img{
+	float:left;
+	margin-right:30px;
+	width:130px;
+	height:114px;
+	overflow:hidden;
+}
+#newdrug .list_top > ul > li{
+	padding:25px 10px 5px;
+}
+#newdrug .list_top span.img img{
+	width:100%;
+}
+#newdrug .list_top p{
+	width:560px;
+	height:46px;
+	overflow:hidden;
+}
+#pharmreview .list_basic .intro, #newdrug .list_basic .intro, #issuentrend .list_basic .intro, #encyclopedia .list_basic .intro{
+	background:#fff;
+}
+#pharmreview .list_basic .intro a, #newdrug .list_basic .intro a, #issuentrend .list_basic .intro a, #encyclopedia .list_basic .intro a{
+	color:#435cc8;
+	font-weight:bold;
+	cursor:pointer;
+}
+#newdrug #category_searchTerm span, #issuentrend #category_searchTerm span{
+	padding-left:6px;
+}
+/*뷰어 다운로드*/
+#viewer{
+	width:560px;
+	height:200px;
+	border:1px solid #435cc8;
+	box-sizing:border-box;
+	background-color:#f6f5f3;
+} 
+#viewer h2{
+	background-color:#435cc8;
+	color:#fff;
+	width:100%;
+	font-size:15px;
+	height:38px;
+	line-height:38px;
+	text-indent:15px;
+	margin-bottom:40px;
+}
+#viewer ul{
+	margin-left:22px;
+	margin-top:5px;
+}
+#viewer ul li{
+	float:left;
+	margin:0 20px;
+}
+#viewer ul li a, #viewer ul li a img{
+	display:block;
+	margin:0 auto;
+	font-size:13px;
+	margin-bottom:5px;
+}
+
+/*법적 책임의 한계*/
+#legalLiability p{
+	margin-bottom:10px;
+}
+
+/*출력*/
+.PrePrint{min-width:758px !important;}
+.PrePrint #hgroup{
+	width:100%;
+	background:#435cc8;
+	height:50px;
+    text-align:center;
+    line-height:50px;
+	margin-bottom:40px;
+}
+.PrePrint #hgroup div{
+	width:758px;
+	margin:0 auto;
+}
+.PrePrint #hgroup h2{
+	color:#fff;
+	display:inline-block;
+}
+.PrePrint #hgroup button{
+	height:30px;
+	line-height:30px;
+    color:#fff;
+    border:0;
+	width:120px;
+	background-color:#43c8ba;
+	margin-top:10px;
+	font-size:14px;
+	font-weight:bold;
+}
+.PrePrint #hgroup .back{
+	float:left;
+	background-position:-460px -908px;
+    padding-left:20px;
+}
+.PrePrint #hgroup .print{
+	float:right;
+	background-position:-385px -532px;
+    padding-right:20px;
+}
+.PrePrint section#contens{
+	width:758px ;
+	margin-top:0;
+}
+.PrePrint #write{
+	margin-bottom:40px !important;
+}
+.PrePrint #write .hgroup{
+	overflow:hidden;
+}
+.PrePrint #write .hgroup h3 span{
+	font-weight:normal;
+	font-size:15px;
+	color:#333;
+	padding-left:5px;
+}
+.PrePrint #write .hgroup span{
+	float:right;
+}
+.PrePrint #write .phone input{
+	width:75px !important;
+	float:none !important;
+}
+.PrePrint #write .datepicker {
+    background-position:234px -792px
+}
+.PrePrint #print_section > article{
+	margin-bottom:0 !important;
+}
+.PrePrint #instruction02{
+	margin-top:20px;
+	margin-bottom:40px;
+}
+.PrePrint #footer_cont{
+	width:758px !important;
+}
+.PrePrint .identity td{
+	text-align:center;
+	width:50%;
+	height:22px;
+	padding:5px 0;
+}
+.PrePrint #divintro{margin-top:-20px;}
+.PrePrint footer{margin-top:0 !important;}
+.PrePrint footer h6{
+	width:174px !important;
+	height:39px !important;
+	background-position:0 -821px !important;
+	margin-top:13px;
+}
+/*제형별 복약정보 출력*/
+#counsel_form .printable h4{
+	text-align: center;
+    display: block;
+    background: none;
+    font-size: 22px;
+}
+
+/* 링크된 이미지 마우스 커서*/
+.anchor_img {
+	cursor:pointer;
+}
+
+ @media print{
+	body {background-color:#FFF}
+/*	body * {visibility:hidden;}*/
+	body {margin-left:150px}
+	section {top:0px;}
+	.printable *{visibility:visible;}
+	.printable {margin:0;padding:0;left:0;top:0;position:absolute;width:100%;overflow-y:visible;height:auto;}
+	.printdisable{display:none}
+	header{display:none}
+	nav{display:none}
+	footer{display:none}
+	aside{display:none}
+/*	#tab {display:none}*/
+/*	#info_detail3 table tr.ingre td p{height:auto !important;}*/
+/*	#info_detail3 #change{position:static !important;}*/
+/*	#info_detail3 .fake_scoll{position:static !important;}*/
+ }
+

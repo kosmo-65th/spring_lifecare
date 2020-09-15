@@ -10,6 +10,7 @@
 				classpath:/security-context.xml  <!--1.  시큐리티 설정파일 추가 -->
 				classpath:/security-datasource.xml <!-- 1.시큐리티 설정파일 추가 -->
 				classpath:/aopContext.xml			<!-- AOP관련 xml 등록 -->
+				classpath:/mybatis-config.xml		<!-- mybatis 설정xml -->
 		</param-value>
 	</context-param>
 	
@@ -81,13 +82,13 @@
   	<!-- 5. 에러처리 페이지 -->
   	<error-page>
 		<error-code>404</error-code>
-		<location>/</location>
+		<location>/error_404</location>
 	</error-page>
   	
   	
   	<error-page>
   		<error-code>500</error-code>
-  		<location>/user/login</location>
+  		<location>/error_500</location>
   	</error-page>
   	
   	<!-- 6. 세션 타임 아웃 설정(120분) -->

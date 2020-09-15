@@ -10,17 +10,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.spring.lifecare.service.KakaoPayServiceImpl;
+import com.spring.lifecare.service.KakaoPayService;
 
-import lombok.Setter;
 import lombok.extern.java.Log;
 
 @Log
 @Controller
 public class JinController {
 	//카카오페이 관련 Autowired
-    @Setter(onMethod_ = @Autowired)
-    private KakaoPayServiceImpl kakaopay;
+    @Autowired
+    KakaoPayService kakaopay;
     
     //메인페이지 팝업
     @RequestMapping("/popup")
@@ -60,7 +59,7 @@ public class JinController {
  	}
  	
     //결제할 내용 리스트 출력
- 	@RequestMapping("/customer/payment")
+ 	@RequestMapping("/payment")
  	public String payment(Model model) {
  		
  		return "customer/payment";
@@ -74,7 +73,7 @@ public class JinController {
  	}
  	
  	//진단서 폼 - 프린트
- 	@RequestMapping("/customer/diagnosis")
+ 	@RequestMapping("/diagnosis")
 	public String diagnosis(Model model) {
 		
 		return "customer/diagnosis";
@@ -125,12 +124,10 @@ public class JinController {
     // 예약페이지
  	@RequestMapping("/customer/appointment")
  	public String appointment(Authentication auth, Model model) {
- 		
-
  		return "customer/appointment";
  	}
  	
-    // 관리자 결산페이지
+ 	// 관리자 결산페이지
  	@RequestMapping("/summary")
  	public String summary(Model model) {
  		
