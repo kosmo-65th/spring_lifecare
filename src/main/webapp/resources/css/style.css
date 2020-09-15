@@ -93,7 +93,14 @@ h6 a {
 ul {
   margin: 0px;
   padding: 0px;
-  width:600px;
+  width:800px;
+}
+
+.ul ul{
+  margin: 0px;
+  padding: 0px;
+  width:1000px;
+	
 }
 
 /* line 58, C:/Users/SPN Graphics/Desktop/CL September/210 Medical/HTML/scss/theme-default.scss */

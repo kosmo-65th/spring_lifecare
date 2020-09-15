@@ -19,10 +19,15 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
 		
-		UserVO vo = (UserVO) authentication.getPrincipal();
-		System.out.println("UserVO ==> " + vo);
+		if(authentication.getPrincipal() instanceof UserVO) {
+			UserVO vo = (UserVO) authentication.getPrincipal();
+			
+			request.getSession().setAttribute("userSession", vo.getUserid());
+			System.out.println("UserVO ==> " + vo);
+		}else if(authentication.getPrincipal() instanceof String) {
+			request.getSession().setAttribute("userSession", (String)authentication.getPrincipal());
+		}
 		
-		request.getSession().setAttribute("userSession", vo.getUserid());
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/");
 		dispatcher.forward(request, response);

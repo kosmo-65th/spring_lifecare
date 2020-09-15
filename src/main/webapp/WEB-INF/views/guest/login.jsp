@@ -6,6 +6,7 @@
 <head>
 <link type="text/css" rel="stylesheet" href="${path_resources_customcss}login.css">
 <meta charset="UTF-8">
+<title>로그인</title>
 <script src="${path_resources}js/idsave-for-cookie.js"></script>
 <script type="text/javascript"></script>
 <!-- 로그인 실패시 메시지 -->
@@ -33,10 +34,10 @@
 				<input type="submit" class="btnclass1" value="로그인" style="cursor: pointer"> 
 				<input type="button" class="btnclass2" value="회원가입" style="cursor: pointer">
 				<div class="socialLogin">
-					<a href="https://nid.naver.com/oauth2.0/authorize?client_id={g_0JHC9Ov3W6TK_HKZHh}&response_type=code&redirect_uri={http://localhost/lifecare/callback/ex}&state={nid/getUserProfile}">
+					<a href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=LFKH6Ooda771daTdxSSO&redirect_url=http://127.0.0.1//lifecare/naverLogin&state=3">
 						<img src="${path_resources}img/btn_naver.png" border="0" title="네이버 아이디로 로그인" width="185" height="40" style="cursor: pointer">
 					</a> 
-					<a>
+					<a href="https://kauth.kakao.com/oauth/authorize?client_id=db39a7b6654b2f994af177b271416561&redirect_uri=http://localhost/lifecare/kakaoLogin&response_type=code">
 						<img src="${path_resources}img/btn_kakao.png" alt="" style="cursor: pointer">
 					</a>
 				</div>

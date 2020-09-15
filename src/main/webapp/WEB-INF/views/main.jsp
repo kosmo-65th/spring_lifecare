@@ -51,7 +51,8 @@
 	         	window.open('${path}/popup', 'newpop', 'width=630,height=570,left=0,top=0');
 	    	}
 		}
-	</script>
+		
+		</script>
 	
    <!-- [if lt IE 9] -->
    <body class="clinic_version">
@@ -68,7 +69,7 @@
                   <div class="text-contant">
                      <h2>
                         <span class="center"><span class="icon"><img src="${path_resources_lifecare}images/icon-logo.png" alt="#" /></span></span>
-                        <a href="" class="typewrite" data-period="2000" data-type='[ "Welcome life care", "Take care of you", "Hospital for you" ]'>
+                        <a href="" class="typewrite" data-period="2000" data-type='[ "Welcome to life care", "Take care of you", "Hospital for you" ]'>
                         <span class="wrap"></span>
                         </a>
                      </h2>
@@ -117,6 +118,8 @@
             </div>
          </div>
       </div>
+      
+      <%@include file="./common/chatbot.jsp"%>
       <%@include file="./common/footer.jsp" %>
       <!-- end copyrights -->
       <a href="#home" data-scroll class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>

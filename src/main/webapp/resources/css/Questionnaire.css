@@ -1,0 +1,362 @@
+/*
+60c2e6	�뚮옉1
+009aff	�뚮옉2
+*/
+
+.logo_area_nfc { width:100%; text-align:center; margin-top:100px; }
+.img_logo_nfc { max-width:500px; max-height:400px; }
+.login_area_nfc { width:100%; text-align:center; margin-top:50px; }
+
+.startBtn { width:100px; background-color:#009aff; padding:10px 85px 12px; font-size:30px; font-weight:bold; border-radius:30px; color:white; }
+.startBtn_inf { width:100px; background-color:#F7941E; padding:10px 85px 12px; font-size:30px; font-weight:bold; border-radius:30px; color:white; }
+
+.main_bg { background-image:url('/2020/img/main_bg2.png'); background-repeat:no-repeat; background-size:800px auto; background-origin:border-box;
+			background-position:center 20px; position:absolute; max-height:100%; width:100%; height:100%; top:0; }
+
+.main_bg_stu { background-image:url('/2020/img/main_bg_stu2.jpg'); background-repeat:no-repeat; background-size:800px auto; background-origin:border-box;
+			background-position:center 0px; position:absolute; max-height:100%; width:100%; height:100%; top:0; }
+.stu_area_nfc { width:100%; text-align:center; margin-top:20px; position:absolute; margin-left:-220px;}
+
+.main_bg_inf { background-image:url('/2020/img/main_bg_inf2.jpg'); background-repeat:no-repeat; background-size:800px auto; background-origin:border-box;
+			background-position:center bottom; position:absolute; max-height:100%; width:100%; height:100%; top:0; }
+
+/* �뺣낫�낅젰 */
+.main_bg_bottom { background-image:url('/2020/img/main/main_bg_bottom2.png'); background-repeat:no-repeat; background-size:auto; background-origin:border-box;
+			background-position:center bottom; position:absolute; width:100%; min-height:100%; }
+
+#info .title { width:950px; background-color:#60c2e6; color:white; top:0; text-align:center; font-size:30px; padding:20px 0; margin:auto; }
+#info .sub_Main { width:950px; margin:auto; }
+#info .sub_Main .exp { text-align:center; padding:25px 0; margin:0 8%; font-size:25px; color:#202020; line-height:150%; border-bottom:1px solid #505050; margin:auto; }
+#info .sub_Main .inputInfo { margin-top:10px; font-size:20px; }
+#info .sub_Main .inputInfo td { padding:5px; }
+#info .sub_Main .inputInfo .td_T { background-color:#ffffff; padding-top:10px; padding-bottom:10px; color:#3d3d3d; text-align:left; text-indent:10px; width:30%; }
+#info .sub_Main .inputInfo .td_C { background-color:#ffffff; padding-top:10px; padding-bottom:10px; color:#505050; text-align:left; text-indent:10px; }
+#info .sub_Main .inputInfo .td_C input { height:35px; border:1px solid #aaa; border-radius:5px; font-size:20px; }
+#info .sub_Main .inputInfo .td_bLine { padding-bottom:35px; } 
+
+#info .sub_Main .inputInfoStu { margin-top:10px; font-size:20px; }
+#info .sub_Main .inputInfoStu td { padding:5px; }
+#info .sub_Main .inputInfoStu .td_T { background-color:#ffffff; padding-top:10px; padding-bottom:10px; color:#3d3d3d; text-align:left; width:32%; }
+#info .sub_Main .inputInfoStu .td_C { background-color:#ffffff; padding-top:10px; padding-bottom:10px; color:#505050; text-align:left; }
+#info .sub_Main .inputInfoStu .td_C input { height:35px; border:1px solid #aaa; border-radius:5px; font-size:20px; }
+#info .sub_Main .inputInfoStu .td_C .searchBtn { padding-bottom:10px; }
+#info .sub_Main .inputInfoStu .td_req { width:5%; color:red; font-weight:bold; }
+#info .sub_Main .inputInfoStu .td_bLine { padding-bottom:35px; }
+#info .sub_Main .inputInfoStu .stuEmail1 { width:20%; }
+#info .sub_Main .inputInfoStu .stuEmail2 { width:25%; }
+#info .sub_Main .inputInfoStu .stu_select { font-size:20px; color:#3d3d3d; border-radius:2px; border:1px solid #ccc; padding:2px 3px; background:#fefefe; box-sizing:border-box; height:40px; }
+#info .sub_Main .inputInfoStu .stu_select2 { font-size:20px; color:#3d3d3d; border-radius:2px; border:1px solid #ccc; padding:2px 3px; width:30%; background:#fefefe; box-sizing:border-box; height:40px; }
+#info .sub_Main .inputInfoStu .td_bLine2 { border-bottom:1px solid #cccccc; } 
+
+.input_select { font-family:'NanumGothic'; font-size:20px; color:#3d3d3d; border-radius:2px; border:1px solid #ccc; padding:1px 3px; width:25%; background:#fefefe; box-sizing:border-box; height:35px;}
+.input_select2 { font-family:'NanumGothic'; font-size:20px; color:#3d3d3d; border-radius:2px; border:1px solid #ccc; padding:1px 3px; width:20%; background:#fefefe; box-sizing:border-box; height:35px;}
+
+.input_radio { width:20px; height:20px; }
+
+
+/* 臾몄쭊�� �쒖텧 */
+.main_bg_bottom2 { background-image:url('/2020/img/main/main_bg_bottom.png'); background-repeat:no-repeat; background-size:auto; background-origin:border-box;
+			background-position:right bottom; max-height:180px; width:100%; height:180px; }
+
+#info .sub_Main2 { width:950px; margin:auto; }
+
+.esti_title { color:#333; text-align:center; padding:5px 0; margin:10px auto 10px; }
+.esti_title .txt1 { font-size:32px; font-weight:700; padding-top:5px; }
+.esti_title .txt2 { font-size:22px; padding-top:5px; }
+
+.sel_foreign { width:90%; text-align:center; padding:10px 0 0 0; margin:auto; }
+.sel_foreign .userselect { color:#3d3d3d; font-size:22px; border:2px solid #54b9de; padding:0 5px; width:100%; height:45px; border-radius:10px; }
+
+.examcard { width:90%; text-align:center; font-size:20px; margin:8px auto; border:solid 1px #808080; background-color:#f9f9f9; border-radius:15px; box-shadow:0px 1px 1px #d1d1d1; }
+.examcard .cardtitle { font-size:22px; color:#111; border:0px; width:55%; text-align:left; font-weight:bold; padding:15px 0 12px 15px; }
+.examcard .carddate { width:20%; border:0px; padding-left:0.5em; font-size:16px; color:#3988CA; }
+.examcard .cardcondition { font-size:22px; font-weight:700; border:0px; }
+.examcard .cardnext { width:5%; padding-right:15px; }
+
+.exm_ico { width:45px; vertical-align:middle; }
+.stat_ico { width:20px; vertical-align:middle; }
+
+.examState0 { border-color:#3988CA; color:#777; }	/* �묒꽦��湲� */
+.examState1 { border-color:#54b9de; color:#111; }	/* �쒖텧�꾨즺 */
+.examState2 { border-color:#4BCAC2; color:#111; }	/* �묒닔�꾨즺 */
+.examState9 { border-color:#4BCAC2; color:#777; }	/* �묒꽦以� */
+
+.exitInfo { text-align:center; padding:10px 0; font-size:26px; color:#303030; line-height:150%; }
+.exitBtn { text-align:center; padding:20px 0; width:950px; margin:0 auto 20px; }
+
+
+.cert_btn1 {color:#fff; background-color:#009aff; border-radius:5px; width:100px; height:30px; outline:none; border:1px solid #0391ed; font-size:12px; margin-right:1%;}
+
+.main2_nfc { width:800px; background-color:white; padding-left:50%; margin-left:-400px; }
+
+.top_menu_nfc { padding-bottom:103px; }
+.top_menu_nfc .header_nfc { width:100%; margin-left:0; background:#fcfcfc; text-align:center; border-bottom:0; position:fixed; top:0; left:0; z-index:999; vertical-align:middle; }
+.top_menu_nfc .logo_nfc { height:79px; padding:10px 10px 10px 10px; text-align:center; }
+.btn_back_nfc { position:absolute; float:right; left:50%; height:35px; padding-top:35px; margin-left:430px;}
+
+.verButton { padding:3px 8px; background-color:#60c2e6; color:white; border-radius:6px; font-size:12px; position:absolute; left:20px; top:15px; }
+
+/* 臾몄쭊�� */
+.top2_nfc { height:30px; text-align:center; padding:10px; position:fixed; top:0; width:100%; font-size:22px; font-weight:bold; z-index:1; }
+.sub2_nfc { padding-top:30px; padding-bottom:20px; width:900px; background-color:white; padding-left:50%; margin-left:-450px; margin-top:10px; }
+
+.titleText_nfc { margin:30px 0 10px 0; padding:10px 0 10px 0; text-align:center; font-size:18px; background-color:#009aff; color:white; }
+.question_nfc { text-align:left; padding:10px 0; font-weight:bold; font-size:16px; }
+.question_sub_nfc { text-align:left; padding:0 0 10px 5px; font-size:16px; }
+.subNo { padding:0 30px; }
+
+.answer_nfc { width:100%; border-spacing:0; border-collapse:collapse; margin-bottom:20px; font-size:16px; margin-left:10px; }
+
+.inputTextarea textarea { width:90%; height:70px; font-size:16px; padding:5px; }
+
+.answer_tbl { border-collapse:collapse; text-align:center; }
+.answer_tbl th { border:1px solid #cfe7ff; background-color:#eaf9ff; padding:5px; }
+.answer_tbl td { border:1px solid #cfe7ff; padding:5px; }
+
+.answer_tbl2 { width:100%; border-spacing:0; border-collapse:collapse; }
+.answer_tbl2 th { background-color:#eaf9ff; padding:5px; }
+.answer_tbl2 td { padding:5px; }
+
+.answer_tblSub { width:100%; border-collapse:collapse; text-align:left; }
+.answer_tblSub td { border:0px; padding:5px; }
+
+.footerBtn_nfc { width:900px; padding-left:50%; padding-bottom:50px; margin-left:-450px; height:50px; text-align:center; color:white; }
+.footerBtn_nfc .back { width:150px; background-color:#939597; padding:10px 50px; margin:10px 1% 10px 20%; font-size:25px; font-weight:bold; float:left; border-radius:25px; }
+.footerBtn_nfc .next { width:150px; background-color:#60c2e6; padding:10px 50px; margin:10px 0% 10px 1%; font-size:25px; font-weight:bold; float:left; border-radius:25px; }
+.footerBtn_nfc .next2 { width:150px; background-color:#c05172; padding:10px 50px; margin:10px 0% 10px 1%; font-size:25px; font-weight:bold; float:left; border-radius:25px; }
+
+/* �숈깮寃�吏� */
+.answer_nfc .aa_selBox { width:95%; margin-top:10px; border-top:1px solid #cccccc; }
+.answer_nfc .aa_selBox td { padding:2px 5px; }
+.answer_nfc .chkboxDiv { display:none; }
+.answer_nfc .aa_selBox_sub { border-spacing:5px; }
+
+.answer_nfc .aa_sel0 { width:20%; font-weight:bold; border-bottom:1px solid #cccccc; text-align:center; padding-top:5px; }
+
+.answer_nfc .aa_sel1 { width:50%; border-bottom:1px solid #cccccc; text-align:left; height:45px; }
+.answer_nfc .aa_sel2 { width:30%; border-bottom:1px solid #cccccc; text-align:center; height:50px; }
+.answer_nfc .aa_sel2 .sel2_on { width:150px; border:1px solid #0074ff; padding:5px 0; margin-left:10px; color:white; background-color:#009aff; border-radius:10px; }
+.answer_nfc .aa_sel2 .sel2_off { width:150px; border:1px solid #cccccc; padding:5px 0; margin-left:10px; color:black; background-color:#f2f2f2; border-radius:10px; }
+.answer_nfc .aa_sel2 .sel2_off3 { width:150px; border:1px solid #cccccc; padding:5px 0; margin-left:10px; color:black; background-color:#FFDDDD; border-radius:10px; }
+.answer_nfc .aa_sel2 .sel2_off2 { width:150px; border:1px solid #cccccc; padding:5px 0; margin-left:10px; color:black; background-color:#FFEAEA; border-radius:10px; }
+.answer_nfc .aa_sel2 .sel2_off1 { width:150px; border:1px solid #cccccc; padding:5px 0; margin-left:10px; color:black; background-color:#FFF5F5; border-radius:10px; }
+.answer_nfc .aa_sel2 .sel2_off0 { width:150px; border:1px solid #cccccc; padding:5px 0; margin-left:10px; color:black; background-color:#FFFAFA; border-radius:10px; }
+
+.answer_nfc .aa_sel5 { width:30%; color:black; border-bottom:1px solid #cccccc; text-align:center; height:45px; }
+.answer_nfc .aa_sel6 { width:70%; color:black; border-bottom:1px solid #cccccc; text-align:center; height:50px; }
+.answer_nfc .aa_sel6 .sel2_on { width:160px; border:1px solid #0074ff; padding:5px 0; margin-left:10px; color:white; background-color:#009aff; border-radius:10px; }
+.answer_nfc .aa_sel6 .sel2_off { width:160px; border:1px solid #cccccc; padding:5px 0; margin-left:10px; color:black; background-color:#f2f2f2; border-radius:10px; }
+
+.answer_nfc .aa_sel7 { border-bottom:1px solid #cccccc; text-align:left; height:45px; }
+.answer_nfc .aa_sel8 { border-bottom:1px solid #cccccc; text-align:center; height:50px; }
+.answer_nfc .aa_sel8 .sel2_on { width:250px; border:1px solid #0074ff; padding:5px 0; margin-left:10px; color:white; background-color:#009aff; border-radius:10px; }
+.answer_nfc .aa_sel8 .sel2_off { width:250px; border:1px solid #cccccc; padding:5px 0; margin-left:10px; color:black; background-color:#f2f2f2; border-radius:10px; }
+
+.answer_nfc .aa_sel9 { width:34%; color:black; border-bottom:1px solid #cccccc; text-align:center; height:45px; }
+.answer_nfc .aa_sel10 { width:66%; color:black; border-bottom:1px solid #cccccc; text-align:center; height:50px; }
+.answer_nfc .aa_sel10 .sel2_on { width:160px; border:1px solid #0074ff; padding:5px 0; margin-left:10px; color:white; background-color:#009aff; border-radius:10px; }
+.answer_nfc .aa_sel10 .sel2_off { width:160px; border:1px solid #cccccc; padding:5px 0; margin-left:10px; color:black; background-color:#f2f2f2; border-radius:10px; }
+
+.answer_nfc .aa_sel9_1 { width:17%; color:black; border-bottom:1px solid #cccccc; text-align:center; height:45px; }
+.answer_nfc .aa_sel10_1 { width:66%; color:black; border-bottom:1px solid #cccccc; text-align:left; height:50px; text-indent:10px; }
+
+.answer_nfc .aa_sel11 { width:40%; color:black; border-bottom:1px solid #cccccc; text-align:left; height:45px; }
+.answer_nfc .aa_sel12 { width:60%; color:black; border-bottom:1px solid #cccccc; text-align:center; height:50px; }
+.answer_nfc .aa_sel12 .sel2_on { width:160px; border:1px solid #0074ff; padding:5px 0; margin-left:10px; color:white; background-color:#009aff; border-radius:10px; }
+.answer_nfc .aa_sel12 .sel2_off { width:160px; border:1px solid #cccccc; padding:5px 0; margin-left:10px; color:black; background-color:#f2f2f2; border-radius:10px; }
+
+.answer_nfc .aa_sel13 { width:75%; color:black; border-bottom:1px solid #cccccc; text-align:center; height:45px; }
+.answer_nfc .aa_sel14 { width:25%; color:black; border-bottom:1px solid #cccccc; text-align:center; height:50px; }
+.answer_nfc .aa_sel14 .sel2_on { width:160px; border:1px solid #0074ff; padding:5px 0; color:white; background-color:#009aff; border-radius:10px; }
+.answer_nfc .aa_sel14 .sel2_off { width:160px; border:1px solid #cccccc; padding:5px 0; color:black; background-color:#f2f2f2; border-radius:10px; }
+
+.answer_nfc .aa_selBD { width:70%; border-bottom:1px solid #cccccc; text-align:left; height:45px; padding:0 !important; }
+.answer_nfc .aa_selBD2 { width:30%; border-bottom:1px solid #cccccc; text-align:center; height:50px; }
+.answer_nfc .aa_selBD .sel2_on { width:150px; border:1px solid #0074ff; padding:5px 0; margin-left:10px; color:white; background-color:#009aff; border-radius:10px; text-align:center; }
+.answer_nfc .aa_selBD .sel2_off { width:150px; border:1px solid #cccccc; padding:5px 0; margin-left:10px; color:black; background-color:#f2f2f2; border-radius:10px; text-align:center; }
+.answer_nfc .aa_selBD .sel2_off3 { width:150px; border:1px solid #cccccc; padding:5px 0; margin-left:10px; color:black; background-color:#FFDDDD; border-radius:10px; text-align:center; }
+.answer_nfc .aa_selBD .sel2_off2 { width:150px; border:1px solid #cccccc; padding:5px 0; margin-left:10px; color:black; background-color:#FFEAEA; border-radius:10px; text-align:center; }
+.answer_nfc .aa_selBD .sel2_off1 { width:150px; border:1px solid #cccccc; padding:5px 0; margin-left:10px; color:black; background-color:#FFF5F5; border-radius:10px; text-align:center; }
+.answer_nfc .aa_selBD .sel2_off0 { width:150px; border:1px solid #cccccc; padding:5px 0; margin-left:10px; color:black; background-color:#FFFAFA; border-radius:10px; text-align:center; }
+.answer_nfc .aa_selBD .bdTbl { border-spacing:5px; padding:0; }
+
+.answer_nfc .selected { border:1px solid #0074ff; padding:5px 0; margin-left:10px; color:white; background-color:#009aff; border-radius:10px; text-align:center; }
+.answer_nfc .nosel { border:1px solid #cccccc; padding:5px 0; margin-left:10px; color:black; background-color:#f2f2f2; border-radius:10px; text-align:center; }
+
+.answer_nfc .add_input { background-color:white; padding:15px 0; text-align:center; border:1px solid #808080; border-radius:15px; margin-top:5px; }
+.answer_nfc .add_input input { border:1px solid #009aff !important; padding:2px; width:100px; color:#54b9de; text-align:center; }
+.answer_nfc .add_input select { border:1px solid #009aff; padding:2px; width:120px; color:#54b9de; text-align:center; background-color:white; }
+.answer_nfc .add_input .txtSTU { height:30px; width:200px; }
+.answer_nfc .add_input .txtSTU2 { height:30px; width:300px; }
+.answer_nfc .add_input .txtSTU3 { height:30px; width:100px; }
+
+.answer_nfc .add_input3 input { border:3px solid #009aff !important; padding:5px; width:90%; color:#54b9de; text-align:center; }
+
+.answer_nfc .textWidth { width:95%; }
+
+.answer_nfc .ans_selBox { width:100%; margin-top:10px; border-spacing:5px; }	/* �곸쑀�꾧�吏� 蹂닿린 */
+.answer_nfc .ans_selBox td { padding:5px; width:25%; font-size:20px; border-bottom:1px solid #cccccc; text-align:center; height:40px; }
+.answer_nfc .ans_selBox .sel2_off { width:25%; border:1px solid #cccccc; padding:5px 0; margin-left:10px; background-color:#f2f2f2; border-radius:10px; }
+.answer_nfc .ans_selBox .sel2_off3 { width:25%; border:1px solid #cccccc; padding:5px 0; margin-left:10px; background-color:#FFDDDD; border-radius:10px; }
+.answer_nfc .ans_selBox .sel2_off2 { width:25%; border:1px solid #cccccc; padding:5px 0; margin-left:10px; background-color:#FFEAEA; border-radius:10px; }
+.answer_nfc .ans_selBox .sel2_off1 { width:25%; border:1px solid #cccccc; padding:5px 0; margin-left:10px; background-color:#FFF5F5; border-radius:10px; }
+.answer_nfc .ans_selBox .sel2_off0 { width:25%; border:1px solid #cccccc; padding:5px 0; margin-left:10px; background-color:#FFFAFA; border-radius:10px; }
+
+input { padding:2px; font-size:16px; height:20px; }
+select { padding:2px 0; font-size:16px; height:25px; text-align:center; }
+
+.alignL { text-align:left !important; }
+
+input[type="checkbox"] { width:18px; height:18px; margin-right:2px;}
+
+.topTxt { padding:40px 20px 0; margin-bottom:-10px;}
+
+.agree_viewBtn_2 { font-size:18px; background-color:#000; color:#fff; padding:3px 10px 5px; }
+
+.txt_mobileView { display:none; }
+.txt_pcView { display:block; }
+
+.inf_text_nfc { border:1px solid #009aff !important; padding:5px; width:80px; height:20px; font-size:16px; text-align:center; }
+.inf_text2_nfc { border:1px solid #009aff !important; padding:5px; width:250px; height:20px; font-size:16px; text-align:left; }
+.inf_text3_nfc { border:1px solid #009aff !important; padding:5px 5px 3px 5px; width:150px; height:20px; font-size:16px; text-align:left; margin:-15px 0 -8px 0; }
+.inf_text4_nfc { border:1px solid #009aff !important; padding:5px; width:50px; height:20px; font-size:16px; text-align:center; }
+
+.inf_select_nfc { border:1px solid #009aff !important; padding:5px; width:100px; height:30px; font-size:16px; text-align:center; }
+.inf_select2_nfc { border:1px solid #009aff !important; padding:5px; width:70px; height:30px; font-size:16px; text-align:center; }
+
+.s02_select1_nfc { border:1px solid #009aff !important; padding:5px; width:100px; height:30px; font-size:16px; text-align:center; }
+.s02_select2_nfc { border:1px solid #009aff !important; padding:5px; width:70px; height:30px; font-size:16px; text-align:center; }
+.s02_text1_nfc { border:1px solid #009aff !important; padding:5px; width:50px; height:20px; font-size:16px; text-align:center; }
+
+.img_bd_pc { width:80%; }
+
+/***** PC�붾㈃ 李쏀겕湲� 以꾩��꾨븣 *****/
+@media only screen and (max-width: 1050px) {
+.btn_back_nfc { position:fixed; float:right; left:91%; right:25px; height:35px; padding-top:35px; margin-left:0;}
+}
+
+
+
+/***** 紐⑤컮�� *****/
+@media only screen and (max-width: 900px) {
+.logo_area_nfc { width:100%; text-align:center; margin-top:130px; }
+.img_logo_nfc { max-width:50%; max-height:400px; }
+.login_area_nfc { width:100%; text-align:center; margin-top:7%; }
+
+.startBtn { width:20vw; background-color:#009aff; padding:3vw 15vw 3vw; font-size:5vw; font-weight:bold; border-radius:7vw; color:white; z-index:1400; }
+.startBtn_inf { width:20vw; background-color:#F7941E; padding:3vw 15vw 3vw; font-size:5vw; font-weight:bold; border-radius:7vw; color:white; z-index:1400; }
+
+.main_bg { background-image:url('/2020/img/main_bg.png'); background-repeat:no-repeat; background-size:96%; background-origin:border-box;
+			background-position:center 2vw; position:absolute; max-height:100%; width:100%; height:100%; top:0; }
+
+.main_bg_stu { background-image:url('/2020/img/main_bg_stu.jpg'); background-repeat:no-repeat; background-size:100%; background-origin:border-box;
+			background-position:center 0; position:absolute; max-height:100%; width:100%; height:100%; top:0; }
+.stu_area_nfc { width:95%; text-align:left; margin-top:2vw; position:absolute; margin-left:2vw; }
+.stu_title_nfc { width:62%; }
+
+.main_bg_inf { background-image:url('/2020/img/main_bg_inf.jpg'); background-repeat:no-repeat; background-size:100%; background-origin:border-box;
+			background-position:center bottom; position:absolute; max-height:100%; width:100%; height:100%; top:0; }
+
+/* �뺣낫�낅젰 */
+.main_bg_bottom { background-image:url('/2020/img/main/main_bg_bottom.png'); background-repeat:no-repeat; background-size:95%; background-origin:border-box;
+			background-position:right bottom; position:absolute; width:100%; min-height:100%; }
+
+#info .title { width:100%; background-color:#60c2e6; color:white; top:0; text-align:center; font-size:4.5vw; padding:3vw 0; margin:auto; }
+#info .sub_Main { width:90%; margin:auto; min-height:350px; }
+#info .sub_Main .exp { text-align:center; padding:7vw 0; margin:0 8%; font-size:5vw; color:#202020; line-height:150%; border-bottom:1px solid #505050; margin:auto; }
+#info .sub_Main .inputInfo { margin-top:10px; font-size:4.5vw; }
+#info .sub_Main .inputInfo td { padding:5px; }
+#info .sub_Main .inputInfo .td_T { background-color:#ffffff; padding-top:2vw; padding-bottom:2vw; color:#3d3d3d; text-align:left; text-indent:0px; width:30%; }
+#info .sub_Main .inputInfo .td_C { background-color:#ffffff; padding-top:2vw; padding-bottom:2vw; color:#505050; text-align:left; text-indent:5px; }
+#info .sub_Main .inputInfo .td_C input { height:9vw; border:1px solid #aaa; border-radius:0.5vw; font-size:4.5vw; }
+#info .sub_Main .inputInfo .td_bLine { padding-bottom:5vw; }
+
+#info .sub_Main .inputInfoStu { margin-top:10px; font-size:4.5vw; }
+#info .sub_Main .inputInfoStu td { padding:5px; }
+#info .sub_Main .inputInfoStu .td_T { background-color:#ffffff; padding-top:2vw; padding-bottom:2vw; color:#3d3d3d; text-align:left; width:33%; }
+#info .sub_Main .inputInfoStu .td_C { background-color:#ffffff; padding-top:2vw; padding-bottom:2vw; color:#505050; text-align:left; }
+#info .sub_Main .inputInfoStu .td_C input { height:8vw; border:1px solid #aaa; border-radius:0.5vw; font-size:4.5vw; }
+#info .sub_Main .inputInfoStu .td_req { width:3%; color:red; font-weight:bold; }
+#info .sub_Main .inputInfoStu .td_bLine { padding-bottom:5vw; }
+#info .sub_Main .inputInfoStu .stuEmail1 { width:35%; }
+#info .sub_Main .inputInfoStu .stuEmail2 { width:40%; }
+#info .sub_Main .inputInfoStu .stu_select { font-size:4.5vw; color:#3d3d3d; border-radius:2px; border:1px solid #ccc; padding:2px 3px; width:95%; background:#fefefe; box-sizing:border-box; height:8vw; }
+#info .sub_Main .inputInfoStu .stu_select2 { font-size:4.5vw; color:#3d3d3d; border-radius:2px; border:1px solid #ccc; padding:2px 3px; width:70%; background:#fefefe; box-sizing:border-box; height:8vw; }
+#info .sub_Main .inputInfoStu .td_bLine2 { border-bottom:1px solid #cccccc; } 
+
+.input_select { color:#3d3d3d; border-radius:0.5vw; border:1px solid #aaa; padding:0 1vw; width:35%; background:#fefefe; box-sizing:border-box; height:9vw; font-size:4.5vw; }
+.input_select2 { color:#3d3d3d; border-radius:0.5vw; border:1px solid #aaa; padding:0 1vw; width:25%; background:#fefefe; box-sizing:border-box; height:9vw; font-size:4.5vw; }
+
+.input_radio { width:4vw; height:4vw; }
+
+
+/* 臾몄쭊�� �쒖텧 */
+.main_bg_bottom2 { background-image:url('/2020/img/main/main_bg_bottom.png'); background-repeat:no-repeat; background-size:95%; background-origin:border-box;
+			background-position:right bottom; position:absolute; max-height:35vw; width:100%; height:35vw; }
+
+#info .sub_Main2 { width:95%; margin:auto; }
+
+.esti_title { color:#333; text-align:center; padding:1vw 0; margin:1% 3%; }
+.esti_title .txt1 { font-size:7vw; font-weight:700; padding-top:2vw; }
+.esti_title .txt2 { font-size:4.5vw; padding-top:2vw; }
+
+.sel_foreign { width:95%; text-align:center; padding:2vw 0 0 0; margin:auto;}
+.sel_foreign .userselect { color:#3d3d3d; font-size:3.5vw; border:2px solid #54b9de; padding:0 1vw; width:100%; height:8vw; border-radius:2vw; }
+
+.examcard { width:95%; text-align:center; font-size:3.5vw; margin:1.5vw auto; border:solid 1px #808080; background-color:#f9f9f9; border-radius:2vw; box-shadow:0px 1px 1px #d1d1d1; }
+.examcard .cardtitle { font-size:4.5vw; color:#111; border:0px; width:55%; text-align:left; font-weight:bold; padding:3.5vw 0 3vw 3vw; }
+.examcard .carddate { width:20%; border:0px; padding-left:0.5em; font-size:3vw; color:#3988CA; }
+.examcard .cardcondition { font-size:4vw; font-weight:700; border:0px; }
+.examcard .cardnext { width:5%; padding-right:3vw; }
+
+.exm_ico { width:7vw; vertical-align:middle; }
+.stat_ico { width:2.5vw; vertical-align:middle; }
+
+.examState0 { border-color:#3988CA; color:#777; }	/* �묒꽦��湲� */
+.examState1 { border-color:#54b9de; color:#111; }	/* �쒖텧�꾨즺 */
+.examState2 { border-color:#4BCAC2; color:#111; }	/* �묒닔�꾨즺 */
+.examState9 { border-color:#4BCAC2; color:#777; }	/* �묒꽦以� */
+
+.exitInfo { text-align:center; padding:3vw 0; font-size:4.5vw; color:#303030; line-height:150%; }
+.exitBtn { text-align:center; padding:5vw 0; width:100%; margin:0 auto 5vw; }
+
+
+.cert_btn1 {color:#fff; background-color:#009aff; border-radius:5px; width:20vw; height:30px; outline:none; border:1px solid #0391ed; font-size:3vw !important; margin-right:1%;}
+
+.main2_nfc { width:100%; height:100%; background-color:white; padding-left:0; margin-left:0; }
+
+.top_menu_nfc { padding-bottom:15.5vw; }
+.top_menu_nfc .header_nfc { width:100%; margin-left:0; background:#fcfcfc; text-align:center; border-bottom:1px solid #acacac; position:fixed; top:0; left:0; z-index:999; vertical-align:middle; }
+.top_menu_nfc .logo_nfc { height:11.5vw; padding:2%; }
+
+.btn_back_nfc { position:fixed; float:right; left:90%; right:3vw; height:6vw; padding-top:4.5%; margin-left:0; }
+
+.verButton { padding:5px 10px; background-color:#60c2e6; color:white; border-radius:8px; font-size:13px; position:absolute; left:10px; top:20px; }
+
+/* 臾몄쭊�� */
+.top2_nfc { height:40px; text-align:center; padding-top:15px; position:fixed; top:0; width:100%; font-size:26px; font-weight:bold; z-index:1; }
+.sub2_nfc { padding-top:40px; padding-bottom:90px; width:100%; height:100%; background-color:white; padding-left:0; margin-left:0; }
+.subNo { padding:0 20px; }
+
+
+.answer_nfc { width:100%; border-spacing:0; border-collapse:collapse; margin-bottom:8vw; }
+/*
+.answer_nfc .nosel { text-align:center; font-size:4.5vw; color:black; height:20vw; vertical-align:middle; }
+.answer_nfc .selected { text-align:center; font-size:5vw; color:#54b9de; font-weight:bold; height:20vw; vertical-align:middle; }
+*/
+.inputTextarea textarea { width:90%; height:20vw; font-size:4vw; padding:2vw; }
+
+.footerBtn_nfc { width:100%; padding-left:0; padding-bottom:0; margin-left:0; height:65px; position:fixed; bottom:0px; text-align:center; color:white; margin:0 auto; }
+.footerBtn_nfc .back { width:30%; height:65px; background-color:#939597; padding:15px 0; margin:0; font-size:25px; font-weight:bold; float:left; border-radius:0; position:relative; }
+.footerBtn_nfc .next { width:70%; height:65px; background-color:#60c2e6; padding:15px 0; margin:0; font-size:25px; font-weight:bold; float:left; border-radius:0; position:relative; }
+.footerBtn_nfc .next2 { width:70%; height:65px; background-color:#c05172; padding:15px 0; margin:0; font-size:25px; font-weight:bold; float:left; border-radius:0; position:relative; }
+
+input[type="checkbox"] { width:5vw; height:5vw; margin-right:3vw;}
+
+.topTxt { padding:6vw 2% 0; margin-bottom:0;}
+
+.agree_viewBtn_2 { font-size:3.5vw; background-color:#000; color:#fff; padding:0.5vw 2.5vw 1vw; }
+
+.txt_mobileView { display:block; }
+.txt_pcView { display:none; }
+}

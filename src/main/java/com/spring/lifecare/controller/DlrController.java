@@ -16,13 +16,49 @@ public class DlrController {
 		
 		return "guest/login";
 	}
-	
+	/*
 	//로그아웃
 	@RequestMapping("/logout")
 	public String logout(HttpServletRequest req,Model model,HttpSession session) {
-		session.invalidate();
-		SecurityContextHolder.clearContext();
+		//session.invalidate();
+		//SecurityContextHolder.clearContext();
 		
-		return "guest/main";
+		return "main";
+	}
+	*/
+	
+	//문진표
+	@RequestMapping("/questionnaire")
+	public String questionnaire(HttpServletRequest req,Model model) {
+		
+		return "customer/Questionnaire/questionnaire";
+	}
+	
+	//문진표 문항1
+	@RequestMapping("/index1")
+	public String index1(HttpServletRequest req,Model model) {
+		
+		return "customer/Questionnaire/index1";
+	}
+	
+	//문진표 문항2
+	@RequestMapping("/index2")
+	public String index2(HttpServletRequest req,Model model) {
+		
+		return "customer/Questionnaire/index2";
+	}
+	
+	//문진표 문항3
+	@RequestMapping("/index3")
+	public String index3(HttpServletRequest req,Model model) {
+		
+		return "customer/Questionnaire/index3";
+	}
+	
+	//문진표 문항4
+	@RequestMapping("/index4")
+	public String index4(HttpServletRequest req,Model model) {
+		
+		return "customer/Questionnaire/index4";
 	}
 }
