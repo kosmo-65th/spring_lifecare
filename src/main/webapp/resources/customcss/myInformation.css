@@ -9,7 +9,7 @@
 	  margin-bottom: 30px;
  }
  
-  .djoinIn_area {
+  .information_area {
     width: 900px;
     margin: 0px auto 50px;
     text-align: center;
@@ -20,16 +20,14 @@
     -moz-box-sizing: border-box;
   }
   
-
-
-  .djoinIn_area p {
+  .information_area p {
     color: #424242;
     font-size: 30px;
     line-height: 1;
     margin-bottom: 30px;
    }
   
-  .djoinIn_area input {
+  .information_area input {
     display: inline-block;
     box-sizing: border-box;
     border: 1px solid #d9d9d9;
@@ -41,11 +39,11 @@
     font-size: 14px;
     line-height: 1;
     font-weight: 200;
-    /* box-sizing: border-box; */
+    box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
  }
- .mb10 {
+  .mb10 {
     margin-bottom: 10px !important;
     margin-top: 10px;
     
@@ -65,7 +63,7 @@
     background: #009DFF;
   }
   .btn-type.btn2 {
-    width: 30%;
+    width: 15%;
     height: 45px;
     line-height: 40px;
     font-size: 18px;
@@ -84,54 +82,5 @@
     transition: all 0.3s;
   }
   .mr_2 {
-     margin-top: 3% !important;
-     margin-right: 3% !important;
-     margin-bottom: 3% !important;    
+    margin-right: 2% !important;
   }
-  .id {
-    width:300px;
-     padding:5px;
-     border:1px solid #999;
-     font-family:'Nanumgothic';
-     border-radius:3px;
-     -webkit-appearance: none;
-     -moz-appearance: none;
-     appearance : none; 
-  }
-   .idChk h3 {
-      color:#e74a3b
-   }
-   .idChk h4 {
-      color:blue
-   }
-   .pwdChk h3 {
-      color:#e74a3b
-   }
-   .pwdChk h4 {
-      color:blue
-   }
-    .btn-type.btn3.red  {
-    color: red !important;
-    border: 1px #2e3033;
-    background: #e74a3b;
-  }
-  
-  .btn-type.btn3.red {
-    color: #fff !important;
-    border: 1px  #2e3033;
-    background: #e74a3b;
-  }
-  .btn-type.btn3 {
-    width: 30%;
-    height: 45px;
-    line-height: 40px;
-    font-size: 18px;
-    text-transform: uppercase;
-    font-family: 'NotoSansKR';
-    font-style: normal;
-    font-weight: 400;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-  }
- 
