@@ -93,19 +93,16 @@
                                                 <li><a href="${path}/questionnaire">자가진단</a></li>
                                             </ul>
                                         </li>
+                                        <li>
+                                        	<div class="Appointment">
+	                                        	<div class="book_btn d-none d-lg-block">
+	                                        		<a class="popup-with-form" href="${path}/customer/appointment">예약하기</a>
+	                                        	</div>
+	                                        </div>
+                                        </li>
                                     </ul>
                                 </nav>
                             </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-3 d-none d-lg-block">
-                            <div class="Appointment">
-                                <div class="book_btn d-none d-lg-block">
-                                    <a class="popup-with-form" href="${path}/customer/appointment">예약하기</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="mobile_menu d-block d-lg-none"></div>
                         </div>
                     </div>
                 </div>
