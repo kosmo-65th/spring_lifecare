@@ -6,6 +6,7 @@
 <head>
 <link type="text/css" rel="stylesheet" href="${path_resources_customcss}login.css">
 <meta charset="UTF-8">
+<title>로그인</title>
 <script src="${path_resources}js/idsave-for-cookie.js"></script>
 <script type="text/javascript"></script>
 <!-- 로그인 실패시 메시지 -->

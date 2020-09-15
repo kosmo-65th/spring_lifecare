@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/resources/setting/setting.jsp"%>
-<script src="${path_resources_asset}webfont.min.js"></script>
-
 <!-- css 적용 -->
 <link rel="stylesheet" href="${path_resources_asset}base.min.css">
 <link rel="stylesheet" href="${path_resources_asset}common.min.css">
