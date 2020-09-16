@@ -6,14 +6,25 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.spring.lifecare.persistence.UserDAO;
@@ -149,7 +160,7 @@ public class NaverLoginServiceImpl implements NaverLoginService{
 	
 	//네이버 id가 존재하는지 확인
     public Map<String, String> checkNaverId(HashMap<String, Object> userInfo){
-    	Map<String, String> user = userDAO.kakaoFindId((String)userInfo.get("id"));
+    	Map<String, String> user = userDAO.naverFindId((String)userInfo.get("id"));
     	
     	if(user != null) {
     		System.out.println("카카오 로그인 된 실제 아이디 : "+ (String)user.get("USERNAME")+"/ 받은 토큰 id :"+ (String)userInfo.get("id"));
@@ -158,5 +169,42 @@ public class NaverLoginServiceImpl implements NaverLoginService{
     	return user;
     }
 	
-	
+    //카카오에서 권한주기
+    public void naverAutehntication(HttpServletRequest request, HttpServletResponse response, Map<String, String> user) {
+    	//권한 manager 생성
+    	OutLoginAuthenticationManager am = new OutLoginAuthenticationManager();
+    	
+    	//실제 아이디 
+    	String id = (String)user.get("USERNAME");
+    	
+	    try {
+	        Authentication token = new UsernamePasswordAuthenticationToken(id, null);
+	        Authentication result = am.authenticate(token);
+	        SecurityContextHolder.getContext().setAuthentication(result);
+	        
+	        System.out.println("result getPrincipal() : "+result.getPrincipal());
+	        
+	        SecurityContext securityContext = SecurityContextHolder.getContext();
+		    securityContext.setAuthentication(result);
+
+		    // Create a new session and add the security context.
+		    HttpSession session = request.getSession(true);
+		    session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
+	    } catch(AuthenticationException e) {
+	        System.out.println("Authentication failed: " + e.getMessage());
+	    }
+	    
+	    //손수 successHandler 태워주기
+	    UserLoginSuccessHandler successHandler = new UserLoginSuccessHandler();
+	    try {
+	    	successHandler.onAuthenticationSuccess(request, response, SecurityContextHolder.getContext().getAuthentication());
+	    }catch(Exception e) {
+	    	System.out.print("내가 만든 successHanlder 에서 에러");
+	    }
+	    
+	    System.out.println("Successfully authenticated. Security context contains: \n" +
+	              SecurityContextHolder.getContext().getAuthentication());
+	  
+    }
+    
 }
