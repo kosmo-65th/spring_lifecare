@@ -15,6 +15,8 @@ public class CustomerVO {
 	private Timestamp customer_logindate;
 	private String authority;
 	private int enabled;
+	private String customer_gender;
+	private int customer_year;
 	
 	public int getEnabled() {
 		return enabled;
@@ -82,4 +84,17 @@ public class CustomerVO {
 	public void setAuthority(String authority) {
 		this.authority = authority;
 	}
+	public String getCustomer_gender() {
+		return customer_gender;
+	}
+	public void setCustomer_gender(String customer_gender) {
+		this.customer_gender = customer_gender;
+	}
+	public int getCustomer_year() {
+		return customer_year;
+	}
+	public void setCustomer_year(int customer_year) {
+		this.customer_year = customer_year;
+	}
+	
 }

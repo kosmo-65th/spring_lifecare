@@ -6,6 +6,9 @@
 	<meta charset="utf-8">
 	<title>Doctor Template</title>
 	
+	<!-- jQuery 추가 -->
+	<script src="${path_resources}js/jquery-3.5.1.min.js"></script>
+	
 	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700" rel="stylesheet">
 	
@@ -37,7 +40,18 @@
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
       plugins: [ 'list' ],
+	  
+      eventClick: function(info) {
+          var eventObj = info.event;
 
+          if (eventObj.url) {
+            window.open(eventObj.url);
+
+            info.jsEvent.preventDefault(); // prevents browser from following link in current tab.
+          } else {
+                alert('Clicked ' + eventObj.title);
+          }
+          },
       header: {
         left: 'prev,next today',
         center: 'title',
@@ -65,37 +79,33 @@
         {
           groupId: 999,
           title: 'Repeating Event',
-          start: '2020-02-16T16:00:00'
-        },
-        {
-          title: 'Conference',
-          start: '2020-02-11',
-          end: '2020-02-13'
+          start: '2020-02-16 16:00:00'
         },
         {
           title: 'Meeting',
-          start: '2020-02-12T10:30:00',
-          end: '2020-02-12T12:30:00'
+          start: '2020-02-12 10:30:00',
+          end: '2020-02-12 12:30:00'
         },
         {
           title: 'Lunch',
-          start: '2020-02-12T12:00:00'
+          start: '2020-02-12 12:00:00'
         },
         {
           title: "홍길동(24세 남자)",
-          start: '2020-02-12T14:30:00'
+          start: '2020-02-12 14:30:00',
+          url: 'http://localhost/lifecare/doctor_medicalNote?customer_id=wlsdmstjd'
         },
         {
           title: '김태희(31세 여자)',
-          start: '2020-02-12T17:30:00'
+          start: '2020-02-12 17:30:00'
         },
         {
           title: 'Dinner',
-          start: '2020-02-12T20:00:00'
+          start: '2020-02-12 20:00:00'
         },
         {
           title: 'Birthday Party',
-          start: '2020-02-13T07:00:00'
+          start: '2020-02-13 07:00:00'
         },
         {
           title: 'Click for Google',
@@ -116,13 +126,55 @@
   	}
 </style>	
 </head>
+<script type="text/javascript">
+// 환자조회/진료 클릭시 발생 이벤트
+function resReset(){
+	$('#keyword').focus();
+}
 
+// 환자조회 keyup
+$(function() {
+	$('#keyword').keyup(function() {
+		var keyword = $('#keyword').val();  // input 태그에서 입력한 키워드
+		
+		if(keyword.length == 0) {        // 검색글자수가 0인 경우
+			$('#searchDisplay').css("visibility", "hidden");       // 숨김
+		} else {
+			$('#searchDisplay').css("visibility", "visible");      // 표시
+			$('#searchDisplay').css("display", "flex");
+			$('#searchDisplay').css("align-items", "center");
+			$('#searchDisplay').css("min-width", "0");
+			$('#searchDisplay').css("max-height", "none");
+			$('#searchDisplay').css("background", "#f9f9f9");
+			$('#searchDisplay').css("border-radius", "499rem");
+			
+		}
+		
+		// keyword -> search_next.ja(search_next.jsp) -> result -> 콜백함수 -> display에 출력
+		$.ajax({
+			url : '${pageContext.request.contextPath}/search_next?${_csrf.parameterName}=${_csrf.token}',
+			type : 'POST',
+			data : 'keyword=' + keyword,
+			success : function(result) { // 콜백함수 호출
+				$('#searchDisplay').html(result);   // 결과  출력
+			},
+			error : function() {
+				alert("오류");
+			}
+		});
+	});
+});
+
+</script>
 <body>
 	<div class="navbar">
 		<div class="row">
 			<div class="column column-30 col-site-title"><a href="${path}/doctor/doctor_main" class="site-title float-left">Lifecare</a></div>
 			<div class="column column-40 col-search"><a href="#" class="search-btn fa fa-search"></a>
-				<input type="text" name="" value="" placeholder="Search..." />
+				<input type="text" id="keyword" name="" value="" placeholder="Search..." style="margin-bottom: 0;">
+					<div id="searchDisplay">
+					<!-- 결과 출력 위치 -->
+					</div>
 			</div>
 			<div class="column column-30">
 				<div class="user-section"><a href="#">
@@ -141,13 +193,15 @@
 			<ul>
 				<li><a href="${path}/doctor_main"><em class="fa fa-home"></em> Home</a></li>
 				<li><a href="${path}/doctor_schedule"><em class="fa fa-table"></em> 스케쥴관리</a></li>
-				<li><a href="${path}/doctor_medicalNote"><em class="fa fa-pencil-square-o"></em> 환자조회/진료</a></li>
+				<li><a href="javascript:void(0);" onclick="resReset();"><em class="fa fa-pencil-square-o"></em> 환자조회/진료</a></li>
 				<li><a href="#alerts"><em class="fa fa-hand-o-up"></em> 진료도우미</a></li>
 			</ul>
 		</div>
 
 			<section id="main-content" class="column column-offset-20">
 						
+						
+		
 			<!--일정표-->
 			<div class="row grid-responsive mt-1">
 				<div class="column">
@@ -160,7 +214,7 @@
 			<!--Tables-->
 			<div class="row grid-responsive">
 				<div class="column ">
-					<div class="card">
+					<div class="card" style="margin-top:50px;">
 						<div class="card-title">
 							<h3>Recent Customer</h3>
 						</div>

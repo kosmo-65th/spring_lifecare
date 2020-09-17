@@ -1,18 +1,21 @@
 package com.spring.lifecare.persistence;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
+import com.spring.lifecare.vo.AppointmentVO;
 import com.spring.lifecare.vo.CustomerVO;
 import com.spring.lifecare.vo.DoctorVO;
 
 public interface UserDAO {	
-	//카카오 회원찾기
-	public Map<String, String> kakaoFindId(String kakaoId);
+	 //카카오 회원찾기
+	 public Map<String, String> kakaoFindId(String kakaoId);
 	
-	//아이디 중복확인
-    public int idCheck(String customer_id);
+	 //아이디 중복확인
+     public int idCheck(String customer_id);
 
-    //휴대폰 번호 중복 확인
+     //휴대폰 번호 중복 확인
 	 public int phoneCheck(String customer_phone);
 		
 	 //이메일 주소 중복확인
@@ -45,4 +48,24 @@ public interface UserDAO {
 	 //의사 회원가입 처리
 	 public int insertDoctor(DoctorVO vo);
 	 
+	 //회원 이름 불러오기
+	 public String loadCustomerName(String customer_id);
+	 
+	 //의사리스트 불러오기
+	 public ArrayList<DoctorVO> getDoctorList();
+	 
+	 //시간리스트 불러오기
+	 public ArrayList<AppointmentVO> getTimeList();
+	 
+	 //appoint테이블 예약불가로 update
+	 public int updateAppoint(int appoint_num);
+	 
+	 //reservation테이블에 데이터 추가
+	 public int addReservation(Map<String, Object> map);
+	 
+	 //환자검색리스트
+	 public List<CustomerVO> searchList(String keyword);
+	 
+	 //회원정보 불러오기
+	 public CustomerVO getCustomerInfo(String customer_id);
 }

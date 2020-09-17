@@ -6,6 +6,9 @@
 	<meta charset="utf-8">
 	<title>Doctor Template</title>
 	
+	<!-- jQuery 추가 -->
+	<script src="${path_resources}js/jquery-3.5.1.min.js"></script>
+	
 	<!-- 프로필 css -->
 	<style type="text/css">
 	.card{
@@ -38,6 +41,7 @@
 	    margin-top: 0;
 	    font-weight: 200;
 	}
+	
 	</style>
 	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700" rel="stylesheet">
@@ -61,13 +65,56 @@
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 </head>
+<script type="text/javascript">
 
+//환자조회/진료 클릭시 발생 이벤트
+function resReset(){
+	$('#keyword').focus();
+}
+
+// 환자조회 keyup
+$(function() {
+	$('#keyword').keyup(function() {
+		var keyword = $('#keyword').val();  // input 태그에서 입력한 키워드
+		
+		if(keyword.length == 0) {        // 검색글자수가 0인 경우
+			$('#searchDisplay').css("visibility", "hidden");       // 숨김
+		} else {
+			$('#searchDisplay').css("visibility", "visible");      // 표시
+			$('#searchDisplay').css("display", "flex");
+			$('#searchDisplay').css("align-items", "center");
+			$('#searchDisplay').css("min-width", "0");
+			$('#searchDisplay').css("max-height", "none");
+			$('#searchDisplay').css("background", "#f9f9f9");
+			$('#searchDisplay').css("border-radius", "499rem");
+			
+		}
+		
+		// keyword -> search_next.ja(search_next.jsp) -> result -> 콜백함수 -> display에 출력
+		$.ajax({
+			url : '${pageContext.request.contextPath}/search_next?${_csrf.parameterName}=${_csrf.token}',
+			type : 'POST',
+			data : 'keyword=' + keyword,
+			success : function(result) { // 콜백함수 호출
+				$('#searchDisplay').html(result);   // 결과  출력
+			},
+			error : function() {
+				alert("오류");
+			}
+		});
+	});
+});
+
+</script>
 <body>
 	<div class="navbar">
 		<div class="row">
 			<div class="column column-30 col-site-title"><a href="${path}/doctor/doctor_main" class="site-title float-left">Lifecare</a></div>
 			<div class="column column-40 col-search"><a href="#" class="search-btn fa fa-search"></a>
-				<input type="text" name="" value="" placeholder="Search..." />
+				<input type="text" id="keyword" name="" value="" placeholder="Search..." style="margin-bottom: 0;">
+					<div id="searchDisplay" class="col">
+					<!-- 결과 출력 위치 -->
+					</div>
 			</div>
 			<div class="column column-30">
 				<div class="user-section"><a href="#">
@@ -86,7 +133,7 @@
 			<ul>
 				<li><a href="${path}/doctor_main"><em class="fa fa-home"></em> Home</a></li>
 				<li><a href="${path}/doctor_schedule"><em class="fa fa-table"></em> 스케쥴관리</a></li>
-				<li><a href="${path}/doctor_medicalNote"><em class="fa fa-pencil-square-o"></em> 환자조회/진료</a></li>
+				<li><a href="javascript:void(0);" onclick="resReset();"><em class="fa fa-pencil-square-o"></em> 환자조회/진료</a></li>
 				<li><a href="#alerts"><em class="fa fa-hand-o-up"></em> 진료도우미</a></li>
 			</ul>
 		</div>
@@ -99,12 +146,17 @@
 			            <div class="profile-bio">
 			                <div class="row">
 			                    <div class="col-md-5 text-center">
-			                        <img class="img-thumbnail md-margin-bottom-10" src="https://bootdey.com/img/Content/user-453533-fdadfd.png" alt="">
+			                    	<c:if test="${vo.getCustomer_gender() == '남자'}"> 
+			                        	<img class="img-thumbnail md-margin-bottom-10" src="${path_resources}images/남자.png" alt="">
+			                        </c:if>
+			                    	<c:if test="${vo.getCustomer_gender() == '여자'}"> 
+			                        	<img class="img-thumbnail md-margin-bottom-10" src="${path_resources}images/여자.png" alt="">
+			                        </c:if>			                        
 			                    </div>
 			                    <div class="col-md-7">
-			                        <h2>Edward Rooster(남)</h2>
-			                        <span><strong>나이:</strong> 23세</span> &nbsp;&nbsp;&nbsp;&nbsp;
-			                        <span><strong>직업:</strong> 웹 디자이너</span>
+			                        <h2>${vo.getCustomer_name()} (${vo.getCustomer_id()})</h2>
+			                        <span><strong>나이:</strong> <fmt:formatNumber value="${2020 - vo.getCustomer_year()}" pattern="#,###"/>세</span> &nbsp;&nbsp;&nbsp;&nbsp;
+			                        <span><strong>성별:</strong> ${vo.getCustomer_gender()}</span>
 			                        <hr>
 			                        <span><strong>최근내원일:</strong> 2020-09-11</span> &nbsp;&nbsp;&nbsp;&nbsp;
 			                        <span><strong>진단명:</strong> 당뇨</span>
@@ -226,7 +278,7 @@
 										<th style="background:#35cebe; color:white;">No</th>
 										<th style="background:#35cebe; color:white;">Diagnosis</th>
 										<th style="background:#35cebe; color:white;">Age</th>
-										<th style="background:#35cebe; color:white;">Location</th>
+										<th style="background:#35cebe; color:white;">Sex</th>
 										<th style="background:#35cebe; color:white;">Date</th>
 									</tr>
 								</thead>
@@ -235,28 +287,28 @@
 										<td>1</td>
 										<td>UI Developer</td>
 										<td>23</td>
-										<td>Philadelphia, PA</td>
+										<td>남자</td>
 										<td>2020-00-00</td>
 									</tr>
 									<tr>
 										<td>2</td>
 										<td>Designer</td>
 										<td>30</td>
-										<td>London, UK</td>
+										<td>남자</td>
 										<td>2020-00-00</td>
 									</tr>
 									<tr>
 										<td>3</td>
 										<td>UX Developer</td>
 										<td>25</td>
-										<td>Los Angeles, CA</td>
+										<td>남자</td>
 										<td>2020-00-00</td>
 									</tr>
 									<tr>
 										<td>4</td>
 										<td>Programmer</td>
 										<td>28</td>
-										<td>Philadelphia, PA</td>
+										<td>남자</td>
 										<td>2020-00-00</td>
 									</tr>
 								</tbody>

@@ -1,5 +1,7 @@
 package com.spring.lifecare.persistence;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.mail.internet.InternetAddress;
@@ -11,9 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Repository;
 
+import com.spring.lifecare.vo.AppointmentVO;
 import com.spring.lifecare.vo.CustomerVO;
 import com.spring.lifecare.vo.DoctorVO;
-
 
 @Repository
 public class UserDAOImpl implements UserDAO {
@@ -100,6 +102,47 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public int insertDoctor(DoctorVO vo) {
 		return sqlSession.insert("com.spring.lifecare.persistence.UserDAO.insertDoctor", vo);
+	}
+
+	@Override
+	public String loadCustomerName(String customer_id) {
+		return sqlSession.selectOne("com.spring.lifecare.persistence.UserDAO.loadCustomerName", customer_id);
+	}
+
+	@Override
+	public ArrayList<DoctorVO> getDoctorList() {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.getDoctorList();
+	}
+
+	@Override
+	public ArrayList<AppointmentVO> getTimeList() {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.getTimeList();
+	}
+
+	@Override
+	public int updateAppoint(int appoint_num) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.updateAppoint(appoint_num);
+	}
+
+	@Override
+	public int addReservation(Map<String, Object> map) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.addReservation(map);
+	}
+
+	@Override
+	public List<CustomerVO> searchList(String keyword) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.searchList(keyword);
+	}
+
+	@Override
+	public CustomerVO getCustomerInfo(String customer_id) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.getCustomerInfo(customer_id);
 	}
 	
 }

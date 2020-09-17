@@ -1,5 +1,7 @@
 package com.spring.lifecare.service;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -21,5 +23,13 @@ public interface DoctorService  {
 	  
 	  //의사 회원가입 처리
 	  public int doctorJoin(MultipartHttpServletRequest req, Model model);
-
+	  
+	  //의사 리스트
+	  public void doctorList(HttpServletRequest req, Model model);
+	  
+	  //환자검색리스트
+	  public void customerList(HttpServletRequest req, Model model);
+	  
+	  //회원정보 불러오기
+	  public void loadCustomerInfo(HttpServletRequest req, Model model);
 }
