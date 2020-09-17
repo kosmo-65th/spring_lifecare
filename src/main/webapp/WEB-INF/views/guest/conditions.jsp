@@ -21,7 +21,6 @@
    <link rel="stylesheet" href="${path_resources_lifecare}css/custom.css">
    <link rel="stylesheet" href="${path_resources_lifecare}css/pbor.css">
    <!-- CSS -->
-   
    <!-- jQuery 추가 -->
    <script src="${path_resources}setting/jquery-3.5.1.js"></script>
    
@@ -63,7 +62,7 @@
       <!-- END LOADER -->
       <%@include file="../common/header.jsp" %>
       <div class="ul" style="background-image:url('${path_resources_lifecare}images/slider-bg.png') !important; ">
-      	<div class="container" style="background-color: white; padding: 20px">
+      	<div class="container" id="overflow" style="background-color: white; padding: 20px">
 				<div> 
 					<h3>제1장 총칙</h3> 
 				</div> 
