@@ -41,7 +41,7 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
 		if(auth_text.equals("[ROLE_DOCTOR]")) {
 			dispatcher = request.getRequestDispatcher("/doctor/doctor_main");
 		}else if(auth_text.equals("[ROLE_ADMIN]")) {
-			dispatcher = request.getRequestDispatcher("/admin/admin_summary");
+			dispatcher = request.getRequestDispatcher("/admin/summary");
 		}
 		
 		dispatcher.forward(request, response);

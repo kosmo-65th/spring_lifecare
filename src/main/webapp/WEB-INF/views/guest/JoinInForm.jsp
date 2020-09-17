@@ -245,18 +245,26 @@
                <div class="pwdChk" id="rePwChk"></div>  
                <input type="text" name="customer_name" id="userName" placeholder="이름" class="mb10" value="" required>
                <div class="name" id="nameChk"></div>
-               <h3>성별을 선택해주세요.</h3>
-               <select name="customer_gender" required id="sex">
+               <div align="center">
+               <div style="border:1px solid #ccc; width:334.8px;height:90px; margin-bottom:10px;">  
+               		<div style="margin-top:10px;">
+               		성별을 선택해주세요.
+               <select name="customer_gender" required id="sex" style="width:95px; margin-left:18px;"> 
 	                <option value="여자">여자</option>
 	                <option value="남자">남자</option>	                  
-	           </select><br><br> 
-	           <h3>출생년도 선택해 주세요.</h3> 
+	           </select> 
+	           		</div>
+	           		<div style="margin-top:10px;"> 
+	            	출생년도 선택해 주세요. 
                <select name="customer_year" required id="birthday">
-               		 <option value="년도">-출생년도-</option>
+               		 <option value="년도">-출생년도-</option> 
                		 <%for(int i=1910; i<=2002; i++) { %>
                		 <option value="<%=i%>"> <%=i+ "년" %></option>
-               		 <%} %>
-               </select><br><br>
+               		 <%} %> 
+               </select>
+               		</div>
+               	</div>
+               </div>
                <input type="text" name="customer_phone" id="userPhone" placeholder="휴대폰 번호" class="mb10" value="" required>
                <div class="number" id="numberChk"></div>              
                <input type="text" name="customer_email" id="userEmail" placeholder="이메일 주소" class="mb10" value="" required>

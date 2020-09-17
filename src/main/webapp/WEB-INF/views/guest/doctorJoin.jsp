@@ -289,6 +289,27 @@
 	               <div class="number" id=numberChk></div>         
 	               <input type="text" name="doctor_email" id="doctorEmail" placeholder="이메일 주소" class="mb10" value="" required>
 	               <div class="email" id=emailChk></div>
+	               <div align="center">
+               <div style="border:1px solid #ccc; width:100%;height:90px; margin-bottom:10px;">  
+               		<div style="margin-top:10px;">
+               		성별을 선택해주세요.
+               <select name="customer_gender" required id="sex" style="width:95px; margin-left:18px;"> 
+	                <option value="여자">여자</option>
+	                <option value="남자">남자</option>	                  
+	           </select> 
+	           		</div>
+	           		<div style="margin-top:10px;"> 
+	            	출생년도 선택해 주세요. 
+               <select name="customer_year" required id="birthday">
+               		 <option value="년도">-출생년도-</option> 
+               		 <%for(int i=1910; i<=2002; i++) { %>
+               		 <option value="<%=i%>"> <%=i+ "년" %></option>
+               		 <%} %> 
+               </select>
+               		</div>
+               	</div>
+               </div>
+	               
 	               <h3>프로필 사진을 올려주세요.</h3>       
 	               <input type="file" name="doctor_faceimg" id="img" required>
 	               <img src="resources/upload/${vo.filename2 }" width="400" height="200">

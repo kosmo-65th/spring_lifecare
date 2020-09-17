@@ -94,21 +94,21 @@ public class JinController {
 	}
 	
     // 의사 로그인후 메인페이지
-    @RequestMapping("/doctor_main")
+    @RequestMapping("/doctor/doctor_main")
     public String doctor_main() {
     	
     	return "doctor/doctor_main";
     }
     
     // 의사 로그인후 스케쥴러
-    @RequestMapping("/doctor_schedule")
+    @RequestMapping("/doctor/doctor_schedule")
     public String doctor_schedule() {
     	
     	return "doctor/doctor_schedule";
     }
     
     // 의사 로그인후 진료기록부
-    @RequestMapping("/doctor_medicalNote")
+    @RequestMapping("/doctor/doctor_medicalNote")
     public String doctor_medicalNote() {
     	
     	return "doctor/doctor_medicalNote";
@@ -128,7 +128,7 @@ public class JinController {
  	}
  	
  	// 관리자 결산페이지
- 	@RequestMapping("/summary")
+ 	@RequestMapping("/admin/summary")
  	public String summary(Model model) {
  		
  		return "host/Summary";

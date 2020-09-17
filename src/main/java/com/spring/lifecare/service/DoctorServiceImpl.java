@@ -3,7 +3,6 @@ package com.spring.lifecare.service;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.sql.Timestamp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -13,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.spring.lifecare.persistence.UserDAO;
+import com.spring.lifecare.vo.CustomerVO;
 import com.spring.lifecare.vo.DoctorVO;
 
 @Service
@@ -148,6 +148,19 @@ public class DoctorServiceImpl implements DoctorService{
 				
 	    int insertCnt = userDAO.insertDoctor(vo);
 	    System.out.println("insertCnt :" + insertCnt );
+	    
+	    
+	    CustomerVO cusotomerVO = new CustomerVO();
+	    
+	    cusotomerVO.setCustomer_id(req.getParameter(doctor_id));
+	    cusotomerVO.setCustomer_pw(passwordEncoder.encode(doctor_pw));
+	    cusotomerVO.setCustomer_name(req.getParameter(doctor_name));
+	    cusotomerVO.setCustomer_email(req.getParameter(doctor_email));
+	    cusotomerVO.setCustomer_phone(req.getParameter(doctor_phone));
+	    cusotomerVO.setCustomer_gender(req.getParameter("customer_gender"));
+	    cusotomerVO.setCustomer_year(Integer.parseInt(req.getParameter("customer_year")));
+	    
+	    int insertCnt2 = userDAO.insertMember(cusotomerVO);
 	    
 	    model.addAttribute("dtos", vo);
 	    model.addAttribute("insetCnt", insertCnt);
