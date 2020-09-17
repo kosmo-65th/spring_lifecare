@@ -41,6 +41,7 @@ public class DlrController {
 		return "customer/Questionnaire/index1";
 	}
 	
+	
 	//문진표 문항2
 	@RequestMapping("/index2")
 	public String index2(HttpServletRequest req,Model model) {

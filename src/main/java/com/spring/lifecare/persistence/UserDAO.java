@@ -9,6 +9,9 @@ public interface UserDAO {
 	//카카오 회원찾기
 	public Map<String, String> kakaoFindId(String kakaoId);
 	
+	//네이버 회원찾기
+	public Map<String, String> naverFindId(String naverId);
+	
 	//아이디 중복확인
     public int idCheck(String customer_id);
 

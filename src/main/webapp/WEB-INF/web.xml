@@ -6,11 +6,12 @@
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring/root-context.xml
-				classpath:/security-context.xml  <!--1.  시큐리티 설정파일 추가 -->
-				classpath:/security-datasource.xml <!-- 1.시큐리티 설정파일 추가 -->
-				classpath:/aopContext.xml			<!-- AOP관련 xml 등록 -->
-				classpath:/mybatis-config.xml		<!-- mybatis 설정xml -->
+		<param-value>
+			/WEB-INF/spring/root-context.xml
+			classpath:/security-context.xml  <!--1.  시큐리티 설정파일 추가 -->
+			classpath:/security-datasource.xml <!-- 1.시큐리티 설정파일 추가 -->
+			classpath:/aopContext.xml			<!-- AOP관련 xml 등록 -->
+			classpath:/mybatis-config.xml		<!-- mybatis 설정xml -->
 		</param-value>
 	</context-param>
 	
@@ -18,7 +19,7 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-
+	
 	<!-- Processes application requests -->
 	<servlet>
 		<servlet-name>appServlet</servlet-name>
@@ -90,6 +91,8 @@
   		<error-code>500</error-code>
   		<location>/error_500</location>
   	</error-page>
+  	
+  	
   	
   	<!-- 6. 세션 타임 아웃 설정(120분) -->
 	<session-config>
