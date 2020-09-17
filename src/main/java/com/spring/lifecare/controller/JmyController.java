@@ -2,12 +2,20 @@ package com.spring.lifecare.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.spring.lifecare.service.FooterService;
+
 @Controller
 public class JmyController {
+	
+	
+	@Autowired
+	FooterService ser;
+	
 	
 	//환자권리장전
 	@RequestMapping("/pbor")
@@ -39,6 +47,8 @@ public class JmyController {
 		
 		return "/guest/openInfomation";
 	}
+	
+	//비급여목록 
 	@RequestMapping("/nonpayment")
 	public String nonpayment(HttpServletRequest req, Model model) {
 		
@@ -46,8 +56,7 @@ public class JmyController {
 		if(code==null) {
 			code="1";
 		}
-		
-		model.addAttribute("code",code);
+		ser.treatment(req, model, code);
 		
 		
 		return "/guest/nonpayment";

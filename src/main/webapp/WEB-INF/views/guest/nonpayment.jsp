@@ -117,57 +117,86 @@
 				  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
 				.tg th{background-color:#f0f0f0;border-color:#ccc;border-style:solid;border-width:1px;color:#333;
 				  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-				.tg .tg-gg0b{background-color:#f9f9f9;font-family:"Arial Black", Gadget, sans-serif !important;;font-size:18px;text-align:center;
-				  vertical-align:middle}
-				.tg .tg-navq{font-family:"Arial Black", Gadget, sans-serif !important;;font-size:18px;text-align:center;vertical-align:middle}
-				.tg .tg-orf0{font-family:"Arial Black", Gadget, sans-serif !important;;text-align:left;vertical-align:top}
+				
+				.tg .tg-gg0b{
+					background-color:#f9f9f9;
+					font-family:"Arial Black", Gadget, sans-serif !important;
+					font-size:18px;
+					text-align:center;
+					vertical-align:middle
+				}
+				
+				.tg .tg-navq{
+					
+					font-size:18px;
+					text-align:center;
+					vertical-align:middle
+					
+				}
+				
+				.tg .tg-orf0{
+				
+					text-align:center;
+					vertical-align:middle;
+				}
+				
+				
 			</style>
+			
+			<form action="${path}/nonpayment">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+			<input type="hidden" name="code" value="${code}">
+				<table>
+					<tr>
+						<td>
+							<input type="text"  name="word" value="${word}" class="input" >
+							<input type="submit" value="검색" class="button">
+						</td>
+					</tr>
+				</table>
+			</form>
 			
 			<table class="tg">
 			<thead>
 			  <tr>
-			    <th class="tg-navq" rowspan="2">중분류</th>
-			    <th class="tg-navq" rowspan="2">분류</th>
-			    <th class="tg-navq" colspan="2">항목</th>
-			    <th class="tg-navq" colspan="6">진료비용 등(단위 : 원 )</th>
-			    <th class="tg-navq" rowspan="2">특이사항</th>
+			    <th class="tg-navq" rowspan="2" style="width: 100px;">중분류</th>
+			    <th class="tg-navq" rowspan="2" style="width: 88px;">분류</th>
+			    <th class="tg-navq" colspan="2" style="width: 386px;" >항목</th>
+			    <th class="tg-navq" colspan="6" style="width: 415px;">진료비용 등(단위 : 원 )</th>
+			    <th class="tg-navq" rowspan="2" style="width: 110px;">특이사항</th>
 			  </tr>
 			  <tr>
-			    <td class="tg-gg0b">명칭</td>
-			    <td class="tg-gg0b">코드</td>
-			    <td class="tg-gg0b">구분</td>
-			    <td class="tg-gg0b">비용</td>
-			    <td class="tg-gg0b">최저<br>비용</td>
-			    <td class="tg-gg0b">최대<br>비용</td>
-			    <td class="tg-gg0b">치료재료대<br>포함여부</td>
-			    <td class="tg-gg0b">약제비<br>포함여부</td>
+			    <td class="tg-gg0b" style="width: 286px;">명칭</td>
+			    <td class="tg-gg0b" style="width: 100px;">코드</td>
+			    <td class="tg-gg0b" style="width: 50px;">구분</td>
+			    <td class="tg-gg0b" style="width: 55px">비용</td>
+			    <td class="tg-gg0b" style="width: 55px; ">최저<br>비용</td>
+			    <td class="tg-gg0b" style="width: 55px;">최대<br>비용</td>
+			    <td class="tg-gg0b" style="width: 100px;">치료재료대<br>포함여부</td>
+			    <td class="tg-gg0b" style="width: 100px;">약제비<br>포함여부</td>
 			  </tr>
 			</thead>
 			<tbody>
+			<c:forEach var="vo" items="${vo}">
 			  <tr>
-			    <td class="tg-orf0"></td>
-			    <td class="tg-orf0"></td>
-			    <td class="tg-orf0"></td>
-			    <td class="tg-orf0"></td>
-			    <td class="tg-orf0"></td>
-			    <td class="tg-orf0"></td>
-			    <td class="tg-orf0"></td>
-			    <td class="tg-orf0"></td>
-			    <td class="tg-orf0"></td>
-			    <td class="tg-orf0"></td>
-			    <td class="tg-orf0"></td>
+			    <td class="tg-orf0" style="width: 100px;">${vo.medium_div}</td>
+			    <td class="tg-orf0" style="width: 53px;">${vo.divv} </td>
+			    <td class="tg-orf0" style="width: 299px;">${vo.name }</td>
+			    <td class="tg-orf0" style="width: 100px;">${vo.code }</td>
+			    <td class="tg-orf0" style="width: 50px;">${vo.repet }</td>
+			    <td class="tg-orf0" style="width: 55px;">${vo.cost }</td>
+			    <td class="tg-orf0" style="width: 55px;">${vo.min_cost }</td>
+			    <td class="tg-orf0" style="width: 55px">${vo.max_cost }</td>
+			    <td class="tg-orf0" style="width: 100px;">${vo.add_medicine }</td>
+			    <td class="tg-orf0" style="width: 100px;">${vo.add_drug_cost }</td>
+			    <td class="tg-orf0" style="width: 132px;">${vo.issue }</td>
 			  </tr>
-			</tbody>
-			</table>
-			<!-------------------------------------------------------------->
-			
+			</c:forEach>
 			<!--페이징--------------------------------------------------->
-			<div style="width: 600px;">
-			<table>
-				<tr align="right" id="bot">
-					<td>
+			<tr align="center" id="bot">
+					<td colspan="11">
 						<!--페이지 맨앞/1칸 앞으로이동  -->
-						<a href="nonpayment?code=1">◀◀  </a>
+						<a href="nonpayment?code=1&word=${word}">◀◀  </a>
 							<c:choose>
 								<c:when test="${nowPage==1}">
 									<a href="nonpayment?code=1&nowPage=${nowPage}&word=${word}">◀  </a>
@@ -180,24 +209,24 @@
 							
 						<!-- max블록씩 페이지 앞으로 이동 -->							
 						<c:if test="${startBlock>maxBlock}" >
-							<a href="nonpayment?code=1&nowPage=${startBlock-maxBlock}"> 이전줄</a>
+							<a href="nonpayment?code=1&nowPage=${startBlock-maxBlock}">[이전 블록]</a>
 						</c:if> 
 						
 					<!--페이지 블록 -->
 					<c:if test="${total>0}" >
 						<c:forEach var="i" begin="${startBlock}" end="${endBlock}">
 							<c:if test="${i==nowPage}">
-								<a href="nonpayment?code=1&nowPage=${i}&word=${word}" style="font-size:12px;">[${i}]</a>
+								<a href="nonpayment?code=1&nowPage=${i}&word=${word}" style="font-size:20px;">[${i}]</a>
 							</c:if>
 							<c:if test="${i!=nowPage}">
-								<a href="nonpayment?code=1&nowPage=${i}&word=${word}">[${i}]</a>
+								<a href="nonpayment?code=1&nowPage=${i}&word=${word}">&nbsp;[${i}]&nbsp;</a>
 							</c:if>
 						</c:forEach>
 					</c:if>
 					
 						<!-- max블록씩 페이지 뒤로 이동 -->
 						<c:if test="${totalBlock>endBlock}" >
-							<a href="nonpayment?code=1&nowPage=${startBlock+maxBlock}">다음줄</a>
+							<a href="nonpayment?code=1&nowPage=${startBlock+maxBlock}"> [다음 블록] </a>
 						</c:if> 
 						
 					<!--뒤로1칸이동 / 페이지 맨뒤-->
@@ -210,13 +239,16 @@
 						 			<a href="nonpayment?code=1&nowPage=${nowPage+1}&word=${word}">  ▶</a>
 						 		</c:otherwise>
 						 	</c:choose>
-						<a href="nonpayment?code=1&nowPage=${totalBlock}"> ▶▶</a>
+						<a href="nonpayment?code=1&nowPage=${totalBlock}&word=${word}"> ▶▶</a>
 					</td>
 				</tr>
+				<!--페이징--------------------------------------------------->
+			</tbody>
 			</table>
-			</div>
-			<!--페이징--------------------------------------------------->
+			
+			
 		</c:if>
+		
 		<c:if test="${code==2}">
 			<style type="text/css">
 				.tg  {border-collapse:collapse;border-color:#ccc;border-spacing:0;}
@@ -228,8 +260,26 @@
 				  vertical-align:middle}
 				.tg .tg-ffik{background-color:#f9f9f9;border-color:inherit;font-family:"Arial Black", Gadget, sans-serif !important;;font-size:18px;
 				  text-align:center;vertical-align:middle}
-				.tg .tg-wesv{border-color:inherit;font-family:"Arial Black", Gadget, sans-serif !important;;text-align:left;vertical-align:top}
+				
+				.tg .tg-wesv{
+				
+					text-align:center;
+					vertical-align:middle;
+				
+				}
 			</style>
+			<form action="${path}/nonpayment">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+			<input type="hidden" name="code" value="${code}">
+				<table>
+					<tr>
+						<td>
+							<input type="text"  name="word" value="${word}" class="input" >
+							<input type="submit" value="검색" class="button">
+						</td>
+					</tr>
+				</table>
+			</form>
 			<table class="tg">
 			<thead>
 			  <tr>
@@ -248,25 +298,22 @@
 			  </tr>
 			</thead>
 			<tbody>
+			<c:forEach var="vo" items="${vo}">
 			  <tr>
-			    <td class="tg-wesv"></td>
-			    <td class="tg-wesv"></td>
-			    <td class="tg-wesv"></td>
-			    <td class="tg-wesv"></td>
-			    <td class="tg-wesv"></td>
-			    <td class="tg-wesv"></td>
-			    <td class="tg-wesv"></td>
-			    <td class="tg-wesv"></td>
+			    <td class="tg-wesv">${vo.divv}</td>
+			    <td class="tg-wesv">${vo.name }</td>
+			    <td class="tg-wesv">${vo.code }</td>
+			    <td class="tg-wesv">${vo.standard }</td>
+			    <td class="tg-wesv">${vo.cost }</td>
+			    <td class="tg-wesv">${vo.min_cost}</td>
+			    <td class="tg-wesv">${vo.max_cost }</td>
+			    <td class="tg-wesv">${vo.issue }</td>
 			  </tr>
-			</tbody>
-			</table>
-			<!--페이징--------------------------------------------------->
-			<div style="width: 600px;">
-			<table>
-				<tr align="right" id="bot">
-					<td>
+			</c:forEach>
+				<tr align="center" id="bot">
+					<td colspan="11">
 						<!--페이지 맨앞/1칸 앞으로이동  -->
-						<a href="nonpayment?code=2">◀◀  </a>
+						<a href="nonpayment?code=2&word=${word}">◀◀  </a>
 							<c:choose>
 								<c:when test="${nowPage==1}">
 									<a href="nonpayment?code=2&nowPage=${nowPage}&word=${word}">◀  </a>
@@ -279,24 +326,24 @@
 							
 						<!-- max블록씩 페이지 앞으로 이동 -->							
 						<c:if test="${startBlock>maxBlock}" >
-							<a href="nonpayment?code=2&nowPage=${startBlock-maxBlock}"> 이전줄</a>
+							<a href="nonpayment?code=2&nowPage=${startBlock-maxBlock}">[이전블록]</a>
 						</c:if> 
 						
 					<!--페이지 블록 -->
 					<c:if test="${total>0}" >
 						<c:forEach var="i" begin="${startBlock}" end="${endBlock}">
 							<c:if test="${i==nowPage}">
-								<a href="nonpayment?code=2&nowPage=${i}&word=${word}" style="font-size:12px;">[${i}]</a>
+								<a href="nonpayment?code=2&nowPage=${i}&word=${word}" style="font-size:20px;">[${i}]</a>
 							</c:if>
 							<c:if test="${i!=nowPage}">
-								<a href="nonpayment?code=2&nowPage=${i}&word=${word}">[${i}]</a>
+								<a href="nonpayment?code=2&nowPage=${i}&word=${word}">&nbsp;[${i}]&nbsp;</a>
 							</c:if>
 						</c:forEach>
 					</c:if>
 					
 						<!-- max블록씩 페이지 뒤로 이동 -->
 						<c:if test="${totalBlock>endBlock}" >
-							<a href="nonpayment?code=2&nowPage=${startBlock+maxBlock}">다음줄</a>
+							<a href="nonpayment?code=2&nowPage=${startBlock+maxBlock}">[다음블록]</a>
 						</c:if> 
 						
 					<!--뒤로1칸이동 / 페이지 맨뒤-->
@@ -309,12 +356,11 @@
 						 			<a href="nonpayment?code=2&nowPage=${nowPage+1}&word=${word}">  ▶</a>
 						 		</c:otherwise>
 						 	</c:choose>
-						<a href="nonpayment?code=2&nowPage=${totalBlock}"> ▶▶</a>
+						<a href="nonpayment?code=2&nowPage=${totalBlock}&word=${word}"> ▶▶</a>
 					</td>
 				</tr>
+			</tbody>
 			</table>
-			</div>
-			<!--페이징--------------------------------------------------->
 		</c:if>
 		
 		<c:if test="${code==3}">
@@ -328,8 +374,30 @@
 				  vertical-align:middle}
 				.tg .tg-ffik{background-color:#f9f9f9;border-color:inherit;font-family:"Arial Black", Gadget, sans-serif !important;;font-size:18px;
 				  text-align:center;vertical-align:middle}
-				.tg .tg-wesv{border-color:inherit;font-family:"Arial Black", Gadget, sans-serif !important;;text-align:left;vertical-align:top}
+
+				.tg .tg-wesv{
+				
+					text-align:center;
+					vertical-align:middle;
+				
+				}
+				
+				
+				
 			</style>
+			
+			<form action="${path}/nonpayment">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+			<input type="hidden" name="code" value="${code}">
+				<table>
+					<tr>
+						<td>
+							<input type="text"  name="word" value="${word}" class="input" >
+							<input type="submit" value="검색" class="button">
+						</td>
+					</tr>
+				</table>
+			</form>
 			<table class="tg">
 			<thead>
 			  <tr>
@@ -344,21 +412,18 @@
 			  </tr>
 			</thead>
 			<tbody>
+			<c:forEach var="vo" items="${vo}">
 			  <tr>
-			    <td class="tg-wesv"></td>
-			    <td class="tg-wesv"></td>
-			    <td class="tg-wesv"></td>
-			    <td class="tg-wesv"></td>
+			    <td class="tg-wesv">${vo.name }</td>
+			    <td class="tg-wesv">${vo.code }</td>
+			    <td class="tg-wesv">${vo.cost }</td>
+			    <td class="tg-wesv">${vo.issue }</td>
 			  </tr>
-			</tbody>
-			</table>
-			<!--페이징--------------------------------------------------->
-			<div style="width: 600px;">
-			<table>
-				<tr align="right" id="bot">
-					<td>
+			 </c:forEach>
+			  <tr align="center" id="bot">
+					<td colspan="11">
 						<!--페이지 맨앞/1칸 앞으로이동  -->
-						<a href="nonpayment?code=3">◀◀  </a>
+						<a href="nonpayment?code=3&word=${word}">◀◀  </a>
 							<c:choose>
 								<c:when test="${nowPage==1}">
 									<a href="nonpayment?code=3&nowPage=${nowPage}&word=${word}">◀  </a>
@@ -371,24 +436,24 @@
 							
 						<!-- max블록씩 페이지 앞으로 이동 -->							
 						<c:if test="${startBlock>maxBlock}" >
-							<a href="nonpayment?code=3&nowPage=${startBlock-maxBlock}"> 이전줄</a>
+							<a href="nonpayment?code=3&nowPage=${startBlock-maxBlock}">[이전블록]</a>
 						</c:if> 
 						
 					<!--페이지 블록 -->
 					<c:if test="${total>0}" >
 						<c:forEach var="i" begin="${startBlock}" end="${endBlock}">
 							<c:if test="${i==nowPage}">
-								<a href="nonpayment?code=3&nowPage=${i}&word=${word}" style="font-size:12px;">[${i}]</a>
+								<a href="nonpayment?code=3&nowPage=${i}&word=${word}" style="font-size:20px;">[${i}]</a>
 							</c:if>
 							<c:if test="${i!=nowPage}">
-								<a href="nonpayment?code=3&nowPage=${i}&word=${word}">[${i}]</a>
+								<a href="nonpayment?code=3&nowPage=${i}&word=${word}">&nbsp;[${i}]&nbsp;</a>
 							</c:if>
 						</c:forEach>
 					</c:if>
 					
 						<!-- max블록씩 페이지 뒤로 이동 -->
 						<c:if test="${totalBlock>endBlock}" >
-							<a href="nonpayment?code=3&nowPage=${startBlock+maxBlock}">다음줄</a>
+							<a href="nonpayment?code=3&nowPage=${startBlock+maxBlock}">[다음블록]</a>
 						</c:if> 
 						
 					<!--뒤로1칸이동 / 페이지 맨뒤-->
@@ -401,11 +466,12 @@
 						 			<a href="nonpayment?code=3&nowPage=${nowPage+1}&word=${word}">  ▶</a>
 						 		</c:otherwise>
 						 	</c:choose>
-						<a href="nonpayment?code=3&nowPage=${totalBlock}"> ▶▶</a>
+						<a href="nonpayment?code=3&nowPage=${totalBlock}&word=${word}"> ▶▶</a>
 					</td>
 				</tr>
+			</tbody>
 			</table>
-			</div>
+			<!--페이징--------------------------------------------------->
 			<!--페이징--------------------------------------------------->
 		</c:if>
 		<c:if test="${code==4}">
@@ -419,8 +485,24 @@
 				  vertical-align:middle}
 				.tg .tg-ffik{background-color:#f9f9f9;border-color:inherit;font-family:"Arial Black", Gadget, sans-serif !important;;font-size:18px;
 				  text-align:center;vertical-align:middle}
-				.tg .tg-wesv{border-color:inherit;font-family:"Arial Black", Gadget, sans-serif !important;;text-align:left;vertical-align:top}
+				
+				.tg .tg-wesv{
+					text-align:center;
+					vertical-align:middle;
+				}
 			</style>
+			<form action="${path}/nonpayment">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+			<input type="hidden" name="code" value="${code}">
+				<table>
+					<tr>
+						<td>
+							<input type="text"  name="word" value="${word}" class="input" >
+							<input type="submit" value="검색" class="button">
+						</td>
+					</tr>
+				</table>
+			</form>
 			<table class="tg">
 			<thead>
 			  <tr>
@@ -438,25 +520,21 @@
 			  </tr>
 			</thead>
 			<tbody>
+			<c:forEach var="vo" items="${vo}">
 			  <tr>
-			    <td class="tg-wesv"></td>
-			    <td class="tg-wesv"></td>
-			    <td class="tg-wesv"></td>
-			    <td class="tg-wesv"></td>
-			    <td class="tg-wesv"></td>
-			    <td class="tg-wesv"></td>
-			    <td class="tg-wesv"></td>
+			    <td class="tg-wesv">${vo.name }</td>
+			    <td class="tg-wesv">${vo.code }</td>
+			    <td class="tg-wesv">${vo.section }</td>
+			    <td class="tg-wesv">${vo.cost }</td>
+			    <td class="tg-wesv">${vo.min_cost }</td>
+			    <td class="tg-wesv">${vo.max_cost }</td>
+			    <td class="tg-wesv">${vo.issue }</td>
 			  </tr>
-			</tbody>
-			
-			</table>
-			<!------------------ 페이징-------------->
-			<div style="width: 600px;">
-			<table>
-				<tr align="right" id="bot">
-					<td>
+			 </c:forEach>
+			 	<tr align="center" id="bot">
+					<td colspan="11">
 						<!--페이지 맨앞/1칸 앞으로이동  -->
-						<a href="nonpayment?code=4">◀◀  </a>
+						<a href="nonpayment?code=4&word=${word}">◀◀  </a>
 							<c:choose>
 								<c:when test="${nowPage==1}">
 									<a href="nonpayment?code=4&nowPage=${nowPage}&word=${word}">◀  </a>
@@ -469,24 +547,24 @@
 							
 						<!-- max블록씩 페이지 앞으로 이동 -->							
 						<c:if test="${startBlock>maxBlock}" >
-							<a href="nonpayment?code=4&nowPage=${startBlock-maxBlock}"> 이전줄</a>
+							<a href="nonpayment?code=4&nowPage=${startBlock-maxBlock}"> [이전블록]</a>
 						</c:if> 
 						
 					<!--페이지 블록 -->
 					<c:if test="${total>0}" >
 						<c:forEach var="i" begin="${startBlock}" end="${endBlock}">
 							<c:if test="${i==nowPage}">
-								<a href="nonpayment?code=4&nowPage=${i}&word=${word}" style="font-size:12px;">[${i}]</a>
+								<a href="nonpayment?code=4&nowPage=${i}&word=${word}" style="font-size:20px;">[${i}]</a>
 							</c:if>
 							<c:if test="${i!=nowPage}">
-								<a href="nonpayment?code=4&nowPage=${i}&word=${word}">[${i}]</a>
+								<a href="nonpayment?code=4&nowPage=${i}&word=${word}">&nbsp;[${i}]&nbsp;</a>
 							</c:if>
 						</c:forEach>
 					</c:if>
 					
 						<!-- max블록씩 페이지 뒤로 이동 -->
 						<c:if test="${totalBlock>endBlock}" >
-							<a href="nonpayment?code=4&nowPage=${startBlock+maxBlock}">다음줄</a>
+							<a href="nonpayment?code=4&nowPage=${startBlock+maxBlock}">[다음블록]</a>
 						</c:if> 
 						
 					<!--뒤로1칸이동 / 페이지 맨뒤-->
@@ -499,11 +577,13 @@
 						 			<a href="nonpayment?code=4&nowPage=${nowPage+1}&word=${word}">  ▶</a>
 						 		</c:otherwise>
 						 	</c:choose>
-						<a href="nonpayment?code=4&nowPage=${totalBlock}"> ▶▶</a>
+						<a href="nonpayment?code=4&nowPage=${totalBlock}&word=${word}"> ▶▶</a>
 					</td>
 				</tr>
+			</tbody>
+			
 			</table>
-			</div>
+			<!------------------ 페이징-------------->
 			<!---------------------------------------------------->
 		</c:if>
 		
