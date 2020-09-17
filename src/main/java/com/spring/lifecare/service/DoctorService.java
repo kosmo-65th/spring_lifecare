@@ -20,6 +20,6 @@ public interface DoctorService  {
 	  public int doctorNum(String doctor_num);
 	  
 	  //의사 회원가입 처리
-	  public int doctorJoin(MultipartHttpServletRequest req, Model model);
+	  public void doctorJoin(MultipartHttpServletRequest req, Model model);
 
 }

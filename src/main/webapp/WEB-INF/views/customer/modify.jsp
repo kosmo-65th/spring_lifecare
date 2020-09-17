@@ -1,119 +1,123 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/resources/setting/setting.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
+<link type="text/css" rel="stylesheet" href="${path_resources_customcss}modify.css">
 <meta charset="UTF-8">
-<style type="text/css">
-.title {
-	  display: inline-block;
-	  width: 100%;
-	  text-align: center;
-	  font-weight: 500;
-	  color: #1a1a1a;
-	  font-size: 34px;
-	  line-height: 1;
-	  margin-bottom: 30px;
- }
- 
-  .information_area {
-    width: 900px;
-    margin: 0px auto 50px;
-    text-align: center;
-    padding: 50px 170px;
-    border: 1px solid #ebebeb;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-  }
-  
-  .information_area p {
-    color: #424242;
-    font-size: 30px;
-    line-height: 1;
-    margin-bottom: 30px;
-   }
-  
-  .information_area input {
-    display: inline-block;
-    box-sizing: border-box;
-    border: 1px solid #d9d9d9;
-    background: #fff;
-    width: 100%;
-    height: 45px;
-    padding: 10px;
-    color: #858585;
-    font-size: 14px;
-    line-height: 1;
-    font-weight: 200;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
- }
-  .mb10 {
-    margin-bottom: 10px !important;
-    margin-top: 10px;
-    
-  }
-  .press {
-     text-align: center;
-  }
-  .btn-type.btn2.blue  {
-    color: blue !important;
-    border: 1px #2e3033;
-    background: #009DFF;
-  }
-  
-  .btn-type.btn2.blue {
-    color: #fff !important;
-    border: 1px  #2e3033;
-    background: #009DFF;
-  }
-  .btn-type.btn2 {
-    width: 15%;
-    height: 45px;
-    line-height: 40px;
-    font-size: 18px;
-    text-transform: uppercase;
-    font-family: 'NotoSansKR';
-    font-style: normal;
-    font-weight: 400;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-  }
-  .btn-type {
-    display: inline-block;
-    position: relative;
-    cursor: pointer;
-    transition: all 0.3s;
-  }
-  .mr_2 {
-    margin-right: 2% !important;
-  }
-</style>
 <title>회원 정보 수정</title>
 </head>
+<script src="${path_resources}setting/jquery-3.5.1.js"></script>
+<script type="text/javascript">
+
+    //이름 정규식
+	var nameJ = /^[가-힣]{2,6}$/;
+	// 이메일 검사 정규식
+	var mailJ = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+	// 휴대폰 번호 정규식
+	var phoneJ = /^[0-9]{10,11}$/;
+	
+	$(document).ready(function(){
+		
+	//이름
+	$("#userName").blur(function() {
+		if (nameJ.test($(this).val())) {
+				console.log(nameJ.test($(this).val()));
+				$("#nameChk").text('');
+		} else {
+			$('#nameChk').text('이름을 확인해주세요');
+			$('#nameChk').css('color', 'red');
+		}
+	});
+		
+	//이메일 중복확인
+	$("#userEmail").blur(function() {
+ 			var user_email = $('#userEmail').val();
+ 			$.ajax({
+ 				url : '${pageContext.request.contextPath}/user/email?userEmail='+ user_email,
+ 				type : 'get',
+ 				success : function(result) {
+ 					console.log("1 = 중복o / 0 = 중복x : "+ result);							
+ 					if (result == '1') {
+						$("#emailChk").text("사용중인 이메일 주소 입니다.");
+						$("#emailChk").css("color", "red");
+						document.joinInform.hiddenEmail.value = "0";
+					} else {
+						if(mailJ.test(user_email)){
+							// 0 : 아이디 길이 / 문자열 검사
+							$("#emailChk").text("사용가능한 이메일 주소 입니다.");
+							$("#emailChk").css("color", "blue");
+							document.joinInform.hiddenEmail.value = "1";
+						} else if(user_email == ""){
+							$('#emailChk').text('이메일을 입력해주세요.');
+							$('#emailChk').css('color', 'red');
+							document.joinInform.hiddenEmail.value = "0";		
+						} else {								
+							$('#emailChk').text("@포함 이메일 주소를 입력해 주세요.");
+							$('#emailChk').css('color', 'red');
+							document.joinInform.hiddenEmail.value = "0";
+						}
+					}
+				}, error : function() {
+						console.log("실패");
+				}
+
+			});	
+        });
+	 // 휴대전화중복확인
+ 	  $("#userPhone").blur(function() {
+			var user_phone = $('#userPhone').val();
+			$.ajax({
+				url : '${pageContext.request.contextPath}/user/JoinIn?userPhone='+ user_phone,
+				type : 'get',
+				success : function(result) {
+					console.log("1 = 중복o / 0 = 중복x : "+ result);							
+					if (result == '1') {
+						$("#numberChk").text("사용중인 휴대폰 번호입니다.");
+						$("#numberChk").css("color", "red");
+						document.joinInform.hiddenPhone.value = "0";
+					} else {
+						if(phoneJ.test(user_phone)){
+							// 0 : 아이디 길이 / 문자열 검사
+							$("#numberChk").text("사용가능한 휴대폰 번호 입니다.");
+							$("#numberChk").css("color", "blue");
+							document.joinInform.hiddenPhone.value = "1";
+						} else if(user_phone == ""){
+							$('#numberChk').text('휴대폰 번호를 입력해주세요.');
+							$('#numberChk').css('color', 'red');
+							document.joinInform.hiddenPhone.value = "0";
+						} else {								
+							$('#numberChk').text("(02, -)를 제외하고 입력해 주세요");
+							$('#numberChk').css('color', 'red');
+							document.joinInform.hiddenPhone.value = "0";
+						}
+					}
+				}, error : function() {
+						console.log("실패");
+				}
+
+			});
+        });
+    });	
+</script>
 <body>
 <%@include file="../common/header.jsp" %>
-<form action="" method="post" name="Modifyform" onsubmit="">
+<form action="${pageContext.request.contextPath}/customer/modifyViewPro?${_csrf.parameterName}=${_csrf.token}" method="post" name="Modifyform" onsubmit="">
+   <input type="hidden" name="customer_id" value="${vo.getCustomer_id()}">
      <div class="title">내 정보 관리</div>
         <div class="information_area">
-          <p><!-- 세션으로 이름 가져올것 -->님의 개인 정보 관리</p>
-               *표시는 필수 입력 항목 입니다. 개인 정보를 정확하게 수정해주세요.                
-              <!-- 세션으로 아이디를 가져올 것 -->                         
-               <input type="text" name="customer_id"  id="" class="mb10" value="">
-               <!-- 세션으로 이름을 가져올 것 -->      
-               <input type="text" name="customer_name"  id="" class="mb10" value="">  
-               
-               <!-- 비밀번호 수정 -->
-               <input type="password" name="customer_pw" id="" placeholder="*비밀번호" class="mb10" value="" required> 
-               <!-- 비밀번호 수정 확인 -->
-               <input type="password" name="customer_pwdChk" id="" placeholder="*비밀번호확인" class="mb10" value="" required> 
-               <!-- 휴대폰 번호 수정  -->                   
-               <input type="text" name="customer_phone" id="" placeholder="휴대폰 번호" class="mb10" value="" required> 
-               <!-- 이메일주소는 세션으로 가져올 것 -->       
-               <input type="text" name="customer_email" id="" placeholder="이메일 주소" class="mb10" value="" required>            
+          <p> ${sessionScope.userSession}님의 개인 정보 관리</p>
+               *표시는 필수 입력 항목 입니다. 개인 정보를 정확하게 수정해주세요.                                        
+               <input type="text" name="customer_id"  id="userId" class="mb10" value="${sessionScope.userSession}" readonly>      
+               <input type="text" name="customer_name"  id="userName" placeholder="이름" class="mb10" value="${customer_name}" required>  
+               <div class="nameCheck"  id="nameChk"></div>                
+               <input type="text" name="customer_phone" id="userPhone" placeholder="휴대폰 번호" class="mb10" value="${vo.getCustomer_phone()}" required> 
+               <div class="phoneCheck"  id="numberChk"></div>              
+               <input type="text" name="customer_email" id="userEmail" placeholder="이메일 주소" class="mb10" value="${vo.getCustomer_email()}" required>
+               <div class="emailCheck"  id="emailChk"></div>
+               <input type="text"  name="customer_gender" id="userGender" class="mb10" value="${vo.getCustomer_email()}">
+               <input type="text"  name="customer_gender" id="userGender" class="mb10" value="${vo.getCustomer_email()}">                                 
          </div>
                                        
         <div class="press">

@@ -47,21 +47,22 @@ public class DoctorServiceImpl implements DoctorService{
 	}
 
 	@Override
-	public int doctorJoin(MultipartHttpServletRequest req, Model model) {
-        MultipartFile file = req.getFile("img");
+	public void doctorJoin(MultipartHttpServletRequest req, Model model) {
+        MultipartFile file = req.getFile("doctor_faceimg");
 		
 		// 업로드할 파일의 최대 사이즈(10 * 1024 * 1024 = 10MB)
-		String saveDir = req.getSession().getServletContext().getRealPath("/resources/images/product/");	
-		String realDir = "D:\\DEV65\\workspace\\spring_mvcProject_ksj\\src\\main\\webapp\\resources\\images\\";
+		String saveDir = req.getSession().getServletContext().getRealPath("/resources/img/");	
+		String realDir = "D:\\DEV65\\project\\spring_lifecare\\src\\main\\webapp\\resources\\img\\";
 		
 		try {
 			file.transferTo(new File(saveDir+file.getOriginalFilename()));
+			System.out.println("file :" + file);
 			FileInputStream fis = new FileInputStream(saveDir + file.getOriginalFilename());
 			FileOutputStream fos = new FileOutputStream(realDir + file.getOriginalFilename());
 			int data = 0;
 		
 		while((data = fis.read()) != -1) {
-		fos.write(data);
+			fos.write(data);
 		}
 		
 		fis.close();
@@ -70,7 +71,7 @@ public class DoctorServiceImpl implements DoctorService{
 		//화면으로부터 입력받은 값들을 받아온다. 
 		int doctor_num = Integer.parseInt(req.getParameter("doctor_num"));
 		String doctor_id = req.getParameter("doctor_id");
-		String doctor_pw =  req.getParameter("doctor_pw");
+		String doctor_pw = (passwordEncoder.encode(req.getParameter("doctor_pw")));
         String doctor_name = req.getParameter("doctor_name");
         String doctor_email = req.getParameter("doctor_email");
         String doctor_phone = req.getParameter("doctor_phone");
@@ -81,6 +82,7 @@ public class DoctorServiceImpl implements DoctorService{
 	
 	    DoctorVO vo = new DoctorVO();
 	    vo.setDoctor_num(doctor_num);
+	    vo.setDoctor_pw(passwordEncoder.encode(doctor_pw));
 		vo.setDoctor_id(doctor_id);
 		vo.setDoctor_name(doctor_name);
 	    vo.setDoctor_email(doctor_email);
@@ -88,9 +90,8 @@ public class DoctorServiceImpl implements DoctorService{
 	    vo.setDoctor_major(doctor_major);
 	    vo.setDoctor_position(doctor_position);
 		vo.setDoctor_faceimg(img);
-			
-		
-	    int insertCnt = UserDAO
+				
+	    int insertCnt = userDAO.insertDoctor(vo);
 	    System.out.println("insertCnt :" + insertCnt );
 	    
 	    model.addAttribute("dtos", vo);

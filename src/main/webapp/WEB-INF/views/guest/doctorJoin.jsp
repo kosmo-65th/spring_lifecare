@@ -13,8 +13,6 @@
 <script src="${path_resources}setting/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 
-    var hiddenId = "";
-
     var msg_pwdChk = "비밀번호가 일치하지 않습니다.";
 
     //모든 공백 체크 정규식
@@ -30,7 +28,7 @@
 	// 휴대폰 번호 정규식
 	var phoneJ = /^[0-9]{10,11}$/;
 	// 면허 번호 정규식
-	var numJ = /^[0-9]*$/;
+	var numJ = /^[0-9]{5,6}$/;
 	
 	
 	function dJoinInFocus(){
@@ -41,54 +39,55 @@
 		 return false;		
 	  }
 	  if(!idJ.test(doctorId.value)){
-   	    alert("아이디를 다시 확인해주세요 .");
-   	    document.joinInform.doctorId.value = "";
-		   document.joinInform.doctorId.focus();
-		   return false;   
-      }
+	   	    alert("아이디를 다시 확인해주세요 .");
+	   	    document.joinInform.doctorId.value = "";
+			document.joinInform.doctorId.focus();
+			return false;   
+	  }
 	  if(!nameJ.test(doctorName.value)){
-   	    alert("이름을 다시 확인해주세요 .");
-   	    document.joinInform.doctorName.value = "";
-		document.joinInform.doctorName.focus();
-		 return false;
-	   }
-	   if(!mailJ.test(doctorEmail.value)){
-   	     alert("이메일 정보를 다시 확인해주세요.");
-   	     document.joinInform.doctorEmail.value = "";
-		 document.joinInform.doctorEmail.focus();
-		   return false;
+	   	    alert("이름을 다시 확인해주세요 .");
+	   	    document.joinInform.doctorName.value = "";
+			document.joinInform.doctorName.focus();
+			return false;
+	  }
+	  if(!mailJ.test(doctorEmail.value)){
+	   	     alert("이메일 정보를 다시 확인해주세요.");
+	   	     document.joinInform.doctorEmail.value = "";
+			 document.joinInform.doctorEmail.focus();
+			   return false;
 	   }
 	   if(!phoneJ.test(doctorPhone.value)){
-   	     alert("휴대폰 정보를 다시 확인해주세요 .");
-   	     document.joinInform.doctorPhone.value = "";
-		 document.joinInform.doctorPhone.focus();
-		 return false;
+	   	     alert("휴대폰 정보를 다시 확인해주세요 .");
+	   	     document.joinInform.doctorPhone.value = "";
+			 document.joinInform.doctorPhone.focus();
+			 return false;
 	   }
-	   // join - hiddenId : 중복확인 버튼 클릭여부 체크(0:클릭안함, 1:클릭함)
+	// join - hiddenId : 중복확인 버튼 클릭여부 체크(0:클릭안함, 1:클릭함)
 		if(document.joinInform.hiddenId.value == "0") {
-		   alert("중복확인을 다시 확인해주세요 .");
+		   alert("아이디 중복확인을 다시 확인해주세요 .");
 		   document.joinInform.doctorId.value = "";
 		   document.joinInform.doctorId.focus();
 		   return false;
 		}
 		if(document.joinInform.hiddenPhone.value == "0") {
-			alert("중복확인을 다시 확인해주세요 .");
+			alert("휴대폰 번호를 다시 확인해주세요 .");
 			document.joinInform.doctorPhone.value = "";
 			document.joinInform.doctorPhone.focus();
 			return false;
 		}
 		if(document.joinInform.hiddenEmail.value == "0") {
-			alert("중복확인을 다시 확인해주세요 .");
+			alert("이메일을 다시 확인해주세요 .");
 			document.joinInform.doctorEmail.value = "";
 			document.joinInform.doctorEmail.focus();
 			return false;
 		}
-	  
+  	
+	}
 	
 	 $(document).ready(function(){
 		 
 		//의사 아이디 중복확인
-	   	$("#doctorId").keyup(function() {
+	   	$("#doctorId").blur(function() {
 	 		var doctor_id = $('#doctorId').val();
 	 		$.ajax({
 	 				url : '${pageContext.request.contextPath}/user/dJoinInForm?doctorId='+ doctor_id,
@@ -122,7 +121,7 @@
 	       });
 		
 	   	  // 의사 휴대전화 중복확인
-	   	  $("#doctorPhone").keyup(function() {
+	   	  $("#doctorPhone").blur(function() {
 	 			var doctor_phone = $('#doctorPhone').val();
 	 			$.ajax({
 	 				url : '${pageContext.request.contextPath}/user/dJoinIn?doctorPhone='+ doctor_phone,
@@ -158,7 +157,7 @@
 	   	  
 	   	  
 	       // 의사 이메일 중복확인
-	    	$("#doctorEmail").keyup(function() {
+	    	$("#doctorEmail").blur(function() {
 	  			var doctor_email = $('#doctorEmail').val();
 	  			$.ajax({
 	  				url : '${pageContext.request.contextPath}/user/dEmail?doctorEmail='+ doctor_email,
@@ -193,8 +192,8 @@
 	 			});
 	        });
 	       
-	    	 // 의사 면허 중복확인
-	    	$("#doctorNum").keyup(function() {
+	    	// 의사 면허 중복확인
+	    	$("#doctorNum").blur(function() {
 	  			var doctor_num = $('#doctorNum').val();
 	  			$.ajax({
 	  				url : '${pageContext.request.contextPath}/user/dNum?doctorNum='+ doctor_num,
@@ -202,22 +201,22 @@
 	  				success : function(result) {
 	  					console.log("1 = 중복o / 0 = 중복x : "+ result);							
 	  					if (result == '1') {
-	 						$("#numChk").text("사용중인 이메일 주소 입니다.");
+	 						$("#numChk").text("사용중인 면허번호 입니다.");
 	 						$("#numChk").css("color", "red");
 	 						document.joinInform.hiddenNum.value = "0";
 	 					} else {
 	 						if(numJ.test(doctor_num)){
 	 							// 0 : 아이디 길이 / 문자열 검사
-	 							$("#numChk").text("사용가능한 이메일 주소 입니다.");
+	 							$("#numChk").text("사용가능한 면허번호 입니다.");
 	 							$("#numChk").css("color", "blue");
 	 							document.joinInform.hiddenNum.value = "1";
 	 			
 	 						} else if(doctor_num == ""){
-	 							$('#numChk').text('이메일을 입력해주세요.');
+	 							$('#numChk').text('면허번호을 입력해주세요.');
 	 							$('#numChk').css('color', 'red');
 	 							document.joinInform.hiddenNum.value = "0";		
 	 						} else {								
-	 							$('#numChk').text("@포함 이메일 주소를 입력해 주세요.");
+	 							$('#numChk').text("10글자 내로 입력해 주세요.");
 	 							$('#numChk').css('color', 'red');
 	 							document.joinInform.hiddenNum.value = "0";
 	 						}
@@ -227,10 +226,8 @@
 	 				}
 
 	 			});
-	        });
-	       
-	       
-	       
+	        }); 
+	          
 	      //비밀번호
 	  	  $("#doctorPwd").blur(function() {
 	  		  if (pwJ.test($(this).val())) {
@@ -269,11 +266,12 @@
    });
 
 </script>
-	<form action="" method="post" name="joinInform" onsubmit="dJoinInFocus">
-	  <input type="hidden" name="hiddenId" value="0">
-      <input type="hidden" name="hiddenPhone" value="0">
-      <input type="hidden" name="hiddenEmail" value="0">
-      <input type="hidden" name="hiddenNum" value="0">
+	<form action="${pageContext.request.contextPath}/insertDoctor?${_csrf.parameterName}=${_csrf.token}" method="post" name="joinInform" enctype="multipart/form-data" onsubmit="return dJoinInFocus();">
+	 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+	 <input type="hidden" name="hiddenId" value="0">
+     <input type="hidden" name="hiddenPhone" value="0">
+     <input type="hidden" name="hiddenEmail" value="0">
+     <input type="hidden" name="hiddenNum" value="0">
 	    <div class="title">의사 회원가입</div>
         	<div class="djoinIn_area">
           		<p>WELCOME TO LIFECARE</p>
@@ -291,9 +289,9 @@
 	               <div class="number" id=numberChk></div>         
 	               <input type="text" name="doctor_email" id="doctorEmail" placeholder="이메일 주소" class="mb10" value="" required>
 	               <div class="email" id=emailChk></div>
-	               <h3>프로필 사진을 올려주세요.</h3>         
+	               <h3>프로필 사진을 올려주세요.</h3>       
 	               <input type="file" name="doctor_faceimg" id="img" required>
-	               <div class="picture" id=fileChk></div><br>
+	               <img src="resources/upload/${vo.filename2 }" width="400" height="200">
 	               <h3>전공을 클릭해서 선택해 주세요.</h3>      
 	               <select  name="doctor_major" required id="major" >
 	                   <option value="내과">내과</option>

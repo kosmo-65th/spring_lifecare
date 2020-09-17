@@ -85,6 +85,9 @@ public class CustomerServiceImpl implements CustomerService{
 		vo.setCustomer_name(req.getParameter("customer_name"));
 		vo.setCustomer_email(req.getParameter("customer_email"));
 		vo.setCustomer_phone(req.getParameter("customer_phone"));
+		vo.setCustomer_gender(req.getParameter("customer_gender"));
+		vo.setCustomer_year(Integer.parseInt(req.getParameter("customer_year")));
+		
 			
 		int cnt = userDAO.insertMember(vo);
 			

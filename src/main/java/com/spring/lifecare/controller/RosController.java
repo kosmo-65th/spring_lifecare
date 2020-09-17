@@ -6,14 +6,18 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.spring.lifecare.service.CustomerService;
 import com.spring.lifecare.service.CustomerServiceImpl;
 import com.spring.lifecare.service.DoctorService;
+import com.spring.lifecare.service.MyPageService;
+import com.spring.lifecare.vo.CustomerVO;
 
 @Controller
 public class RosController {
@@ -22,6 +26,9 @@ public class RosController {
 	
 	@Autowired
 	DoctorService doctor;
+	
+	@Autowired
+	MyPageService myPage;
 	
 	//일반회원, 의사 회원가입 방법 폼
 	@RequestMapping("/preJoinIn")
@@ -69,7 +76,7 @@ public class RosController {
 	//회원가입 성공
 	@RequestMapping("/joinSuccess")
      public String joinSuccess(HttpServletRequest req, Model model) {
-			
+	  		
 	  int cnt = Integer.parseInt(req.getParameter("insertCnt"));
 	  model.addAttribute("insertCnt", cnt); 
 		      
@@ -106,6 +113,30 @@ public class RosController {
 		return "guest/doctorJoin";		
 
 	}
+	
+	//의사 회원가입 처리
+	@RequestMapping(value="/insertDoctor", method=RequestMethod.POST)
+	public String insertDoctor(MultipartHttpServletRequest req, Model model) {
+		
+		 doctor.doctorJoin(req, model);
+		
+	     return "guest/insertDoctor";
+	}
+	
+	//의사 회원가입 성공
+	@RequestMapping("/doctorJoinSuccess")
+	public String doctorJoinSuccess(HttpServletRequest req, Model model) {
+		  try {
+			  int cnt = Integer.parseInt(req.getParameter("insertCnt"));
+			  model.addAttribute("insertCnt", cnt); 
+			      
+		  }catch(NumberFormatException e){
+            	  
+		 }	  
+		  return "guest/login";
+	}
+	
+	
 	// 의사 id 중복 체크 컨트롤러
 	@RequestMapping(value = "/user/dJoinInForm", method = RequestMethod.GET)
 	@ResponseBody
@@ -130,30 +161,63 @@ public class RosController {
 	public String doctorNumChk(@RequestParam("doctorNum") String doctor_num, Model model) {
 			return Integer.toString(doctor.doctorNum(doctor_num));
 	}
+	//내 정보 수정하기 폼
+	@RequestMapping("/customer/modify")
+	public String modify(HttpServletRequest req, Model model) {
+		
+	 return "customer/modify";		
+	}
 	
-				
+	//정보 수정 처리 페이지
+	@RequestMapping("/customer/modifyViewPro")
+	public String modifyViewPro(HttpServletRequest req, Model model) {
+		
+		myPage.modifyPro(req, model);
 	
+		return "customer/modifyViewPro";
+	}
 	
+	//마이페이지 비밀번호 변경전 현재 비밀번호 입력하기 폼
+	@RequestMapping("/customer/preChangePassword")
+	public String preChangePassword(HttpServletRequest req, Model model) {
+		
+		return "customer/preChangePassword";		
+	}
+	
+	 //마이페이지 비밀번호 변경전 현재 비밀번호 입력하기 과정
+	  @RequestMapping("/customer/preChangePasswordPro") 
+	  public String preChangePasswordPro(HttpServletRequest req, Model model) {
+		  //비밀번호 확인
+		  int selectCnt = myPage.putPassword(req, model);
+		  System.out.println("selectCnt : " +selectCnt);
+		  
+		  model.addAttribute("selectCnt", selectCnt);
+		  
+		  return "customer/preChangePasswordPro"; 
+	  }
+	  
+	
+	//마이 페이지 비밀번호 변경폼
+	@RequestMapping("/customer/changePassword")
+	public String changePassword(HttpServletRequest req, Model model) {
+	
+		return "customer/changePassword";		
+	}
+	
+	//비밀번호 변경처리화면
+	@RequestMapping("/customer/changePasswordPro")
+	public String changePasswordPro(HttpServletRequest req, Model model) {
+		
+	   
+		myPage.modifyPassword(req, model);
+		req.getSession().invalidate();
+		
+		return "customer/changePasswordPro";		
+	}
 	//비밀번호 찾기
 	@RequestMapping("/findPassword")
 	public String findPassword(Model model) {
 		return "guest/findPassword";		
-	}
-	//회원탈퇴
-	@RequestMapping("/customer/remove")
-	public String remove(Model model) {
-		return "customer/remove";		
-	}
-	//회원수정전 비밀번호 입력
-	@RequestMapping("/customer/preModify")
-	public String preModify(Model model) {
-		
-		return "customer/preModify";		
-	}
-	//회원수정 폼
-	@RequestMapping("/customer/modify")
-	public String modify(Model model) {
-		return "customer/modify";		
 	}
 	
 	

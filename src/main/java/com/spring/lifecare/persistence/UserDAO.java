@@ -45,4 +45,19 @@ public interface UserDAO {
 	 //의사 회원가입 처리
 	 public int insertDoctor(DoctorVO vo);
 	 
+	 //정보수정을 위한 패스워드 체크
+	 public String idPwdCheck(String customer_id);
+	 
+	 //내 정보 가져오기
+     public CustomerVO myInformation(String customer_id);
+		 	
+	 //내 정보 수정하기
+	 public int updateMyInformation(CustomerVO vo);
+	 
+	 //비밀번호 변경
+	 public int changePassword(CustomerVO vo);
+	 
+	 
+	 
+	
 }

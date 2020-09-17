@@ -14,7 +14,6 @@ import org.springframework.stereotype.Repository;
 import com.spring.lifecare.vo.CustomerVO;
 import com.spring.lifecare.vo.DoctorVO;
 
-
 @Repository
 public class UserDAOImpl implements UserDAO {
 	@Autowired
@@ -98,9 +97,55 @@ public class UserDAOImpl implements UserDAO {
 	}
 	//의사 회원가입 처리
 	@Override
-	public int insertDoctor(DoctorVO vo) {
-		return sqlSession.insert("com.spring.lifecare.persistence.UserDAO.insertDoctor", vo);
+	public int insertDoctor(DoctorVO vo) {		
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);	    	    
+	    return dao.insertDoctor(vo);
 	}
 	
+	@Override
+	public String idPwdCheck(String customer_id) {
+		String checkIdPwd = sqlSession.selectOne("com.spring.lifecare.persistence.UserDAO.idPwdCheck", customer_id);
+		return checkIdPwd;	
+	}
+	
+	
+	
+	//내 정보 가져오기
+	@Override
+	public CustomerVO myInformation(String customer_id) {
+		CustomerVO vo = new CustomerVO();
+		vo = sqlSession.selectOne("com.spring.lifecare.persistence.UserDAO.myInformation", customer_id);
+		return vo;
+		
+	}
+
+	//내 정보 수정하기
+	@Override
+	public int updateMyInformation(CustomerVO vo) {
+		 int updateCnt = sqlSession.update("spring.mvc.member_mybatis.persistence.MemberDAO.updateMyInformation", vo);
+		 
+		 return updateCnt;
+		
+	}
+
+	//마이페이지 비밀번호 변경
+	@Override
+	public int changePassword(CustomerVO vo) {
+		int updateCnt = sqlSession.update("com.spring.lifecare.persistence.UserDAO.changePassword", vo);
+
+		return updateCnt;
+		
+	}
+
+	
+
+	
+
+	
+
+	
+
+	
+
 }
 
