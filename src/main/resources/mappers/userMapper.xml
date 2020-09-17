@@ -17,6 +17,12 @@
        WHERE kakaoId=#{kakaoId}  
    </select>
    
+   <select id = "naverFindId" parameterType="String" resultType = "java.util.Map">
+      SELECT customer_id as username, customer_name as name, enabled, authority
+        FROM customer
+       WHERE naverId=#{naverId}  
+   </select>
+   
    <!--  아이디 중복확인 -->
    <select id ="idCheck" parameterType="String" resultType="int" >
      SELECT count(*)  FROM customer WHERE customer_id=#{customer_id} 

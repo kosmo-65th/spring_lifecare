@@ -10,34 +10,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class JmyController {
 	
 	//환자권리장전
-	@RequestMapping("/guest/pbor")
+	@RequestMapping("/pbor")
 	public String pbor() {
 		
 		
-		return "/guest/pbor";
+		return "/guest/patientBillOfRight";
 	}
+	
 	//이용약관
-	@RequestMapping("/guest/conditions")
+	@RequestMapping("/conditions")
 	public String conditions() {
 		
 		
 		return "/guest/conditions";
 	}
+	
 	//개인정보 처리방침
-	@RequestMapping("/guest/PI")
+	@RequestMapping("/PI")
 	public String PI() {
 		
-		return "/guest/PI";
+		return "/guest/personaLinfomation";
 	}
 	
 	//정보공개
-	@RequestMapping("/guest/OI")
+	@RequestMapping("/OI")
 	public String OI() {
 		
 		
-		return "/guest/OI";
+		return "/guest/openInfomation";
 	}
-	@RequestMapping("/guest/nonpayment")
+	@RequestMapping("/nonpayment")
 	public String nonpayment(HttpServletRequest req, Model model) {
 		
 		String code=req.getParameter("code");

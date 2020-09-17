@@ -12,7 +12,7 @@
      <c:if test="${selectCnt == 0}">
 		<script type="text/javascript">
 			alert("비밀번호가 일치하지 않습니다.");
-			window.location='Mypage';
+			window.location='${path}/customer/preChangePassword';
 		</script>
 	</c:if>
 	<c:if test="${selectCnt != 0}">

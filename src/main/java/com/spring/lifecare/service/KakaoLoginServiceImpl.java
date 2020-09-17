@@ -155,7 +155,7 @@ public class KakaoLoginServiceImpl implements KakaoLoginService{
     //카카오에서 권한주기
     public void kakaoAutehntication(HttpServletRequest request, HttpServletResponse response, Map<String, String> user) {
     	//권한 manager 생성
-    	AuthenticationManager am = new SampleAuthenticationManager();
+    	OutLoginAuthenticationManager am = new OutLoginAuthenticationManager();
     	
     	//실제 아이디 
     	String id = (String)user.get("USERNAME");
@@ -191,7 +191,7 @@ public class KakaoLoginServiceImpl implements KakaoLoginService{
     }
     
 }
-
+/*
 //권한 부여
 class SampleAuthenticationManager implements AuthenticationManager {
   static final List AUTHORITIES = new ArrayList();
@@ -206,3 +206,5 @@ class SampleAuthenticationManager implements AuthenticationManager {
   }
   
 }
+
+*/

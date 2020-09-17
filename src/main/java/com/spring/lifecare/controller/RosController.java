@@ -207,10 +207,7 @@ public class RosController {
 	//비밀번호 변경처리화면
 	@RequestMapping("/customer/changePasswordPro")
 	public String changePasswordPro(HttpServletRequest req, Model model) {
-		
-	   
 		myPage.modifyPassword(req, model);
-		req.getSession().invalidate();
 		
 		return "customer/changePasswordPro";		
 	}
