@@ -1,16 +1,17 @@
 package com.spring.lifecare.service;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.spring.lifecare.vo.DrugVO;
 
 
 
 public interface DrugService {
 
+	public void searchDrug(HttpServletRequest req, Model mod);
 
-	void searchDrug(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
-
+	public void drugDetail(HttpServletRequest req, Model mod);
 }

@@ -41,43 +41,26 @@ $(function(){
 	$('#btn_idfysearch').click(function(){
 		var drug_name = document.getElementById("drug_name").value;
 		var drug_enptname = document.getElementById("entp_name").value;
+		alert("drug_name : " + drug_name);
+		alert("drug_enptname : " + drug_enptname);
 		
-	    
-		/* var chckList = document.getElementsByName("shapes");
-		var shapeList = "";
-
-		for (var i = 0; i < chckList.length; i++) {
-			if (chckList[i].checked) {
-				shapeList = shapeList + "," + chckList[i].value;
-			}
-		} */
-		 
-		var shapeList = new Array();
+	    var shapeList = new Array();
         $("input[name=shapes]:checked").each(function(){
         	shapeList.push($(this).val());
-        }); 
+        });
+		alert("shapeList : " + shapeList);
 
-        
-        
 		var formList = new Array();
         $("input[name=forms]:checked").each(function(){
         	formList.push($(this).val());
         });
+		alert("formList : " + formList);
 		
-		var colorList = new Array();
-        $("input[name=colors]:checked").each(function(){
-        	colorList.push($(this).val());
-        });
-        
-		window.location="drugSearchPro?drug_name=" + drug_name + "&drug_enptname="+drug_enptname+ "&drug_formulation="+formList + "&drug_color="+colorList+"&drug_shape=" +shapeList ; 
 		
-
+		window.location="drugSearchPro?drug_shape=" + shapeList + "&drug_name=" +drug_name + "&drug_enptname="+drug_enptname+ "&drug_formulation="+formList; 
+		alert("11111");
 	});
-	
-	
-	
 })
-
 function searchDrug() {
 	
 	return false;
@@ -85,6 +68,10 @@ function searchDrug() {
 </script>
 
 <script type="text/javascript">
+
+	var selectCnt = 0
+	var mainResult
+	var selectEtc = 0
 
 $(document).ready(function() {
 
@@ -137,11 +124,217 @@ function init() {
 	$("#drug_print_front").val("");
 	$("#drug_print_back").val("");
 }
+function searchEnter(){
+	if(event.keyCode == 13){
+		if($("#drug_name").val() == ""){
+			alert("제품명을 입력해주세요.");
+			return false;
+		}else{
+			$("#proYN").val("");
+			$("#rowLength").val(50);
+			$("#TabState").val("0");
+			$("#pageNo").val(1);
+			$("#frm").submit();
+		}
+	}
+}
+function searchEnter2(){
+	if(event.keyCode == 13){
+		if($("#firm_name").val() == ""){
+			alert("회사명을 입력해주세요.");
+			return false;
+		}else{
+			$("#proYN").val("");
+			$("#rowLength").val(50);
+			$("#TabState").val("0");
+			$("#pageNo").val(1);
+			$("#frm").submit();
+		}
+	}
+}
+function searchEnter3(){
+	if(event.keyCode == 13){
+		if($("#drug_print_front").val() == ""){
+			alert("문자를 입력해주세요.");
+			return false;
+		}else{
+			$("#proYN").val("");
+			$("#rowLength").val(50);
+			$("#TabState").val("0");
+			$("#pageNo").val(1);
+			$("#frm").submit();
+		}
+	}
+}
+function searchEnter4(){
+	if(event.keyCode == 13){
+		if($("#drug_print_back").val() == ""){
+			alert("문자를 입력해주세요.");
+			return false;
+		}else{
+			$("#proYN").val("");
+			$("#rowLength").val(50);
+			$("#TabState").val("0");
+			$("#pageNo").val(1);
+			$("#frm").submit();
+		}
+	}
+}
 function idfySend() {
 	$("#proYN").val("");
 	$("#rowLength").val(50);
 	$("#TabState").val("0");
 	$("#pageNo").val(1);
+	$("#frm").submit();
+}
+function moveform() {
+		
+		//기준이 될 div  현재 top값
+		var topset = $("#result").offset().top;
+		alert(topset);
+
+		//움직일 div top 값
+		var offset = $("#result").offset().top;
+		alert(offset);
+
+		// 148 :  헤더 차지값, 826 : top버튼 눌렀을때 최상단부터 기준div top값
+		var chaset = 148 - ( 1168 - parseInt(topset));
+		alert(chaset);
+
+		$("html,body").stop().animate({
+			scrollTop : offset - chaset
+		},0);
+
+		sideCalc();
+}
+function pageBar(page_val) {
+	
+	alert(page_val)
+
+	//페이징 처리를 위한 계산
+	var startp = "";
+	var endp = "";
+
+	//현재 요청들어온 페이지
+	var req_page = page_val;
+	
+	//현재 페이지값이 0이라면 1로 강제셋팅
+	if(req_page == ""){
+		req_page ='1';
+	}else{
+		req_page = page_val;
+	}
+	
+	
+	//전체 페이지를 나누기 위해 count 체크
+	var totalCnt = 0;
+
+	alert(totalCnt)
+
+
+		//하단 페이징바 작업
+		var pagingHtml = "";
+		// <<버튼 작업 - 무조건 처음으로
+		pagingHtml += "<a style='cursor:pointer' onclick='javascript:changePage(1)' class='first ico' alt='처음'></a>";
+
+		var nexted = parseInt(page_val)-1; 
+		// <버튼 작업 - 이전페이지로 이동		
+		//if(parseInt(page_val) < 10){
+			// 10페이지보다 작으면 1페이지로 보낸다.
+			//pagingHtml += "<a style='cursor:pointer' onclick='javascript:changePage(1)' class='left ico' alt='이전'></a>"
+		//}else if(parseInt(page_val) >= 10){
+			// 10페이지보다 크면 9페이지 전으로 넘긴다
+		if(nexted > 1){
+			pagingHtml += "<a style='cursor:pointer' onclick='javascript:changePage("+nexted+")' class='left ico' alt='이전'></a>"
+		}else{
+			pagingHtml += "<a style='cursor:pointer' onclick='javascript:changePage(1)' class='left ico' alt='이전'></a>"
+		}
+			
+		pagingHtml += "<span>"
+		
+		var postPbar;
+		var prePbar;
+		var maxPbar;
+		var ceilvalue = Math.ceil(totalCnt/50);
+		
+		//현재페이지 값이 6페이지와 같거나 크면 첫번째 for문을 시작한다.
+		if(parseInt(page_val) >= 6){
+			if((parseInt(page_val)+5) > ceilvalue){
+				postPbar = Math.ceil(parseInt(totalCnt)/parseInt('50'));
+				prePbar = postPbar - 5;
+			}else{
+				postPbar = parseInt(page_val) + 5;
+				prePbar = parseInt(page_val) - 4;
+			}
+
+			alert(postPbar)
+			alert(prePbar)
+			
+			for(var i = prePbar  ; i <= postPbar ; i++){
+				pagingHtml += "<a style='cursor:pointer' onclick='javascript:changePage("+i+ ")' target='_self'";
+				if(page_val == i){
+					pagingHtml += "class='current' >"+i+"</a>";
+				}else{
+					pagingHtml += ">"+i+"</a>";
+				}
+
+				if(i == ceilvalue){
+					break;
+				}
+			}
+
+		}else if(parseInt(page_val) < 6){
+			//현재 페이지가 6페이지보다 작은 1,2페이지 일때
+			//10보다 크면 10페이지까지 최초에 찍어준다. 그렇지 않고 10미만이라면 총 페이지바 값을 max로 잡는다.
+			if(ceilvalue > 10){
+				maxPbar = 10;
+			}else if(ceilvalue <= 10){
+				maxPbar = ceilvalue
+			}
+
+			for(var j = 1 ; j <= maxPbar; j++){
+				pagingHtml += "<a style='cursor:pointer' onclick='javascript:changePage("+ j + ")' target='_self'"
+				if(page_val == j){
+					pagingHtml += "class='current' >"+j+"</a>"
+				}else{
+					pagingHtml += ">"+j+"</a>"
+				}				
+			}
+			pagingHtml += "</span>";		
+		}
+
+		alert(ceilvalue)
+		
+		
+		if((parseInt(page_val) <=5) && (ceilvalue >= parseInt(page_val)+9)){
+			pagingHtml+= "<a style='cursor:pointer' class='right ico' alt='다음' target='_self' onclick='javascript:changePage("+(parseInt(page_val)+1) +")'></a>"
+		}else if((parseInt(page_val) <=5) && (ceilvalue <= parseInt(page_val)+9)){
+			pagingHtml+= "<a style='cursor:pointer' class='right ico' alt='다음' target='_self' onclick='javascript:changePage("+ (parseInt(page_val)+1) +")'></a>"
+		}else if((parseInt(page_val) >5) && (ceilvalue >= parseInt(page_val)+9)){
+			pagingHtml+= "<a style='cursor:pointer' class='right ico' alt='다음' target='_self' onclick='javascript:changePage("+(parseInt(page_val)+1) +")'></a>"
+		}else if((parseInt(page_val) >5) && (ceilvalue <= parseInt(page_val)+9)){
+			pagingHtml+= "<a style='cursor:pointer' class='right ico' alt='다음' target='_self' onclick='javascript:changePage("+ (parseInt(page_val)+1) +")'></a>"
+		}
+		
+		pagingHtml += "<a style='cursor:pointer' onclick='javascript:changePage(" + ceilvalue + ")' class='last ico' alt='마지막'></a>"
+
+		if($("#idfytotal0").length > 0) {
+			$("#paging").html(pagingHtml);
+		}
+}
+
+function changePage(val) {
+	$("#pageNo").val(val);
+	$("#frm").submit();
+}
+
+
+function changeTab(val1,val2) {
+	$("#proYN").val(val1);
+	$("#TabState").val(val2);
+	$("#pageNo").val(1);
+
+	
 	$("#frm").submit();
 }
 
@@ -323,6 +516,212 @@ function getUpsoName(val){
 
 
 
+
+
+function list_setting() {
+	if ($("#type_01_hidden").val() == "true") {
+		$("#type_01").addClass("selected");
+	}
+	if ($("#type_02_hidden").val() == "true") {
+		$("#type_02").addClass("selected");
+	}
+	if ($("#type_03_hidden").val() == "true") {
+		$("#type_03").addClass("selected");
+	}
+	if ($("#type_etc_hidden").val() == "true") {
+		$("#type_etc").addClass("selected");
+	}
+	if($("#typeids li input[type=checkbox]:checked").length > 0) {
+		$("#type_all").removeClass("selected");
+	}
+
+	if ($("#shape_01_hidden").val() == "true") {
+		$("#shape_01").addClass("selected");
+	}
+	if ($("#shape_02_hidden").val() == "true") {
+		$("#shape_02").addClass("selected");
+	}
+	if ($("#shape_03_hidden").val() == "true") {
+		$("#shape_03").addClass("selected");
+	}
+	if ($("#shape_04_hidden").val() == "true") {
+		$("#shape_04").addClass("selected");
+	}
+	if ($("#shape_05_hidden").val() == "true") {
+		$("#shape_05").addClass("selected");
+	}
+	if ($("#shape_06_hidden").val() == "true") {
+		$("#shape_06").addClass("selected");
+	}
+	if ($("#shape_10_hidden").val() == "true") {
+		$("#shape_10").addClass("selected");
+	}
+	if ($("#shape_09_hidden").val() == "true") {
+		$("#shape_09").addClass("selected");
+	}
+	if ($("#shape_08_hidden").val() == "true") {
+		$("#shape_08").addClass("selected");
+	}
+	if ($("#shape_etc_hidden").val() == "true") {
+		$("#shape_etc").addClass("selected");
+	}
+	if($("#shapeids li input[type=checkbox]:checked").length > 0) {
+		$("#shape_all").removeClass("selected");
+	}
+	if($(".shapeETC").find("[type=checkbox]:checked").length > 0) {
+		$("#shape_all").removeClass("selected");
+	}
+
+	if ($("#color_white_hidden").val() == "true") {
+		$("#color_white").addClass("selected");
+	}
+	if ($("#color_yellow_hidden").val() == "true") {
+		$("#color_yellow").addClass("selected");
+	}
+	if ($("#color_orange_hidden").val() == "true") {
+		$("#color_orange").addClass("selected");
+	}
+	if ($("#color_pink_hidden").val() == "true") {
+		$("#color_pink").addClass("selected");
+	}
+	if ($("#color_red_hidden").val() == "true") {
+		$("#color_red").addClass("selected");
+	}
+	if ($("#color_brown_hidden").val() == "true") {
+		$("#color_brown").addClass("selected");
+	}
+	if ($("#color_ygreen_hidden").val() == "true") {
+		$("#color_ygreen").addClass("selected");
+	}
+	if ($("#color_green_hidden").val() == "true") {
+		$("#color_green").addClass("selected");
+	}
+	if ($("#color_bgreen_hidden").val() == "true") {
+		$("#color_bgreen").addClass("selected");
+	}
+	if ($("#color_blue_hidden").val() == "true") {
+		$("#color_blue").addClass("selected");
+	}
+	if ($("#color_navy_hidden").val() == "true") {
+		$("#color_navy").addClass("selected");
+	}
+	if ($("#color_wine_hidden").val() == "true") {
+		$("#color_wine").addClass("selected");
+	}
+	if ($("#color_purple_hidden").val() == "true") {
+		$("#color_purple").addClass("selected");
+	}
+	if ($("#color_grey_hidden").val() == "true") {
+		$("#color_grey").addClass("selected");
+	}
+	if ($("#color_black_hidden").val() == "true") {
+		$("#color_black").addClass("selected");
+	}
+	if ($("#color_transp_hidden").val() == "true") {
+		$("#color_transp").addClass("selected");
+	}
+	if ($("#colorids li input[type=checkbox]:checked").length > 0) {
+		$("#color_all").removeClass("selected");
+	}
+
+	if ($("#line_no_hidden").val() == "true") {
+		$("#line_no").addClass("selected");
+	}
+	if ($("#line_plus_hidden").val() == "true") {
+		$("#line_plus").addClass("selected");
+	}
+	if ($("#line_minus_hidden").val() == "true") {
+		$("#line_minus").addClass("selected");
+	}
+	if ($("#line_etc_hidden").val() == "true") {
+		$("#line_etc").addClass("selected");
+	}
+	if ($("#lineids li input[type=checkbox]:checked").length > 0) {
+		$("#line_all").removeClass("selected");
+	}
+
+
+}
+function hidden_frm_setting() {
+	$("#item_ingr_hidden").val(encodeURIComponent($("#item_ingr").val()));
+	$("#pageSize_hidden").val(encodeURIComponent($("#pageSize").val()));
+	$("#produceKind_hidden").val(encodeURIComponent($("#produceKind").val()));
+	$("#pageNum_hidden").val(encodeURIComponent($("#pageNum").val()));
+	
+	$("#drug_print_front_hidden").val(encodeURIComponent($("#drug_print_front").val()));
+	$("#match1_hidden").val(encodeURIComponent($("#match1").is(":checked")));
+	$("#drug_print_back_hidden").val(encodeURIComponent($("#drug_print_back").val()));
+	$("#match2_hidden").val(encodeURIComponent($("#match2").is(":checked")));
+	
+	$("#type_01_hidden").val(encodeURIComponent($("#type_01 [type=checkbox]").is(":checked")));
+	$("#type_02_hidden").val(encodeURIComponent($("#type_02 [type=checkbox]").is(":checked")));
+	$("#type_03_hidden").val(encodeURIComponent($("#type_03 [type=checkbox]").is(":checked")));
+	$("#type_etc_hidden").val(encodeURIComponent($("#type_etc [type=checkbox]").is(":checked")));
+	$("#type_all_hidden").val(encodeURIComponent($("#type_all [type=checkbox]").is(":checked")));
+
+	$("#drug_name_hidden").val(encodeURIComponent($("#drug_name").val()));
+	$("#firm_name_hidden").val(encodeURIComponent($("#firm_name").val()));
+
+	$("#shape_01_hidden").val(encodeURIComponent($("#shape_01 [type=checkbox]").is(":checked")));
+	$("#shape_02_hidden").val(encodeURIComponent($("#shape_02 [type=checkbox]").is(":checked")));
+	$("#shape_03_hidden").val(encodeURIComponent($("#shape_03 [type=checkbox]").is(":checked")));
+	$("#shape_04_hidden").val(encodeURIComponent($("#shape_04 [type=checkbox]").is(":checked")));
+	$("#shape_05_hidden").val(encodeURIComponent($("#shape_05 [type=checkbox]").is(":checked")));
+	$("#shape_06_hidden").val(encodeURIComponent($("#shape_06 [type=checkbox]").is(":checked")));
+	$("#shape_10_hidden").val(encodeURIComponent($("#shape_10 [type=checkbox]").is(":checked")));
+	$("#shape_09_hidden").val(encodeURIComponent($("#shape_09 [type=checkbox]").is(":checked")));
+	$("#shape_08_hidden").val(encodeURIComponent($("#shape_08 [type=checkbox]").is(":checked")));
+	$("#shape_etc_hidden").val(encodeURIComponent($("#shape_etc [type=checkbox]").is(":checked")));
+	$("#shape_all_hidden").val(encodeURIComponent($("#shape_all [type=checkbox]").is(":checked")));
+
+	$("#shape1_hidden").val(encodeURIComponent($("#shape1 [type=checkbox]").is(":checked")));
+	$("#shape2_hidden").val(encodeURIComponent($("#shape2 [type=checkbox]").is(":checked")));
+	$("#shape3_hidden").val(encodeURIComponent($("#shape3 [type=checkbox]").is(":checked")));
+	$("#shape4_hidden").val(encodeURIComponent($("#shape4 [type=checkbox]").is(":checked")));
+	$("#shape5_hidden").val(encodeURIComponent($("#shape5 [type=checkbox]").is(":checked")));
+	$("#shape6_hidden").val(encodeURIComponent($("#shape6 [type=checkbox]").is(":checked")));
+	$("#shape7_hidden").val(encodeURIComponent($("#shape7 [type=checkbox]").is(":checked")));
+	$("#shape8_hidden").val(encodeURIComponent($("#shape8 [type=checkbox]").is(":checked")));
+	$("#shape9_hidden").val(encodeURIComponent($("#shape9 [type=checkbox]").is(":checked")));
+	$("#shape10_hidden").val(encodeURIComponent($("#shape10 [type=checkbox]").is(":checked")));
+	$("#shape11_hidden").val(encodeURIComponent($("#shape11 [type=checkbox]").is(":checked")));
+	$("#shape12_hidden").val(encodeURIComponent($("#shape12 [type=checkbox]").is(":checked")));
+	$("#shape13_hidden").val(encodeURIComponent($("#shape13 [type=checkbox]").is(":checked")));
+	$("#shape14_hidden").val(encodeURIComponent($("#shape14 [type=checkbox]").is(":checked")));
+	$("#shape15_hidden").val(encodeURIComponent($("#shape15 [type=checkbox]").is(":checked")));
+	$("#shape16_hidden").val(encodeURIComponent($("#shape16 [type=checkbox]").is(":checked")));
+	$("#shape17_hidden").val(encodeURIComponent($("#shape17 [type=checkbox]").is(":checked")));
+	$("#shape18_hidden").val(encodeURIComponent($("#shape18 [type=checkbox]").is(":checked")));
+	$("#shape19_hidden").val(encodeURIComponent($("#shape19 [type=checkbox]").is(":checked")));
+	$("#shape20_hidden").val(encodeURIComponent($("#shape20 [type=checkbox]").is(":checked")));
+	$("#shape21_hidden").val(encodeURIComponent($("#shape21 [type=checkbox]").is(":checked")));
+
+	$("#color_white_hidden").val(encodeURIComponent($("#color_white [type=checkbox]").is(":checked")));
+	$("#color_yellow_hidden").val(encodeURIComponent($("#color_yellow [type=checkbox]").is(":checked")));
+	$("#color_orange_hidden").val(encodeURIComponent($("#color_orange [type=checkbox]").is(":checked")));
+	$("#color_pink_hidden").val(encodeURIComponent($("#color_pink [type=checkbox]").is(":checked")));
+	$("#color_red_hidden").val(encodeURIComponent($("#color_red [type=checkbox]").is(":checked")));
+	$("#color_brown_hidden").val(encodeURIComponent($("#color_brown [type=checkbox]").is(":checked")));
+	$("#color_ygreen_hidden").val(encodeURIComponent($("#color_ygreen [type=checkbox]").is(":checked")));
+	$("#color_green_hidden").val(encodeURIComponent($("#color_green [type=checkbox]").is(":checked")));
+	$("#color_bgreen_hidden").val(encodeURIComponent($("#color_bgreen [type=checkbox]").is(":checked")));
+	$("#color_blue_hidden").val(encodeURIComponent($("#color_blue [type=checkbox]").is(":checked")));
+	$("#color_navy_hidden").val(encodeURIComponent($("#color_navy [type=checkbox]").is(":checked")));
+	$("#color_wine_hidden").val(encodeURIComponent($("#color_wine [type=checkbox]").is(":checked")));
+	$("#color_purple_hidden").val(encodeURIComponent($("#color_purple [type=checkbox]").is(":checked")));
+	$("#color_grey_hidden").val(encodeURIComponent($("#color_grey [type=checkbox]").is(":checked")));
+	$("#color_black_hidden").val(encodeURIComponent($("#color_black [type=checkbox]").is(":checked")));
+	$("#color_transp_hidden").val(encodeURIComponent($("#color_transp [type=checkbox]").is(":checked")));
+	$("#color_all_hidden").val(encodeURIComponent($("#color_all [type=checkbox]").is(":checked")));
+
+	$("#line_no_hidden").val(encodeURIComponent($("#line_no [type=checkbox]").is(":checked")));
+	$("#line_plus_hidden").val(encodeURIComponent($("#line_plus [type=checkbox]").is(":checked")));
+	$("#line_minus_hidden").val(encodeURIComponent($("#line_minus [type=checkbox]").is(":checked")));
+	$("#line_etc_hidden").val(encodeURIComponent($("#line_etc [type=checkbox]").is(":checked")));
+	$("#line_all_hidden").val(encodeURIComponent($("#line_all [type=checkbox]").is(":checked")));
+
+	$("#hidden_autosearch").val("start");
+}
 function refreshIdfy() {
 	//문자
 		$("#drug_print_front").val("");
@@ -743,12 +1142,129 @@ function idfysearchmark(){
 
 
 
+// 프린트목록 구성
+//          식별IDX, 제품명
+function printList(val,val1) {
+	var chkprint = 0;
 
-//drugDetail 
-function drugDetail(drug_number) {
+	if($("input:checkbox[id='print"+val+"']").is(":checked") == true) {
+//		alert(val + val1);
+//		alert(produceKind);
+		var htmlData = "";
+		htmlData = htmlData + "<li id="+val+">"+val1+"<input type='hidden' name='drug_code' value='"+val+"'/><span onclick=\"removeList('"+val+"')\"class='delete ico'></span></li>";
+
+//		if(produceKind == ""){
+//			alert("들어옴");
+			$("#printListAll li").each(function() {
+				if($(this).prop("id") == val) {
+					alert("이미 출력목록에 담긴 약품입니다.");
+					$("#print"+val).prop("checked",false);
+					chkprint = 1;
+				}
+			});
+			if (chkprint != 1) {
+				$("#printListAll").append(htmlData);
+				$("#printList").val($("#printListAll").html());
+				selectCnt = selectCnt + 1
+				$(".printCnt").text(selectCnt);
+			}
+//		}else if(produceKind == "Y"){
+//			$("#printListProY li").each(function() {
+//				if($(this).prop("id") == val) {
+//					alert("이미 출력목록에 담긴 약품입니다.");
+//					$("#print"+val).prop("checked",false);
+//					chkprint = 1;
+//				}
+//			});
+//			if (chkprint != 1) {
+//				$("#printListProY").append(htmlData);
+//				selectCnt = selectCnt + 1
+//				$(".printCnt").text(selectCnt);
+//			}
+//		}else if(produceKind == "N"){
+//			$("#printListProN li").each(function() {
+//				if($(this).prop("id") == val) {
+//					alert("이미 출력목록에 담긴 약품입니다.");
+//					$("#print"+val).prop("checked",false);
+//					chkprint = 1;
+//				}
+//			});
+//			if (chkprint != 1) {
+//				$("#printListProN").append(htmlData);
+//				selectCnt = selectCnt + 1
+//				$(".printCnt").text(selectCnt);
+//			}
+//		}
+
+	} else {
+//		
+//		if(produceKind == ""){
+			$("#printListAll #"+val).remove();
+				$("#printList").val($("#printListAll").html());
+			selectCnt = selectCnt - 1
+			$(".printCnt").text(selectCnt);
+//		}else if(produceKind == "Y"){
+//			$("#printListProY #"+val).remove();
+//			selectCnt = selectCnt - 1
+//			$(".printCnt").text(selectCnt);
+//		}else if(produceKind == "N"){
+//			$("#printListProN #"+val).remove();
+//			selectCnt = selectCnt - 1
+//			$(".printCnt").text(selectCnt);
+//		}
+	}
+}
+function selectPrint() {
+	if(cartItems.length == 0) {
+		alert("선택된 목록이 없습니다.");
+		return false;
+	}
+	$('#printfrm').empty();
+	//카트 내용을 폼에 추가
+	for (var i=0; i<cartItems.length; i++) {
+		$('#printfrm').append('<input type="hidden" name="drug_code" value="'+cartItems[i].code+'" style="display:none">');
+	}
+
+//	
+//	if(produceKind == ""){
+		$("#selectCntall").val(selectCnt);
+		$("#printfrm").submit();
+//	}else if(produceKind == "Y"){
+//		$("#selectCntproy").val(selectCnt);
+//		$("#printfrmProY").submit();
+//	}else if(produceKind == "N"){
+//		$("#selectCntpron").val(selectCnt);
+//		$("#printfrmProN").submit();
+//	}
+}
+//엔터키
+function markEnter(){
+	if(event.keyCode == 13){
+		idfysearchmark();
+	}
+}
+//식별제품상세정보 이동
+function drugDetail(val,val1) {
 	
-	location.href="/drug/drugDetail?drug_number="+drug_number;
+//	$("#select_drug_idx").val(val);
+//	$("#select_drug_code").val(val1);
+//	$("#result_frm").submit();
+	location.href="/searchIdentity/result.asp?didx="+val+"&dcode="+val1;
+//	window.open("/searchIdentity/result.asp?didx="+val+"&dcode="+val1,"","");
 
+}
+//의약품상세정보 이동
+function drug_detailHref(val){
+//	location.href='/searchDrug/result_drug.asp?drug_cd='+val;
+	window.open('/searchDrug/result_drug.asp?drug_cd='+val,'','');
+}
+//결과목록 이동
+function moveresult() {		
+		//기준이 될 div top값
+		var topset = $("#result").offset().top;
+		$("html,body").stop().animate({
+			scrollTop : topset - 148
+		},1500);
 }
 // 기타 선택하기 - 전체
 function shapeETCAll() {
@@ -765,7 +1281,7 @@ function shapeETCAll() {
 	}
 }
 // 기타 선택하기
-// 모양번호, 모양명
+//                 모양번호, 모양명
 function shape_etcc(val) {
 	if($("#shape"+val).is(":checked") == true) {
 		var htmlData = "";
@@ -811,8 +1327,8 @@ function shape_etc_delete(val) {
 // 제형 전체 <-> 그외 구분
 function type_clicks(val) {
 	if(val == "전체") {
-		$("#typeids li").addClass("selected");
-		$("#typeids li input[type=checkbox]").prop("checked",true);
+		$("#typeids li").removeClass("selected");
+		$("#typeids li input[type=checkbox]").prop("checked",false);
 //	} else if(val == "정제"){
 //		$("#type_etc").addClass("selected");
 //		$("#type_etc input[type=checkbox]").prop("checked",true);
@@ -824,10 +1340,10 @@ function type_clicks(val) {
 // 모양 전체 <-> 그외 구분
 function shape_clicks(val) {
 	if(val == "전체") {
-		$("#shapeids li").addClass("selected");
-		$("#shapeids li input[type=checkbox]").prop("checked",true);
+		$("#shapeids li").removeClass("selected");
+		$("#shapeids li input[type=checkbox]").prop("checked",false);
 		$("#shapeETC_selected").css("border","");
-		$(".shapeETC").find("[type=checkbox]").prop("checked",true);
+		$(".shapeETC").find("[type=checkbox]").prop("checked",false);
 		$("#shape_etc_text ul").empty();
 	} else {
 		$("#shape_all").removeClass("selected");
@@ -836,10 +1352,19 @@ function shape_clicks(val) {
 // 색상 전체 <-> 그외 구분
 function color_clicks(val) {
 	if(val == "전체") {
-		$("#colorids li").addClass("selected");
-		$("#colorids li input[type=checkbox]").prop("checked",true);
+		$("#colorids li").removeClass("selected");
+		$("#colorids li input[type=checkbox]").prop("checked",false);
 	} else {
 		$("#color_all").removeClass("selected");
+	}
+}
+// 분할선 전체 <-> 그외 구분
+function line_clicks(val) {
+	if(val == "전체") {
+		$("#lineids li").removeClass("selected");
+		$("#lineids li input[type=checkbox]").prop("checked",false);
+	} else {
+		$("#line_all").removeClass("selected");
 	}
 }
 
@@ -1715,10 +2240,41 @@ $('html, body').stop().animate( { scrollTop : '1' } );$('body').attr('style','po
 			
 			<!-- 검색테이블 -->
 			<article class="search_table">
+				<!-- 전체,생산Y,생산N 개수 -->
+				<!-- 전체 개수 -->
+				<input type="hidden" id="idfy_total_cnt" name="idfy_total_cnt">
+
+				<form id="result_frm" name="result_frm" action="${path}/drugResult" method="post">
+					<!-- 식별 IDFY IDX -->
+					<input type="hidden" id="select_drug_idx" name="select_drug_idx"> 
+					<!-- 정보원 코드 -->
+					<input type="hidden" id="select_drug_code" name="select_drug_code"> 
+				</form>
 
 
 				<form id="frm" name="frm" action="${path}/drugSearchPro" method="post">
 				<input type ="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+				<input type="hidden" name="search_detail" value="Y">
+				<input type="hidden" id="TabState" name="TabState" value="">				
+				<input type="hidden" id="proYN" name="proYN" value=""/>
+				<input type="hidden" id="pageNo" name="pageNo" value=""/>	
+				<input type="hidden" id="rowLength" name="rowLength" value=""/>
+				<input type="hidden" id="printList" name="printList" value=""/>
+
+				<!-- 전체,y,n 카운트 고정값 -->
+				
+				<input type="hidden"  id="fixvalue_all" name="fixvalue_all" value=""/>
+				<input type="hidden"  id="fixvalue_y" name="fixvalue_y" value=""/>
+				<input type="hidden"  id="fixvalue_n" name="fixvalue_n" value=""/>
+
+				<!-- 	단일,복합 -->
+				<input type="hidden" id="item_ingr" name="item_ingr">
+				<!-- 	 ~줄보기 -->
+				<input type="hidden" id="pageSize" name="pageSize">
+				<!-- 	현재 페이지 숫자-->
+				<input type="hidden" id="pageNum" name="pageNum">
+				<!-- 	생산실적구분(PRINT구분때문에 사용)	 -->
+				<input type="hidden" id="produceKind" name="produceKind">
 				<fieldset>
 				<legend class="blind">식별 정보 입력</legend>
 				<table style="min-width: max-content;">
@@ -1742,7 +2298,7 @@ $('html, body').stop().animate( { scrollTop : '1' } );$('body').attr('style','po
 					<tr>
 						<th colspan="2">모양</th>
 						<td colspan="2" class="shape">
-							<ul id="shapeids" class="idty">
+							<ul id="" class="idty">
 								<li id="shape_01" class=""><a onclick="shape_clicks('');"><img src="${drug_Ipath}shape01.jpg"/></a> <input type="checkbox" name="shapes" id="forms" value="원형" ></li>
 								<li id="shape_02" class=""><a onclick="shape_clicks('');"><img src="${drug_Ipath}shape02.jpg" alt="타원형"  /></a><input type="checkbox" name="shapes" id="forms" value="타원형"></li>
 								<li id="shape_03" class=""><a onclick="shape_clicks('');"><img src="${drug_Ipath}shape03.jpg" alt="반원형" /></a><input type="checkbox" name="shapes" id="forms"value="반원형" ></li>
@@ -1780,204 +2336,153 @@ $('html, body').stop().animate( { scrollTop : '1' } );$('body').attr('style','po
 							<ul id="colorids" class="idty">
 								<li id="color_white" class=""><a onclick="color_clicks('')" id="a"><span class="white"></span>하양</a><input type="checkbox" name="colors" value="하양"></li>
 								<li id="color_yellow" class="type2 " onclick="search_group(this,2)"id="a"><a onclick="color_clicks('')"><span class="yellow"></span>노랑</a></li>
-								<li id="color_orange" class="type2 " onclick="search_group(this,2)" id="a"><a onclick="color_clicks('')"><span class="orange"></span>주황</a><input type="checkbox" name="colors" id="colors" value="주황"></li>
-								<li id="color_pink" class="type2 " onclick="search_group(this,2)"id="a"><a onclick="color_clicks('')"><span class="pink"></span>분홍</a><input type="checkbox" name="colors" id="colors" value="분홍"></li>
-								<li id="color_red" class="type2 " onclick="search_group(this,2)"id="a"><a onclick="color_clicks('')"><span class="red"></span>빨강</a><input type="checkbox" name="colors" id="colors" value="빨강"></li>
-								<li id="color_brown" class="type2 " onclick="search_group(this,2)" id="a"><a onclick="color_clicks('')"><span class="brown"></span>갈색</a><input type="checkbox" name="colors" id="colors" value="갈색"></li>
-								<li id="color_ygreen" class="type3 " onclick="search_group(this,3)" id="a"><a onclick="color_clicks('')"><span class="ygreen"></span>연두</a><input type="checkbox" name="colors" id="colors" value="연두"></li>
-								<li id="color_green" class="type3 " onclick="search_group(this,3)" id="a"><a onclick="color_clicks('')"><span class="green"></span>초록</a><input type="checkbox" name="colors" id="colors" value="초록"></li>
-								<li id="color_bgreen" class="type3 " onclick="search_group(this,3)" id="a"><a onclick="color_clicks('')"><span class="bgreen"></span>청록</a><input type="checkbox" name="colors" id="colors" value="청록"></li>
-								<li id="color_blue" class="type4 " onclick="search_group(this,4)" id="a"><a onclick="color_clicks('')"><span class="blue"></span>파랑</a><input type="checkbox" name="colors" id="colors" value="파랑"></li>
-								<li id="color_navy" class="type4 " onclick="search_group(this,4)" id="a"><a onclick="color_clicks('')"><span class="navy"></span>남색</a><input type="checkbox" name="colors" id="colors" value="남색"></li>
-								<li id="color_wine" class="type5 " onclick="search_group(this,5)" id="a"><a onclick="color_clicks('')"><span class="wine"></span>자주</a><input type="checkbox" name="colors" id="colors" value="자주"></li>
-								<li id="color_purple" class="type5 " onclick="search_group(this,5)" id="a"><a onclick="color_clicks('')"><span class="purple"></span>보라</a><input type="checkbox" name="colors" id="colors" value="보라"></li>
-								<li id="color_grey" class=""><a onclick="color_clicks('')" id="a"><span class="grey"></span>회색</a><input type="checkbox" name="colors" id="colors" value="회색"></li>
-								<li id="color_black" class=""><a onclick="color_clicks('')" id="a"><span class="black"></span>검정</a><input type="checkbox" name="colors" id="colors" value="검정"></li>
-								<li id="color_transp" class=""><a onclick="color_clicks('')" id="a"><span class="transp"></span>투명</a><input type="checkbox" name="colors" id="colors" value="투명"></li>
+								<li id="color_orange" class="type2 " onclick="search_group(this,2)" id="a"><a onclick="color_clicks('')"><span class="orange"></span>주황</a><input type="checkbox" name="colors" value="주황"></li>
+								<li id="color_pink" class="type2 " onclick="search_group(this,2)"id="a"><a onclick="color_clicks('')"><span class="pink"></span>분홍</a><input type="checkbox" name="colors" value="분홍"></li>
+								<li id="color_red" class="type2 " onclick="search_group(this,2)"id="a"><a onclick="color_clicks('')"><span class="red"></span>빨강</a><input type="checkbox" name="colors" value="빨강"></li>
+								<li id="color_brown" class="type2 " onclick="search_group(this,2)" id="a"><a onclick="color_clicks('')"><span class="brown"></span>갈색</a><input type="checkbox" name="colors" value="갈색"></li>
+								<li id="color_ygreen" class="type3 " onclick="search_group(this,3)" id="a"><a onclick="color_clicks('')"><span class="ygreen"></span>연두</a><input type="checkbox" name="colors" value="연두"></li>
+								<li id="color_green" class="type3 " onclick="search_group(this,3)" id="a"><a onclick="color_clicks('')"><span class="green"></span>초록</a><input type="checkbox" name="colors" value="초록"></li>
+								<li id="color_bgreen" class="type3 " onclick="search_group(this,3)" id="a"><a onclick="color_clicks('')"><span class="bgreen"></span>청록</a><input type="checkbox" name="colors" value="청록"></li>
+								<li id="color_blue" class="type4 " onclick="search_group(this,4)" id="a"><a onclick="color_clicks('')"><span class="blue"></span>파랑</a><input type="checkbox" name="colors" value="파랑"></li>
+								<li id="color_navy" class="type4 " onclick="search_group(this,4)" id="a"><a onclick="color_clicks('')"><span class="navy"></span>남색</a><input type="checkbox" name="colors" value="남색"></li>
+								<li id="color_wine" class="type5 " onclick="search_group(this,5)" id="a"><a onclick="color_clicks('')"><span class="wine"></span>자주</a><input type="checkbox" name="colors" value="자주"></li>
+								<li id="color_purple" class="type5 " onclick="search_group(this,5)" id="a"><a onclick="color_clicks('')"><span class="purple"></span>보라</a><input type="checkbox" name="colors" value="보라"></li>
+								<li id="color_grey" class=""><a onclick="color_clicks('')" id="a"><span class="grey"></span>회색</a><input type="checkbox" name="colors" value="회색"></li>
+								<li id="color_black" class=""><a onclick="color_clicks('')" id="a"><span class="black"></span>검정</a><input type="checkbox" name="colors" value="검정"></li>
+								<li id="color_transp" class=""><a onclick="color_clicks('')" id="a"><span class="transp"></span>투명</a><input type="checkbox" name="colors" value="투명"></li>
 								<li id="color_all" class="selected"><a class="all" onclick="color_clicks('전체')" id="a">전체</a></li>
 							</ul>
 						</td>	
 					</tr>
+					<tr>
+						<td>회사명</td>
+						<td>제품번호</td>
+						<td>제품명</td>
+						<td>모양</td>
+					</tr>
 					
+				<c:forEach var ="dtos" items="${dtos}">	
+					<tr>
+					<td>${dtos.drug_enptname}</td>
+
+					<td> ${dtos.drug_number} </td>
+				
+					<td> ${dtos.drug_name} </td>
+
+					<td> ${dtos.drug_shape} </td>
+					</tr>
+				</c:forEach>	
 				</table>
 				
 				<div id="btns">
 					<button type="button" title="다시입력" class="refresh ico" onclick="refreshIdfy();">다시 입력</button>
-					<button type="button" title="검색" name="searchDrug" class="search ico" id="btn_idfysearch" onclick="" >검 색</button>
+					<button type="button" title="검색" name="searchDrug" class="search ico" id="btn_idfysearch" onclick="searchDrug();" >검 색</button>
 				</div>
 				</fieldset>
 				</form>
 			</article><!-- //검색테이블 -->
 			
-				<!-- 검색결과 탭 -->
-			<article id="result">
-				<h3 class="subtitle">검색결과</h3>
-				<!-- 전체 -->
-				<article class="tab2_cont" id="result_all">
-					<div class="tab3Group">
-						<ul class="tab3">
-							<li class="selected"><a style="cursor:pointer" >전 체 (${cnt})</a></li>
-						</ul>
-					</div>
-
-					<table class="tab3_cont list_basic bt0" id="idfytotal0" style="text-align: center;"	>
-						<tr>
-							<th rowspan="2">식별이미지</th>
-							<th rowspan="2" class="mark">식별표시<br />(앞)</th>
-							<th rowspan="2"class="color">색상</th>
-							<th colspan="3" class="size">크기(mm)</th>
-							<th rowspan="2" class="name">제품명</th>
-							<th rowspan="2" class="comp">회사명</th>
-						</tr>
-						<tr>
-							<th>장축</th>
-							<th>단축</th>
-							<th>두께</th>
-						</tr>
-					<c:forEach var ="dtos" items="${dtos}">	
-						<tr>
-							<td class="img">
-								<div class="infoOver view_drugimg">
-									<a>
-									
-										<img alt="의약품이미지" src="${dtos.drug_productimage}"></a>
-									
-									<div class="popupbx pop_more" style="display: none;">
-										<h6> ${dtos.drug_name} 식별표시</h6>
-										<a title="닫기" class="close ico"></a>
-										<img alt=" ${dtos.drug_name}" src="${dtos.drug_productimage}">
-										<table class="identity">
-											<tbody>
-												<tr>
-													<td> ${dtos.drug_frontShape} </td>
-												</tr>
-											</tbody>
-										</table>
-										<table>
-											<tbody>
-												<tr>
-													<th>장축(mm)</th>
-													<td>${dtos.drug_size_l}</td>
-													<th>단축(mm)</th>
-													<td>${dtos.drug_size_s}</td>
-													<th>두께(mm)</th>
-													<td>${dtos.drug_size_w}</td>
-												</tr>
-												<tr>
-													<th>성상</th>
-													<td class="txtL" colspan="5">${dtos.drug_formulation}</td>
-												</tr>
-											</tbody>
-										</table>
-										
-									</div>
-								</div>
-							</td>
-							<td class="mark">
-								${dtos.drug_frontShape} 
-							</td>
-							<td class="categ">${dtos.drug_color}</td>
-							<td>${dtos.drug_size_l}</td>
-							<td>${dtos.drug_size_s}</td>
-							<td>${dtos.drug_size_w}</td>
-							<td class="txtL name" onclick="drugDetail('${dtos.drug_number}')">${dtos.drug_name}
-							
-							</td>
-							<td class="comp">${dtos.drug_enptname}</td>
-						</tr>
-					</c:forEach>	
-					
-					
-					 <c:if test="${cnt < 1}">
-						<tr>
-							<td colspan="6" align="center">
-							검색 결과가 없습니다. 다시 검색해주세요.
-							</td>
-						</tr>
-					</c:if> 
-					</table>
-
-					<table class="tab3_cont list_basic bt0" id="idfytotal1">
-
-					</table>
-					<table class="tab3_cont list_basic bt0" id="idfytotal2">
-
-					</table>
-					<div id="paging">
-
-					</div>
-				</article><!-- //전체 -->					
-				
-			</article><!-- //검색결과 탭 -->
-	
-	<!-- 페이지 컨트롤  -->
-	<table style="width:1000px" align="center">
-	
-		<tr align="center" id="bot">
-					<td colspan="11">
-						<!--페이지 맨앞/1칸 앞으로이동  -->
-						
-						<a href="${path}/drugSearchPro?drug_name=${drug_name}&drug_enptname=${drug_enptname}&drug_formulation=${formList }&drug_color=${ colorList}&drug_shape=${ shapeList}">◀◀  </a>
-							<c:choose>
-								<c:when test="${currentPage==1}">
-									<a href="${path}/drugSearchPro?drug_name=${drug_name}&drug_enptname=${drug_enptname}&drug_formulation=${formList }&drug_color=${ colorList}&drug_shape=${ shapeList}&currentPage=${currentPage}">◀  </a>
-									<!--페이지가 1보다 더이상 안작아지도록  -->
-								</c:when>
-								<c:otherwise>
-									<a href="${path}/drugSearchPro?drug_name=${drug_name}&drug_enptname=${drug_enptname}&drug_formulation=${formList }&drug_color=${ colorList}&drug_shape=${ shapeList}&currentPage=${currentPage-1}">◀  </a>
-								</c:otherwise>
-							</c:choose>
-							
-						<!-- max블록씩 페이지 앞으로 이동 -->							
-						<c:if test="${startPage>pageBlock}" >
-							<a href="${path}/drugSearchPro?drug_name=${drug_name}&drug_enptname=${drug_enptname}&drug_formulation=${formList }&drug_color=${ colorList}&drug_shape=${ shapeList}&currentPage=${startPage-pageBlock}">[이전 블록]</a>
-						</c:if> 
-						
-
-					<!--페이지 블록 -->
-					<c:if test="${cnt>0}" >
-						<c:forEach var="i" begin="${startPage}" end="${endPage}">
-							<c:if test="${i==currentPage}">
-								<a href="${path}/drugSearchPro?drug_name=${drug_name}&drug_enptname=${drug_enptname}&drug_formulation=${formList }&drug_color=${ colorList}&drug_shape=${ shapeList}&currentPage=${i}">[${i}]</a>
-							</c:if>
-							<c:if test="${i!=currentPage}">
-								<a href="${path}/drugSearchPro?drug_name=${drug_name}&drug_enptname=${drug_enptname}&drug_formulation=${formList }&drug_color=${ colorList}&drug_shape=${ shapeList}&currentPage=${i}">&nbsp;[${i}]&nbsp;</a>
-							</c:if>
-						</c:forEach>
-					</c:if>
-					
-						<!-- max블록씩 페이지 뒤로 이동 -->
-						<c:if test="${pageCount>endPage}" >
-							<a href="${path}/drugSearchPro?drug_name=${drug_name}&drug_enptname=${drug_enptname}&drug_formulation=${formList }&drug_color=${ colorList}&drug_shape=${ shapeList}&currentPage=${startPage+pageBlock}"> [다음 블록] </a>
-						</c:if> 
-						
-						
-					<!--뒤로1칸이동 / 페이지 맨뒤-->
-						 	<c:choose>
-						 		<c:when test="${currentPage==pageCount}">
-						 		<!--최종 페이지보다 더 뒤로 못가게  --> 
-						 			<a href="${path}/drugSearchPro?drug_name=${drug_name}&drug_enptname=${drug_enptname}&drug_formulation=${formList }&drug_color=${ colorList}&drug_shape=${ shapeList}&currentPage=${currentPage}"> ▶</a>
-						 		</c:when>
-						 		<c:otherwise>
-						 			<a href="${path}/drugSearchPro?drug_name=${drug_name}&drug_enptname=${drug_enptname}&drug_formulation=${formList }&drug_color=${ colorList}&drug_shape=${ shapeList}&currentPage=${currentPage+1}">  ▶</a>
-						 		</c:otherwise>
-						 	</c:choose>
-						
-						<a href="${path}/drugSearchPro?drug_name=${drug_name}&drug_enptname=${drug_enptname}&drug_formulation=${formList }&drug_color=${ colorList}&drug_shape=${ shapeList}&currentPage=${pageCount}"> ▶▶</a>
-					</td>
-				</tr>
-		</table>
-		
+			
 		</section><!-- //식별검색 -->
 		
 	</section><!-- //articles_sub -->
+	
+			<form id="frm_hidden" name="frm_hidden">
+				<!-- 	단일,복합 -->
+				<input type="hidden" id="item_ingr_hidden" name="item_ingr" value="">
+				<!-- 	 ~줄보기 -->
+				<input type="hidden" id="pageSize_hidden" name="pageSize_hidden" value="">
+				<!-- 	현재 페이지 숫자-->
+				<input type="hidden" id="pageNum_hidden" name="pageNum_hidden" value="">
+				<!-- 	생산실적구분(PRINT구분때문에 사용)	 -->
+				<input type="hidden" id="produceKind_hidden" name="produceKind_hidden" value="">
+
+				<input type="hidden" id="drug_print_front_hidden" name="drug_print_front_hidden" value="" />
+				<input type="hidden" id="match1_hidden" name="match1_hidden" value="" />
+				<input type="hidden" id="drug_print_back_hidden" name="drug_print_back_hidden" value="" />
+				<input type="hidden" id="match2_hidden" name="match2_hidden" value="" />
+
+				<input type="hidden" id="type_01_hidden" name="type_01_hidden" value="" />
+				<input type="hidden" id="type_02_hidden" name="type_02_hidden" value="" />
+				<input type="hidden" id="type_03_hidden" name="type_03_hidden" value="" />
+				<input type="hidden" id="type_04_hidden" name="type_04_hidden" value="" />
+				<input type="hidden" id="type_etc_hidden" name="type_etc_hidden" value="" />
+				<input type="hidden" id="type_all_hidden" name="type_all_hidden" value="" />
+
+				<input type="hidden" id="mark_hidden" name="mark_hidden" value="" />
+
+				<input type="hidden" id="drug_name_hidden" name="drug_name_hidden" value="" />
+				<input type="hidden" id="firm_name_hidden" name="firm_name_hidden" value="" />
+
+				<input type="hidden" id="shape_01_hidden" name="shape_01_hidden" value="" />
+				<input type="hidden" id="shape_02_hidden" name="shape_02_hidden" value="" />
+				<input type="hidden" id="shape_03_hidden" name="shape_03_hidden" value="" />
+				<input type="hidden" id="shape_04_hidden" name="shape_04_hidden" value="" />
+				<input type="hidden" id="shape_05_hidden" name="shape_05_hidden" value="" />
+				<input type="hidden" id="shape_06_hidden" name="shape_06_hidden" value="" />
+				<input type="hidden" id="shape_10_hidden" name="shape_10_hidden" value="" />
+				<input type="hidden" id="shape_09_hidden" name="shape_09_hidden" value="" />
+				<input type="hidden" id="shape_08_hidden" name="shape_08_hidden" value="" />
+				<input type="hidden" id="shape_etc_hidden" name="shape_etc_hidden" value="" />
+				<input type="hidden" id="shape_all_hidden" name="shape_all_hidden" value="" />
+
+				<input type="hidden" id="shape1_hidden" name="shape1_hidden" value="" />
+				<input type="hidden" id="shape2_hidden" name="shape2_hidden" value="" />
+				<input type="hidden" id="shape3_hidden" name="shape3_hidden" value="" />
+				<input type="hidden" id="shape4_hidden" name="shape4_hidden" value="" />
+				<input type="hidden" id="shape5_hidden" name="shape5_hidden" value="" />
+				<input type="hidden" id="shape6_hidden" name="shape6_hidden" value="" />
+				<input type="hidden" id="shape7_hidden" name="shape7_hidden" value="" />
+				<input type="hidden" id="shape8_hidden" name="shape8_hidden" value="" />
+				<input type="hidden" id="shape9_hidden" name="shape9_hidden" value="" />
+				<input type="hidden" id="shape10_hidden" name="shape10_hidden" value="" />
+				<input type="hidden" id="shape11_hidden" name="shape11_hidden" value="" />
+				<input type="hidden" id="shape12_hidden" name="shape12_hidden" value="" />
+				<input type="hidden" id="shape13_hidden" name="shape13_hidden" value="" />
+				<input type="hidden" id="shape14_hidden" name="shape14_hidden" value="" />
+				<input type="hidden" id="shape15_hidden" name="shape15_hidden" value="" />
+				<input type="hidden" id="shape16_hidden" name="shape16_hidden" value="" />
+				<input type="hidden" id="shape17_hidden" name="shape17_hidden" value="" />
+				<input type="hidden" id="shape18_hidden" name="shape18_hidden" value="" />
+				<input type="hidden" id="shape19_hidden" name="shape19_hidden" value="" />
+				<input type="hidden" id="shape20_hidden" name="shape20_hidden" value="" />
+				<input type="hidden" id="shape21_hidden" name="shape21_hidden" value="" />
+
+				<input type="hidden" id="color_white_hidden" name="color_white_hidden" value="" />
+				<input type="hidden" id="color_yellow_hidden" name="color_yellow_hidden" value="" />
+				<input type="hidden" id="color_orange_hidden" name="color_orange_hidden" value="" />
+				<input type="hidden" id="color_pink_hidden" name="color_pink_hidden" value="" />
+				<input type="hidden" id="color_red_hidden" name="color_red_hidden" value="" />
+				<input type="hidden" id="color_brown_hidden" name="color_brown_hidden" value="" />
+				<input type="hidden" id="color_ygreen_hidden" name="color_ygreen_hidden" value="" />
+				<input type="hidden" id="color_green_hidden" name="color_green_hidden" value="" />
+				<input type="hidden" id="color_bgreen_hidden" name="color_bgreen_hidden" value="" />
+				<input type="hidden" id="color_blue_hidden" name="color_blue_hidden" value="" />
+				<input type="hidden" id="color_navy_hidden" name="color_navy_hidden" value="" />
+				<input type="hidden" id="color_wine_hidden" name="color_wine_hidden" value="" />
+				<input type="hidden" id="color_purple_hidden" name="color_purple_hidden" value="" />
+				<input type="hidden" id="color_grey_hidden" name="color_grey_hidden" value="" />
+				<input type="hidden" id="color_black_hidden" name="color_black_hidden" value="" />
+				<input type="hidden" id="color_transp_hidden" name="color_transp_hidden" value="" />
+				<input type="hidden" id="color_all_hidden" name="color_all_hidden" value="" />
+
+				<input type="hidden" id="line_no_hidden" name="line_no_hidden" value="" />
+				<input type="hidden" id="line_plus_hidden" name="line_plus_hidden" value="" />
+				<input type="hidden" id="line_minus_hidden" name="line_minus_hidden" value="" />
+				<input type="hidden" id="line_etc_hidden" name="line_etc_hidden" value="" />
+				<input type="hidden" id="line_all_hidden" name="line_all_hidden" value="" />
+
+				<input type="hidden" id="hidden_autosearch" name="autosearch" value=""/>
+
+
+			</form>
+	
 		<!-- 위치계산용-삭제금지 -->
 	<div id="catcher" ></div>
 
 </section><!-- //컨텐츠 -->
 </div><!-- //wrap -->
-	
-	
+
 <%@include file="../common/footer.jsp" %> 
       <!-- end copyrights -->
      <%--  <a href="#home" data-scroll class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>

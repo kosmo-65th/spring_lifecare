@@ -88,7 +88,7 @@
                                         </li>
                                         <li><a href="#">의료정보 <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="drugSearch">약정보</a></li>
+                                                <li><a href="${path}/drugSearch">약정보</a></li>
                                                 <li><a href="about.html">응급처치방법</a></li>
                                                 <li><a href="${path}/questionnaire">자가진단</a></li>
                                             </ul>

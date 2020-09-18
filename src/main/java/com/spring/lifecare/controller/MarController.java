@@ -1,45 +1,46 @@
 package com.spring.lifecare.controller;
 
-import java.io.IOException;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.spring.lifecare.service.DrugServiceImpl;
+import com.spring.lifecare.service.DrugService;
 import com.spring.lifecare.vo.DrugVO;
 
 @Controller
 public class MarController {
 
-	/*
-	 * @Autowired DrugService service;
-	 * 
-	 * @RequestMapping(value="/drugSearch", method=RequestMethod.POST)
-	 * 
-	 * @ResponseBody public String simpleWithObject(DrugVO vo) { return
-	 * vo.getItem_name(); }
-	 */
+	
+	@Autowired DrugService service;
+	 
+//	 @RequestMapping(value="/drugSearch", method=RequestMethod.POST)
+//	 @ResponseBody 
+//	 public DrugVO drugSearch(@RequestParam("entp_name") String entp_name, Model model) {
+//		 return service.searchDrug(entp_name);
+//	 }
+	
 	
 	@RequestMapping("/drugSearch")
-	public String drugSearch(Model model) {
-		
+	public String drugSearch(HttpServletRequest req, Model model){
 		return "drug/drugSearch";
 	}
 	
-	@RequestMapping("/drugResult")
-	public String drugResult(Model model) {
-		
-		return "drug/drugResult";
+	@RequestMapping("/drugSearchPro")
+	public String drugSearchPro(HttpServletRequest req, Model model){
+		service.searchDrug(req, model);
+		return "drug/drugSearch";
 	}
 	
-	@RequestMapping("/drugPrint")
-	public String drugPrint(Model model) {
-		
-		return "drug/drugPrint";
+	@RequestMapping("/drugDetail")
+	public String drugDetail(HttpServletRequest req, Model model) {
+		service.drugDetail(req, model);
+		return "drug/drugDetail";
 	}
 	
 	@RequestMapping("/NewFile")
@@ -47,6 +48,7 @@ public class MarController {
 		
 		return "drug/NewFile";
 	}
+	
 	
 	   
 //    @RequestMapping(value="/apiTest", method=RequestMethod.GET)

@@ -1,5 +1,6 @@
 package com.spring.lifecare.persistence;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.mail.internet.InternetAddress;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Repository;
 
 import com.spring.lifecare.vo.CustomerVO;
 import com.spring.lifecare.vo.DoctorVO;
+import com.spring.lifecare.vo.DrugVO;
 
 
 @Repository
@@ -100,6 +102,23 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public int insertDoctor(DoctorVO vo) {
 		return sqlSession.insert("com.spring.lifecare.persistence.UserDAO.insertDoctor", vo);
+	}
+
+	//약찾기(회사)
+	@Override
+	public List<DrugVO> searchDrug(Map<String, Object> map) {
+		return sqlSession.selectList("com.spring.lifecare.persistence.UserDAO.searchDrug", map);
+	}
+
+	//약찾기 수량
+	@Override
+	public int searchDrugCount(Map<String,Object> map) {
+		return sqlSession.selectOne("com.spring.lifecare.persistence.UserDAO.searchDrugCount",map);
+	}
+	
+	//약상세
+	public List<DrugVO>drugDetail(Map<String, Object> map) {
+		return sqlSession.selectList("com.spring.lifecare.persistence.UserDAO.drugDetail",map);
 	}
 	
 }

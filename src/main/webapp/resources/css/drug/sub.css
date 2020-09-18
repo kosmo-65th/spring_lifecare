@@ -13,11 +13,12 @@
 	background:#f4f1ed  !important;
 	border-bottom:1px solid #dcdad7  !important;
 	width:90px  !important;
-	padding-left:8px  !important;
+/* 	padding-left:8px  !important; */
+/* 	padding-right:8px  !important; */
 	box-sizing:border-box  !important;
 	color:#435cc8  !important;
 	font-weight:normal  !important;
-	text-align:left  !important;
+	text-align: center  !important;
 }
 .search_table table td{
 	border-bottom:1px solid #e6e6e6  !important;
@@ -1041,7 +1042,7 @@ ul.kpic li ul li{
 	height:29px;
 }
 #search_identity ul.idty > li > input{
-	visibility:hidden;
+	/* visibility:hidden; */
 }
 #search_identity .search_table td.shape{
 	position:relative;

@@ -1,9 +1,11 @@
 package com.spring.lifecare.persistence;
 
+import java.util.List;
 import java.util.Map;
 
 import com.spring.lifecare.vo.CustomerVO;
 import com.spring.lifecare.vo.DoctorVO;
+import com.spring.lifecare.vo.DrugVO;
 
 public interface UserDAO {	
 	//카카오 회원찾기
@@ -45,4 +47,14 @@ public interface UserDAO {
 	 //의사 회원가입 처리
 	 public int insertDoctor(DoctorVO vo);
 	 
+	//약찾기
+	public List<DrugVO>searchDrug(Map<String, Object> map);
+
+	//약찾기 수량
+	public int searchDrugCount(Map<String, Object> map);
+	 
+	//약상세
+	public List<DrugVO>drugDetail(Map<String, Object> map);
+	 
+	
 }

@@ -7,8 +7,8 @@
 
 	<!-- MyBatis 설정 시작 -->
 	<!-- 컨넥션풀 -->
-	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
-		<property name="jndiName" value="java:comp/env/jdbc/Oracle11g_amazone_LifeCare" />
+	<bean id="dataSourceSpied" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:comp/env/jdbc/Oracle11g_LifeCare" />
 		<property name="resourceRef" value="true" />
 	</bean>
 	
@@ -21,6 +21,22 @@
 		<constructor-arg ref="sqlSessionFactory"/>
 	</bean>
 	<!-- MyBatis 설정 종료 -->	
+	
+	<!-- Mybatis Log -->
+	<bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+		<constructor-arg ref="dataSourceSpied" />
+		<property name="logFormatter">
+		<bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
+			<property name="loggingType" value="MULTI_LINE" />
+			<property name="sqlPrefix" value="[SQL]: "/>
+		</bean>
+		</property>
+	</bean>
+
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.spring.lifecare" />
+        <property name="annotationClass" value="org.springframework.stereotype.Repository"/>
+    </bean> 
 	
 	<!-- 트랜잭션 관리자 : @Transactional 어노테이션 추가 -->
 	<!-- Namespaces 탭에서 tx 추가 -->
