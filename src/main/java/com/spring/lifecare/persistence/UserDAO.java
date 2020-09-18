@@ -7,6 +7,7 @@ import java.util.Map;
 import com.spring.lifecare.vo.AppointmentVO;
 import com.spring.lifecare.vo.CustomerVO;
 import com.spring.lifecare.vo.DoctorVO;
+import com.spring.lifecare.vo.ReservationVO;
 
 public interface UserDAO {	
 	 //카카오 회원찾기
@@ -83,4 +84,16 @@ public interface UserDAO {
 	 
 	 //회원정보 불러오기
 	 public CustomerVO getCustomerInfo(String customer_id);
+	 
+	 //의사정보 불러오기
+	 public DoctorVO getDoctorInfo(String doctor_id);
+	 
+	 //예약시간(의사) 불러오기
+	 public ArrayList<AppointmentVO> getAppointList();
+	 
+	 //예약시간 설정 insert
+	 public int addAppointment(Map<String, Object> map);
+	 
+	 //reservation리스트 불러오기
+	 public ArrayList<ReservationVO> getReservation(String doctor_id);
 }

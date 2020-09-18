@@ -125,5 +125,27 @@
    <select id="getCustomerInfo" resultType="com.spring.lifecare.vo.CustomerVO" parameterType="String">
    		select * from customer where customer_id = #{customer_id}
    </select>
+   
+   <!-- 의사정보 불러오기 -->
+   <select id="getDoctorInfo" resultType="com.spring.lifecare.vo.DoctorVO" parameterType="String">
+   		select * from doctor where doctor_id = #{doctor_id}
+   </select>
+   
+   <!-- 예약가능 시간 불러오기 -->
+   <select id="getAppointList" resultType="com.spring.lifecare.vo.AppointmentVO">
+		select doctor_id, appoint_num, SUBSTR(appoint_date,1,2) || SUBSTR(appoint_date,4,2) || SUBSTR(appoint_date,7,2) as appoint_date, appoint_time
+  		from appointment
+   </select>
+   
+    <!-- appointment 테이블 예약추가 -->
+   <insert id="addAppointment" parameterType="java.util.Map">
+   		INSERT INTO appointment
+   		values(appoint_seq.nextval, #{doctor_id}, #{appoint_date}, #{appoint_time}, 0)
+   </insert>
+   
+   <!-- 예약스케쥴에 뿌려줄 예약정보 불러오기 -->
+   <select id="getReservation" resultType="com.spring.lifecare.vo.ReservationVO" parameterType="String">
+   		select appoint_num, reservation_date, customer_id, doctor_id from hospital_reservation where doctor_id = #{doctor_id}
+   </select>
 </mapper>  	  
 

@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 import com.spring.lifecare.vo.AppointmentVO;
 import com.spring.lifecare.vo.CustomerVO;
 import com.spring.lifecare.vo.DoctorVO;
+import com.spring.lifecare.vo.ReservationVO;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
@@ -185,6 +186,30 @@ public class UserDAOImpl implements UserDAO {
 	public CustomerVO getCustomerInfo(String customer_id) {
 		UserDAO dao = sqlSession.getMapper(UserDAO.class);
 		return dao.getCustomerInfo(customer_id);
+	}
+
+	@Override
+	public DoctorVO getDoctorInfo(String doctor_id) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.getDoctorInfo(doctor_id);
+	}
+
+	@Override
+	public ArrayList<AppointmentVO> getAppointList() {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.getAppointList();
+	}
+
+	@Override
+	public int addAppointment(Map<String, Object> map) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.addAppointment(map);
+	}
+
+	@Override
+	public ArrayList<ReservationVO> getReservation(String doctor_id) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.getReservation(doctor_id);
 	}
 }
 

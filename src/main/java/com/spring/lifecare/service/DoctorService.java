@@ -32,4 +32,16 @@ public interface DoctorService  {
 	  
 	  //회원정보 불러오기
 	  public void loadCustomerInfo(HttpServletRequest req, Model model);
+	  
+	  //의사정보 불러오기
+	  public void loadDoctorInfo(HttpServletRequest req, Model model);
+	  
+	  //의사예약정보 리스트 불러오기
+	  public void appointList(HttpServletRequest req, Model model);
+	  
+	  //예약가능시간 설정
+	  public void appointSet(HttpServletRequest req, Model model);
+	  
+	  //스케쥴에 뿌려주는 url
+	  public void reservationList(HttpServletRequest req, Model model);
 }

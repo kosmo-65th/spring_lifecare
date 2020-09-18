@@ -121,7 +121,6 @@ document.addEventListener('DOMContentLoaded', function() {
         center: 'title',
         right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
       },
-      defaultDate: '2020-02-12',
       editable:false,
       selectable:true,
       selectOverlap:true,
@@ -139,6 +138,131 @@ document.addEventListener('DOMContentLoaded', function() {
 			var modal = document.getElementById('modal');
 			 
 			modal.style.display="block";
+			
+			let today = new Date(); // 전역 변수, 오늘 날짜 / 내 컴퓨터 로컬을 기준으로 today에 Date 객체를 넣어줌
+			let year = today.getFullYear(); // 년도
+			let month = today.getMonth() + 1;  // 월
+			let date1 = today.getDate() + 1;  // +1일
+			let date2 = today.getDate() + 2;  // +2일
+			let date3 = today.getDate() + 3;  // +3일
+			let date4 = today.getDate() + 4;  // +4일
+			let date5 = today.getDate() + 5;  // +5일
+			let day = today.getDay();  // 요일	
+			
+			document.getElementById("date1").innerText = year + '/' + month + '/' + date1;
+			document.getElementById("date2").innerText = year + '/' + month + '/' + date2;
+			document.getElementById("date3").innerText = year + '/' + month + '/' + date3;
+			document.getElementById("date4").innerText = year + '/' + month + '/' + date4;
+			document.getElementById("date5").innerText = year + '/' + month + '/' + date5;
+			
+			// input값에 값주기
+			$('#start1').val(year + '/' + month + '/' + date1);
+			$('#start2').val(year + '/' + month + '/' + date2);
+			$('#start3').val(year + '/' + month + '/' + date3);
+			$('#start4').val(year + '/' + month + '/' + date4);
+			$('#start5').val(year + '/' + month + '/' + date5);
+			
+			document.appointForm.appoint_date[0].value = year + '/0' + month + '/' + date1;
+			document.appointForm.appoint_date[1].value = year + '/0' + month + '/' + date2;
+			document.appointForm.appoint_date[2].value = year + '/0' + month + '/' + date3;
+			document.appointForm.appoint_date[3].value = year + '/0' + month + '/' + date4;
+			document.appointForm.appoint_date[4].value = year + '/0' + month + '/' + date5;						
+			
+			var day1 = String(year)+"0"+String(month)+String(date1);
+			var day2 = String(year)+"0"+String(month)+String(date2);
+			var day3 = String(year)+"0"+String(month)+String(date3);
+			var day4 = String(year)+"0"+String(month)+String(date4);
+			var day5 = String(year)+"0"+String(month)+String(date5);
+			var days = [day1, day2, day3, day4, day5];
+			
+			var times = [$('#time0').val(), $('#time1').val(), $('#time2').val(), $('#time3').val(), $('#time4').val(),
+				$('#time5').val(),$('#time6').val(),$('#time7').val(),$('#time8').val(),$('#time9').val(),$('#time10').val(),
+				$('#time11').val(),$('#time12').val(),$('#time13').val(),$('#time14').val(),$('#time15').val(),$('#time16').val()
+				,$('#time17').val(),$('#time18').val(),$('#time19').val()];
+			
+			var doctor_id = $(':input[name=doctor_id]').val();
+			var obj = new Object();
+			var result = "";
+			$.ajax({
+				url : '${pageContext.request.contextPath}/getAppointList',
+				type : 'GET',   // 전송방식
+				dataType : 'json', // 요청한 데이터 형식 ("html", "xml", "json", "text")
+				success : function(obj) { // 콜백함수 - 전송에 성공했을 때의 결과가 data에 전달된다.
+					for(var i=0; i<obj.length; i++) {
+						if(obj[i].doctor_id == doctor_id) {
+							for(var j=0; j<5; j++) {
+ 								if(days[j] == obj[i].appoint_date) { 									
+									if(j == 0) {
+										for(x=0; x<=3; x++) {
+											if(times[x] == obj[i].appoint_time) {
+												$('#time'+x).attr("disabled", true);
+												$('#timeText'+x).css("color", "red");
+											}
+										}
+									}
+									if(j == 1) {
+										for(x=4; x<=7; x++) {
+											if(times[x] == obj[i].appoint_time) {
+												$('#time'+x).attr("disabled", true);
+												$('#timeText'+x).css("color", "red");
+											}
+										}
+									}
+									if(j == 2) {
+										for(x=8; x<=11; x++) {
+											if(times[x] == obj[i].appoint_time) {
+												$('#time'+x).attr("disabled", true);
+												$('#timeText'+x).css("color", "red");
+											}
+										}
+									}
+									if(j == 3) {
+										for(x=12; x<=15; x++) {
+											if(times[x] == obj[i].appoint_time) {
+												$('#time'+x).attr("disabled", true);
+												$('#timeText'+x).css("color", "red");
+											}
+										}
+									}
+									if(j == 4) {
+										for(x=16; x<=19; x++) {
+											if(times[x] == obj[i].appoint_time) {
+												$('#time'+x).attr("disabled", true);
+												$('#timeText'+x).css("color", "red");
+											}
+										}
+									}
+								}
+							}					
+						}															
+					}
+					$('#appointTime').html(result);
+				},
+				error : function() {
+					alert('오류');
+				}
+			});											
+			
+			document.appointForm.appoint_time[0].value = day1 + "09:00";
+			document.appointForm.appoint_time[1].value = day1 + "11:00";
+			document.appointForm.appoint_time[2].value = day1 + "14:00";
+			document.appointForm.appoint_time[3].value = day1 + "16:00";
+			document.appointForm.appoint_time[4].value = day2 + "09:00";
+			document.appointForm.appoint_time[5].value = day2 + "11:00";
+			document.appointForm.appoint_time[6].value = day2 + "14:00";
+			document.appointForm.appoint_time[7].value = day2 + "16:00";
+			document.appointForm.appoint_time[8].value = day3 + "09:00";
+			document.appointForm.appoint_time[9].value = day3 + "11:00";
+			document.appointForm.appoint_time[10].value = day3 + "14:00";
+			document.appointForm.appoint_time[11].value = day3 + "16:00";
+			document.appointForm.appoint_time[12].value = day4 + "09:00";
+			document.appointForm.appoint_time[13].value = day4 + "11:00";
+			document.appointForm.appoint_time[14].value = day4 + "14:00";
+			document.appointForm.appoint_time[15].value = day4 + "16:00";
+			document.appointForm.appoint_time[16].value = day5 + "09:00";
+			document.appointForm.appoint_time[17].value = day5 + "11:00";
+			document.appointForm.appoint_time[18].value = day5 + "14:00";
+			document.appointForm.appoint_time[19].value = day5 + "16:00";
 			
 			var span = document.getElementsByClassName("close")[0];     
 
@@ -166,7 +290,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 			var modal = document.getElementById('modal_change');
 			modal.style.display="block";
-			
+								
 			var span = document.getElementsByClassName("close")[1];     
 
 			span.onclick = function() {
@@ -180,59 +304,45 @@ document.addEventListener('DOMContentLoaded', function() {
 	        };
 		},
 		
-		//DB에서 일정 정보 불러오기
-      events: [
-        {
-          title: 'Business Lunch',
-          start: '2020-02-03 13:00:00',
-          constraint: 'businessHours'
-        },
-        {
-          title: 'Meeting',
-          start: '2020-02-13 11:00:00',
-          constraint: 'availableForMeeting', // defined below
-          color: '#257e4a'
-        },
-        {
-          title: 'Conference',
-          start: '2020-02-18',
-          end: '2020-02-20'
-        },
-        {
-          title: 'Party',
-          start: '2020-02-29 20:00:00'
-        },
+	  //DB에서 일정 정보 불러오기
+      events: 
+      function(info, successCallback, failureCallback){
+			
+			var header = '${_csrf.headerName}';
+			var token = '${_csrf.token}';
+		
+		    $.ajax({
+		        type: "POST",
+		        url: "${pageContext.request.contextPath}/reservationList",
+		        beforeSend: function(xhr){
+					xhr.setRequestHeader(header, token);
+				},
+				dataType: "json",
+		        success: function (result) {
+		        	
+		        	var events = [];
+		        	
+		        	for(var i = 0; i < result.length; i++){
+		        		
+		        		var event = {
+		        				title: result[i].title,
+		        				start: result[i].start,
+		        				url: result[i].url
+		        		};
+		        		
+		        		events.push(event);
+		        		
+		        	}
+		        	
+		        	successCallback(events);
+		        },
+		        
+		        error : function(){
+		        	alert("DB에서 데이터 불러오는 중 에러 발생");
+		        }
+		    })
+		}
 
-        // areas where "Meeting" must be dropped
-        {
-          groupId: 'availableForMeeting',
-          start: '2020-02-11 10:00:00',
-          end: '2020-02-11T16:00:00',
-          rendering: 'background'
-        },
-        {
-          groupId: 'availableForMeeting',
-          start: '2020-02-13 10:00:00',
-          end: '2020-02-13T16:00:00',
-          rendering: 'background'
-        },
-
-        // red areas where no events can be dropped
-        {
-          start: '2020-02-24',
-          end: '2020-02-28',
-          overlap: false,
-          rendering: 'background',
-          color: '#ff9f89'
-        },
-        {
-          start: '2020-02-06',
-          end: '2020-02-08',
-          overlap: false,
-          rendering: 'background',
-          color: '#ff9f89'
-        }
-      ]
     });
 
     calendar.render();
@@ -300,10 +410,10 @@ $(function() {
 			</div>
 			<div class="column column-30">
 				<div class="user-section"><a href="#">
-					<img src="${path_resources}images/doctor.png" alt="profile photo" class="circle float-left profile-photo" width="50" height="auto">
+					<img src="${path_resources}img/${doctor.getDoctor_faceimg()}" alt="profile photo" class="circle float-left profile-photo" width="50" height="auto">
 					<div class="username">
-						<h4>한승운</h4>
-						<p>진료과</p>
+						<h4>${doctor.getDoctor_name()}</h4>
+						<p>${doctor.getDoctor_major()}</p>
 					</div>
 				</a></div>
 			</div>
@@ -313,8 +423,8 @@ $(function() {
 		<div id="sidebar" class="column">
 			<h5>Navigation</h5>
 			<ul>
-				<li><a href="${path}/doctor_main"><em class="fa fa-home"></em> Home</a></li>
-				<li><a href="${path}/doctor_schedule"><em class="fa fa-table"></em> 스케쥴관리</a></li>
+				<li><a href="${path}/doctor/doctor_main"><em class="fa fa-home"></em> Home</a></li>
+				<li><a href="${path}/doctor/doctor_schedule"><em class="fa fa-table"></em> 스케쥴관리</a></li>
 				<li><a href="javascript:void(0);" onclick="resReset();"><em class="fa fa-pencil-square-o"></em> 환자조회/진료</a></li>
 				<li><a href="#alerts"><em class="fa fa-hand-o-up"></em> 진료도우미</a></li>
 			</ul>
@@ -326,41 +436,111 @@ $(function() {
 		<div id = "modal">
 			<div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="insertModalLabel">예약가능 일자 설정</h5>
-                    
-                     <span class="close">&times;</span> 
+                	<span class="close">&times;</span>
+                    <h5 class="modal-title" id="insertModalLabel">예약가능 일자 설정</h5>    
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="javascript:insertSkd();">
+                    <form name="appointForm" method="POST" action="${path}/doctor/appointSetPro">
                     	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                    	
+                    	<input type="hidden" name="doctor_id" value="${doctor.getDoctor_id()}">
                         <div class="form-group">
                             <label>의사</label>
-                            <input type="text" class="form-control" id="title" maxlength="30">
+                            <input type="text" class="form-control" id="title" maxlength="30" value="${doctor.getDoctor_name()} (${doctor.getDoctor_id()})" disabled>                            
                         </div>
                         
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group" style="margin-left:10px;">
-                                    <label>예약일자 설정</label>
-                                    <input type="date" name="start" class="form-control" id="start" required="">
+                                    <label>예약일자</label>
+                                    <div id="date1"></div><input style="display:none;" type="checkbox" name="appoint_date" class="form-control" id="start1">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group" style="margin-left:40px;">
                                     <label>예약가능 시간 설정</label>
-                                      <input type='checkbox' name='appoint_time' value='09:00' checked />09:00
-                                      <input type='checkbox' name='appoint_time' value='11:00' checked />11:00
-									  <input type='checkbox' name='appoint_time' value='14:00' checked />14:00
-									  <input type='checkbox' name='appoint_time' value='16:00' checked />16:00
+                                      <input type='checkbox' name='appoint_time' value='09:00' id="time0"><span id="timeText0">09:00</span>
+                                      <input type='checkbox' name='appoint_time' value='11:00' id="time1"><span id="timeText1">11:00</span>
+									  <input type='checkbox' name='appoint_time' value='14:00' id="time2"><span id="timeText2">14:00</span>
+									  <input type='checkbox' name='appoint_time' value='16:00' id="time3"><span id="timeText3">16:00</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label>메모</label>
-                            <textarea class="form-control" id="memo" name="memo" placeholder="memo" style="resize: none;" maxlength="100"></textarea>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" style="margin-left:10px;">
+                                    <label>예약일자</label>
+                                    <div id="date2"></div><input style="display:none;" type="checkbox" name="appoint_date" class="form-control" id="start2">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" style="margin-left:40px;">
+                                    <label>예약가능 시간 설정</label>
+                                      <input type='checkbox' name='appoint_time' value='09:00' id="time4"/><span id="timeText4">09:00</span>
+                                      <input type='checkbox' name='appoint_time' value='11:00' id="time5"/><span id="timeText5">11:00</span>
+									  <input type='checkbox' name='appoint_time' value='14:00' id="time6"/><span id="timeText6">14:00</span>
+									  <input type='checkbox' name='appoint_time' value='16:00' id="time7"/><span id="timeText7">16:00</span>
+                                </div>
+                            </div>
                         </div>
-                        <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" style="margin-left:10px;">
+                                    <label>예약일자</label>
+                                    <div id="date3"></div><input style="display:none;" type="checkbox" name="appoint_date" class="form-control" id="start3">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" style="margin-left:40px;">
+                                    <label>예약가능 시간 설정</label>
+                                      <input type='checkbox' name='appoint_time' value='09:00' id="time8"/><span id="timeText8">09:00</span>
+                                      <input type='checkbox' name='appoint_time' value='11:00' id="time9"/><span id="timeText9">11:00</span>
+									  <input type='checkbox' name='appoint_time' value='14:00' id="time10"/><span id="timeText10">14:00</span>
+									  <input type='checkbox' name='appoint_time' value='16:00' id="time11"/><span id="timeText11">16:00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" style="margin-left:10px;">
+                                    <label>예약일자</label>
+                                    <div id="date4"></div><input style="display:none;" type="checkbox" name="appoint_date" class="form-control" id="start4">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" style="margin-left:40px;">
+                                    <label>예약가능 시간 설정</label>
+                                      <input type='checkbox' name='appoint_time' value='09:00' id="time12"/><span id="timeText12">09:00</span>
+                                      <input type='checkbox' name='appoint_time' value='11:00' id="time13"/><span id="timeText13">11:00</span>
+									  <input type='checkbox' name='appoint_time' value='14:00' id="time14"/><span id="timeText14">14:00</span>
+									  <input type='checkbox' name='appoint_time' value='16:00' id="time15"/><span id="timeText15">16:00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" style="margin-left:10px;">
+                                    <label>예약일자</label>
+                                    <div id="date5"></div><input style="display:none;" type="checkbox" name="appoint_date" class="form-control" id="start5">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group" style="margin-left:40px;">
+                                    <label>예약가능 시간 설정</label>
+                                      <input type='checkbox' name='appoint_time' value='09:00' id="time16"/><span id="timeText16">09:00</span>
+                                      <input type='checkbox' name='appoint_time' value='11:00' id="time17"/><span id="timeText17">11:00</span>
+									  <input type='checkbox' name='appoint_time' value='14:00' id="time18"/><span id="timeText18">14:00</span>
+									  <input type='checkbox' name='appoint_time' value='16:00' id="time19"/><span id="timeText19">16:00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" style="margin-left:10px;">
+                                    <label style="color:red;">비활성화는 이미예약설정된 시간임</label>
+										<div id="appointTime"></div>
+                                </div>
+                            </div>
+                        </div>
                         <div>
                             <button type="submit" class="btn btn-outline-primary">예약일정 추가하기</button>
                         </div>
