@@ -17,7 +17,14 @@ public class CustomerVO {
 	private int enabled;
 	private String customer_gender;
 	private int customer_year;
+	private String customer_echeck;
 	
+	public String getCustomer_echeck() {
+		return customer_echeck;
+	}
+	public void setCustomer_echeck(String customer_echeck) {
+		this.customer_echeck = customer_echeck;
+	}
 	public int getEnabled() {
 		return enabled;
 	}
@@ -83,18 +90,6 @@ public class CustomerVO {
 	}
 	public void setAuthority(String authority) {
 		this.authority = authority;	
-	}
-	public String getCustomer_gender() {
-		return customer_gender;
-	}
-	public void setCustomer_gender(String customer_gender) {
-		this.customer_gender = customer_gender;
-	}
-	public int getCustomer_year() {
-		return customer_year;
-	}
-	public void setCustomer_year(int customer_year) {
-		this.customer_year = customer_year;
 	}
 	public String getCustomer_gender() {
 		return customer_gender;

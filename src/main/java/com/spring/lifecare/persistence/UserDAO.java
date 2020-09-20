@@ -8,7 +8,10 @@ import com.spring.lifecare.vo.AppointmentVO;
 import com.spring.lifecare.vo.CustomerVO;
 import com.spring.lifecare.vo.DoctorVO;
 
-public interface UserDAO {	
+public interface UserDAO {
+	//로그인
+	public Map<String, Object> selectUser(String userId);
+	
 	 //카카오 회원찾기
 	 public Map<String, String> kakaoFindId(String kakaoId);
 	

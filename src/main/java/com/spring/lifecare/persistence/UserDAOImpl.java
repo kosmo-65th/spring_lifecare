@@ -25,6 +25,11 @@ public class UserDAOImpl implements UserDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	//로그인
+	public Map<String, Object> selectUser(String userId){
+		return sqlSession.selectOne("com.spring.lifecare.persistence.UserDAO.selectUser", userId);
+	}
+	
 	//카카오 아이디 있는지 체크
 	@Override
 	public Map<String, String> kakaoFindId(String kakaoId) {
