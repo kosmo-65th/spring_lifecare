@@ -1,6 +1,7 @@
 package com.spring.lifecare.service;
 
 import java.io.IOException;
+import java.util.Collection;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import com.spring.lifecare.vo.UserVO;
@@ -28,8 +31,19 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
 			request.getSession().setAttribute("userSession", (String)authentication.getPrincipal());
 		}
 		
-		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/");
+		
+		//권한에 따른 이동 위치
+		Collection<? extends GrantedAuthority> authorities = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+		String auth_text = authorities.toString();
+		
+		System.out.println("success Handler 출력 : " +auth_text);
+		if(auth_text.equals("[ROLE_DOCTOR]")) {
+			dispatcher = request.getRequestDispatcher("/doctor/doctor_main");
+		}else if(auth_text.equals("[ROLE_ADMIN]")) {
+			dispatcher = request.getRequestDispatcher("/admin/summary");
+		}
+		
 		dispatcher.forward(request, response);
 		
 	}

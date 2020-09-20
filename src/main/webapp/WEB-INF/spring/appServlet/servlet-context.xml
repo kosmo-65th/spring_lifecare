@@ -28,6 +28,12 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	 <!-- multipart resolver설정  -->
+	  <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	   <beans:property name="maxUploadSize" value="100000000" />
+	   <beans:property name="maxInMemorySize" value="100000000" />
+	 </beans:bean>	  
+	
 	<context:component-scan base-package="com.spring.lifecare" />
 	
 	<!-- 시큐리티 추가 2. @Secured 어노테이션 활성화, 사용권한 제한 -->

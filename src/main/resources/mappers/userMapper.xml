@@ -37,7 +37,7 @@
    </select>
    <!-- 회원가입 처리 -->
    <insert id ="insertMember" parameterType="com.spring.lifecare.vo.CustomerVO">
-     INSERT INTO customer (customer_id, customer_pw, customer_name, customer_phone, customer_email) VALUES (#{customer_id}, #{customer_pw},#{customer_name},#{customer_phone},#{customer_email})
+     INSERT INTO customer (customer_id, customer_pw, customer_name, customer_phone, customer_email, customer_gender, customer_year) VALUES (#{customer_id}, #{customer_pw},#{customer_name},#{customer_phone},#{customer_email},#{customer_gender},#{customer_year, jdbcType=VARCHAR})
    </insert>
    <!-- 이메일 인증 후 로그인 처리  -->
    <update id="approvalMember" parameterType="String">
@@ -66,5 +66,64 @@
      SELECT count(*)  FROM doctor WHERE doctor_num=#{doctor_num} 
    </select>
    
+   <!-- 의사 회원가입 처리  -->
+  <insert id ="insertDoctor" parameterType="com.spring.lifecare.vo.DoctorVO">
+     INSERT INTO doctor(doctor_num, doctor_pw, doctor_id, doctor_name, doctor_email, doctor_phone, doctor_major, doctor_position, doctor_faceimg) 
+      VALUES (#{doctor_num},#{doctor_pw},#{doctor_id},#{doctor_name},#{doctor_email},#{doctor_phone},#{doctor_major},#{doctor_position},#{doctor_faceimg})
+   </insert>
+   <!-- 정보수정과 회원탈퇴 아이디, 비밀번호 체크 -->
+   <select id="idPwdCheck"  parameterType="String" resultType="String">
+        SELECT customer_pw FROM customer WHERE customer_id=#{customer_id}
+   </select>
+   
+   <!-- 마이페이지 내 정보 수정 -->
+  <update id ="updateMyInformation" parameterType ="com.spring.lifecare.vo.CustomerVO">       
+	 UPDATE customer SET customer_phone=#{customer_phone}, customer_email=#{customer_email}  WHERE customer_id=#{customer_id, jdbcType=VARCHAR} AND customer_name=#{customer_name, jdbcType=VARCHAR} 
+  </update>
+ 
+   <!-- 마이페이지 비밀번호 변경  -->
+   <update id ="changePassword" parameterType ="com.spring.lifecare.vo.CustomerVO">       
+	 UPDATE customer SET customer_pw=#{customer_pw} WHERE customer_id=#{customer_id, jdbcType=VARCHAR}  
+  </update>
+
+   <!-- 회원 이름 불러오기 -->
+   <select id="loadCustomerName" parameterType="String" resultType="String">
+   		SELECT customer_name FROM customer WHERE customer_id=#{customer_id}
+   </select>
+   
+   <!-- 의사 리스트 불러오기 -->
+   <select id="getDoctorList" resultType="com.spring.lifecare.vo.DoctorVO">
+		SELECT doctor_num, doctor_faceimg, doctor_id, doctor_name, doctor_major, doctor_position
+		  FROM doctor
+   </select>
+   
+   <!-- 예약가능 시간 불러오기 -->
+   <select id="getTimeList" resultType="com.spring.lifecare.vo.AppointmentVO">
+		select doctor_id, appoint_num, SUBSTR(appoint_date,1,2) || SUBSTR(appoint_date,4,2) || SUBSTR(appoint_date,7,2) as appoint_date, appoint_time
+  		from appointment
+ 		where appoint_enable = 0
+ 		order by appoint_time
+   </select>
+   
+   <!-- appoint 테이블 예약불가로 update -->
+   <update id="updateAppoint" parameterType="int">
+	  UPDATE appointment set appoint_enable = 1 WHERE appoint_num = #{appoint_num} 
+   </update>
+   
+   <!-- revervation 테이블 예약추가 -->
+   <insert id="addReservation" parameterType="java.util.Map">
+   		INSERT INTO hospital_reservation
+   		values(#{appoint_num}, #{reservation_date}, #{customer_id}, #{doctor_id})
+   </insert>
+   
+   <!-- 환자검색리스트 -->
+   <select id="searchList" resultType="com.spring.lifecare.vo.CustomerVO">
+   		select customer_id, customer_name from customer where customer_name like '%'||#{keyword}||'%'
+   </select>
+   
+   <!-- 회원정보 불러오기 -->
+   <select id="getCustomerInfo" resultType="com.spring.lifecare.vo.CustomerVO" parameterType="String">
+   		select * from customer where customer_id = #{customer_id}
+   </select>
 </mapper>  	  
 

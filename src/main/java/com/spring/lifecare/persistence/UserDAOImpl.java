@@ -1,5 +1,7 @@
 package com.spring.lifecare.persistence;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.mail.internet.InternetAddress;
@@ -11,9 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Repository;
 
+import com.spring.lifecare.vo.AppointmentVO;
 import com.spring.lifecare.vo.CustomerVO;
 import com.spring.lifecare.vo.DoctorVO;
-
 
 @Repository
 public class UserDAOImpl implements UserDAO {
@@ -105,9 +107,84 @@ public class UserDAOImpl implements UserDAO {
 	}
 	//의사 회원가입 처리
 	@Override
-	public int insertDoctor(DoctorVO vo) {
-		return sqlSession.insert("com.spring.lifecare.persistence.UserDAO.insertDoctor", vo);
+	public int insertDoctor(DoctorVO vo) {		
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);	    	    
+	    return dao.insertDoctor(vo);
 	}
 	
+	@Override
+	public String idPwdCheck(String customer_id) {
+		String checkIdPwd = sqlSession.selectOne("com.spring.lifecare.persistence.UserDAO.idPwdCheck", customer_id);
+		return checkIdPwd;	
+	}
+	
+	
+	
+	//내 정보 가져오기
+	@Override
+	public CustomerVO myInformation(String customer_id) {
+		CustomerVO vo = new CustomerVO();
+		vo = sqlSession.selectOne("com.spring.lifecare.persistence.UserDAO.myInformation", customer_id);
+		return vo;
+		
+	}
+
+	//내 정보 수정하기
+	@Override
+	public int updateMyInformation(CustomerVO vo) {
+		 int updateCnt = sqlSession.update("spring.mvc.member_mybatis.persistence.MemberDAO.updateMyInformation", vo);
+		 
+		 return updateCnt;
+		
+	}
+
+	//마이페이지 비밀번호 변경
+	@Override
+	public int changePassword(CustomerVO vo) {
+		int updateCnt = sqlSession.update("com.spring.lifecare.persistence.UserDAO.changePassword", vo);
+
+		return updateCnt;
+		
+	}
+	@Override
+	public String loadCustomerName(String customer_id) {
+		return sqlSession.selectOne("com.spring.lifecare.persistence.UserDAO.loadCustomerName", customer_id);
+	}
+
+	@Override
+	public ArrayList<DoctorVO> getDoctorList() {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.getDoctorList();
+	}
+
+	@Override
+	public ArrayList<AppointmentVO> getTimeList() {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.getTimeList();
+	}
+
+	@Override
+	public int updateAppoint(int appoint_num) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.updateAppoint(appoint_num);
+	}
+
+	@Override
+	public int addReservation(Map<String, Object> map) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.addReservation(map);
+	}
+
+	@Override
+	public List<CustomerVO> searchList(String keyword) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.searchList(keyword);
+	}
+
+	@Override
+	public CustomerVO getCustomerInfo(String customer_id) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.getCustomerInfo(customer_id);
+	}
 }
 
