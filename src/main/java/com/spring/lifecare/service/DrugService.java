@@ -11,7 +11,7 @@ import com.spring.lifecare.vo.DrugVO;
 
 public interface DrugService {
 
-	public void searchDrug(HttpServletRequest req, Model mod);
+	public void searchDrug(HttpServletRequest req, Model model);
 
-	public void drugDetail(HttpServletRequest req, Model mod);
+	public void drugDetail(HttpServletRequest req, Model model);
 }

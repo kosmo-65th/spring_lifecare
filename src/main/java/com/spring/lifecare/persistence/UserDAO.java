@@ -54,7 +54,7 @@ public interface UserDAO {
 	public int searchDrugCount(Map<String, Object> map);
 	 
 	//약상세
-	public List<DrugVO>drugDetail(Map<String, Object> map);
+	public  DrugVO drugDetail(int drug_number);
 	 
 	
 }

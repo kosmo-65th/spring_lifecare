@@ -117,8 +117,8 @@ public class UserDAOImpl implements UserDAO {
 	}
 	
 	//약상세
-	public List<DrugVO>drugDetail(Map<String, Object> map) {
-		return sqlSession.selectList("com.spring.lifecare.persistence.UserDAO.drugDetail",map);
+	public DrugVO drugDetail(int drug_number) {
+		return sqlSession.selectOne("com.spring.lifecare.persistence.UserDAO.drugDetail",drug_number);
 	}
 	
 }

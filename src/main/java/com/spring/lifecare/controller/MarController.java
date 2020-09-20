@@ -43,28 +43,13 @@ public class MarController {
 		return "drug/drugDetail";
 	}
 	
+
 	@RequestMapping("/NewFile")
 	public String NewFile(Model model) {
 		
 		return "drug/NewFile";
 	}
 	
-	
-	   
-//    @RequestMapping(value="/apiTest", method=RequestMethod.GET)
-//    @ResponseBody
-//    public Object getData(@RequestBody DrugVO vo) throws IOException {
-//        String item_name = vo.getItem_name();
-//        String entp_name = vo.getEntp_name();
-//        Object response =  service.searchDrug();
-//        return response;
-//    }
-   
-	/*
-	 * @RequestMapping("/apiTest") public String NewFile(Model model) {
-	 * 
-	 * return "drug/drugSearch"; }
-	 */
 	
 }
 	

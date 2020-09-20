@@ -102,7 +102,6 @@ public class DrugServiceImpl implements DrugService {
 		number = cnt -(currentPage -1 ) * pageSize;
 		
 		
-//		if(cnt>0) {
 			Map<String,Object>  map1 = new HashMap<String, Object>();
 			map1.put("drug_enptname", drug_enptname);
 			map1.put("drug_name", drug_name);
@@ -117,11 +116,7 @@ public class DrugServiceImpl implements DrugService {
 			//검색
 			List<DrugVO> dtos = userDAO.searchDrug(map1);
 			
-//			for(DrugVO dto : dtos) {
-//				System.out.println("DrugShape : " + dto.getDrug_shape());
-//			}
 			model.addAttribute("dtos",dtos);
-//		}
 			
 		startPage = (currentPage/pageBlock) * pageBlock + 1; 
 		if(currentPage % pageBlock == 0) startPage -= pageBlock;
@@ -145,16 +140,9 @@ public class DrugServiceImpl implements DrugService {
 	}
  //상세
 	@Override
-	public void drugDetail(HttpServletRequest req, Model mod) {
+	public void drugDetail(HttpServletRequest req, Model model) {
 		int drug_number =Integer.parseInt( req.getParameter("drug_number"));
-		int pageNum =Integer.parseInt(req.getParameter("pageNum"));
-		int number =Integer.parseInt(req.getParameter("number"));
-		
-		Map<String,Object>  map = new HashMap<String, Object>();
-		map.put("drug_number", drug_number);
-		
-		
-		List<DrugVO> dtos = userDAO.drugDetail(map);
-		
+		DrugVO vo = userDAO.drugDetail(drug_number);
+		model.addAttribute("detail", vo); 
 	}
 }
