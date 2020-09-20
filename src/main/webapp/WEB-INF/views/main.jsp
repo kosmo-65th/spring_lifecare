@@ -68,7 +68,7 @@
                <div class="col-md-12 col-sm-12">
                   <div class="text-contant">
                      <h2>
-                        <span class="center"><span class="icon"><img src="${path_resources_lifecare}images/icon-logo.png" alt="#" /></span></span>
+                        <span class="center"><span class="icon"><img src="${path_resources_lifecare}images/icon-logo.png" /></span></span>
                         <a href="" class="typewrite" data-period="2000" data-type='[ "Welcome to life care", "Take care of you", "Hospital for you" ]'>
                         <span class="wrap"></span>
                         </a>
@@ -94,7 +94,7 @@
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                <div class="row">
-                  <div class="service-time middle" style="background:#0071d1;">
+                  <div class="service-time middle" style="background:#0071d1; height:380px;">
                      <span class="info-icon"><i class="fa fa-clock-o" aria-hidden="true"></i></span> 
                      <h3>근무 시간</h3>
                      <div class="time-table-section">

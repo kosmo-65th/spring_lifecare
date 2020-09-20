@@ -60,7 +60,7 @@
             </div>
             <div id="sticky-header" class="main-header-area">
                 <div class="container">
-                    <div class="row align-items-center">
+                    <div class="row align-items-center" style="width:1000px;">
                         <div class="col-xl-3 col-lg-2">
                             <div class="logo">
                                 <a href="${path}/">
@@ -88,7 +88,7 @@
                                         </li>
                                         <li><a href="#">의료정보 <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="drugSearch">약정보</a></li>
+                                                <li><a href="${path}/drugSearch">약정보</a></li>
                                                 <li><a href="about.html">응급처치방법</a></li>
                                                 <li><a href="${path}/questionnaire">자가진단</a></li>
                                             </ul>

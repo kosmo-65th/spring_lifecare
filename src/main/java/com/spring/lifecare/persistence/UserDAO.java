@@ -3,6 +3,7 @@ package com.spring.lifecare.persistence;
 import java.util.Map;
 
 import com.spring.lifecare.vo.CustomerVO;
+import com.spring.lifecare.vo.questionnaireVO;
 
 public interface UserDAO {	
 	//카카오 회원찾기
@@ -31,4 +32,5 @@ public interface UserDAO {
 	 
 	 //회원이 직접 정보 수정
 	 public int modify(CustomerVO vo);
+	 
 }

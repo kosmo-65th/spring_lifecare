@@ -12,6 +12,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Repository;
 
 import com.spring.lifecare.vo.CustomerVO;
+import com.spring.lifecare.vo.questionnaireVO;
 
 
 @Repository
@@ -85,5 +86,6 @@ public class UserDAOImpl implements UserDAO {
 		
 		return updateCnt;
 	}
+
 }
 
