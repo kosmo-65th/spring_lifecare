@@ -16,6 +16,7 @@ public class JmyController {
 		
 		return "/guest/patientBillOfRight";
 	}
+	
 	//이용약관
 	@RequestMapping("/conditions")
 	public String conditions() {
@@ -23,6 +24,7 @@ public class JmyController {
 		
 		return "/guest/conditions";
 	}
+	
 	//개인정보 처리방침
 	@RequestMapping("/PI")
 	public String PI() {

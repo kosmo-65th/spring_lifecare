@@ -47,6 +47,13 @@
             <version>1.1.4c</version>
         </dependency>
         
+        <!-- Mybatis Logging -->
+		<dependency>
+		    <groupId>org.lazyluke</groupId>
+		    <artifactId>log4jdbc-remix</artifactId>
+		    <version>0.2.7</version>
+		</dependency>
+        
 		<!-- Logging -->
 		<dependency>
 		    <groupId>org.lazyluke</groupId>
@@ -71,6 +78,7 @@
 			<version>${org.slf4j-version}</version>
 			<scope>runtime</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
@@ -95,6 +103,9 @@
 			</exclusions>
 			<scope>runtime</scope>
 		</dependency>
+		
+		
+		
 
 		<!-- @Inject -->
 		<dependency>

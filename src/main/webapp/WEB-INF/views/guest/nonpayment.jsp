@@ -73,35 +73,35 @@
 				<ul class="clearFix">
 				<c:choose>
 					<c:when test="${code==1}">
-						<li class="current"><a href="${path}/guest/nonpayment?code=1">행위료</a></li>
-						<li class=""><a href="${path}/guest/nonpayment?code=2">치료재료</a></li>
-						<li class=""><a href="${path}/guest/nonpayment?code=3">약제</a></li>
-						<li class=""><a href="${path}/guest/nonpayment?code=4">제증명수수료</a></li>
+						<li class="current"><a href="${path}/nonpayment?code=1">행위료</a></li>
+						<li class=""><a href="${path}/nonpayment?code=2">치료재료</a></li>
+						<li class=""><a href="${path}/nonpayment?code=3">약제</a></li>
+						<li class=""><a href="${path}/nonpayment?code=4">제증명수수료</a></li>
 					</c:when>
 					<c:when test="${code==2}">
-						<li class=""><a href="${path}/guest/nonpayment?code=1">행위료</a></li>
-						<li class="current"><a href="${path}/guest/nonpayment?code=2">치료재료</a></li>
-						<li class=""><a href="${path}/guest/nonpayment?code=3">약제</a></li>
-						<li class=""><a href="${path}/guest/nonpayment?code=4">제증명수수료</a></li>
+						<li class=""><a href="${path}/nonpayment?code=1">행위료</a></li>
+						<li class="current"><a href="${path}/nonpayment?code=2">치료재료</a></li>
+						<li class=""><a href="${path}/nonpayment?code=3">약제</a></li>
+						<li class=""><a href="${path}/nonpayment?code=4">제증명수수료</a></li>
 					</c:when>
 					<c:when test="${code==3}">
-						<li class=""><a href="${path}/guest/nonpayment?code=1">행위료</a></li>
-						<li class=""><a href="${path}/guest/nonpayment?code=2">치료재료</a></li>
-						<li class="current"><a href="${path}/guest/nonpayment?code=3">약제</a></li>
-						<li class=""><a href="${path}/guest/nonpayment?code=4">제증명수수료</a></li>
+						<li class=""><a href="${path}/nonpayment?code=1">행위료</a></li>
+						<li class=""><a href="${path}/nonpayment?code=2">치료재료</a></li>
+						<li class="current"><a href="${path}/nonpayment?code=3">약제</a></li>
+						<li class=""><a href="${path}/nonpayment?code=4">제증명수수료</a></li>
 					</c:when>
 					<c:when test="${code==4}">
-						<li class=""><a href="${path}/guest/nonpayment?code=1">행위료</a></li>
-						<li class=""><a href="${path}/guest/nonpayment?code=2">치료재료</a></li>
-						<li class=""><a href="${path}/guest/nonpayment?code=3">약제</a></li>
-						<li class="current"><a href="${path}/guest/nonpayment?code=4">제증명수수료</a></li>
+						<li class=""><a href="${path}/nonpayment?code=1">행위료</a></li>
+						<li class=""><a href="${path}/nonpayment?code=2">치료재료</a></li>
+						<li class=""><a href="${path}/nonpayment?code=3">약제</a></li>
+						<li class="current"><a href="${path}/nonpayment?code=4">제증명수수료</a></li>
 					</c:when>
 					
 					<c:otherwise>
-						<li class=""><a href="${path}/guest/nonpayment?code=1">행위료</a></li>
-						<li class=""><a href="${path}/guest/nonpayment?code=2">치료재료</a></li>
-						<li class=""><a href="${path}/guest/nonpayment?code=3">약제</a></li>
-						<li class=""><a href="${path}/guest/nonpayment?code=4">제증명수수료</a></li>
+						<li class=""><a href="${path}/nonpayment?code=1">행위료</a></li>
+						<li class=""><a href="${path}/nonpayment?code=2">치료재료</a></li>
+						<li class=""><a href="${path}/nonpayment?code=3">약제</a></li>
+						<li class=""><a href="${path}/nonpayment?code=4">제증명수수료</a></li>
 					</c:otherwise>
 				</c:choose>
 				</ul>

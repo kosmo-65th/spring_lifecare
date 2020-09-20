@@ -2,6 +2,7 @@ package com.spring.lifecare.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.Collection;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -68,12 +69,9 @@ public class SwhController {
         Map<String, String> userInfo = kakao.checkKakaoId(userKakaoInfo);
         
         if(userInfo == null  ||userInfo.get("USERNAME").equals("") || userInfo.get("USERNAME")==null ) {//데이터베이스에 카카오 로그인 정보가 없을경우
-        	PrintWriter out = response.getWriter();
-        	
-        	out.println("<script>");
-			out.println("alert('카카오톡에 연동된 아이디가 없습니다.');");
-			out.println("</script>");
-			out.close();
+        	String errormsg = "카카오와 연동된 아이디가 없습니다";
+		   	model.addAttribute("fail", "1");
+			model.addAttribute("errMsg", errormsg);
         	
         	return "guest/login";//로그인 페이지로 이동
         }else {//데이터베이스에 카카오 로그인 정보가 있을경우
@@ -94,11 +92,42 @@ public class SwhController {
 
 	//네이버 로그인
 	@RequestMapping("/naverLogin")
-	public String naverLogin(HttpServletRequest request, HttpServletResponse response) {
+	public String naverLogin(HttpSession session, Model model, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
+		HashMap<String, Object> userInfo= null;
+		Map<String, String> user = null;
 		
+		try {
+			userInfo = naver.callback(request);
+		}catch(UnsupportedEncodingException e) {
+			System.out.println("encodingException");
+		}
 		
+		System.out.println("userInfo : "+ userInfo);
 		
+		if(userInfo != null) {
+			user = naver.checkNaverId(userInfo);
+		}
+		
+		System.out.println("user" + user);
+		
+		if(user == null  ||user.get("USERNAME").equals("") || user.get("USERNAME")==null ) {//데이터베이스에 카카오 로그인 정보가 없을경우
+			
+			String errormsg = "네이버와 연동된 아이디가 없습니다";
+		   	model.addAttribute("fail", "1");
+			model.addAttribute("errMsg", errormsg);
+		   	
+		   	return "guest/login";//로그인 페이지로 이동
+		}else {//데이터베이스에 카카오 로그인 정보가 있을경우
+		   		//클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
+		       if (userInfo.get("email") != null) {
+		           //session.setAttribute("userId", userInfo.get("email"));
+		           //session.setAttribute("access_Token", access_Token);
+		       	model.addAttribute("email", userInfo.get("email"));
+		       }
+		     //권한 부여
+		     naver.naverAutehntication(request, response, user);
+		}
 		return "main";
 	}
 	

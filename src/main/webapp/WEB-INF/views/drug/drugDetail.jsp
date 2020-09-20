@@ -455,16 +455,16 @@ $('html, body').stop().animate( { scrollTop : '1' } );$('body').attr('style','po
 				<a style="cursor:pointer" onclick="javascript:window.print();" style="float:right"><span class="">화면 인쇄</span></a>
 				<table class="infotable">
 					<tr>
-						<th class="name">제품명</th>
-						<td  id=> ${detail.drug_name}</td>
+						<th class="name" style="width:103px;" >제품명</th>
+						<td style="width:330px;"> ${detail.drug_name}</td>
 					
-						<th colspan="2">식별이미지</th>
+						<th colspan="2" style="width:377px;">식별이미지</th>
 						
 					<tr>
 						<th >전문 / 일반</th>
 						<td><span id="drug_cls"></span>${detail.drug_division} <span id="narcotic_kind" style="color:red"></span></td>
 						
-						<td class="img" rowspan="3" colspan="2" style="text-align: -webkit-center;">
+						<td class="img" rowspan="3" colspan="2" style="text-align: -webkit-center; width:377px;">
 							<div class="infoOver view_drugimg" >
 								<a><img  alt="의약품이미지" src="${detail.drug_productimage}" style="width: 200px; height: 150px; margin-bottom: 8px;"></a>
 								
@@ -475,7 +475,7 @@ $('html, body').stop().animate( { scrollTop : '1' } );$('body').attr('style','po
 									<table class="identity">
 										<tbody>
 											<tr>
-												<th>식별표시</th>
+												<th ">식별표시</th>
 												<td> ${detail.drug_frontShape} </td>
 											</tr>
 										</tbody>
@@ -514,7 +514,7 @@ $('html, body').stop().animate( { scrollTop : '1' } );$('body').attr('style','po
 					<tr>
 						<th>제형</th>
 						<td id="drug_form">${detail.drug_formulation}</td>
-						<th colspan="2">장축(mm)/단축(mm)/두께(mm)</th>
+						<th colspan="2">장축(mm)&nbsp;/&nbsp;단축(mm)&nbsp;/&nbsp;두께(mm)</th>
 					</tr>
 					<tr>
 						<th>모양</th>

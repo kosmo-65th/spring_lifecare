@@ -44,7 +44,7 @@
                                     </c:if>
                                     <!-- 로그인 완료후 -->
                                     <c:if test="${sessionScope.userSession != null}">
-	                                    <li><a href="${path}/Mypage">${sessionScope.userSession}의 마이페이지</a></li>
+	                                    <li><a href="${path}/customer/mypage">${sessionScope.userSession}의 마이페이지</a></li>
 	                                    <li><a href="">고객센터</a></li>
 	                                    <%-- <li><a href="${path}/logout">로그아웃</a></li> --%>
 	                                    <li><a href="#" onclick="document.getElementById('logout-form').submit();">로그아웃</a></li>

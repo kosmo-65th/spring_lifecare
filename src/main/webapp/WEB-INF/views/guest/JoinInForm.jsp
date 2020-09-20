@@ -30,7 +30,7 @@
   	var mailJ = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
   	// 휴대폰 번호 정규식
   	var phoneJ = /^[0-9]{10,11}$/;
-    	
+  	
     
     function joinInFocus(){
 	   if (document.joinInform.userPwd.value != document.joinInform.userRePwd.value){
@@ -83,7 +83,7 @@
 			return false;
 		}
 		
-    }
+    }	
 
     $(document).ready(function(){
     		
@@ -244,7 +244,27 @@
                <input type="password" name="customer_PwChk" id="userRePwd" placeholder="비밀번호확인" class="mb10" value="" required>  
                <div class="pwdChk" id="rePwChk"></div>  
                <input type="text" name="customer_name" id="userName" placeholder="이름" class="mb10" value="" required>
-               <div class="name" id="nameChk"></div>      
+               <div class="name" id="nameChk"></div>
+               <div align="center">
+               <div style="border:1px solid #ccc; width:334.8px;height:90px; margin-bottom:10px;">  
+               		<div style="margin-top:10px;">
+               		성별을 선택해주세요.
+               <select name="customer_gender" required id="sex" style="width:95px; margin-left:18px;"> 
+	                <option value="여자">여자</option>
+	                <option value="남자">남자</option>	                  
+	           </select> 
+	           		</div>
+	           		<div style="margin-top:10px;"> 
+	            	출생년도 선택해 주세요. 
+               <select name="customer_year" required id="birthday">
+               		 <option value="년도">-출생년도-</option> 
+               		 <%for(int i=1910; i<=2002; i++) { %>
+               		 <option value="<%=i%>"> <%=i+ "년" %></option>
+               		 <%} %> 
+               </select>
+               		</div>
+               	</div>
+               </div>
                <input type="text" name="customer_phone" id="userPhone" placeholder="휴대폰 번호" class="mb10" value="" required>
                <div class="number" id="numberChk"></div>              
                <input type="text" name="customer_email" id="userEmail" placeholder="이메일 주소" class="mb10" value="" required>

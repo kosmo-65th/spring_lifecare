@@ -61,10 +61,10 @@
 /*20170605달력수정*/
 .reserBox .denTime{padding:5px;}
 .reserBox .denTime h3{margin:10px 0 10px 5px;font-size:small;}
-.reserBox .denTlist{overflow:hidden;list-style-type: none;padding: 0;margin: 0;width: auto;}
-.reserBox .denTlist li {float:left;width:24.8%;border:1px solid #ececec;background:#fff;text-align: center;}
-.reserBox .denTlist li a{display:block;text-align:center;padding:1.5px;font-size:1.05em;}
-.reserBox .denTlist li a.on{background:#7eb9fb;color:#000;font-weight: 600}
+.reserBox #denTlist{overflow:hidden;list-style-type: none;padding: 0;margin: 0;width: auto;}
+.reserBox #denTlist li {float:left;width:24.8%;border:1px solid #ececec;background:#fff;text-align: center;}
+.reserBox #denTlist li a{display:block;text-align:center;padding:1.5px;font-size:1.05em;}
+.reserBox #denTlist li a.on{background:#7eb9fb;color:#000;font-weight: 600}
 .reserBox .btnArea{padding:0.6em;}
 .reserBox .btnArea a{width:95%;}
 .reserBox.type{background:#ececec;font-size:1.25em;}
