@@ -120,7 +120,7 @@ public class JinController {
     }
     
     // 의사 로그인후 진료기록부
-    @RequestMapping("/doctor_medicalNote")
+    @RequestMapping("/doctor/doctor_medicalNote")
     public String doctor_medicalNote(HttpServletRequest req, Model model) {
     	doctor.loadCustomerInfo(req, model);
     	return "doctor/doctor_medicalNote";

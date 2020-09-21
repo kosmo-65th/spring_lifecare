@@ -36,6 +36,69 @@
 
 
 <script type="text/javascript">
+//약 이름 keyup
+$(function() {
+	$('#drug_name').keyup(function() {
+		var name = $('#drug_name').val();  // input 태그에서 입력한 키워드
+		
+		if(entp.length == 0) {        // 검색글자수가 0인 경우
+			$('#name_next').css("display", "none");       // 숨김
+		} else {
+			$('#name_next').css("visibility", "visible");      // 표시
+			$('#name_next').css("display", "flex");
+			$('#name_next').css("align-items", "center");
+			$('#name_next').css("min-width", "0");
+			$('#name_next').css("max-height", "none");
+			$('#name_next').css("background", "#f9f9f9");
+			$('#name_next').css("border-radius", "499rem");
+		}
+		$.ajax({
+			url : '${pageContext.request.contextPath}/drugList1?${_csrf.parameterName}=${_csrf.token}',
+			type : 'POST',
+			data : 'name=' + name,
+			success : function(result) { // 콜백함수 호출
+				$('#name_next').html(result);   // 결과  출력
+			},
+			error : function() {
+				alert("오류");
+			}
+		});
+	});
+});
+
+
+//약 회사 keyup
+$(function() {
+	$('#entp_name').keyup(function() {
+		var entp = $('#entp_name').val();  // input 태그에서 입력한 키워드
+		
+		if(entp.length == 0) {        // 검색글자수가 0인 경우
+			$('#entp_next').css("display", "none");       // 숨김
+		} else {
+			$('#entp_next').css("visibility", "visible");      // 표시
+			$('#entp_next').css("display", "flex");
+			$('#entp_next').css("align-items", "center");
+			$('#entp_next').css("min-width", "0");
+			$('#entp_next').css("max-height", "none");
+			$('#entp_next').css("background", "#f9f9f9");
+			$('#entp_next').css("border-radius", "499rem");
+			
+		}
+		// keyword -> search_next.ja(search_next.jsp) -> result -> 콜백함수 -> display에 출력
+		$.ajax({
+			url : '${pageContext.request.contextPath}/drug_enptname_next?${_csrf.parameterName}=${_csrf.token}',
+			type : 'POST',
+			data : 'entp=' + entp,
+			success : function(result) { // 콜백함수 호출
+				$('#entp_next').html(result);   // 결과  출력
+			},
+			error : function() {
+				alert("오류");
+			}
+		});
+	});
+});
+
 
 $(function(){
 	$('#btn_idfysearch').click(function(){
@@ -70,11 +133,8 @@ $(function(){
         });
         
 		window.location="drugSearchPro?drug_name=" + drug_name + "&drug_enptname="+drug_enptname+ "&drug_formulation="+formList + "&drug_color="+colorList+"&drug_shape=" +shapeList ; 
-		
 
 	});
-	
-	
 	
 })
 
@@ -85,126 +145,6 @@ function searchDrug() {
 </script>
 
 <script type="text/javascript">
-
-$(document).ready(function() {
-
-//	init();
-	// 카트 초기화 (쿠키에 저장된 제품 불러오기)
-	initCart();
-
-	// 선택된 input(API로 전송할 값) checkbox 체크
-	$(".idty li.selected input[type='checkbox']").attr('checked',true);
-
-		// 선택된 input(API로 전송할 값) checkbox 체크
-	$(".idty li").click(function(){
-		$(".idty li.selected input[type='checkbox']").prop('checked',true);
-	});
-
-
-	if('' == "Y") {
-
-		pageBar(1);
-
-		$('#line_selectBoxTitle').text("50줄 보기");
-
-		$('input[name=shapes_etc]:checked').click().click();
-
-		moveform();
-	}
-
-	if('' == "") {
-		sideCalc();
-	}
-
-	if('0' == 80) {
-		$("#shape_etc_text ul").empty();
-	}
-
-	$(".pop_more").draggable();
-
-
-
-});
-$(document).keydown(function(event) {
-	if(event.keyCode == 27) {
-		$(".pop_more").css("display","none");
-	}
-});
-
-function init() {
-	$("#drug_name").val("");
-	$("#firm_name").val("");
-	$("#drug_print_front").val("");
-	$("#drug_print_back").val("");
-}
-function idfySend() {
-	$("#proYN").val("");
-	$("#rowLength").val(50);
-	$("#TabState").val("0");
-	$("#pageNo").val(1);
-	$("#frm").submit();
-}
-
-
-function line_selectBoxToggle(val,text){
-	//파라미터 셋팅
-	//$('#search_flag').val(val);
-
-	//글자변경
-//	$('#line_selectBoxTitle').text(text);
-	
-	switch(val){
-		case "10" : 
-			$("#inner_line_list li").css("display","");
-			$("#line_li_10").css("display","none");
-			$("#line_hiddenLi").css("display","");
-			$("#listup").val("10");
-			$("#pageNo").val(1);
-			break;
-		case "20" : 
-			$("#inner_line_list li").css("display","");
-			$("#line_li_20").css("display","none");
-			$("#line_hiddenLi").css("display","");
-			$("#listup").val("20");
-			$("#pageNo").val(1);
-			break;
-		case "30" : 
-			$("#inner_line_list li").css("display","");
-			$("#line_li_30").css("display","none");
-			$("#line_hiddenLi").css("display","");
-			$("#listup").val("30");
-			$("#pageNo").val(1);
-			//result_more($("#sunb_count").val(),'','1');
-			break;
-		case "40" : 
-			$("#inner_line_list li").css("display","");
-			$("#line_li_40").css("display","none");
-			$("#line_hiddenLi").css("display","");
-			$("#listup").val("40");
-			$("#pageNo").val(1);
-			//result_more($("#sunb_count").val(),'','1');
-			break;
-		case "50" : 
-			$("#inner_line_list li").css("display","");
-			$("#line_li_50").css("display","none");
-			$("#line_hiddenLi").css("display","");
-			$("#listup").val("50");
-			$("#pageNo").val(1);
-			//result_more($("#sunb_count").val(),'','1');
-			break;
-		case "100" : 
-			$("#inner_line_list li").css("display","");
-			$("#line_li_100").css("display","none");
-			$("#line_hiddenLi").css("display","");
-			$("#listup").val("100");
-			$("#pageNo").val(1);
-			//result_more($("#sunb_count").val(),'','1');
-			break;
-	}
-	$("#rowLength").val(val);
-
-	$("#frm").submit();
-}
 
 //onKeyUp시에 제품명 불러오는 ajax호출
 function drugNmAjax(){
@@ -390,191 +330,6 @@ function getCookie(name) {
 <div id="wrap">
 
 
-<script type="text/javascript">
-
-$( document ).ready(function() {
-	nowZoom = 100;
-	//검색 selectbox 셋팅 - li태그로 되어있으므로 별도 클릭이 필요함.
-	//switch($('#search_flag').val()){
-	switch(''){
-		case "drug_name" : 
-			selectBoxToggle('drug_name','제품명');
-			break;
-		case "ingr_name" : 
-			selectBoxToggle('ingr_name','성분명');
-			break;
-		case "upso_name" : 
-			selectBoxToggle('upso_name','회사명');
-			break;
-		case "boh_code" : 
-			selectBoxToggle('boh_code','보험코드');
-			break;
-		case "dosage" : 
-			selectBoxToggle('dosage','효능효과');
-			break;
-		case "all" : 
-			selectBoxToggle('all','의약품검색');
-			break;
-	}
-
-	headerMenuSetting();
-
-});
-
-
-function header_enterkey(){
-	if (window.event.keyCode == 13) {
-
-		if($("#view_loading").attr('src') != undefined){
-			alert("결과 조회가 완료되지 않았습니다\n조회가 완료된 후 검색해주십시오");
-			return false;
-		}
-
-		// 엔터키가 눌렸을 때 실행할 내용
-		if($("#search_word").val() != ""){
-			$("#header_frm").submit();
-		}else{
-			alert("검색어를 입력하세요.");
-		}
-		
-	}
-}
-
-function header_validate(){
-	if($("#view_loading").attr('src') != undefined){
-		alert("결과 조회가 완료되지 않았습니다\n조회가 완료된 후 검색해주십시오");
-		return false;
-	}
-
-	if($("#search_word").val() != ""){
-
-
-		$("#header_frm").submit();
-	}else{
-		alert("검색어를 입력하세요.");
-	}
-	
-
-}
-
-function beforeLoadChk(obj){
-	console.log('asdsd');
-	if($("#view_loading").attr('src') != undefined){
-		alert("결과 조회가 완료되지 않았습니다\n조회가 완료된 후 검색해주십시오");
-		return false;
-	}
-	console.log("↓");
-	console.log($(obj));
-	this.location.href=$(obj)[0].pathname;
-
-
-}
-// 화면크기축소
-function minus() {
-   nowZoom = nowZoom - 10;
-   if(nowZoom <= 70) nowZoom = 70;   // 화면크기 최대 축소율 70%
-   zooms();
-}
-// 화면크기확대
-function plus() {
-   nowZoom = nowZoom + 10;
-   if(nowZoom >= 200) nowZoom = 200;   // 화면크기 최대 확대율 200%
-   zooms();
-}
-//화면크기 리셋
-function zoomReset() {
-   nowZoom = 100;   // 원래 화면크기로 되돌아가기
-   zooms();
-}
-//화면비율 조절
-function zooms() {
-	if(is_ie()){
-		$("#aside_sub").css('position','');
-		doZoom();
-		
-	}else{
-		document.body.style.zoom = nowZoom + "%";
-		
-	}
-    
-    if(nowZoom < 70) {
-	   return false;
-    }
-    if(nowZoom > 200) {
- 	   return false;
-    }
-    
-}
-
-
-//onKeyUp시에 제품명 불러오는 ajax호출
-function drugNmAjax_main(){
-
-	if ($('#search_word').val().length < 2) {
-		return false;
-	}
-
-	if (window.event.keyCode == 13) {
-		// 엔터키가 눌렸을 때 실행할 내용
-
-		if($("#view_loading").attr('src') != undefined){
-			alert("결과 조회가 완료되지 않았습니다\n조회가 완료된 후 진행해주십시오");
-			return false;
-		}
-
-
-		if($("#search_word").val() != ""){
-			$("#main_drugList").css('display','none');
-			$("#header_frm").submit();
-		}else{
-			alert("검색어를 입력하세요.");
-		}
-		
-	}
-
-	//var e = jQuery.Event( "keydown", { keyCode: 35 } );	$("#input_upsoNm").trigger( e );
-	if($('#search_word').val().length > 2){		
-		$("#main_drugList").css('display','');
-		getDrugName_main();
-	}else{
-		$("#main_drugList").css('display','none');
-	}
-}
-
-function mouseEnter(val){
-	$(val).css("background","#ddd");
-}
-function mouseLeave(val){
-	$(val).css("background","#fff");
-}
-
-
-
-
-function is_ie() {
-  if(navigator.userAgent.toLowerCase().indexOf("chrome") != -1) return false;
-  if(navigator.userAgent.toLowerCase().indexOf("msie") != -1) return true;
-  if(navigator.userAgent.toLowerCase().indexOf("windows nt") != -1) return true;
-  return false;
-}
-
-function doZoom(){
-    $('body').css('-webkit-transform', 'scale('+nowZoom/100+')');
-    $('body').css('-webkit-transform-origin', '0 0');
-    $('body').css('-moz-transform', 'scale('+nowZoom/100+')');
-    $('body').css('-moz-transform-origin', '0 0');
-    $('body').css('-o-transform', 'scale('+nowZoom/100+')');
-    $('body').css('-o-transform-origin', '0 0');
-    $('body').css('-ms-transform', 'scale('+nowZoom/100+')');
-    $('body').css('-ms-transform-origin', '0 0');
-    document.body.style.zoom = nowZoom + "%";
-
-$('html, body').stop().animate( { scrollTop : '1' } );$('body').attr('style','position: relative; -ms-zoom:' +nowZoom+'%;')
-}
-
-</script>
-
-
 <!-- 컨텐츠 영역 -->
 <section id="contens">
 <a class="go_top ico"></a>
@@ -603,6 +358,7 @@ $('html, body').stop().animate( { scrollTop : '1' } );$('body').attr('style','po
 						<th colspan="2">제품명</th>
 						<td colspan="2" id="drug_namelist" class="idty_td5">
 							<input type="text" id="drug_name" name="drug_name" value=""/>
+							<div id=name_next></div>
 							<ul class="category_list" id="ul_drugList">
 							</ul>
 						</td>
@@ -610,6 +366,7 @@ $('html, body').stop().animate( { scrollTop : '1' } );$('body').attr('style','po
 						<th colspan="2">회사명</th>
 						<td colspan="2" class="idty_td6">
 							<input type="text" id="entp_name" name="drug_enptname" value="" />
+							<div id=entp_next></div>
 							<ul class="category_list" id="ul_upsoList">
 							</ul>
 						</td>

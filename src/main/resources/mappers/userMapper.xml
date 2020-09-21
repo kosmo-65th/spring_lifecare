@@ -712,4 +712,10 @@
 	<select id="drugDetail" parameterType="int" resultType="com.spring.lifecare.vo.DrugVO">
  		SELECT * FROM DRUG WHERE drug_number =#{drug_number}
  	</select>
+ 	
+ 	<!-- 약 회사 keyup -->
+ 	<select id="searchEnptNext" resultType="com.spring.lifecare.vo.DrugVO">
+ 		SELECT drug_enptname from DRUG 
+ 		where drug_enptname like '%'||#{entp}||'%' 
+ 	</select>
 </mapper>  	  

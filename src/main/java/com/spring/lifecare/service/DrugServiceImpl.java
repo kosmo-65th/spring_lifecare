@@ -1,5 +1,6 @@
 package com.spring.lifecare.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.lifecare.persistence.UserDAO;
 import com.spring.lifecare.vo.DrugVO;
@@ -138,11 +138,23 @@ public class DrugServiceImpl implements DrugService {
 		}
 		
 	}
- //상세
+	
+	//약 회사 keyup
 	@Override
-	public void drugDetail(HttpServletRequest req, Model model) {
-		int drug_number =Integer.parseInt( req.getParameter("drug_number"));
-		DrugVO vo = userDAO.drugDetail(drug_number);
-		model.addAttribute("detail", vo); 
+	public void searchEnptNext(HttpServletRequest req, Model model) {
+		String entp = req.getParameter("entp");
+		List<DrugVO> list = new ArrayList<DrugVO>();
+		list = userDAO.searchEnptNext(entp);
+		
+		model.addAttribute("list",list);
+		
 	}
+	
+	//상세
+		@Override
+		public void drugDetail(HttpServletRequest req, Model model) {
+			int drug_number =Integer.parseInt( req.getParameter("drug_number"));
+			DrugVO vo = userDAO.drugDetail(drug_number);
+			model.addAttribute("detail", vo); 
+		}
 }
