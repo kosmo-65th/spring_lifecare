@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 import com.spring.lifecare.vo.AppointmentVO;
 import com.spring.lifecare.vo.CustomerVO;
 import com.spring.lifecare.vo.DoctorVO;
+import com.spring.lifecare.vo.DrugVO;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
@@ -116,13 +117,13 @@ public class UserDAOImpl implements UserDAO {
 		UserDAO dao = sqlSession.getMapper(UserDAO.class);	    	    
 	    return dao.insertDoctor(vo);
 	}
+
 	
 	@Override
 	public String idPwdCheck(String customer_id) {
 		String checkIdPwd = sqlSession.selectOne("com.spring.lifecare.persistence.UserDAO.idPwdCheck", customer_id);
 		return checkIdPwd;	
 	}
-	
 	
 	
 	//내 정보 가져오기
@@ -186,10 +187,44 @@ public class UserDAOImpl implements UserDAO {
 		return dao.searchList(keyword);
 	}
 
+	
 	@Override
 	public CustomerVO getCustomerInfo(String customer_id) {
 		UserDAO dao = sqlSession.getMapper(UserDAO.class);
 		return dao.getCustomerInfo(customer_id);
 	}
+
+
+	//약찾기(회사)
+	@Override
+	public List<DrugVO> searchDrug(Map<String, Object> map) {
+		return sqlSession.selectList("com.spring.lifecare.persistence.UserDAO.searchDrug", map);
+	}
+
+	//약찾기 수량
+	@Override
+	public int searchDrugCount(Map<String,Object> map) {
+		return sqlSession.selectOne("com.spring.lifecare.persistence.UserDAO.searchDrugCount",map);
+	}
+	
+	//약상세
+	public DrugVO drugDetail(int drug_number) {
+		return sqlSession.selectOne("com.spring.lifecare.persistence.UserDAO.drugDetail",drug_number);
+	}
+	
+	//약 이름 keyup
+	@Override
+	public List<DrugVO> searchNameNext(String name) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.searchNameNext(name);
+	}
+	
+	 //약 회사 keyup
+	@Override
+	public List<DrugVO> searchEnptNext(String entp) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.searchEnptNext(entp);
+	}
+	
 }
 

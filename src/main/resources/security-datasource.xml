@@ -37,7 +37,6 @@
 		</bean>
 		</property>
 	</bean>
-	
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.spring.lifecare" />
         <property name="annotationClass" value="org.springframework.stereotype.Repository"/>

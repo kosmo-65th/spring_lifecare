@@ -7,6 +7,7 @@ import java.util.Map;
 import com.spring.lifecare.vo.AppointmentVO;
 import com.spring.lifecare.vo.CustomerVO;
 import com.spring.lifecare.vo.DoctorVO;
+import com.spring.lifecare.vo.DrugVO;
 
 public interface UserDAO {
 	//로그인
@@ -53,7 +54,7 @@ public interface UserDAO {
 	 
 	 //의사 회원가입 처리
 	 public int insertDoctor(DoctorVO vo);
-	 
+	
 	 //정보수정을 위한 패스워드 체크
 	 public String idPwdCheck(String customer_id);
 	 
@@ -86,4 +87,19 @@ public interface UserDAO {
 	 
 	 //회원정보 불러오기
 	 public CustomerVO getCustomerInfo(String customer_id);
+	 
+	 
+	 //약찾기
+	 public List<DrugVO>searchDrug(Map<String, Object> map);
+
+	 //회사 keyup
+	 public List<DrugVO>searchEnptNext(String name);
+
+	 //약찾기 수량
+	 public int searchDrugCount(Map<String, Object> map);
+	 
+	 //약상세
+	 public DrugVO drugDetail(int drug_number);
+	 
+
 }

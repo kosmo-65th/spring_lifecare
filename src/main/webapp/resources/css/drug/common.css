@@ -324,7 +324,7 @@ section#contens{
 	width:1000px !important;
 	margin:0 auto !important;
 	margin-top:80px !important;
-	min-height:840px !important;
+	min-height:auto !important;
 }
 /* section#articles_sub{
 	float:left !important;

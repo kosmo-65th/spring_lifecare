@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.spring.lifecare.service.CustomerService;
-import com.spring.lifecare.service.CustomerServiceImpl;
 import com.spring.lifecare.service.DoctorService;
 import com.spring.lifecare.service.MyPageService;
 import com.spring.lifecare.vo.CustomerVO;
@@ -48,17 +47,19 @@ public class RosController {
 	public String idChk(@RequestParam("userId") String customer_id, Model model) {
 		return Integer.toString(service.confirmId(customer_id));
 	}
+	
 	// 휴대폰 번호 중복 체크 컨트롤러
 	@RequestMapping(value = "/user/JoinIn", method = RequestMethod.GET)
 	@ResponseBody
 	public String phoneChk(@RequestParam("userPhone") String customer_phone, Model model) {
 		return Integer.toString(service.confirmPhone(customer_phone));
 	}
+	
 	//이메일 주소 체크 컨트롤러
 	@RequestMapping(value = "/user/email", method = RequestMethod.GET)
 	@ResponseBody
 	public String emailChk(@RequestParam("userEmail") String customer_email, Model model) {
-			return Integer.toString(service.confirmEmail(customer_email));
+		return Integer.toString(service.confirmEmail(customer_email));
 	}
 			
 	//회원가입 처리

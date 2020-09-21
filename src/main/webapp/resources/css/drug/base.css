@@ -20,7 +20,7 @@ a{text-decoration:none;color:#333;cursor:pointer;}
 a:active{text-decoration:underline;}
 li{list-style:none; !important}
 input[type="radio"]{width:15px;height:15px;margin-right:5px;vertical-align:middle;}
-input[type="checkbox"]{width:10px;height:10px;margin-right:10px;}
+input[type="checkbox"]{width:23px;height:17px;margin-right:10px;}
 input[type="button"],input[type="reset"],input[type="submit"]{cursor:pointer;}
 input[type="button"]:active,input[type="reset"]:active,input[type="submit"]:active{text-decoration:underline;}
 input[type="text"],input[type="password"],input[type="button"],select{outline:none;border:1px solid #b3b3b3;height:25px;box-sizing:border-box;text-indent:5px;font-size:13px;}
@@ -562,7 +562,7 @@ span.count{
 }
 /*탭3*/
 .tab3{
-	width:100%;
+	width:93%;
 	margin-bottom:20px;
 	border-bottom:1px solid #43c8ba;
 	float:left;
@@ -601,7 +601,7 @@ span.count{
 
 /*테이블*/
 table{
-	width:100% !important ; 
+	width:93% !important ; 
 }
 th,td{
 	font-size:13px;
@@ -657,6 +657,7 @@ table .name{width:70px;}
 	border-right:1px solid #d1ceca;
 	border-bottom:1px solid #d1ceca;
 	border-collapse:separate;
+    border-block-start: 1px solid #d1ceca;
 }
 .infotable th{
 	background:#f8f7f6;
@@ -683,33 +684,10 @@ table .name{width:70px;}
 
 .infotable td.img > p{
 	position: initial;
-    /*bottom:10px;
-	right:10px;*/ /*170717 이재일 수정*/
-	margin-right:10px;/*170717 이재일 수정*/
+	margin-right:10px;
     text-align:right;
     line-height:15px;
     font-size:11px;
-}
-/*결과내재검색 박스*/
-#rebrows p{
-	text-align:center;
-}
-#rebrows p strong{
-	font-size:18px;
-	color:#f00;
-}
-#rebrowsbx{
-	margin-top:25px;
-	padding:20px 0;
-}
-#rebrowsbx > form, #rebrowsbx fieldset{
-	display:inline-block;
-}
-#rebrowsbx legend{
-	float:left;
-	color:#435cc8;
-	margin-right:10px;
-	font-size:13px;
 }
 
 .searchBar{

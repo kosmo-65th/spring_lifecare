@@ -1,83 +1,160 @@
 package com.spring.lifecare.service;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintWriter;
-import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-import org.json.simple.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
-import sun.misc.IOUtils;
+import com.spring.lifecare.persistence.UserDAO;
+import com.spring.lifecare.vo.DrugVO;
 
 @Service
 public class DrugServiceImpl implements DrugService {
+
+	@Autowired
+	UserDAO userDAO;
+	
 	@Override
-	public void searchDrug(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void searchDrug(HttpServletRequest req, Model model) {
+		//페이징
+		int pageSize = 20; 	  //maxList 
+		int pageBlock = 5; 	 //totalblock 
+		
+		int cnt = 0; 		  //total
+		int start = 0;	 	  
+		int end = 0; 		  
+		int number = 0;		   
+		String pageNum = ""; 
+		int currentPage = 0;  
+	
+		int pageCount = 0;	 
+		int startPage = 0;	 
+		int endPage = 0;	
+		///검색어
+		
+		
+		String drug_name =  req.getParameter("drug_name");	//제품명
+		model.addAttribute("drug_name", drug_name);
+		//System.out.println("drug_name : " + drug_name);
+		
+		String drug_enptname =  req.getParameter("drug_enptname");	//회사명
+		model.addAttribute("drug_enptname", drug_enptname);
+		//System.out.println("drug_enptname : " + drug_enptname);
+		
+		String shapList =  req.getParameter("drug_shape");	//모양
+		model.addAttribute("shapList", shapList);
+		String [] shapArr = shapList.split(",");
+		if(shapArr[0] == "") {
+			shapArr = new String[0];
+		}
+		//System.out.println("shapArr : " + shapArr);
+		
+		String colorList =  req.getParameter("drug_color");	//색상
+		model.addAttribute("colorList", colorList);
+		String [] colorArr = colorList.split(",");
+		if(colorArr[0] == "") {
+			colorArr = new String[0];
+		}
+		//System.out.println("colorArr : " + colorArr);
+		
+			
+		String formList =  req.getParameter("drug_formulation");	//제형
+		model.addAttribute("formList", formList);
+		StringBuffer formArr = new StringBuffer("");
+		for(String form : formList.split(",")) {
+			if(formArr.length()>1) {
+				formArr.append("|");
+			}
+			formArr.append(form);
+		}
+		String form = formArr.toString();
+		//System.out.println("form : " + form);
+		Map<String,Object>  map = new HashMap<String, Object>();
+		map.put("drug_enptname", drug_enptname);
+		map.put("drug_name", drug_name);
+		map.put("drug_shape", shapArr);
+		map.put("drug_color", colorArr);
+		map.put("drug_form", form);
+	
+		//검색 수 
+		cnt = userDAO.searchDrugCount(map);
+		
+		System.out.println("cnt : " + cnt);
+		
+		pageNum = req.getParameter("currentPage");
+		if(pageNum==null) {
+			pageNum="1";	
+		}
+		currentPage = Integer.parseInt(pageNum); 
+		
+		pageCount =(cnt/pageSize) + (cnt%pageSize>0 ? 1 : 0 );
+		//totalBlock
+		start = (currentPage-1)* pageSize + 1;
+		
+		end = start + pageSize -1;
+		
+		number = cnt -(currentPage -1 ) * pageSize;
+		
+		
+			Map<String,Object>  map1 = new HashMap<String, Object>();
+			map1.put("drug_enptname", drug_enptname);
+			map1.put("drug_name", drug_name);
+			map1.put("drug_shape", shapArr);
+			map1.put("drug_color", colorArr);
+			map1.put("drug_form", form);
+			map1.put("start", start);
+			System.out.println("start : " + start );
+			map1.put("end", end);
+			System.out.println("end : " + end );
+		
+			//검색
+			List<DrugVO> dtos = userDAO.searchDrug(map1);
+			
+			model.addAttribute("dtos",dtos);
+			
+		startPage = (currentPage/pageBlock) * pageBlock + 1; 
+		if(currentPage % pageBlock == 0) startPage -= pageBlock;
+		endPage = startPage + pageBlock -1;
+		if(endPage> pageCount) endPage = pageCount;
+			
+		model.addAttribute("cnt", cnt); 
+		model.addAttribute("number", number);		 		
+		System.out.println(" number : " + number);
+		model.addAttribute("pageNum", pageNum); 
+		System.out.println(" pageNum : " + pageNum);
+		if(cnt >0) {
+			model.addAttribute("startPage", startPage);  
+			model.addAttribute("endPage", endPage); 		 
+			model.addAttribute("pageBlock", pageBlock); 	 
+			model.addAttribute("pageCount", pageCount);  
+			model.addAttribute("currentPage", currentPage); 
+			System.out.println(" currentPage : " + currentPage);
+		}
+		
 	}
-
-		/*
-		 * StringBuilder urlBuilder = new StringBuilder(
-		 * "http://apis.data.go.kr/1470000/MdcinGrnIdntfcInfoService/getMdcinGrnIdntfcInfoList"
-		 * ); URL urlBuilder.append("?" + URLEncoder.encode("ServiceKey", "UTF-8") +
-		 * "=58Rm0ocO44dWpDnMaulASGoUU%2BOw4nXiq6xj6%2F%2BSqqkWwKcGUmHOx%2FbSQyvv456ugnbmslYMMx%2FqHm5jGgqZiw%3D%3D"
-		 * ); Service Key
-		 * 
-		 * 
-		 * urlBuilder.append("&" + URLEncoder.encode("item_name","UTF-8") + "=" +
-		 * URLEncoder.encode("알레기살정10밀리그람(페미로라스트칼륨)", "UTF-8")); 품목명
-		 * urlBuilder.append("&" + URLEncoder.encode("entp_name","UTF-8") + "=" +
-		 * URLEncoder.encode("현대약품(주)", "UTF-8")); 업체명 urlBuilder.append("&" +
-		 * URLEncoder.encode("item_seq","UTF-8") + "=" + URLEncoder.encode("200402488",
-		 * "UTF-8")); 품목일련번호 urlBuilder.append("&" +
-		 * URLEncoder.encode("img_regist_ts","UTF-8") + "=" +
-		 * URLEncoder.encode("20041222", "UTF-8")); 약학정보원 이미지 생성일 urlBuilder.append("&"
-		 * + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1",
-		 * "UTF-8")); 페이지번호 urlBuilder.append("&" +
-		 * URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("3",
-		 * "UTF-8")); 한 페이지 결과 수 urlBuilder.append("&" +
-		 * URLEncoder.encode("edi_code","UTF-8") + "=" + URLEncoder.encode("642003260",
-		 * "UTF-8")); 보험코드
-		 * 
-		 * URL url = new URL(urlBuilder.toString()); HttpURLConnection conn =
-		 * (HttpURLConnection) url.openConnection(); conn.setRequestMethod("GET");
-		 * conn.setRequestProperty("Content-type", "application/json");
-		 * System.out.println("Response code: " + conn.getResponseCode());
-		 * System.out.println("getResponseMessage : " + conn.getResponseMessage());
-		 * 
-		 * BufferedReader rd; if (conn.getResponseCode() >= 200 &&
-		 * conn.getResponseCode() <= 300) { rd = new BufferedReader(new
-		 * InputStreamReader(conn.getInputStream())); } else { rd = new
-		 * BufferedReader(new InputStreamReader(conn.getErrorStream())); } StringBuilder
-		 * sb = new StringBuilder(); String line; while ((line = rd.readLine()) != null)
-		 * { sb.append(line); } rd.close(); conn.disconnect();
-		 * System.out.println(sb.toString());
-		 */
+	
+	//약 회사 keyup
+	@Override
+	public void searchEnptNext(HttpServletRequest req, Model model) {
+		String entp = req.getParameter("entp");
+		List<DrugVO> list = new ArrayList<DrugVO>();
+		list = userDAO.searchEnptNext(entp);
+		
+		model.addAttribute("list",list);
+		
+	}
+	
+	//상세
+		@Override
+		public void drugDetail(HttpServletRequest req, Model model) {
+			int drug_number =Integer.parseInt( req.getParameter("drug_number"));
+			DrugVO vo = userDAO.drugDetail(drug_number);
+			model.addAttribute("detail", vo); 
+		}
 }
-
-/*
- * String url =
- * "http://apis.data.go.kr/1470000/MdcinGrnIdntfcInfoService/getMdcinGrnIdntfcInfoList";
- * String serviceKey =
- * "3MPgGJKid%2BNBDQCgVo2mtFq%2BvdJzlIBXIjPXmN7UIAqJo4yzbw7lEFfaWnQ2nda3SnX0vB%2FknUXKCAMJd9hKRQ%3D%3D";
- * String decodeServiceKey = URLDecoder.decode(serviceKey, "UTF-8");
- * 
- * RestTemplate restTemplate = new RestTemplate(); HttpHeaders headers = new
- * HttpHeaders(); headers.setContentType(new
- * MediaType("application","json",Charset.forName("UTF-8"))); //Response Header
- * to UTF-8
- * 
- * UriComponents builder = UriComponentsBuilder.fromHttpUrl(url)
- * .queryParam("ServiceKey", decodeServiceKey) .queryParam("item_name",
- * item_name) //품목명 .queryParam("entp_name", entp_name) //업체명
- * .queryParam("_type", "json") .build(false); //자동으로 encode해주는 것을 막기 위해 false
- * 
- * Object response = restTemplate.exchange(builder.toUriString(),
- * HttpMethod.POST, new HttpEntity<String>(headers), String.class); return
- * response; }
- */

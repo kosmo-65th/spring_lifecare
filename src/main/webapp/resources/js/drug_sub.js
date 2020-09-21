@@ -303,11 +303,6 @@ $(".tab3_cont").css("display","none");
 	
 	
 //의약품식별검색 - 모양,색깔, 분할선 선택하기
-//	$("#search_identity ul.idty > li").clicktoggle(function(){
-//			$(this).addClass("selected");
-//		},function(){
-//			$(this).removeClass("selected");
-//		});	
 	$('#search_identity ul.idty > li').click(function(){
 		if ($(this).hasClass('selected')) {
 			$(this).removeClass('selected');
