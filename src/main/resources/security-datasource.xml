@@ -11,7 +11,8 @@
 
 	<!-- MyBatis 설정 시작 -->
 	<!-- 컨넥션풀 -->
-	<bean id="dataSourceSpied" class="org.springframework.jndi.JndiObjectFactoryBean">
+<!--  <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean"> -->	
+ 	  <bean id="dataSourceSpied" class="org.springframework.jndi.JndiObjectFactoryBean">
 		<property name="jndiName" value="java:comp/env/jdbc/Oracle11g_LifeCare" />
 		
 		<property name="resourceRef" value="true" />

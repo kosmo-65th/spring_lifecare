@@ -17,6 +17,8 @@ import com.spring.lifecare.vo.AppointmentVO;
 import com.spring.lifecare.vo.CustomerVO;
 import com.spring.lifecare.vo.DiagnosisVO;
 import com.spring.lifecare.vo.DiseaseVO;
+import com.spring.lifecare.vo.questionnaireVO;
+
 import com.spring.lifecare.vo.DoctorVO;
 import com.spring.lifecare.vo.DrugVO;
 import com.spring.lifecare.vo.ReservationVO;
@@ -292,6 +294,9 @@ public class UserDAOImpl implements UserDAO {
 	public List<DiagnosisVO> getDiagnosisList(String doctor_id) {
 		UserDAO dao = sqlSession.getMapper(UserDAO.class);
 		return dao.getDiagnosisList(doctor_id);
+	}
+	public int modify(CustomerVO vo) {
+		return 0;
 	}
 }
 
