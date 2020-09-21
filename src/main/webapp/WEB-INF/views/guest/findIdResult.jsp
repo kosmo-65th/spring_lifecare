@@ -20,7 +20,7 @@ $(function(){
 <%@include file="../common/header.jsp" %>
 		<div class="title">아이디 찾기 검색결과</div>
 		   <div class="findId_area">
-				<p>
+				<p>			
 				 고객님의 아이디는${id}입니다.
 				</p>
 				<button type="button" id=loginBtn class="btn-type btn2 blue mr_2">확인</button>

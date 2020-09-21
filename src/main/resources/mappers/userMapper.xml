@@ -125,5 +125,10 @@
    <select id="getCustomerInfo" resultType="com.spring.lifecare.vo.CustomerVO" parameterType="String">
    		select * from customer where customer_id = #{customer_id}
    </select>
+   
+   <!-- 임시 비밀번호 부여 메일 -->
+   <select id="idEmailChk" parameterType="java.util.Map" resultType="int">
+		select count(*) from customer where customer_id=#{customer_id} AND customer_email=#{customer_email}
+	</select>
 </mapper>  	  
 

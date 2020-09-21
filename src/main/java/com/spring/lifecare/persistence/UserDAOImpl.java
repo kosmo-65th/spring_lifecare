@@ -186,5 +186,31 @@ public class UserDAOImpl implements UserDAO {
 		UserDAO dao = sqlSession.getMapper(UserDAO.class);
 		return dao.getCustomerInfo(customer_id);
 	}
+
+	@Override
+	public int idEmailChk(Map<String, String> map) {
+		return sqlSession.selectOne("com.spring.lifecare.persistence.UserDAO.idEmailChk", map);
+	}
+
+	@Override
+	public void sendMail(String movieId, String cusEmail, String key) {
+		try {
+
+			MimeMessage message = mailSender.createMimeMessage();
+
+			String content = "LifeCare 임시 비밀번호 메일입니다. 임시비밀번호는"+ key + "입니다. 링크를 눌러 새로운 비밀번호로 바꿔주세요."  
+
+					+	"<a href='http://localhost/lifecare/login'>Please click to this website</a>";
+
+			message.setSubject("LifeCare 임시 비밀번호 발송");
+			message.setText(content, "UTF-8", "html");
+			message.setFrom(new InternetAddress("admin@mss.com"));
+			message.addRecipient(RecipientType.TO, new InternetAddress(cusEmail));
+			mailSender.send(message);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}			
+	}
 }
 

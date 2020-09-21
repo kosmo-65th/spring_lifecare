@@ -211,10 +211,28 @@ public class RosController {
 		
 		return "customer/changePasswordPro";		
 	}
-	//비밀번호 찾기
+	//비밀번호 찾기 폼
 	@RequestMapping("/findPassword")
 	public String findPassword(Model model) {
 		return "guest/findPassword";		
+	}
+	
+	//임시 비밀번호 발송하는 이메일
+	@RequestMapping(value="findPwdSendEmail", method=RequestMethod.POST)
+
+	 public String customersendEmail(HttpServletRequest req, Model model) {
+	
+		service.findPwd(req, model);
+
+		return "guest/findPasswordPro";
+
+	}
+	
+	//찾아 오시는 길
+	@RequestMapping("/findWay")
+	public String findWay(Model model) {
+		
+		return "guest/findWay";		
 	}
 	
 	

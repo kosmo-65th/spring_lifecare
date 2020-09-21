@@ -1,11 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<style>
- .title {
+.title {
 	  display: inline-block;
 	  width: 100%;
 	  text-align: center;
@@ -16,7 +9,7 @@
 	  margin-bottom: 30px;
  }
  
-  .findPassword_area {
+  .findId_area {
     width: 900px;
     margin: 0px auto 50px;
     text-align: center;
@@ -27,16 +20,14 @@
     -moz-box-sizing: border-box;
   }
   
-
-
-  .findPassword_area p {
+  .findId_area p {
     color: #424242;
     font-size: 30px;
     line-height: 1;
     margin-bottom: 30px;
    }
   
-  .findPassword_area input {
+  .findId_area input {
     display: inline-block;
     box-sizing: border-box;
     border: 1px solid #d9d9d9;
@@ -72,7 +63,7 @@
     background: #009DFF;
   }
   .btn-type.btn2 {
-    width: 30%;
+    width: 10%;
     height: 45px;
     line-height: 40px;
     font-size: 18px;
@@ -91,12 +82,10 @@
     transition: all 0.3s;
   }
   .mr_2 {
-     margin-top: 3% !important;
-     margin-right: 3% !important;
-     margin-bottom: 3% !important;
-    
+    margin-top: 3% !important;
+    margin-bottom: 3% !important;
   }
-   .btn-type.btn3.red  {
+  .btn-type.btn3.red  {
     color: red !important;
     border: 1px #2e3033;
     background: #e74a3b;
@@ -108,7 +97,7 @@
     background: #e74a3b;
   }
   .btn-type.btn3 {
-    width: 30%;
+    width: 10%;
     height: 45px;
     line-height: 40px;
     font-size: 18px;
@@ -120,28 +109,3 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
   }
-  
-</style>
-<title>비밀번호 찾기</title>
-</head>
-<%@include file="../common/header.jsp" %>
-<body>
-     <form action="${pageContext.request.contextPath}/findPwdSendEmail?${_csrf.parameterName}=${_csrf.token}" method="post" name="findPassword">
-         <div class="title">비밀번호 찾기</div>
-        <div class="findPassword_area">
-          <p>FORGOT YOUR PASSWORD?</p>                
-                          비밀번호가 기억나지 않으세요?<br> 
-                          회원가입 시 입력하신  아이디과 이메일주소를 입력하여 분실하신 비밀번호를 찾으실 수 있습니다. 
-                          임시 비밀번호로 로그인하신 후 실제 사용하실 비밀번호로 변경해주시기 바랍니다. 
-            
-             <input type="text" name="customer_id" id="" placeholder="아이디를 입력해주세요." class="mb10" value="" required>
-             <input type="text" name="customer_email" id="" placeholder="이메일을 입력해주세요" class="mb10" value="" required >  
-            <div class="press">
-              <button type="submit" class="btn-type btn2 blue mr_2">비밀번호 찾기</button>
-              <button type="reset" class="btn-type btn3 red mr_2">취소</button>
-          </div>           
-         </div>                                         
-     </form>
-</body>
-<%@include file="../common/footer.jsp" %>
-</html>

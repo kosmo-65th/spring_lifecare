@@ -83,9 +83,7 @@
     transition: all 0.3s;
   }
   .mr_2 {
-    margin-top: 3% !important;
-    margin-right: 3% !important;
-    margin-bottom: 3% !important;
+    margin: 3% !important;
   }
  
   .m10 {

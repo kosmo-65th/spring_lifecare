@@ -83,4 +83,10 @@ public interface UserDAO {
 	 
 	 //회원정보 불러오기
 	 public CustomerVO getCustomerInfo(String customer_id);
+	 
+	 //비밀번호 찾기
+	 public int idEmailChk(Map<String, String> map);
+	 
+	 //임시 비밀번호 이메일 부여하기
+	 public void sendMail(String movieId, String cusEmail, String key);
 }
