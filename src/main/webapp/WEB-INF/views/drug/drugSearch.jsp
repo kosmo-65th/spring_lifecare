@@ -39,9 +39,9 @@
 //약 이름 keyup
 $(function() {
 	$('#drug_name').keyup(function() {
-		var name = $('#drug_name').val();  // input 태그에서 입력한 키워드
+		var drug = $('#drug_name').val();  // input 태그에서 입력한 키워드
 		
-		if(entp.length == 0) {        // 검색글자수가 0인 경우
+		if(drug.length == 0) {        // 검색글자수가 0인 경우
 			$('#name_next').css("display", "none");       // 숨김
 		} else {
 			$('#name_next').css("visibility", "visible");      // 표시
@@ -53,9 +53,9 @@ $(function() {
 			$('#name_next').css("border-radius", "499rem");
 		}
 		$.ajax({
-			url : '${pageContext.request.contextPath}/drugList1?${_csrf.parameterName}=${_csrf.token}',
+			url : '${pageContext.request.contextPath}/drug_name_next?${_csrf.parameterName}=${_csrf.token}',
 			type : 'POST',
-			data : 'name=' + name,
+			data : 'drug=' + drug,
 			success : function(result) { // 콜백함수 호출
 				$('#name_next').html(result);   // 결과  출력
 			},
@@ -66,6 +66,10 @@ $(function() {
 	});
 });
 
+function nameClick(drug_name){
+	document.frm.drug_name.value = drug_name;
+	$('#name_next').css("display", "none");
+}
 
 //약 회사 keyup
 $(function() {
@@ -99,6 +103,11 @@ $(function() {
 	});
 });
 
+
+function entpClick(entp_name){
+	document.frm.entp_name.value = entp_name;
+	$('#entp_next').css("display", "none");
+}
 
 $(function(){
 	$('#btn_idfysearch').click(function(){
