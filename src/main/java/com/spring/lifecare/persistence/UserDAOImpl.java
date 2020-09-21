@@ -15,8 +15,11 @@ import org.springframework.stereotype.Repository;
 
 import com.spring.lifecare.vo.AppointmentVO;
 import com.spring.lifecare.vo.CustomerVO;
+import com.spring.lifecare.vo.DiagnosisVO;
+import com.spring.lifecare.vo.DiseaseVO;
 import com.spring.lifecare.vo.DoctorVO;
 import com.spring.lifecare.vo.DrugVO;
+import com.spring.lifecare.vo.ReservationVO;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
@@ -194,7 +197,6 @@ public class UserDAOImpl implements UserDAO {
 		return dao.getCustomerInfo(customer_id);
 	}
 
-
 	//약찾기(회사)
 	@Override
 	public List<DrugVO> searchDrug(Map<String, Object> map) {
@@ -212,13 +214,6 @@ public class UserDAOImpl implements UserDAO {
 		return sqlSession.selectOne("com.spring.lifecare.persistence.UserDAO.drugDetail",drug_number);
 	}
 	
-	//약 이름 keyup
-	@Override
-	public List<DrugVO> searchNameNext(String name) {
-		UserDAO dao = sqlSession.getMapper(UserDAO.class);
-		return dao.searchNameNext(name);
-	}
-	
 	 //약 회사 keyup
 	@Override
 	public List<DrugVO> searchEnptNext(String entp) {
@@ -226,5 +221,52 @@ public class UserDAOImpl implements UserDAO {
 		return dao.searchEnptNext(entp);
 	}
 	
+	@Override
+	public DoctorVO getDoctorInfo(String doctor_id) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.getDoctorInfo(doctor_id);
+	}
+
+	@Override
+	public ArrayList<AppointmentVO> getAppointList() {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.getAppointList();
+	}
+
+	@Override
+	public int addAppointment(Map<String, Object> map) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.addAppointment(map);
+	}
+
+	@Override
+	public ArrayList<ReservationVO> getReservation(String doctor_id) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.getReservation(doctor_id);
+	}
+
+	@Override
+	public List<DiseaseVO> getDiseaseList(String disease) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.getDiseaseList(disease);
+	}
+
+	@Override
+	public List<DrugVO> getDrugList(String drug) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.getDrugList(drug);
+	}
+
+	@Override
+	public int insertDiagnosis(DiagnosisVO vo) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.insertDiagnosis(vo);
+	}
+
+	@Override
+	public List<DiagnosisVO> getDiagnosisList(String doctor_id) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.getDiagnosisList(doctor_id);
+	}
 }
 

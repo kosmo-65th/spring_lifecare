@@ -17,6 +17,7 @@ public class CustomerVO {
 	private int enabled;
 	private String customer_gender;
 	private int customer_year;
+	private String insurance;
 	private String customer_echeck;
 	
 	public String getCustomer_echeck() {
@@ -103,5 +104,10 @@ public class CustomerVO {
 	public void setCustomer_year(int customer_year) {
 		this.customer_year = customer_year;
 	}
-	
+	public String getInsurance() {
+		return insurance;
+	}
+	public void setInsurance(String insurance) {
+		this.insurance = insurance;
+	}	
 }

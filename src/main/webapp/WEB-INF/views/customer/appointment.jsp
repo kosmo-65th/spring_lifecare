@@ -32,16 +32,24 @@ var date = new Date();  // @param 전역 변수, today의 Date를 세어주는 �
  * @brief   이전달 버튼 클릭
  */
 function prevCalendar() {
+	if(document.Form1.medDp.value == "" || document.Form1.medDr.value == ""){
+		alert("의료진을 선택해 주세요");
+		return;
+	}
     this.today = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
-    buildCalendar();    // @param 전월 캘린더 출력 요청
+    buildCalendar2();  
 }
 
 /**
  * @brief   다음달 버튼 클릭
  */
 function nextCalendar() {
+	if(document.Form1.medDp.value == "" || document.Form1.medDr.value == ""){
+		alert("의료진을 선택해 주세요");
+		return;
+	}
     this.today = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate());
-    buildCalendar();    // @param 명월 캘린더 출력 요청
+    buildCalendar2();    // @param 명월 캘린더 출력 요청
 }
 
 /**
@@ -168,6 +176,147 @@ function buildCalendar() {
     }
 }
 
+function buildCalendar2() {
+
+    let doMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+    let lastDate = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+
+    let tbCalendar = document.querySelector(".scriptCalendar > tbody");
+
+    document.getElementById("calYear").innerText = today.getFullYear();                                  // @param YYYY월
+    document.getElementById("calMonth").innerText = autoLeftPad((today.getMonth() + 1), 2);   // @param MM월
+
+    // @details 이전 캘린더의 출력결과가 남아있다면, 이전 캘린더를 삭제한다.
+    while(tbCalendar.rows.length > 0) {
+        tbCalendar.deleteRow(tbCalendar.rows.length - 1);
+    }
+
+    // @param 첫번째 개행
+    let row = tbCalendar.insertRow();
+
+    // @param 날짜가 표기될 열의 증가값
+    let dom = 1;
+
+    // @details 시작일의 요일값( doMonth.getDay() ) + 해당월의 전체일( lastDate.getDate())을  더해준 값에서
+    //               7로 나눈값을 올림( Math.ceil() )하고 다시 시작일의 요일값( doMonth.getDay() )을 빼준다.
+    let daysLength = (Math.ceil((doMonth.getDay() + lastDate.getDate()) / 7) * 7) - doMonth.getDay();
+
+    // @param 달력 출력
+
+    // @details 시작값은 1일을 직접 지정하고 요일값( doMonth.getDay() )를 빼서 마이너스( - )로 for문을 시작한다.
+    for(let day = 1 - doMonth.getDay(); daysLength >= day; day++) {
+
+        let column = row.insertCell();
+
+        // @param 평일( 전월일과 익월일의 데이터 제외 )
+        if(Math.sign(day) == 1 && lastDate.getDate() >= day) {
+
+            // @param 평일 날짜 데이터 삽입
+
+            column.innerText = autoLeftPad(day, 2);
+
+            // @param 일요일인 경우
+            if(dom % 7 == 1) {
+                column.style.color = "#FF4D4D";
+            }
+
+            // @param 토요일인 경우
+            if(dom % 7 == 0) {
+                column.style.color = "#4D4DFF";
+                row = tbCalendar.insertRow();   // @param 토요일이 지나면 다시 가로 행을 한줄 추가한다.
+            }
+        }
+
+        // @param 평일 전월일과 익월일의 데이터 날짜변경
+        else {
+            let exceptDay = new Date(doMonth.getFullYear(), doMonth.getMonth(), day);
+            column.innerText = autoLeftPad(exceptDay.getDate(), 2);
+            column.style.color = "#A9A9A9";
+        }
+
+        // @brief   전월, 명월 음영처리
+        // @details 현재년과 선택 년도가 같은경우
+        if(today.getFullYear() == date.getFullYear()) {
+
+            // @details 현재월과 선택월이 같은경우
+            if(today.getMonth() == date.getMonth()) {
+
+                // @details 현재일보다 이전인 경우이면서 현재월에 포함되는 일인경우
+                if(date.getDate() > day && Math.sign(day) == 1) {
+                    column.style.backgroundColor = "#E5E5E5";
+                }
+
+                // @details 현재일보다 이후이면서 현재월에 포함되는 일인경우
+                else if(date.getDate() < day && lastDate.getDate() >= day) {
+                	$.ajax({
+                		url : '${pageContext.request.contextPath}/customer/getTimeList',
+                		type : 'GET',   // 전송방식
+                		dataType : 'json', // 요청한 데이터 형식 ("html", "xml", "json", "text")
+                		success : function(obj) { // 콜백함수 - 전송에 성공했을 때의 결과가 data에 전달된다.
+                			for(var i=0; i<obj.length; i++) {
+                				if(obj[i].doctor_id == $(':input[name=doctor_num]').val() && obj[i].appoint_date == document.getElementById("calYear").innerText + document.getElementById("calMonth").innerText + column.innerText) {
+                                    column.style.backgroundColor = "#FFFFFF";
+                                    column.style.cursor = "pointer";
+                                    column.onclick = function(){ calendarChoiceDay(this); }				
+                				}															
+                			}
+                		},
+                		error : function() {
+                			alert('오류');
+                		}
+                	});
+
+                }
+
+            // @details 현재월보다 이전인경우
+            } else if(today.getMonth() < date.getMonth()) {
+                if(Math.sign(day) == 1 && day <= lastDate.getDate()) {
+                    column.style.backgroundColor = "#E5E5E5";
+                }
+            }
+
+            // @details 현재월보다 이후인경우
+            else {
+                if(Math.sign(day) == 1 && day <= lastDate.getDate()) {
+                	$.ajax({
+                		url : '${pageContext.request.contextPath}/customer/getTimeList',
+                		type : 'GET',   // 전송방식
+                		dataType : 'json', // 요청한 데이터 형식 ("html", "xml", "json", "text")
+                		success : function(obj) { // 콜백함수 - 전송에 성공했을 때의 결과가 data에 전달된다.
+                			for(var i=0; i<obj.length; i++) {
+                				if(obj[i].doctor_id == $(':input[name=doctor_num]').val() && obj[i].appoint_date == document.getElementById("calYear").innerText + document.getElementById("calMonth").innerText + column.innerText) {
+                                    column.style.backgroundColor = "#FFFFFF";
+                                    column.style.cursor = "pointer";
+                                    column.onclick = function(){ calendarChoiceDay(this); }				
+                				}															
+                			}
+                		},
+                		error : function() {
+                			alert('오류');
+                		}
+                	});
+                }
+            }
+        }
+
+        // @details 선택한년도가 현재년도보다 작은경우
+        else if(today.getFullYear() < date.getFullYear()) {
+            if(Math.sign(day) == 1 && day <= lastDate.getDate()) {
+                column.style.backgroundColor = "#E5E5E5";
+            }
+        }
+
+        // @details 선택한년도가 현재년도보다 큰경우
+        else {
+            if(Math.sign(day) == 1 && day <= lastDate.getDate()) {
+                column.style.backgroundColor = "#FFFFFF";
+                column.style.cursor = "pointer";
+                column.onclick = function(){ calendarChoiceDay(this); }
+            }
+        }
+        dom++;
+    }
+}
 /**
  * @brief   날짜 선택
  * @details 사용자가 선택한 날짜에 체크표시를 남긴다.
@@ -223,14 +372,16 @@ function getTimeList(doctor_num, date){
 
 // 예약정보 확인에 예약시간 뿌리기
 function selectTime(appoint_time, i, appoint_num){
+	for(var j=0; j<100; j++) {
+		if(document.getElementById('dt' + j)) {
+			document.getElementById('dt' + j).style.background = "#fff";
+		}
+	}
 	$('#myTm').html(appoint_time); // 예약정보 확인에 뿌리기
 	$(':input[name=medTm]').val(appoint_time);
 	$(':input[name=appoint_num]').val(appoint_num);
-	// $('#dt0').style.background = "#FF9999";  -> css적용해야함
-	console.log($('input[name=doctor_num]').val());
-	console.log($('input[name=sday]').val());
-	console.log($('input[name=medTm]').val());
-	console.log($('input[name=appoint_num]').val());
+	document.getElementById('dt' + i).style.background = "#7eb9fb";
+
 }
 /**
  * @brief   숫자 두자릿수( 00 ) 변경
@@ -339,11 +490,13 @@ function selectDoctor(doctor_num, doctor_name){
 	$('#myDr').html(doctor_name); // 예약정보 확인에 뿌리기
 	document.Form1.medDr.value = doctor_name;
 	document.Form1.doctor_num.value = doctor_num;
+	buildCalendar2();
 }
 
 // 진료과 바꾸면 진료과 선택 제외하고 초기화
 function changeSelect() {
 	$(':input[name=medDp]').val("");
+	document.Form1.medDr.value = "";
 	$(':input[name=doctor_num]').val("");
 	$(':input[name=medDpRes]').val("");
 	$(':input[name=sday]').val("");
@@ -544,7 +697,7 @@ function resInsert(){
     					<tbody></tbody>
    	 				</table>
 				<!-- 20170605 달력수정 -->
-				<p style="color:red; font-size:14px;">인터넷 예약 마감시(또는 재진환자의 경우) 날짜 선택이 안될 수 있으니 전화문의 바랍니다.</p>
+				<p style="color:red; font-size:14px;">*예약가능 날짜만 선택이 가능하니 문의사항이 있으시면 전화문의 바랍니다.</p>
 				<!-- 20170605 달력수정 -->
 			</div>
 			<!-- //달력 -->
