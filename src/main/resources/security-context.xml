@@ -36,9 +36,10 @@
 		<!-- 로그아웃 -->
 		<sec:logout 
 			logout-url="/logout" 
-			invalidate-session="true" 
+			invalidate-session="false" 
 			success-handler-ref="userLogoutHandler"
-			delete-cookies="JSESSIONID"/> 
+			delete-cookies="JSESSIONID"
+			/> 
 
 
 		<sec:session-management>

@@ -132,7 +132,7 @@
 		select count(*) from customer where customer_id=#{customer_id} AND customer_email=#{customer_email}
 	</select>
 
-  <!--  /////////////////////////// 약찾기////////////////////////// -->
+  <!--  약찾기 -->
    <select id="searchDrug" parameterType="java.util.Map" resultType="com.spring.lifecare.vo.DrugVO">
    		SELECT * FROM ( 
         SELECT  drug_number ,drug_name, drug_enptname, drug_shape , drug_productimage, drug_frontShape ,drug_formulation , drug_color,drug_size_l, drug_size_s,drug_size_w,drug_category ,drug_division,drug_license_date,drug_effect ,drug_storage, drug_expiration_date,drug_dosage,drug_additives, drug_precautions,rowNum rNum
@@ -633,7 +633,7 @@
 	   		</when>
 	   		
 	   	
-		<!-- 5C1	 -->
+		<!-- 5C1 -->
 	   		<when test="drug_name.isEmpty()">
 	   			drug_enptname like '%'||#{drug_enptname}||'%'
 	   			and 
@@ -720,10 +720,26 @@
  	
  	<!-- 약 회사 keyup -->
  	<select id="searchEnptNext" resultType="com.spring.lifecare.vo.DrugVO">
- 		SELECT drug_enptname from DRUG 
+ 		SELECT distinct drug_enptname from DRUG 
  		where drug_enptname like '%'||#{entp}||'%' 
  	</select>
 
+	<!-- 약 리스트 keyup -->
+   <select id="getDrugList" resultType="com.spring.lifecare.vo.DrugVO">
+	  	SELECT  drug_number, drug_name 
+		FROM(
+		SELECT  drug_number, drug_name , rowNum rNum  
+		FROM( SELECT  drug_number, drug_name
+            FROM DRUG 
+            WHERE drug_name like '%'||#{drug}||'%'
+	  		order by drug_name
+	  		)   
+     )
+	  	<![CDATA[
+	  	WHERE rNum >0 AND rNum<=10
+	  	]]>
+   </select>
+   
    <!-- 의사정보 불러오기 -->
    <select id="getDoctorInfo" resultType="com.spring.lifecare.vo.DoctorVO" parameterType="String">
    		select * from doctor where doctor_id = #{doctor_id}
@@ -753,12 +769,6 @@
   		where disease_name like '%'||#{disease}||'%'
    </select>
    
-   <!-- 약 리스트 불러오기 -->
-   <select id="getDrugList" resultType="com.spring.lifecare.vo.DrugVO">
-		select drug_number, drug_name
-  		from drug
-  		where drug_name like '%'||#{drug}||'%'
-   </select>
    
    <!-- 회원가입 처리 -->
    <insert id ="insertDiagnosis" parameterType="com.spring.lifecare.vo.DiagnosisVO">

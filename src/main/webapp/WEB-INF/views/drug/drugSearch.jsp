@@ -24,7 +24,7 @@
 <link rel="stylesheet" href="${path_resources_lifecare}css/responsive.css">
 <link rel="stylesheet" href="${path_resources_lifecare}css/custom.css">
 
-<link rel="stylesheet" href="${drug_Cpath}base.css"type="text/css">
+<link rel="stylesheet" href="${drug_Cpath}base.css" type="text/css">
 <link rel="stylesheet" href="${drug_Cpath}common.css" type="text/css">
 <link rel="stylesheet" href="${drug_Cpath}sub.css" type="text/css">
 
@@ -114,22 +114,10 @@ $(function(){
 		var drug_name = document.getElementById("drug_name").value;
 		var drug_enptname = document.getElementById("entp_name").value;
 		
-	    
-		/* var chckList = document.getElementsByName("shapes");
-		var shapeList = "";
-
-		for (var i = 0; i < chckList.length; i++) {
-			if (chckList[i].checked) {
-				shapeList = shapeList + "," + chckList[i].value;
-			}
-		} */
-		 
 		var shapeList = new Array();
         $("input[name=shapes]:checked").each(function(){
         	shapeList.push($(this).val());
         }); 
-
-        
         
 		var formList = new Array();
         $("input[name=forms]:checked").each(function(){
@@ -154,31 +142,6 @@ function searchDrug() {
 </script>
 
 <script type="text/javascript">
-
-//onKeyUp시에 제품명 불러오는 ajax호출
-function drugNmAjax(){
-
-	if ($('#drug_name').val().length < 2) {
-		return false;
-	}
-
-	if (window.event.keyCode == 13) {
-		// 엔터키가 눌렸을 때 실행할 내용
-		//getKpicAtc_btn('1','','','');
-		$("#ul_drugList").css('display','none');
-//		$("#btn_detail_search").click();
-		return false;
-	}
-
-	//var e = jQuery.Event( "keydown", { keyCode: 35 } );	$("#input_upsoNm").trigger( e );
-	if($('#drug_name').val().length > 2){		
-		$("#ul_drugList").css('display','');
-		getDrugName();
-	}else{
-		$("#ul_drugList").css('display','none');
-	}
-}
-
 
 function refreshIdfy() {
 	//문자
@@ -337,7 +300,7 @@ function getCookie(name) {
 
 <%@include file="../common/header.jsp" %> 
 <div id="wrap">
-
+ 	
 
 <!-- 컨텐츠 영역 -->
 <section id="contens">
@@ -347,12 +310,22 @@ function getCookie(name) {
 		<img src = "${drug_Ipath}ajax-loader.gif" width="100px" height="100px" /> 
 	</div>
 	<section id="articles_sub">
-	
+		
+ 		<div id="lnb">
+				<ul style="width:100%; float:right;">
+					<div style="float:right; margin-right: 30px">
+					<li class="home"><a href="${path}/" class="ico"></a></li>
+					<li class="nxt"><span class="ico"></span></li>
+					<li>의약품검색</li>
+					</div>
+				</ul>
+		</div>	
+		
 		<!-- 의약품검색 -->
 		<section id="search_identity">
 			<h2 class="maintitle">의약품검색</h2>
 			<div style="height: 20px;"></div>
-			
+		
 			<!-- 검색테이블 -->
 			<article class="search_table">
 
