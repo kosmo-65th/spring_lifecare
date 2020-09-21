@@ -32,7 +32,6 @@ public class DlrController {
 	//문진표 문항
 	@RequestMapping("/index1")
 	public String index1(HttpServletRequest req,Model model) {
-		questionnaireservice.munjinsave(req,model);
 		
 		return "customer/Questionnaire/index1";
 	}
