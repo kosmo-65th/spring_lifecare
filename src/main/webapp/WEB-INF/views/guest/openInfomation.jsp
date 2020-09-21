@@ -15,13 +15,10 @@
    <!-- CSS -->
    <link rel="stylesheet" href="${path_resources_lifecare}css/bootstrap2.min.css">
    <link rel="stylesheet" href="${path_resources_lifecare}style2.css">
-   <link rel="stylesheet" href="${path_resources_lifecare}style1.css">
-   
-   	<link rel="stylesheet" href="${path_resources}asset/base.min.css">
+   <link rel="stylesheet" href="${path_resources}asset/base.min.css">
 	<link rel="stylesheet" href="${path_resources}asset/common.min.css">
 	<link rel="stylesheet" href="${path_resources}asset/content.min.css">
 	<link rel="stylesheet" href="${path_resources}asset/notosanskr.min.css">
-	
    <link rel="stylesheet" href="${path_resources_lifecare}css/colors.css">
    <link rel="stylesheet" href="${path_resources_lifecare}css/versions.css">
    <link rel="stylesheet" href="${path_resources_lifecare}css/responsive.css">
@@ -99,6 +96,8 @@
 		left: 0;
    	
    	}
+   	
+   
    </style>
    
    
@@ -143,7 +142,7 @@
       <!-- END LOADER -->
       <%@include file="../common/header.jsp" %>
       <div class="ul" style="background-image:url('${path_resources_lifecare}images/slider-bg.png') !important; ">
-      	<div class="container" style="background-color: white; padding: 20px">
+      	<div class="container" id="overflow" style="background-color: white; padding: 20px">
       	<br><br><br>
       		<h3 style="font-size: 30px;">비공개대상자료 : 공공기관의 정보공개에 관한 법률 9조 1항 준용</h3> 
 			<ol> 

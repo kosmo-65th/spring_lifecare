@@ -13,6 +13,7 @@
 	<!-- 컨넥션풀 -->
 	<bean id="dataSourceSpied" class="org.springframework.jndi.JndiObjectFactoryBean">
 		<property name="jndiName" value="java:comp/env/jdbc/Oracle11g_LifeCare" />
+		
 		<property name="resourceRef" value="true" />
 	</bean>
 	
