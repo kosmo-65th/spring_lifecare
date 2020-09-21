@@ -32,38 +32,66 @@
 		<level value="info" />
 	</logger>
 
+<<<<<<< HEAD
+
+	<logger name="jdbc.sqltiming" additivity="false">
+=======
 	<!-- Query Loggers -->
 <logger name="jdbc.sqltiming" additivity="true">
+>>>>>>> eb1468e593910bf2d2c703b43588b637625fad2e
 	<level value="INFO"/>
 	<appender-ref ref="CONSOLE"/>
 	<appender-ref ref="FILE_APPENDER"/>
 </logger>
+<<<<<<< HEAD
+<logger name="jdbc.sqlonly" additivity="false">
+=======
 <logger name="jdbc.sqlonly" additivity="true">
+>>>>>>> eb1468e593910bf2d2c703b43588b637625fad2e
 	<level value="INFO"/>
 	<appender-ref ref="CONSOLE"/>
 	<appender-ref ref="FILE_APPENDER"/>
 </logger>
+<<<<<<< HEAD
+<logger name="jdbc.resultset" additivity="false">
+=======
 <logger name="jdbc.resultset" additivity="true">
+>>>>>>> eb1468e593910bf2d2c703b43588b637625fad2e
 	<level value="WARN"/>
 	<appender-ref ref="CONSOLE"/>
 	<appender-ref ref="FILE_APPENDER"/>
 </logger>
+<<<<<<< HEAD
+<logger name="jdbc.resultsettable" additivity="false">
+=======
 <logger name="jdbc.resultsettable" additivity="true">
+>>>>>>> eb1468e593910bf2d2c703b43588b637625fad2e
 	<level value="WARN"/>
 	<appender-ref ref="CONSOLE"/>
 	<appender-ref ref="FILE_APPENDER"/>
 </logger>
+<<<<<<< HEAD
+<logger name="jdbc.audit" additivity="false">
+=======
 <logger name="jdbc.audit" additivity="true">
+>>>>>>> eb1468e593910bf2d2c703b43588b637625fad2e
 	<level value="WARN"/>
 	<appender-ref ref="CONSOLE"/>
 	<appender-ref ref="FILE_APPENDER"/>
 </logger>
+<<<<<<< HEAD
+<logger name="jdbc.connection" additivity="false">
+=======
 <logger name="jdbc.connection" additivity="true">
+>>>>>>> eb1468e593910bf2d2c703b43588b637625fad2e
 	<level value="WARN"/>
 	<appender-ref ref="CONSOLE"/>
 	<appender-ref ref="FILE_APPENDER"/>
 </logger>
+<<<<<<< HEAD
+=======
 
+>>>>>>> eb1468e593910bf2d2c703b43588b637625fad2e
 	<!-- Root Logger -->
 	<root>
 		<priority value="debug" />

@@ -70,7 +70,9 @@
       <!-- END LOADER -->
       <%@include file="../common/header.jsp" %>
       <div class="ul" style="background-image:url('${path_resources_lifecare}images/slider-bg.png') !important; ">
-      	<div class="container" style="background-color: white; padding: 20px">
+      	<div class="container" id="overflow" style="background-color: white; padding: 20px;">
+      	
+			
 			<h2 style="font-size: 40px;">개인정보처리방침</h2>
 			
 			<p class="privacyIntro">서울대학교병원은 개인정보 보호법에 따라 이용자의 개인정보 보호 및 권익을 보호하고 개인정보와 관련한 이용자의 고충을 원활하게 <br>

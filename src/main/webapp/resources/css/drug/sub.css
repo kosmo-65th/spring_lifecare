@@ -13,11 +13,12 @@
 	background:#f4f1ed  !important;
 	border-bottom:1px solid #dcdad7  !important;
 	width:90px  !important;
-	padding-left:8px  !important;
+/* 	padding-left:8px  !important; */
+/* 	padding-right:8px  !important; */
 	box-sizing:border-box  !important;
 	color:#435cc8  !important;
 	font-weight:normal  !important;
-	text-align:left  !important;
+	text-align: center  !important;
 }
 .search_table table td{
 	border-bottom:1px solid #e6e6e6  !important;
@@ -150,12 +151,15 @@
 	height:420px;
 }
 
+
 .infotable #ingr_mg h3{
     padding-left: 12px;
     color: #008073;
     background: #fff url(/lifecare/resources/images/pills/ico.png) no-repeat 0 -457px;
 }
-
+.infotable th{
+text-align:center;
+}
 .infotable td.img ul li{
 	position:relative;
 	width:96%;
@@ -166,9 +170,9 @@
 	margin-top:10px;
 }
 .view_drugimg{
-	width:16px;
+	/* width:16px;
 	height:16px;
-	position:absolute;
+	position:absolute; */
 	top:10px;
     right:0;
 }

@@ -15,7 +15,11 @@ import org.springframework.stereotype.Repository;
 
 import com.spring.lifecare.vo.AppointmentVO;
 import com.spring.lifecare.vo.CustomerVO;
+import com.spring.lifecare.vo.DiagnosisVO;
+import com.spring.lifecare.vo.DiseaseVO;
 import com.spring.lifecare.vo.DoctorVO;
+import com.spring.lifecare.vo.DrugVO;
+import com.spring.lifecare.vo.ReservationVO;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
@@ -24,6 +28,11 @@ public class UserDAOImpl implements UserDAO {
 
 	@Autowired
 	private SqlSession sqlSession;
+	
+	//로그인
+	public Map<String, Object> selectUser(String userId){
+		return sqlSession.selectOne("com.spring.lifecare.persistence.UserDAO.selectUser", userId);
+	}
 	
 	//카카오 아이디 있는지 체크
 	@Override
@@ -111,13 +120,13 @@ public class UserDAOImpl implements UserDAO {
 		UserDAO dao = sqlSession.getMapper(UserDAO.class);	    	    
 	    return dao.insertDoctor(vo);
 	}
+
 	
 	@Override
 	public String idPwdCheck(String customer_id) {
 		String checkIdPwd = sqlSession.selectOne("com.spring.lifecare.persistence.UserDAO.idPwdCheck", customer_id);
 		return checkIdPwd;	
 	}
-	
 	
 	
 	//내 정보 가져오기
@@ -181,6 +190,7 @@ public class UserDAOImpl implements UserDAO {
 		return dao.searchList(keyword);
 	}
 
+	
 	@Override
 	public CustomerVO getCustomerInfo(String customer_id) {
 		UserDAO dao = sqlSession.getMapper(UserDAO.class);
@@ -210,7 +220,78 @@ public class UserDAOImpl implements UserDAO {
 			
 		} catch(Exception e) {
 			e.printStackTrace();
-		}			
+		}	
+	}
+	//약찾기(회사)
+	@Override
+	public List<DrugVO> searchDrug(Map<String, Object> map) {
+		return sqlSession.selectList("com.spring.lifecare.persistence.UserDAO.searchDrug", map);
+	}
+
+	//약찾기 수량
+	@Override
+	public int searchDrugCount(Map<String,Object> map) {
+		return sqlSession.selectOne("com.spring.lifecare.persistence.UserDAO.searchDrugCount",map);
+	}
+	
+	//약상세
+	public DrugVO drugDetail(int drug_number) {
+		return sqlSession.selectOne("com.spring.lifecare.persistence.UserDAO.drugDetail",drug_number);
+	}
+	
+	 //약 회사 keyup
+	@Override
+	public List<DrugVO> searchEnptNext(String entp) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.searchEnptNext(entp);
+	}
+	
+	@Override
+	public DoctorVO getDoctorInfo(String doctor_id) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.getDoctorInfo(doctor_id);
+	}
+
+	@Override
+	public ArrayList<AppointmentVO> getAppointList() {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.getAppointList();
+	}
+
+	@Override
+	public int addAppointment(Map<String, Object> map) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.addAppointment(map);
+	}
+
+	@Override
+	public ArrayList<ReservationVO> getReservation(String doctor_id) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.getReservation(doctor_id);
+	}
+
+	@Override
+	public List<DiseaseVO> getDiseaseList(String disease) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.getDiseaseList(disease);
+	}
+
+	@Override
+	public List<DrugVO> getDrugList(String drug) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.getDrugList(drug);
+	}
+
+	@Override
+	public int insertDiagnosis(DiagnosisVO vo) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.insertDiagnosis(vo);
+	}
+
+	@Override
+	public List<DiagnosisVO> getDiagnosisList(String doctor_id) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.getDiagnosisList(doctor_id);
 	}
 }
 

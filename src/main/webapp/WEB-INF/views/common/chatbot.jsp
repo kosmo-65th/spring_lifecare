@@ -13,12 +13,44 @@
 	}
 </script>
 <style type="text/css">
+@media (min-width:1930px) {
 
-	.chatbot{
+    .chatbot{
 		float: right;
 		position: fixed;
-		margin-left: 85%;
+		margin-left: 92%;
+		bottom: 10%;
 	}	
+} 
+@media (max-width:1920px) {
+
+    .chatbot{
+		float: right;
+		position: fixed;
+		margin-left: 92%;
+		bottom: 10%;
+	}	
+} 
+
+@media (max-width:1280px) {
+
+    .chatbot{
+		float: right;
+		position: fixed;
+		margin-left:92%;
+		bottom: 4%;
+	}	
+}
+
+@media (max-width:1024px) {
+
+    .chatbot{
+		float: right;
+		position: fixed;
+		margin-left:85%;
+		bottom: 15%;
+	}	
+} 
 </style>
 </head>
 <body>

@@ -1,7 +1,6 @@
 package com.spring.lifecare.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.Collection;
 import java.util.Enumeration;
@@ -18,12 +17,15 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.spring.lifecare.persistence.UserDAO;
 import com.spring.lifecare.service.KakaoLoginService;
 import com.spring.lifecare.service.NaverLoginService;
 import com.spring.lifecare.vo.UserVO;
@@ -36,6 +38,12 @@ public class SwhController {
 	
 	@Autowired
 	NaverLoginService naver;
+	
+	@Autowired
+	UserDAO userDAO;
+	
+	@Autowired
+	PasswordEncoder passwordEncoder;
 
 	//메인페이지
 	@RequestMapping(value= {"/","/guest/main","/main"})
@@ -207,6 +215,40 @@ public class SwhController {
 		return "customer/test";
 	}
 	
+	
+	//////////////////////////////안드로이드 관련
+	@ResponseBody
+	@RequestMapping("/android/androidSignIn")
+	public Map<String, String> androidSignIn(HttpServletRequest req){
+		String id = req.getParameter("id");
+		String pwd = req.getParameter("pwd");
+		Boolean loginCheck = false;
+		
+		
+		Map<String, Object> userInfo = userDAO.selectUser(id);
+		
+		System.out.println(userInfo);
+		if(userInfo != null) {
+			if(passwordEncoder.matches(pwd, (String)userInfo.get("PASSWORD"))) {
+				loginCheck = true;
+			}
+		}
+		
+		
+		Map<String, String> out = new HashMap<String, String>();
+		if(loginCheck == true) {
+			out.put("id", id);
+			out.put("enabled", String.valueOf(userInfo.get("ENABLED")));
+			out.put("customer_echeck", String.valueOf(userInfo.get("CUSTOMER_ECHECK")));
+		}else {
+			out.put("id", null);
+			out.put("enabled", null);
+			out.put("customer_echeck", null);
+		}
+		
+		System.out.println(out);
+		return out;
+	}
 }
 
 

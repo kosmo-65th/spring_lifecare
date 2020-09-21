@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ 	  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 	  
+ 	  
+<mapper namespace="com.spring.lifecare.persistence.FooterDao">
+   
+   <!--treatment총글-->
+   <select id="totalTreatMent" resultType="String" parameterType="String">
+   		select count(*)
+		from non_payment_treatment
+		where name like '%'||#{word}||'%'
+   </select>
+   <!--treatment게시글 불러오기-->
+   <select id="treatMent" resultType="com.spring.lifecare.vo.FooterBoard_treatment" parameterType="java.util.Map">
+   		<![CDATA[
+	   		select *from
+			(select medium_div,divv,name,code,repet,cost,min_cost,max_cost,add_medicine,add_drug_cost,issue,ROWNUM rnum
+			from(select * from non_payment_treatment where name like '%'||#{word}||'%' ORDER By medium_div))
+			where rNum >=#{startList} and rNum <=#{endList}
+		]]>
+   </select>
+   
+   
+   
+   <!--medecine총글-->
+   <select id="totalMedecine" resultType="String" parameterType="String">
+   		select count(*)
+		from non_payment_medecine
+		where name like '%'||#{word}||'%'
+   </select>
+   <!--medecine게시글 불러오기-->
+   <select id="medecine" resultType="com.spring.lifecare.vo.FooterBoard_medecine" parameterType="java.util.Map">
+   		<![CDATA[
+	   		select *from
+			(select divv,name,code,standard,cost,min_cost,max_cost,issue,ROWNUM rnum
+			from(select * from non_payment_medecine where name like '%'||#{word}||'%'))
+			where rNum >=#{startList} and rNum <=#{endList}
+		]]>
+   </select>
+   
+   
+   
+   <!-- drugs 총 갯수 -->
+   <select id="totaldrugs" resultType="String" parameterType="String">
+   		select count(*)
+		from non_payment_drugs
+		where name like '%'||#{word}||'%'
+   </select>
+   <!--drug 총 글  -->
+ 	<select id="drug" resultType="com.spring.lifecare.vo.FooterBoard_drug" parameterType="java.util.Map">
+   		<![CDATA[
+	   		select *from
+			(select name,code,cost,issue,ROWNUM rnum
+			from(select * from non_payment_drugs where name like '%'||#{word}||'%'))
+			where rNum >=#{startList} and rNum <=#{endList}
+		]]>
+   </select>
+   
+   <!-- drugs 총 갯수 -->
+   <select id="totalproof_cost" resultType="String" parameterType="String">
+   		select count(*)
+		from non_payment_proof_cost
+		where name like '%'||#{word}||'%'
+   </select>
+   
+   <!--drug 총 글  -->
+ 	<select id="proof_cost" resultType="com.spring.lifecare.vo.FooterBoard_proofCost" parameterType="java.util.Map">
+   		<![CDATA[
+	   		select *from
+			(select name,code,section,cost,min_cost,max_cost,issue,ROWNUM rnum
+			from(select * from non_payment_proof_cost where name like '%'||#{word}||'%'))
+			where rNum >=#{startList} and rNum <=#{endList}
+		]]>
+   </select>
+   
+   
+   
+</mapper>  	  
+

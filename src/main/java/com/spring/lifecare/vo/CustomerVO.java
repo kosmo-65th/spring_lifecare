@@ -17,7 +17,15 @@ public class CustomerVO {
 	private int enabled;
 	private String customer_gender;
 	private int customer_year;
+	private String insurance;
+	private String customer_echeck;
 	
+	public String getCustomer_echeck() {
+		return customer_echeck;
+	}
+	public void setCustomer_echeck(String customer_echeck) {
+		this.customer_echeck = customer_echeck;
+	}
 	public int getEnabled() {
 		return enabled;
 	}
@@ -84,7 +92,6 @@ public class CustomerVO {
 	public void setAuthority(String authority) {
 		this.authority = authority;	
 	}
-
 	public String getCustomer_gender() {
 		return customer_gender;
 	}
@@ -97,5 +104,10 @@ public class CustomerVO {
 	public void setCustomer_year(int customer_year) {
 		this.customer_year = customer_year;
 	}
-	
+	public String getInsurance() {
+		return insurance;
+	}
+	public void setInsurance(String insurance) {
+		this.insurance = insurance;
+	}	
 }

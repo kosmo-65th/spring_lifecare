@@ -27,7 +27,7 @@
    <select id ="idCheck" parameterType="String" resultType="int" >
      SELECT count(*)  FROM customer WHERE customer_id=#{customer_id} 
    </select>
-   <!-- 핸드폰 번호 중복확인  -->
+  <!-- 핸드폰 번호 중복확인 --> 
    <select id ="phoneCheck" parameterType="String" resultType="int" >
      SELECT count(*)  FROM customer WHERE customer_phone=#{customer_phone} 
    </select>
@@ -35,20 +35,20 @@
    <select id ="emailCheck" parameterType="String" resultType="int" >
      SELECT count(*)  FROM customer WHERE customer_email=#{customer_email} 
    </select>
-   <!-- 회원가입 처리 -->
+  <!--  회원가입 처리 -->
    <insert id ="insertMember" parameterType="com.spring.lifecare.vo.CustomerVO">
      INSERT INTO customer (customer_id, customer_pw, customer_name, customer_phone, customer_email, customer_gender, customer_year) VALUES (#{customer_id}, #{customer_pw},#{customer_name},#{customer_phone},#{customer_email},#{customer_gender},#{customer_year, jdbcType=VARCHAR})
    </insert>
-   <!-- 이메일 인증 후 로그인 처리  -->
+   <!-- 이메일 인증 후 로그인 처리 --> 
    <update id="approvalMember" parameterType="String">
 	  UPDATE customer set customer_echeck = 1 WHERE customer_email = #{customer_email} 
    </update>   
-   <!-- 아이디 찾기  -->
+  <!--  아이디 찾기 --> 
    <select id ="findId"  parameterType="String" resultType="String">
       SELECT customer_id FROM customer WHERE customer_phone=#{customer_phone}
    </select>
    
-   <!-- 의사 아이디 중복확인 -->
+  <!--  의사 아이디 중복확인 -->
    <select id ="CheckId" parameterType="String" resultType="int" >
      SELECT count(*)  FROM doctor WHERE doctor_id=#{doctor_id} 
    </select>
@@ -66,6 +66,7 @@
      SELECT count(*)  FROM doctor WHERE doctor_num=#{doctor_num} 
    </select>
    
+      
    <!-- 의사 회원가입 처리  -->
   <insert id ="insertDoctor" parameterType="com.spring.lifecare.vo.DoctorVO">
      INSERT INTO doctor(doctor_num, doctor_pw, doctor_id, doctor_name, doctor_email, doctor_phone, doctor_major, doctor_position, doctor_faceimg) 
@@ -130,5 +131,700 @@
    <select id="idEmailChk" parameterType="java.util.Map" resultType="int">
 		select count(*) from customer where customer_id=#{customer_id} AND customer_email=#{customer_email}
 	</select>
+
+  <!--  /////////////////////////// 약찾기////////////////////////// -->
+   <select id="searchDrug" parameterType="java.util.Map" resultType="com.spring.lifecare.vo.DrugVO">
+   		SELECT * FROM ( 
+        SELECT  drug_number ,drug_name, drug_enptname, drug_shape , drug_productimage, drug_frontShape ,drug_formulation , drug_color,drug_size_l, drug_size_s,drug_size_w,drug_category ,drug_division,drug_license_date,drug_effect ,drug_storage, drug_expiration_date,drug_dosage,drug_additives, drug_precautions,rowNum rNum
+        FROM( SELECT * FROM DRUG 
+        WHERE  
+   		<choose>
+   		<!-- 5C5 -->
+   			<when test="drug_name.isEmpty() and drug_enptname.isEmpty() and drug_shape.length ==0  and drug_form.isEmpty() and drug_color.length ==0" >
+	   			1=1
+	   		</when>
+   		
+   		<!-- 5C4 -->
+   			<when test="drug_name.isEmpty() and drug_enptname.isEmpty() and drug_shape.length ==0 and drug_form.isEmpty()" >
+	   			drug_color IN
+	   			<foreach collection="drug_color" item="color" open="(" close=")" separator=",">
+	   				#{color}
+	   			</foreach>
+	   		</when>
+   			<when test="drug_name.isEmpty() and drug_enptname.isEmpty() and drug_shape.length ==0 and drug_color.length ==0" >
+	   			 regexp_like(drug_formulation,#{drug_form})
+	   			
+	   		</when>
+   			<when test="drug_name.isEmpty() and drug_enptname.isEmpty() and drug_form.isEmpty() and drug_color.length ==0" >
+	   			drug_shape IN
+	   			<foreach collection="drug_shape" item="shape" open="(" close=")" separator=",">
+	   				#{shape}
+	   			</foreach>
+	   		</when>
+   			<when test="drug_name.isEmpty() and drug_shape.length ==0  and drug_form.isEmpty() and drug_color.length ==0" >
+	   			drug_enptname like '%'||#{drug_enptname}||'%' 
+	   		</when>
+   			<when test="drug_enptname.isEmpty() and drug_shape.length ==0  and drug_form.isEmpty() and drug_color.length ==0" >
+	   			drug_name like '%'||#{drug_name}||'%'
+	   		</when>
+   		
+   		<!-- 5C3  	 -->
+	   		<when test="drug_name.isEmpty() and drug_enptname.isEmpty() and drug_shape.length ==0 " >
+	   			regexp_like(drug_formulation,#{drug_form})
+	   			and drug_color IN
+	   			<foreach collection="drug_color" item="color" open="(" close=")" separator=",">
+	   				#{color}
+	   			</foreach>
+	   		</when>
+	   		
+	   		<when test="drug_name.isEmpty() and drug_enptname.isEmpty() and drug_form.isEmpty() " >
+	   			drug_shape IN
+	   			<foreach collection="drug_shape" item="shape" open="(" close=")" separator=",">
+	   			#{shape}
+	   			</foreach>
+	   			and drug_color IN
+	   			<foreach collection="drug_color" item="color" open="(" close=")" separator=",">
+	   				#{color}
+	   			</foreach>
+	   		</when>
+	   		<when test="drug_name.isEmpty() and drug_enptname.isEmpty() and drug_color.length ==0 " >
+	   			drug_shape IN
+	   			<foreach collection="drug_shape" item="shape" open="(" close=")" separator=",">
+	   			#{shape}
+	   			</foreach>
+	   			and regexp_like(drug_formulation,#{drug_form})
+	   		</when>
+	   		
+	   		<when test="drug_name.isEmpty() and drug_shape.length == 0 and drug_form.isEmpty() " >
+	   			 drug_enptname like '%'||#{drug_enptname}||'%' 
+	   			 and drug_color IN
+	   			<foreach collection="drug_color" item="color" open="(" close=")" separator=",">
+	   				#{color}
+	   			</foreach>
+	   		</when>
+	   		
+	   		<when test="drug_name.isEmpty() and drug_shape.length == 0 and drug_color.length ==0 " >
+	   			 drug_enptname like '%'||#{drug_enptname}||'%' 
+	   			 and regexp_like(drug_formulation,#{drug_form})
+	   		</when>
+	   		
+			<when test="drug_name.isEmpty() and drug_form.isEmpty() and drug_color.length ==0" >
+	   			 drug_enptname like '%'||#{drug_enptname}||'%' 
+	   			 and drug_shape IN
+	   			<foreach collection="drug_shape" item="shape" open="(" close=")" separator=",">
+	   				#{shape}
+	   			</foreach>
+	   		</when>
+	   		
+	   		<when test="drug_enptname.isEmpty() and drug_shape.length == 0 and drug_form.isEmpty() " >
+	   			drug_name like '%'||#{drug_name}||'%'
+	   			and drug_color IN
+	   			<foreach collection="drug_color" item="color" open="(" close=")" separator=",">
+	   				#{color}
+	   			</foreach>
+	   		</when>
+	   		 		
+	   		<when test="drug_enptname.isEmpty() and drug_shape.length == 0 and drug_color.length ==0" >
+	   			drug_name like '%'||#{drug_name}||'%'\
+	   			and regexp_like(drug_formulation,#{drug_form})
+	   		</when>
+	   		 		
+	   		 <when test="drug_enptname.isEmpty() and drug_form.isEmpty() and drug_color.length ==0" >
+	   			drug_name like '%'||#{drug_name}||'%'
+	   			and drug_shape IN
+	   			<foreach collection="drug_shape" item="shape" open="(" close=")" separator=",">
+	   				#{shape}
+	   			</foreach>
+	   		</when>		
+	   		
+	   		<when test="drug_shape.length == 0 and drug_form.isEmpty() and drug_color.length ==0" >
+	   			drug_name like '%'||#{drug_name}||'%'
+	   			and drug_enptname like '%'||#{drug_enptname}||'%' 
+	   		</when>
+	   		
+		<!-- 5C2 -->  		
+	   		 <when test="drug_name.isEmpty() and drug_enptname.isEmpty() " >
+	   			drug_shape IN
+	   			<foreach collection="drug_shape" item="shape" open="(" close=")" separator=",">
+	   				#{shape}
+	   			</foreach>
+	   			and regexp_like(drug_formulation,#{drug_form})
+	   			and drug_color IN
+	   			<foreach collection="drug_color" item="color" open="(" close=")" separator=",">
+	   				#{color}
+	   			</foreach>
+	   		</when> 
+	   	
+	   		<when test="drug_name.isEmpty() and drug_shape.length == 0" >
+	   			 drug_enptname like '%'||#{drug_enptname}||'%'
+	   			 and regexp_like(drug_formulation,#{drug_form})
+	   			 and drug_color IN
+	   			<foreach collection="drug_color" item="color" open="(" close=")" separator=",">
+	   				#{color}
+	   			</foreach>
+	   		</when>
+	   		
+	   		<when test="drug_name.isEmpty() and drug_form.isEmpty()" >
+	   			drug_enptname like '%'||#{drug_enptname}||'%'
+	   			and drug_shape IN
+	   			<foreach collection="drug_shape" item="shape" open="(" close=")" separator=",">
+	   				#{shape}
+	   			</foreach>
+	   			and drug_color IN
+	   			<foreach collection="drug_color" item="color" open="(" close=")" separator=",">
+	   				#{color}
+	   			</foreach>
+	   		</when>
+	   		
+	   		<when test="drug_name.isEmpty() and drug_color.length ==0" >
+	   			drug_enptname like '%'||#{drug_enptname}||'%'
+	   			and drug_shape IN
+	   			<foreach collection="drug_shape" item="shape" open="(" close=")" separator=",">
+	   				#{shape}
+	   			</foreach>
+	   			and regexp_like(drug_formulation,#{drug_form})
+	   		</when>
+	   	
+	   		<when test="drug_enptname.isEmpty() and drug_shape.length == 0">
+	   		 	drug_name like '%'||#{drug_name}||'%'
+	   		 	and regexp_like(drug_formulation,#{drug_form})
+	   		 	and drug_color IN
+	   			<foreach collection="drug_color" item="color" open="(" close=")" separator=",">
+	   				#{color}
+	   			</foreach>
+	   		</when>
+	   		
+	   		<when test="drug_enptname.isEmpty() and drug_form.isEmpty()">
+	   			drug_name like '%'||#{drug_name}||'%'
+	   			and drug_shape IN
+	   			<foreach collection="drug_shape" item="shape" open="(" close=")" separator=",">
+	   			#{shape}
+	   			</foreach>
+	   			and drug_color IN
+	   			<foreach collection="drug_color" item="color" open="(" close=")" separator=",">
+	   				#{color}
+	   			</foreach>
+	   		</when>
+	   	
+	   		<when test="drug_enptname.isEmpty() and drug_color.length ==0">
+	   			drug_name like '%'||#{drug_name}||'%'
+	   			and drug_shape IN
+	   			<foreach collection="drug_shape" item="shape" open="(" close=")" separator=",">
+	   			#{shape}
+	   			</foreach>
+	   			and regexp_like(drug_formulation,#{drug_form})
+	   		</when>
+	   		
+	   		
+	   		<when test="drug_shape.length == 0 and drug_form.isEmpty()">
+	   			and drug_name like '%'||#{drug_name}||'%'
+	   			drug_enptname like '%'||#{drug_enptname}||'%' 
+	   			and drug_color IN
+	   			<foreach collection="drug_color" item="color" open="(" close=")" separator=",">
+	   				#{color}
+	   			</foreach>
+	   		</when>
+	   		<when test="drug_shape.length == 0 and drug_color.length ==0">
+	   			and drug_name like '%'||#{drug_name}||'%'
+	   			drug_enptname like '%'||#{drug_enptname}||'%' 
+	   			and regexp_like(drug_formulation,#{drug_form})
+	   		</when>
+	   		
+	   		
+	   		<when test="drug_form.isEmpty() and drug_color.length ==0 ">
+	   			and drug_name like '%'||#{drug_name}||'%'
+	   			drug_enptname like '%'||#{drug_enptname}||'%' 
+	   			and drug_shape IN
+	   			<foreach collection="drug_shape" item="shape" open="(" close=")" separator=",">
+	   			#{shape}
+	   			</foreach>
+	   			and regexp_like(drug_formulation,#{drug_form})
+	   		</when>
+	   		
+	   	
+		<!-- 5C1 -->	
+	   		<when test="drug_name.isEmpty()">
+	   			drug_enptname like '%'||#{drug_enptname}||'%'
+	   			and 
+	   			drug_shape IN
+   				<foreach collection="drug_shape" item="shape" open="(" close=")" separator=",">
+	   				#{shape}
+	   			</foreach>
+	   			and regexp_like(drug_formulation,#{drug_form})
+	   			and drug_color IN
+	   			<foreach collection="drug_color" item="color" open="(" close=")" separator=",">
+	   				#{color}
+	   			</foreach>
+	   		</when>
+
+	   		<when test="drug_enptname.isEmpty()">
+	   			drug_name like '%'||#{drug_name}||'%'
+	   			and 
+	   			drug_shape IN
+	   			<foreach collection="drug_shape" item="shape" open="(" close=")" separator=",">
+	   				#{shape}
+	   			</foreach>
+	   			and regexp_like(drug_formulation,#{drug_form})
+	   			and drug_color IN
+	   			<foreach collection="drug_color" item="color" open="(" close=")" separator=",">
+	   				#{color}
+	   			</foreach>
+	   		</when>	 
+	   		  		
+	   		<when test="drug_shape.length == 0">
+	   			 drug_enptname like '%'||#{drug_enptname}||'%'
+	   			 and 
+	   			 drug_name like '%'||#{drug_name}||'%'
+	   			 and regexp_like(drug_formulation,#{drug_form})
+	   			 and drug_color IN
+	   			<foreach collection="drug_color" item="color" open="(" close=")" separator=",">
+	   				#{color}
+	   			</foreach>
+	   		</when>	 
+	   		
+	   		<when test=" drug_form.isEmpty()">
+	   			 drug_enptname like '%'||#{drug_enptname}||'%'
+	   			 and drug_name like '%'||#{drug_name}||'%'
+	   			 and drug_shape IN
+	   			<foreach collection="drug_shape" item="shape" open="(" close=")" separator=",">
+	   				#{shape}
+	   			</foreach>
+	   			and drug_color IN
+	   			<foreach collection="drug_color" item="color" open="(" close=")" separator=",">
+	   				#{color}
+	   			</foreach>
+	   		</when>	 
+	   		
+	   		<when test="drug_color.length ==0 ">
+	   			drug_enptname like '%'||#{drug_enptname}||'%' 
+	   			and drug_name like '%'||#{drug_name}||'%'
+	   			 and drug_shape IN
+	   			<foreach collection="drug_shape" item="shape" open="(" close=")" separator=",">
+	   				#{shape}
+	   			</foreach>
+	   			and regexp_like(drug_formulation,#{drug_form})
+	   		</when>
+		<!-- 5C0  -->  		
+	   		<otherwise>
+	   			drug_enptname like '%'||#{drug_enptname}||'%' 
+	   			and drug_name like '%'||#{drug_name}||'%'
+	   			 and drug_shape IN
+	   			<foreach collection="drug_shape" item="shape" open="(" close=")" separator=",">
+	   				#{shape}
+	   			</foreach>
+	   			and regexp_like(drug_formulation,#{drug_form})
+	   			 and drug_color IN
+	   			<foreach collection="drug_color" item="color" open="(" close=")" separator=",">
+	   				#{color}
+	   			</foreach>
+	   		</otherwise>
+   		</choose>
+   		<![CDATA[
+   		  order by drug_name, drug_enptname, drug_number, drug_shape, drug_color))
+      	  WHERE rNum >= #{start} AND rNum <= #{end}
+
+      	 ]]>
+   </select>
+
+  <!--  검색 count  -->  
+   <select id="searchDrugCount" resultType="int" parameterType="java.util.Map">
+		SELECT count(*) FROM  DRUG  WHERE  
+   		<choose>
+   		<!-- 5C5 -->
+   			<when test="drug_name.isEmpty() and drug_enptname.isEmpty() and drug_shape.length ==0  and drug_form.isEmpty() and drug_color.length ==0" >
+	   			1=1
+	   		</when>
+   		
+   		<!-- 5C4 -->
+   			<when test="drug_name.isEmpty() and drug_enptname.isEmpty() and drug_shape.length ==0 and drug_form.isEmpty()" >
+	   			drug_color IN
+	   			<foreach collection="drug_color" item="color" open="(" close=")" separator=",">
+	   				#{color}
+	   			</foreach>
+	   		</when>
+   			<when test="drug_name.isEmpty() and drug_enptname.isEmpty() and drug_shape.length ==0 and drug_color.length ==0" >
+	   			 regexp_like(drug_formulation,#{drug_form})
+	   			
+	   		</when>
+   			<when test="drug_name.isEmpty() and drug_enptname.isEmpty() and drug_form.isEmpty() and drug_color.length ==0" >
+	   			drug_shape IN
+	   			<foreach collection="drug_shape" item="shape" open="(" close=")" separator=",">
+	   				#{shape}
+	   			</foreach>
+	   		</when>
+   			<when test="drug_name.isEmpty() and drug_shape.length ==0  and drug_form.isEmpty() and drug_color.length ==0" >
+	   			drug_enptname like '%'||#{drug_enptname}||'%' 
+	   		</when>
+   			<when test="drug_enptname.isEmpty() and drug_shape.length ==0 and drug_form.isEmpty()and drug_color.length ==0" >
+	   			drug_name like '%'||#{drug_name}||'%'
+	   		</when>
+   		
+   		<!-- 5C3   --> 	
+	   		<when test="drug_name.isEmpty() and drug_enptname.isEmpty() and drug_shape.length ==0 " >
+	   			regexp_like(drug_formulation,#{drug_form})
+	   			and drug_color IN
+	   			<foreach collection="drug_color" item="color" open="(" close=")" separator=",">
+	   				#{color}
+	   			</foreach>
+	   		</when>
+	   		
+	   		<when test="drug_name.isEmpty() and drug_enptname.isEmpty() and drug_form.isEmpty() " >
+	   			drug_shape IN
+	   			<foreach collection="drug_shape" item="shape" open="(" close=")" separator=",">
+	   			#{shape}
+	   			</foreach>
+	   			and drug_color IN
+	   			<foreach collection="drug_color" item="color" open="(" close=")" separator=",">
+	   				#{color}
+	   			</foreach>
+	   		</when>
+	   		<when test="drug_name.isEmpty() and drug_enptname.isEmpty() and drug_color.length ==0 " >
+	   			drug_shape IN
+	   			<foreach collection="drug_shape" item="shape" open="(" close=")" separator=",">
+	   			#{shape}
+	   			</foreach>
+	   			and regexp_like(drug_formulation,#{drug_form})
+	   		</when>
+	   		
+	   		<when test="drug_name.isEmpty() and drug_shape.length == 0 and drug_form.isEmpty() " >
+	   			 drug_enptname like '%'||#{drug_enptname}||'%' 
+	   			 and drug_color IN
+	   			<foreach collection="drug_color" item="color" open="(" close=")" separator=",">
+	   				#{color}
+	   			</foreach>
+	   		</when>
+	   		
+	   		<when test="drug_name.isEmpty() and drug_shape.length == 0 and drug_color.length ==0 " >
+	   			 drug_enptname like '%'||#{drug_enptname}||'%' 
+	   			 and regexp_like(drug_formulation,#{drug_form})
+	   		</when>
+	   		
+			<when test="drug_name.isEmpty() and drug_form.isEmpty() and drug_color.length ==0" >
+	   			 drug_enptname like '%'||#{drug_enptname}||'%' 
+	   			 and drug_shape IN
+	   			<foreach collection="drug_shape" item="shape" open="(" close=")" separator=",">
+	   				#{shape}
+	   			</foreach>
+	   		</when>
+	   		
+	   		<when test="drug_enptname.isEmpty() and drug_shape.length == 0 and drug_form.isEmpty() " >
+	   			drug_name like '%'||#{drug_name}||'%'
+	   			and drug_color IN
+	   			<foreach collection="drug_color" item="color" open="(" close=")" separator=",">
+	   				#{color}
+	   			</foreach>
+	   		</when>
+	   		 		
+	   		<when test="drug_enptname.isEmpty() and drug_shape.length == 0 and drug_color.length ==0" >
+	   			drug_name like '%'||#{drug_name}||'%'
+	   			and regexp_like(drug_formulation,#{drug_form})
+	   		</when>
+	   		 		
+	   		 <when test="drug_enptname.isEmpty() and drug_form.isEmpty() and drug_color.length ==0" >
+	   			drug_name like '%'||#{drug_name}||'%'
+	   			and drug_shape IN
+	   			<foreach collection="drug_shape" item="shape" open="(" close=")" separator=",">
+	   				#{shape}
+	   			</foreach>
+	   		</when>		
+	   		
+	   		<when test="drug_shape.length == 0 and drug_form.isEmpty() and drug_color.length ==0" >
+	   			drug_name like '%'||#{drug_name}||'%'
+	   			and drug_enptname like '%'||#{drug_enptname}||'%' 
+	   		</when>
+	   		
+		<!-- 5C2  --> 		
+	   		 <when test="drug_name.isEmpty() and drug_enptname.isEmpty() " >
+	   			drug_shape IN
+	   			<foreach collection="drug_shape" item="shape" open="(" close=")" separator=",">
+	   				#{shape}
+	   			</foreach>
+	   			and regexp_like(drug_formulation,#{drug_form})
+	   			and drug_color IN
+	   			<foreach collection="drug_color" item="color" open="(" close=")" separator=",">
+	   				#{color}
+	   			</foreach>
+	   		</when> 
+	   	
+	   		<when test="drug_name.isEmpty() and drug_shape.length == 0" >
+	   			 drug_enptname like '%'||#{drug_enptname}||'%'
+	   			 and regexp_like(drug_formulation,#{drug_form})
+	   			 and drug_color IN
+	   			<foreach collection="drug_color" item="color" open="(" close=")" separator=",">
+	   				#{color}
+	   			</foreach>
+	   		</when>
+	   		
+	   		<when test="drug_name.isEmpty() and drug_form.isEmpty()" >
+	   			drug_enptname like '%'||#{drug_enptname}||'%'
+	   			and drug_shape IN
+	   			<foreach collection="drug_shape" item="shape" open="(" close=")" separator=",">
+	   				#{shape}
+	   			</foreach>
+	   			and drug_color IN
+	   			<foreach collection="drug_color" item="color" open="(" close=")" separator=",">
+	   				#{color}
+	   			</foreach>
+	   		</when>
+	   		
+	   		<when test="drug_name.isEmpty() and drug_color.length ==0" >
+	   			drug_enptname like '%'||#{drug_enptname}||'%'
+	   			and drug_shape IN
+	   			<foreach collection="drug_shape" item="shape" open="(" close=")" separator=",">
+	   				#{shape}
+	   			</foreach>
+	   			and regexp_like(drug_formulation,#{drug_form})
+	   		</when>
+	   	
+	   		<when test="drug_enptname.isEmpty() and drug_shape.length == 0">
+	   		 	drug_name like '%'||#{drug_name}||'%'
+	   		 	and regexp_like(drug_formulation,#{drug_form})
+	   		 	and drug_color IN
+	   			<foreach collection="drug_color" item="color" open="(" close=")" separator=",">
+	   				#{color}
+	   			</foreach>
+	   		</when>
+	   		
+	   		<when test="drug_enptname.isEmpty() and drug_form.isEmpty()">
+	   			drug_name like '%'||#{drug_name}||'%'
+	   			and drug_shape IN
+	   			<foreach collection="drug_shape" item="shape" open="(" close=")" separator=",">
+	   			#{shape}
+	   			</foreach>
+	   			and drug_color IN
+	   			<foreach collection="drug_color" item="color" open="(" close=")" separator=",">
+	   				#{color}
+	   			</foreach>
+	   		</when>
+	   	
+	   		<when test="drug_enptname.isEmpty() and drug_color.length ==0">
+	   			drug_name like '%'||#{drug_name}||'%'
+	   			and drug_shape IN
+	   			<foreach collection="drug_shape" item="shape" open="(" close=")" separator=",">
+	   			#{shape}
+	   			</foreach>
+	   			and regexp_like(drug_formulation,#{drug_form})
+	   		</when>
+	   		
+	   		
+	   		<when test="drug_shape.length == 0 and drug_form.isEmpty()">
+	   			and drug_name like '%'||#{drug_name}||'%'
+	   			drug_enptname like '%'||#{drug_enptname}||'%' 
+	   			and drug_color IN
+	   			<foreach collection="drug_color" item="color" open="(" close=")" separator=",">
+	   				#{color}
+	   			</foreach>
+	   		</when>
+	   		<when test="drug_shape.length == 0 and drug_color.length ==0">
+	   			and drug_name like '%'||#{drug_name}||'%'
+	   			drug_enptname like '%'||#{drug_enptname}||'%' 
+	   			and regexp_like(drug_formulation,#{drug_form})
+	   		</when>
+	   		
+	   		
+	   		<when test="drug_form.isEmpty() and drug_color.length ==0 ">
+	   			and drug_name like '%'||#{drug_name}||'%'
+	   			drug_enptname like '%'||#{drug_enptname}||'%' 
+	   			and drug_shape IN
+	   			<foreach collection="drug_shape" item="shape" open="(" close=")" separator=",">
+	   			#{shape}
+	   			</foreach>
+	   			and regexp_like(drug_formulation,#{drug_form})
+	   		</when>
+	   		
+	   	
+		<!-- 5C1	 -->
+	   		<when test="drug_name.isEmpty()">
+	   			drug_enptname like '%'||#{drug_enptname}||'%'
+	   			and 
+	   			drug_shape IN
+   				<foreach collection="drug_shape" item="shape" open="(" close=")" separator=",">
+	   				#{shape}
+	   			</foreach>
+	   			and regexp_like(drug_formulation,#{drug_form})
+	   			and drug_color IN
+	   			<foreach collection="drug_color" item="color" open="(" close=")" separator=",">
+	   				#{color}
+	   			</foreach>
+	   		</when>
+	   		
+	   		<when test="drug_enptname.isEmpty()">
+	   			drug_name like '%'||#{drug_name}||'%'
+	   			and 
+	   			drug_shape IN
+	   			<foreach collection="drug_shape" item="shape" open="(" close=")" separator=",">
+	   				#{shape}
+	   			</foreach>
+	   			and regexp_like(drug_formulation,#{drug_form})
+	   			and drug_color IN
+	   			<foreach collection="drug_color" item="color" open="(" close=")" separator=",">
+	   				#{color}
+	   			</foreach>
+	   		</when>	 
+	   		  		
+	   		<when test="drug_shape.length == 0">
+	   			 drug_enptname like '%'||#{drug_enptname}||'%'
+	   			 and 
+	   			 drug_name like '%'||#{drug_name}||'%'
+	   			 and regexp_like(drug_formulation,#{drug_form})
+	   			 and drug_color IN
+	   			<foreach collection="drug_color" item="color" open="(" close=")" separator=",">
+	   				#{color}
+	   			</foreach>
+	   		</when>	 
+	   		
+	   		<when test=" drug_form.isEmpty()">
+	   			 drug_enptname like '%'||#{drug_enptname}||'%'
+	   			 and drug_name like '%'||#{drug_name}||'%'
+	   			 and drug_shape IN
+	   			<foreach collection="drug_shape" item="shape" open="(" close=")" separator=",">
+	   				#{shape}
+	   			</foreach>
+	   			and drug_color IN
+	   			<foreach collection="drug_color" item="color" open="(" close=")" separator=",">
+	   				#{color}
+	   			</foreach>
+	   		</when>	 
+	   		
+	   		<when test="drug_color.length ==0 ">
+	   			drug_enptname like '%'||#{drug_enptname}||'%' 
+	   			and drug_name like '%'||#{drug_name}||'%'
+	   			 and drug_shape IN
+	   			<foreach collection="drug_shape" item="shape" open="(" close=")" separator=",">
+	   				#{shape}
+	   			</foreach>
+	   			and regexp_like(drug_formulation,#{drug_form})
+	   		</when>
+		<!-- 5C0  -->  		
+	   		<otherwise>
+	   			drug_enptname like '%'||#{drug_enptname}||'%' 
+	   			and drug_name like '%'||#{drug_name}||'%'
+	   			 and drug_shape IN
+	   			<foreach collection="drug_shape" item="shape" open="(" close=")" separator=",">
+	   				#{shape}
+	   			</foreach>
+	   			and regexp_like(drug_formulation,#{drug_form})
+	   			 and drug_color IN
+	   			<foreach collection="drug_color" item="color" open="(" close=")" separator=",">
+	   				#{color}
+	   			</foreach>
+	   		</otherwise>
+   		</choose>
+   		  order by drug_name, drug_enptname, drug_number, drug_shape, drug_color
+	</select>
+
+	<!-- 약상세 -->
+	<select id="drugDetail" parameterType="int" resultType="com.spring.lifecare.vo.DrugVO">
+ 		SELECT * FROM DRUG WHERE drug_number =#{drug_number}
+ 	</select>
+ 	
+ 	<!-- 약 회사 keyup -->
+ 	<select id="searchEnptNext" resultType="com.spring.lifecare.vo.DrugVO">
+ 		SELECT drug_enptname from DRUG 
+ 		where drug_enptname like '%'||#{entp}||'%' 
+ 	</select>
+
+   <!-- 의사정보 불러오기 -->
+   <select id="getDoctorInfo" resultType="com.spring.lifecare.vo.DoctorVO" parameterType="String">
+   		select * from doctor where doctor_id = #{doctor_id}
+   </select>
+   
+   <!-- 예약가능 시간 불러오기 -->
+   <select id="getAppointList" resultType="com.spring.lifecare.vo.AppointmentVO">
+		select doctor_id, appoint_num, SUBSTR(appoint_date,1,2) || SUBSTR(appoint_date,4,2) || SUBSTR(appoint_date,7,2) as appoint_date, appoint_time
+  		from appointment
+   </select>
+   
+    <!-- appointment 테이블 예약추가 -->
+   <insert id="addAppointment" parameterType="java.util.Map">
+   		INSERT INTO appointment
+   		values(appoint_seq.nextval, #{doctor_id}, #{appoint_date}, #{appoint_time}, 0)
+   </insert>
+   
+   <!-- 예약스케쥴에 뿌려줄 예약정보 불러오기 -->
+   <select id="getReservation" resultType="com.spring.lifecare.vo.ReservationVO" parameterType="String">
+   		select appoint_num, reservation_date, customer_id, doctor_id from hospital_reservation where doctor_id = #{doctor_id}
+   </select>
+   
+   <!-- 질병 리스트 불러오기 -->
+   <select id="getDiseaseList" resultType="com.spring.lifecare.vo.DiseaseVO">
+		select disease_code, disease_name
+  		from disease
+  		where disease_name like '%'||#{disease}||'%'
+   </select>
+   
+   <!-- 약 리스트 불러오기 -->
+   <select id="getDrugList" resultType="com.spring.lifecare.vo.DrugVO">
+		select drug_number, drug_name
+  		from drug
+  		where drug_name like '%'||#{drug}||'%'
+   </select>
+   
+   <!-- 회원가입 처리 -->
+   <insert id ="insertDiagnosis" parameterType="com.spring.lifecare.vo.DiagnosisVO">
+     	INSERT INTO diagnosis 
+     	values(diagnosis_seqNum.nextval, 
+     	sysdate, 
+     	#{customer_id}, 
+     	#{doctor_id}, 
+     	#{disease_code}, 
+     	#{diagnosis_bp, jdbcType=VARCHAR}, 
+		#{diagnosis_rr, jdbcType=VARCHAR}, 
+		#{diagnosis_pr, jdbcType=VARCHAR}, 
+		#{diagnosis_bt, jdbcType=VARCHAR}, 
+		#{diagnosis_cc},
+		#{diagnosis_phx, jdbcType=VARCHAR}, 
+		#{diagnosis_fhx, jdbcType=VARCHAR}, 
+		#{diagnosis_pi}, 
+		#{diagnosis_ros}, 
+		#{diagnosis_pex, jdbcType=VARCHAR}, 
+		<if test="drug1 != 0">
+			#{drug1},
+		</if>
+		<if test="drug1 == 0">
+			null,
+		</if>
+		<if test="drug2 != 0">
+			#{drug2},
+		</if>
+		<if test="drug2 == 0">
+			null,
+		</if>
+		<if test="drug3 != 0">
+			#{drug3},
+		</if>
+		<if test="drug3 == 0">
+			null,
+		</if>
+		<if test="drug4 != 0">
+			#{drug4},
+		</if>
+		<if test="drug4 == 0">
+			null,
+		</if>
+		<if test="drug5 != 0">
+			#{drug5},
+		</if>
+		<if test="drug5 == 0">
+			null,
+		</if>
+		<if test="customer_amount != 0">
+			#{customer_amount},
+		</if>
+		<if test="customer_amount == 0">
+			16667,
+		</if>
+		0)
+   </insert>
+   
+   <!-- 진료리스트 -->
+   <select id="getDiagnosisList" resultType="com.spring.lifecare.vo.DiagnosisVO">
+   		<![CDATA[
+   		select ROWNUM, c.insurance, c.customer_name, c.customer_gender, c.customer_year, d.disease_code, d.diagnosis_time
+   		  from customer c, diagnosis d
+   		 where c.customer_id = d.customer_id and d.doctor_id = #{doctor_id} and ROWNUM <= 5
+   		 order by d.diagnosis_time DESC
+   		]]>
+   </select>
 </mapper>  	  
 
