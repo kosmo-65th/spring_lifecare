@@ -16,12 +16,6 @@ public class MarController {
 	
 	@Autowired DrugService service;
 	@Autowired DoctorService Dservice;
-	 
-//	 @RequestMapping(value="/drugSearch", method=RequestMethod.POST)
-//	 @ResponseBody 
-//	 public DrugVO drugSearch(@RequestParam("entp_name") String entp_name, Model model) {
-//		 return service.searchDrug(entp_name);
-//	 }
 	
 	
 	@RequestMapping("/drugSearch")
@@ -48,12 +42,6 @@ public class MarController {
 		return "drug/drug_enptname_next";
 	}
 	
-//	@RequestMapping("/drug_name_next")
-//	public String drug_name_next(HttpServletRequest req, Model model){
-//		service.searchNametNext(req, model);
-//		return "drug/drug_name_next";
-//	}
-	
 	@RequestMapping("/drugDetail")
 	public String drugDetail(HttpServletRequest req, Model model) {
 		service.drugDetail(req, model);
@@ -61,12 +49,6 @@ public class MarController {
 	}
 	
 
-	@RequestMapping("/NewFile")
-	public String NewFile(Model model) {
-		
-		return "drug/NewFile";
-	}
-	
 	
 }
 	

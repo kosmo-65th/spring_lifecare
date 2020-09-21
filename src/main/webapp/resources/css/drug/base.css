@@ -562,7 +562,7 @@ span.count{
 }
 /*탭3*/
 .tab3{
-	width:93%;
+	width:100%;
 	margin-bottom:20px;
 	border-bottom:1px solid #43c8ba;
 	float:left;
@@ -601,7 +601,7 @@ span.count{
 
 /*테이블*/
 table{
-	width:93% !important ; 
+	width:100% !important ; 
 }
 th,td{
 	font-size:13px;

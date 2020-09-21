@@ -1,5 +1,40 @@
 @charset "UTF-8";
 
+.ico{
+	background:url(/lifecare/resources/images/pills/ico.png) no-repeat;
+}
+
+#lnb{
+	width:100%;
+	height:26px;
+	background:#f8f7f6;
+	margin-top:10px;
+	margin-bottom:25px;
+	font-size:12px;
+	padding-top:4px;
+}
+#lnb ul li{
+	float:left;
+}
+#lnb ul li.home a{
+	width:20px;
+	height:20px;
+	background-position:-425px -209px;
+	display:block;
+	margin-left:10px;
+	cursor: default;
+}
+#lnb ul li.nxt span{
+	width:5px;
+	height:20px;
+	background-position:-445px -209px;
+	display:block;
+	margin:0 10px;
+}
+#lnb > span{
+	float:right;
+	margin-right:15px;
+}
 
 /*의약품상세검색*/
 .search_table{

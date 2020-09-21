@@ -24,7 +24,7 @@
 <link rel="stylesheet" href="${path_resources_lifecare}css/responsive.css">
 <link rel="stylesheet" href="${path_resources_lifecare}css/custom.css">
 
-<link rel="stylesheet" href="${drug_Cpath}base.css"type="text/css">
+<link rel="stylesheet" href="${drug_Cpath}base.css" type="text/css">
 <link rel="stylesheet" href="${drug_Cpath}common.css" type="text/css">
 <link rel="stylesheet" href="${drug_Cpath}sub.css" type="text/css">
 
@@ -328,7 +328,7 @@ function getCookie(name) {
 
 <%@include file="../common/header.jsp" %> 
 <div id="wrap">
-
+ 	
 
 <!-- 컨텐츠 영역 -->
 <section id="contens">
@@ -338,12 +338,21 @@ function getCookie(name) {
 		<img src = "${drug_Ipath}ajax-loader.gif" width="100px" height="100px" /> 
 	</div>
 	<section id="articles_sub">
-	
+		
+ 		<div id="lnb">
+				<ul style="width:100%; float:right;">
+					<div style="float:right; margin-right: 30px">
+					<li class="home"><a href="${path}/" class="ico"></a></li>
+					<li class="nxt"><span class="ico"></span></li>
+					<li>의약품검색</li>
+					</div>
+				</ul>
+		</div>	
 		<!-- 의약품검색 -->
 		<section id="search_identity">
 			<h2 class="maintitle">의약품검색</h2>
 			<div style="height: 20px;"></div>
-			
+		
 			<!-- 검색테이블 -->
 			<article class="search_table">
 

@@ -95,6 +95,20 @@ $( document ).ready(function() {
 <h2 class="blind">컨텐츠</h2>
 	<section id="articles_sub">
 	
+		<div id="lnb">
+				<ul style="width:100%; float:right;">
+					<div style="float:right; margin-right: 30px">
+					<li class="home"><a href="${path}/" class="ico"></a></li>
+					
+					<li class="nxt"><span > > </span></li>
+					<li><a href="${path}/drugSearch" >의약품 검색</a></li>
+					
+					<li class="nxt"><span > > </span></li>
+					<li>의약품 상세정보</li>
+					</div>
+				</ul>
+		</div>	
+		
 		<!-- 의약품상세정보 -->
 		<section id="search_detail_result">
 			<h2 class="maintitle">의약품 상세정보</h2>

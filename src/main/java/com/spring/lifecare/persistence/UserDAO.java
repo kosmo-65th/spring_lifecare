@@ -89,8 +89,11 @@ public interface UserDAO {
 	 //약찾기
 	 public List<DrugVO>searchDrug(Map<String, Object> map);
 
+	//약 이름 keyup
+	 public List<DrugVO>searchNameNext(String name);
+	 
 	 //회사 keyup
-	 public List<DrugVO>searchEnptNext(String name);
+	 public List<DrugVO>searchEnptNext(String entp);
 
 	 //약찾기 수량
 	 public int searchDrugCount(Map<String, Object> map);
