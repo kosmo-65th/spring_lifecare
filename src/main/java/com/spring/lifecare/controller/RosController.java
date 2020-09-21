@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,7 +15,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.spring.lifecare.service.CustomerService;
 import com.spring.lifecare.service.DoctorService;
 import com.spring.lifecare.service.MyPageService;
-import com.spring.lifecare.vo.CustomerVO;
 
 @Controller
 public class RosController {
@@ -212,10 +210,28 @@ public class RosController {
 		
 		return "customer/changePasswordPro";		
 	}
-	//비밀번호 찾기
+	//비밀번호 찾기 폼
 	@RequestMapping("/findPassword")
 	public String findPassword(Model model) {
 		return "guest/findPassword";		
+	}
+	
+	//임시 비밀번호 발송하는 이메일
+	@RequestMapping(value="findPwdSendEmail", method=RequestMethod.POST)
+
+	 public String customersendEmail(HttpServletRequest req, Model model) {
+	
+		service.findPwd(req, model);
+
+		return "guest/findPasswordPro";
+
+	}
+	
+	//찾아 오시는 길
+	@RequestMapping("/findWay")
+	public String findWay(Model model) {
+		
+		return "guest/findWay";		
 	}
 	
 	

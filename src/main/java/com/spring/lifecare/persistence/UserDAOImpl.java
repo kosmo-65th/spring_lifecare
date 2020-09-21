@@ -15,8 +15,13 @@ import org.springframework.stereotype.Repository;
 
 import com.spring.lifecare.vo.AppointmentVO;
 import com.spring.lifecare.vo.CustomerVO;
+import com.spring.lifecare.vo.DiagnosisVO;
+import com.spring.lifecare.vo.DiseaseVO;
+import com.spring.lifecare.vo.questionnaireVO;
+
 import com.spring.lifecare.vo.DoctorVO;
 import com.spring.lifecare.vo.DrugVO;
+import com.spring.lifecare.vo.ReservationVO;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
@@ -25,6 +30,11 @@ public class UserDAOImpl implements UserDAO {
 
 	@Autowired
 	private SqlSession sqlSession;
+	
+	//로그인
+	public Map<String, Object> selectUser(String userId){
+		return sqlSession.selectOne("com.spring.lifecare.persistence.UserDAO.selectUser", userId);
+	}
 	
 	//카카오 아이디 있는지 체크
 	@Override
@@ -189,7 +199,31 @@ public class UserDAOImpl implements UserDAO {
 		return dao.getCustomerInfo(customer_id);
 	}
 
+	@Override
+	public int idEmailChk(Map<String, String> map) {
+		return sqlSession.selectOne("com.spring.lifecare.persistence.UserDAO.idEmailChk", map);
+	}
 
+	@Override
+	public void sendMail(String movieId, String cusEmail, String key) {
+		try {
+
+			MimeMessage message = mailSender.createMimeMessage();
+
+			String content = "LifeCare 임시 비밀번호 메일입니다. 임시비밀번호는"+ key + "입니다. 링크를 눌러 새로운 비밀번호로 바꿔주세요."  
+
+					+	"<a href='http://localhost/lifecare/login'>Please click to this website</a>";
+
+			message.setSubject("LifeCare 임시 비밀번호 발송");
+			message.setText(content, "UTF-8", "html");
+			message.setFrom(new InternetAddress("admin@mss.com"));
+			message.addRecipient(RecipientType.TO, new InternetAddress(cusEmail));
+			mailSender.send(message);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}	
+	}
 	//약찾기(회사)
 	@Override
 	public List<DrugVO> searchDrug(Map<String, Object> map) {
@@ -207,13 +241,6 @@ public class UserDAOImpl implements UserDAO {
 		return sqlSession.selectOne("com.spring.lifecare.persistence.UserDAO.drugDetail",drug_number);
 	}
 	
-	//약 이름 keyup
-	@Override
-	public List<DrugVO> searchNameNext(String name) {
-		UserDAO dao = sqlSession.getMapper(UserDAO.class);
-		return dao.searchNameNext(name);
-	}
-	
 	 //약 회사 keyup
 	@Override
 	public List<DrugVO> searchEnptNext(String entp) {
@@ -221,5 +248,55 @@ public class UserDAOImpl implements UserDAO {
 		return dao.searchEnptNext(entp);
 	}
 	
+	@Override
+	public DoctorVO getDoctorInfo(String doctor_id) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.getDoctorInfo(doctor_id);
+	}
+
+	@Override
+	public ArrayList<AppointmentVO> getAppointList() {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.getAppointList();
+	}
+
+	@Override
+	public int addAppointment(Map<String, Object> map) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.addAppointment(map);
+	}
+
+	@Override
+	public ArrayList<ReservationVO> getReservation(String doctor_id) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.getReservation(doctor_id);
+	}
+
+	@Override
+	public List<DiseaseVO> getDiseaseList(String disease) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.getDiseaseList(disease);
+	}
+
+	@Override
+	public List<DrugVO> getDrugList(String drug) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.getDrugList(drug);
+	}
+
+	@Override
+	public int insertDiagnosis(DiagnosisVO vo) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.insertDiagnosis(vo);
+	}
+
+	@Override
+	public List<DiagnosisVO> getDiagnosisList(String doctor_id) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.getDiagnosisList(doctor_id);
+	}
+	public int modify(CustomerVO vo) {
+		return 0;
+	}
 }
 

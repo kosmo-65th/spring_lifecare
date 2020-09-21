@@ -66,53 +66,46 @@
       },
 
       defaultView: 'listWeek',
-      defaultDate: '2020-02-12',
       navLinks: true, // can click day/week names to navigate views
       editable: true,
       eventLimit: true, // allow "more" link when too many events
-      events: [
-        {
-          title: 'Long Event',
-          start: '2020-02-07',
-          end: '2020-02-10'
-        },
-        {
-          groupId: 999,
-          title: 'Repeating Event',
-          start: '2020-02-16 16:00:00'
-        },
-        {
-          title: 'Meeting',
-          start: '2020-02-12 10:30:00',
-          end: '2020-02-12 12:30:00'
-        },
-        {
-          title: 'Lunch',
-          start: '2020-02-12 12:00:00'
-        },
-        {
-          title: "홍길동(24세 남자)",
-          start: '2020-02-12 14:30:00',
-          url: 'http://localhost/lifecare/doctor_medicalNote?customer_id=wlsdmstjd'
-        },
-        {
-          title: '김태희(31세 여자)',
-          start: '2020-02-12 17:30:00'
-        },
-        {
-          title: 'Dinner',
-          start: '2020-02-12 20:00:00'
-        },
-        {
-          title: 'Birthday Party',
-          start: '2020-02-13 07:00:00'
-        },
-        {
-          title: 'Click for Google',
-          url: 'http://google.com/',
-          start: '2020-02-28'
-        }
-      ]
+      events: 
+          function(info, successCallback, failureCallback){
+			
+			var header = '${_csrf.headerName}';
+			var token = '${_csrf.token}';
+		
+		    $.ajax({
+		        type: "POST",
+		        url: "${pageContext.request.contextPath}/reservationList",
+		        beforeSend: function(xhr){
+					xhr.setRequestHeader(header, token);
+				},
+				dataType: "json",
+		        success: function (result) {
+		        	
+		        	var events = [];
+		        	
+		        	for(var i = 0; i < result.length; i++){
+		        		
+		        		var event = {
+		        				title: result[i].title,
+		        				start: result[i].start,
+		        				url: result[i].url
+		        		};
+		        		
+		        		events.push(event);
+		        		
+		        	}
+		        	
+		        	successCallback(events);
+		        },
+		        
+		        error : function(){
+		        	alert("DB에서 데이터 불러오는 중 에러 발생");
+		        }
+		    })
+		}
     });
 
     calendar.render();
@@ -138,7 +131,7 @@ $(function() {
 		var keyword = $('#keyword').val();  // input 태그에서 입력한 키워드
 		
 		if(keyword.length == 0) {        // 검색글자수가 0인 경우
-			$('#searchDisplay').css("visibility", "hidden");       // 숨김
+			$('#searchDisplay').css("display", "none");       // 숨김
 		} else {
 			$('#searchDisplay').css("visibility", "visible");      // 표시
 			$('#searchDisplay').css("display", "flex");
@@ -178,10 +171,10 @@ $(function() {
 			</div>
 			<div class="column column-30">
 				<div class="user-section"><a href="#">
-					<img src="${path_resources}images/doctor.png" alt="profile photo" class="circle float-left profile-photo" width="50" height="auto">
+					<img src="${path_resources}img/${doctor.getDoctor_faceimg()}" alt="profile photo" class="circle float-left profile-photo" width="50" height="auto">
 					<div class="username">
-						<h4>한승운</h4>
-						<p>진료과</p>
+						<h4>${doctor.getDoctor_name()}</h4>
+						<p>${doctor.getDoctor_major()}</p>
 					</div>
 				</a></div>
 			</div>
@@ -191,8 +184,8 @@ $(function() {
 		<div id="sidebar" class="column">
 			<h5>Navigation</h5>
 			<ul>
-				<li><a href="${path}/doctor_main"><em class="fa fa-home"></em> Home</a></li>
-				<li><a href="${path}/doctor_schedule"><em class="fa fa-table"></em> 스케쥴관리</a></li>
+				<li><a href="${path}/doctor/doctor_main"><em class="fa fa-home"></em> Home</a></li>
+				<li><a href="${path}/doctor/doctor_schedule"><em class="fa fa-table"></em> 스케쥴관리</a></li>
 				<li><a href="javascript:void(0);" onclick="resReset();"><em class="fa fa-pencil-square-o"></em> 환자조회/진료</a></li>
 				<li><a href="#alerts"><em class="fa fa-hand-o-up"></em> 진료도우미</a></li>
 			</ul>
@@ -222,37 +215,25 @@ $(function() {
 							<table>
 								<thead>
 									<tr style="background:#35cebe; color:white;">
-										<th>Name</th>
-										<th>Role</th>
-										<th>Age</th>
-										<th>Location</th>
+										<th>구분</th>
+										<th>이름</th>
+										<th>성별</th>
+										<th>나이</th>
+										<th>진단</th>
+										<th>진료일</th>
 									</tr>
 								</thead>
 								<tbody>
+									<c:forEach var="i" items="${list}">
 									<tr>
-										<td>Jane Donovan</td>
-										<td>UI Developer</td>
-										<td>23</td>
-										<td>Philadelphia, PA</td>
+										<td>${i.getInsurance()}</td>
+										<td>${i.getCustomer_name()}</td>
+										<td>${i.getCustomer_gender()}</td>
+										<td><fmt:formatNumber value="${2020 - i.getCustomer_year()}" pattern="#,###"/>세</td>
+										<td>${i.getDisease_code()}</td>
+										<td>${i.getDiagnosis_time()}</td>
 									</tr>
-									<tr>
-										<td>Jonathan Smith</td>
-										<td>Designer</td>
-										<td>30</td>
-										<td>London, UK</td>
-									</tr>
-									<tr>
-										<td>Kelly Johnson</td>
-										<td>UX Developer</td>
-										<td>25</td>
-										<td>Los Angeles, CA</td>
-									</tr>
-									<tr>
-										<td>Sam Davidson</td>
-										<td>Programmer</td>
-										<td>28</td>
-										<td>Philadelphia, PA</td>
-									</tr>
+									</c:forEach>	
 								</tbody>
 							</table>
 						</div>

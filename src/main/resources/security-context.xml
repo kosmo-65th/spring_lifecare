@@ -13,6 +13,7 @@
 	<sec:http pattern="/include/**" security="none" />
 	<sec:http pattern="/common/**" security="none" />
 	<sec:http pattern="/guest/**" security="none" />
+	<sec:http pattern="/android/**" security="none" />
 	<sec:http auto-config="true" use-expressions="true" create-session="never">		
 		<!-- 로그인한 사용자 영역(일반) -->                                
 		<sec:intercept-url pattern="/customer/**" access="hasRole('ROLE_CUSTOMER')" />

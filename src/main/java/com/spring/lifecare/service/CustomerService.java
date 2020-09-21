@@ -42,4 +42,7 @@ public interface CustomerService{
 	
 	//예약 성공
 	public void successReservation(HttpServletRequest req, Model model);
+	
+	//비밀번호 찾기
+	public void findPwd(HttpServletRequest req, Model model); 
 }

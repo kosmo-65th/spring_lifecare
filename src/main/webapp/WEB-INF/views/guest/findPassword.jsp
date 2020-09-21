@@ -126,15 +126,16 @@
 </head>
 <%@include file="../common/header.jsp" %>
 <body>
-     <form action="" method="post" name="findPassword">
+     <form action="${pageContext.request.contextPath}/findPwdSendEmail?${_csrf.parameterName}=${_csrf.token}" method="post" name="findPassword">
          <div class="title">비밀번호 찾기</div>
         <div class="findPassword_area">
           <p>FORGOT YOUR PASSWORD?</p>                
                           비밀번호가 기억나지 않으세요?<br> 
-                          회원가입 시 입력하신  이메일과 전화번호를 입력하여 분실하신 비밀번호를 찾으실 수 있습니다. 
-                          임시 비밀번호로 로그인하신 후 실제 사용하실 비밀번호로 변경해주시기 바랍니다.                       
-             <input type="text" name="customer_email" id="" placeholder="이메일을 입력해주세요." class="mb10" value="" required>
-             <input type="text" name="customer_phone" id="" placeholder="전화번호를 입력해주세요" class="mb10" value="" required >  
+                          회원가입 시 입력하신  아이디과 이메일주소를 입력하여 분실하신 비밀번호를 찾으실 수 있습니다. 
+                          임시 비밀번호로 로그인하신 후 실제 사용하실 비밀번호로 변경해주시기 바랍니다. 
+            
+             <input type="text" name="customer_id" id="" placeholder="아이디를 입력해주세요." class="mb10" value="" required>
+             <input type="text" name="customer_email" id="" placeholder="이메일을 입력해주세요" class="mb10" value="" required >  
             <div class="press">
               <button type="submit" class="btn-type btn2 blue mr_2">비밀번호 찾기</button>
               <button type="reset" class="btn-type btn3 red mr_2">취소</button>

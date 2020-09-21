@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -107,21 +106,46 @@ public class JinController {
 	
     // 의사 로그인후 메인페이지
     @RequestMapping("/doctor/doctor_main")
-    public String doctor_main() {
-    	
+    public String doctor_main(HttpServletRequest req, Model model) {
+    	doctor.loadDoctorInfo(req, model);
+    	doctor.diagnosisList(req, model);
     	return "doctor/doctor_main";
     }
     
     // 의사 로그인후 스케쥴러
     @RequestMapping("/doctor/doctor_schedule")
-    public String doctor_schedule() {
-    	
+    public String doctor_schedule(HttpServletRequest req, Model model) {
+    	doctor.loadDoctorInfo(req, model);
     	return "doctor/doctor_schedule";
     }
     
+ 	// 예약가능 시간 뿌려주는 url
+ 	@RequestMapping("/getAppointList")
+ 	public @ResponseBody JSONArray getAppointList(HttpServletRequest req, Model model) { 		
+ 		doctor.appointList(req, model);		
+ 		jsonArray = (JSONArray)req.getAttribute("jsonArray");
+ 		return jsonArray;
+ 	}
+ 	
+    // 예약설정 성공 페이지
+    @RequestMapping("/doctor/appointSetPro")
+    public String appointSetPro(HttpServletRequest req, Model model) {
+    	doctor.appointSet(req, model);
+    	return "doctor/appointSetPro";
+    }
+    
+ 	// 스케쥴러 뿌려주는 json
+ 	@RequestMapping("/reservationList")
+ 	public @ResponseBody JSONArray reservationList(HttpServletRequest req, Model model) { 		
+ 		doctor.reservationList(req, model);
+ 		jsonArray = (JSONArray)req.getAttribute("jsonArray");
+ 		return jsonArray;
+ 	}
+ 	
     // 의사 로그인후 진료기록부
     @RequestMapping("/doctor/doctor_medicalNote")
     public String doctor_medicalNote(HttpServletRequest req, Model model) {
+    	doctor.loadDoctorInfo(req, model);
     	doctor.loadCustomerInfo(req, model);
     	return "doctor/doctor_medicalNote";
     }
@@ -133,6 +157,55 @@ public class JinController {
     	return "doctor/search_next";
     }
     
+    // 진료기록에서 질병리스트 뿌리기
+ 	@RequestMapping("/diseaseList")
+ 	public String diseaseList(HttpServletRequest req, Model model) { 		
+ 		doctor.diseaseList(req, model);	
+ 		return "doctor/diseaseList";
+ 	}
+ 	
+    // 진료기록에서 약 리스트 뿌리기1
+ 	@RequestMapping("/drugList1")
+ 	public String drugList1(HttpServletRequest req, Model model) { 		
+ 		doctor.drugList(req, model);
+ 		return "doctor/drugList1";
+ 	}
+ 	
+    // 진료기록에서 약 리스트 뿌리기2
+ 	@RequestMapping("/drugList2")
+ 	public String drugList2(HttpServletRequest req, Model model) { 		
+ 		doctor.drugList(req, model);
+ 		return "doctor/drugList2";
+ 	}
+ 	
+    // 진료기록에서 약 리스트 뿌리기3
+ 	@RequestMapping("/drugList3")
+ 	public String drugList3(HttpServletRequest req, Model model) { 		
+ 		doctor.drugList(req, model);
+ 		return "doctor/drugList3";
+ 	}
+ 	
+    // 진료기록에서 약 리스트 뿌리기4
+ 	@RequestMapping("/drugList4")
+ 	public String drugList4(HttpServletRequest req, Model model) { 		
+ 		doctor.drugList(req, model);
+ 		return "doctor/drugList4";
+ 	}
+ 	
+    // 진료기록에서 약 리스트 뿌리기5
+ 	@RequestMapping("/drugList5")
+ 	public String drugList5(HttpServletRequest req, Model model) { 		
+ 		doctor.drugList(req, model);
+ 		return "doctor/drugList5";
+ 	}
+ 	
+    // 진료기록 저장
+ 	@RequestMapping("/doctor/diagnosisPro")
+ 	public String diagnosisPro(HttpServletRequest req, Model model) { 		
+ 		doctor.saveDiagonosis(req, model);
+ 		return "doctor/diagnosisPro";
+ 	}
+ 	
     // 마이페이지
  	@RequestMapping("/customer/mypage")
  	public String mypage(HttpServletRequest req, Model model) {

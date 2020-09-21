@@ -37,10 +37,11 @@
 	        <p><a href="${pathA}/user/orderList">고객님께서 처방받으셨던 처방내역 목록을 보여드립니다.</a></p>
 	    </div>
 	    
-	    <div class="shopMain">
-	        <h3><a href="${path}/customer/modify"><strong>PROFILE</strong> 회원 정보</a></h3>
-	        <p><a href="${path}/customer/modify">회원이신 고객님의 개인정보를 관리하는 공간입니다.</a></p>
-	    </div>  							
+	     <div class="shopMain">
+	        <h3><a href="${path}/customer/payment"><strong>PAYMENT</strong> 결제내역 조회</a></h3>
+	        <p><a href="${path}/customer/payment">고객님의 결제정보를 관리하는 공간입니다.</a></p>
+	    </div> 
+	    
     </div>
        
     <div class="shopMain_right">
@@ -51,18 +52,20 @@
 	    </div>
 	    
 	    <div class="shopMain">
-	        <h3><a href="${path}/customer/payment"><strong>PAYMENT</strong> 결제내역 조회</a></h3>
-	        <p><a href="${path}/customer/payment">고객님의 결제정보를 관리하는 공간입니다.</a></p>
-	    </div> 
+	        <h3><a href="${path}/customer/modify"><strong>PROFILE</strong> 회원 정보</a></h3>
+	        <p><a href="${path}/customer/modify">회원이신 고객님의 개인정보를 관리하는 공간입니다.</a></p>
+	    </div>
 	    
-	    <div class="shopMain">
-	        <h3><a href="${pathA}/user/deleteForm.do"><strong>Membership Withdrawal</strong> 회원탈퇴</a></h3>
-	        <p><a href="${pathA}/user/deleteForm.do">고객님께서 가입하셨던 ID 및 이름 등의 정보가 모두 사라집니다. </a></p>
-	    </div>     
 	     <div class="shopMain">
 	        <h3><a href="${path}/customer/preChangePassword"><strong>Password change</strong> 비밀번호 변경</a></h3>
 	        <p><a href="${path}/customer/preChangePassword">고객님의 비밀번호를 변경합니다.. </a></p>
 	    </div>   
+	    
+	    <div class="shopMain">
+	        <h3><a href="${pathA}/user/deleteForm.do"><strong>Membership Withdrawal</strong> 회원탈퇴</a></h3>
+	        <p><a href="${pathA}/user/deleteForm.do">고객님께서 가입하셨던 ID 및 이름 등의 정보가 모두 사라집니다. </a></p>
+	    </div>  
+	    
     </div>
     </div>
 	<%@include file="../common/footer.jsp"%>

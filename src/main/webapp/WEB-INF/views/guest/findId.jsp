@@ -30,10 +30,6 @@
     	});
     		
       });
-
-
-
-
 </script>
 <%@include file="../common/header.jsp" %>
     <form action="${pageContext.request.contextPath}/findIdResult?${_csrf.parameterName}=${_csrf.token}" method="post" name="idResultForm">

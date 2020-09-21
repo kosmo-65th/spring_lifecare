@@ -194,5 +194,57 @@ public class CustomerServiceImpl implements CustomerService{
 		int insertCnt = userDAO.addReservation(map);		
 		model.addAttribute("insertCnt", insertCnt);
 	}
+
+	//비밀번호 찾기
+	@Override
+	public void findPwd(HttpServletRequest req, Model model) {
 		
-}
+		int updateCnt = 0;
+		String customer_id = req.getParameter("customer_id");
+		String customer_email = req.getParameter("customer_email");			
+
+		Map<String, String> map = new HashMap<String, String>();
+
+		map.put("customer_id", customer_id);
+		map.put("customer_email", customer_email);
+
+		int cnt = userDAO.idEmailChk(map);
+		
+		if(cnt == 1) {
+			StringBuffer temp = new StringBuffer();
+			Random rnd = new Random();
+			for(int i = 0; i < 6; i++) {
+				int rIndex = rnd.nextInt(2);
+				switch(rIndex) {
+				case 0:
+					temp.append((char) ((int) (rnd.nextInt(26)) + 65));
+					break;
+				case 1:
+					temp.append((rnd.nextInt(10)));
+					break;
+				}
+			}			
+
+			String key = temp.toString();
+			
+			CustomerVO vo = new CustomerVO();
+			vo.setCustomer_id(customer_id);
+			vo.setCustomer_email(customer_email);
+			vo.setCustomer_pw(passwordEncoder.encode(key));
+			
+			updateCnt = userDAO.changePassword(vo);
+			
+			if(updateCnt == 1) {
+				userDAO.sendMail(customer_id, customer_email, key);
+
+			} 
+		}	
+			model.addAttribute("updateCnt", updateCnt);
+			model.addAttribute("cnt", cnt);
+			model.addAttribute("cusId", customer_id);		
+			
+	}
+				
+ }
+		
+

@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/resources/setting/setting.jsp" %> 
+
+<!-- jsoup 웹 크롤링  -->
+<%@ page import="org.jsoup.Jsoup"%>
+<%@ page import="org.jsoup.nodes.Document"%>
+<%@ page import="org.jsoup.nodes.Element"%>
+<%@ page import="org.jsoup.select.Elements"%>
+<%@ page import="java.util.Iterator"%>
+<!-- jsoup 웹 크롤링  -->
 <!DOCTYPE html>
 <html>
    <!-- Basic -->
@@ -21,7 +29,24 @@
    <link rel="stylesheet" href="${path_resources_lifecare}css/versions.css">
    <link rel="stylesheet" href="${path_resources_lifecare}css/responsive.css">
    <link rel="stylesheet" href="${path_resources_lifecare}css/custom.css">
+   
+   <!-- 코로나 css -->
+   <link rel="stylesheet" href="${path_resources}css/covid19css.css">
+   <link rel="stylesheet" href="${path_resources}css/covid19_3css.css">
+   <!-- 코로나 css -->
+   
    <!-- CSS -->
+   
+   <!-- 코로나  js -->
+   <script src="${path_resources}js/covid19_1.js"></script>
+   <script src="${path_resources}js/covid19_2.js"></script>
+   <script src="${path_resources}js/covid19_3.js"></script>
+   <script src="${path_resources}js/covid19_4.js"></script>
+   <script src="${path_resources}js/covid19_5.js"></script>
+   <script src="${path_resources}js/covid19_6.js"></script>
+   
+   
+   <!-- 코로나  js -->
    
    <!-- jQuery 추가 -->
    <script src="${path_resources}setting/jquery-3.5.1.js"></script>
@@ -52,8 +77,21 @@
 	    	}
 		}
 		
+		$(function(){
+			$('#abc').hide();	
+		})
+		
+		
 		</script>
+		<!-- 코로나 데이터 크롤링 -->
+		<%
+		 	Document doc2 = Jsoup.connect("http://ncov.mohw.go.kr/").get();
 	
+			Elements posts1 = doc2.body().getElementsByClass("live_right main_box_toggle");
+			Elements posts2 = doc2.body().getElementsByClass("live_left");
+		%>
+		<!-- 코로나 데이터 크롤링 -->
+		
    <!-- [if lt IE 9] -->
    <body class="clinic_version">
       <!-- LOADER -->
@@ -68,7 +106,7 @@
                <div class="col-md-12 col-sm-12">
                   <div class="text-contant">
                      <h2>
-                        <span class="center"><span class="icon"><img src="${path_resources_lifecare}images/icon-logo.png" alt="#" /></span></span>
+                        <span class="center"><span class="icon"><img src="${path_resources_lifecare}images/icon-logo.png" /></span></span>
                         <a href="" class="typewrite" data-period="2000" data-type='[ "Welcome to life care", "Take care of you", "Hospital for you" ]'>
                         <span class="wrap"></span>
                         </a>
@@ -94,7 +132,7 @@
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                <div class="row">
-                  <div class="service-time middle" style="background:#0071d1;">
+                  <div class="service-time middle" style="background:#0071d1; height:380px;">
                      <span class="info-icon"><i class="fa fa-clock-o" aria-hidden="true"></i></span> 
                      <h3>근무 시간</h3>
                      <div class="time-table-section">
@@ -118,8 +156,13 @@
             </div>
          </div>
       </div>
-      
-      <%@include file="./common/chatbot.jsp"%>
+      <div align="center">
+		<%= posts1 %>
+		<div id="abc">
+		<%= posts2 %>
+		</div>
+	  </div>
+      <%@include file="./common/chatbot.jsp"%>  
       <%@include file="./common/footer.jsp" %>
       <!-- end copyrights -->
       <a href="#home" data-scroll class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
@@ -129,5 +172,35 @@
       <script src="${path_resources_lifecare}js/custom.js"></script>
       <!-- map -->
      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNUPWkb4Cjd7Wxo-T4uoUldFjoiUA1fJc&callback=myMap"></script>
+     <script>
+     $(function(){
+			//검사현황
+			IS_data = {
+			    label: ["결과음성", "검사중", "결과양성"],
+			    figure: [parseInt("2,179,452".replace(",")), parseInt("24,274".replace(",")), parseInt("22,975".replace(","))]
+			};
+			
+			//전국 파이
+			RPR_A_MAIN_data = {
+				label : ["대구","기타","서울","경기","경북"],
+				figure : [7124,5212,4972,4156,1511]
+			};
+			
+			//WPS
+			WPS_data = {
+			    date: ["09.14","09.15","09.16","09.17","09.18","09.19","09.20"],
+			    complete_day:[263,389,432,233,228,199,188],
+			    confirm_day:[109,106,113,153,126,110,82],
+			   //cure_total:[3433,3146,2827,2742,2635,2545,2434],
+			   //complete_total:[18489,18878,19310,19543,19771,19970,20158]
+			};
+			
+			ISChart();
+			WPSChart();
+			RPRAMainChart();		
+			RPSAChart();
+			RPSACityRatio();
+		});
+     </script>
    </body>
    </html>
