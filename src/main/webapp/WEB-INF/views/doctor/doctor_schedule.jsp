@@ -369,7 +369,7 @@ $(function() {
 		var keyword = $('#keyword').val();  // input 태그에서 입력한 키워드
 		
 		if(keyword.length == 0) {        // 검색글자수가 0인 경우
-			$('#searchDisplay').css("visibility", "hidden");       // 숨김
+			$('#searchDisplay').css("display", "none");       // 숨김
 		} else {
 			$('#searchDisplay').css("visibility", "visible");      // 표시
 			$('#searchDisplay').css("display", "flex");

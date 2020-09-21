@@ -147,5 +147,86 @@
    <select id="getReservation" resultType="com.spring.lifecare.vo.ReservationVO" parameterType="String">
    		select appoint_num, reservation_date, customer_id, doctor_id from hospital_reservation where doctor_id = #{doctor_id}
    </select>
+   
+   <!-- 질병 리스트 불러오기 -->
+   <select id="getDiseaseList" resultType="com.spring.lifecare.vo.DiseaseVO">
+		select disease_code, disease_name
+  		from disease
+  		where disease_name like '%'||#{disease}||'%'
+   </select>
+   
+   <!-- 약 리스트 불러오기 -->
+   <select id="getDrugList" resultType="com.spring.lifecare.vo.DrugVO">
+		select drug_number, drug_name
+  		from drug
+  		where drug_name like '%'||#{drug}||'%'
+   </select>
+   
+   <!-- 회원가입 처리 -->
+   <insert id ="insertDiagnosis" parameterType="com.spring.lifecare.vo.DiagnosisVO">
+     	INSERT INTO diagnosis 
+     	values(diagnosis_seqNum.nextval, 
+     	sysdate, 
+     	#{customer_id}, 
+     	#{doctor_id}, 
+     	#{disease_code}, 
+     	#{diagnosis_bp, jdbcType=VARCHAR}, 
+		#{diagnosis_rr, jdbcType=VARCHAR}, 
+		#{diagnosis_pr, jdbcType=VARCHAR}, 
+		#{diagnosis_bt, jdbcType=VARCHAR}, 
+		#{diagnosis_cc},
+		#{diagnosis_phx, jdbcType=VARCHAR}, 
+		#{diagnosis_fhx, jdbcType=VARCHAR}, 
+		#{diagnosis_pi}, 
+		#{diagnosis_ros}, 
+		#{diagnosis_pex, jdbcType=VARCHAR}, 
+		<if test="drug1 != 0">
+			#{drug1},
+		</if>
+		<if test="drug1 == 0">
+			null,
+		</if>
+		<if test="drug2 != 0">
+			#{drug2},
+		</if>
+		<if test="drug2 == 0">
+			null,
+		</if>
+		<if test="drug3 != 0">
+			#{drug3},
+		</if>
+		<if test="drug3 == 0">
+			null,
+		</if>
+		<if test="drug4 != 0">
+			#{drug4},
+		</if>
+		<if test="drug4 == 0">
+			null,
+		</if>
+		<if test="drug5 != 0">
+			#{drug5},
+		</if>
+		<if test="drug5 == 0">
+			null,
+		</if>
+		<if test="customer_amount != 0">
+			#{customer_amount},
+		</if>
+		<if test="customer_amount == 0">
+			16667,
+		</if>
+		0)
+   </insert>
+   
+   <!-- 진료리스트 -->
+   <select id="getDiagnosisList" resultType="com.spring.lifecare.vo.DiagnosisVO">
+   		<![CDATA[
+   		select ROWNUM, c.insurance, c.customer_name, c.customer_gender, c.customer_year, d.disease_code, d.diagnosis_time
+   		  from customer c, diagnosis d
+   		 where c.customer_id = d.customer_id and d.doctor_id = #{doctor_id} and ROWNUM <= 5
+   		 order by d.diagnosis_time DESC
+   		]]>
+   </select>
 </mapper>  	  
 

@@ -78,7 +78,7 @@ $(function() {
 		var keyword = $('#keyword').val();  // input 태그에서 입력한 키워드
 		
 		if(keyword.length == 0) {        // 검색글자수가 0인 경우
-			$('#searchDisplay').css("visibility", "hidden");       // 숨김
+			$('#searchDisplay').css("display", "none");       // 숨김
 		} else {
 			$('#searchDisplay').css("visibility", "visible");      // 표시
 			$('#searchDisplay').css("display", "flex");
@@ -86,8 +86,7 @@ $(function() {
 			$('#searchDisplay').css("min-width", "0");
 			$('#searchDisplay').css("max-height", "none");
 			$('#searchDisplay').css("background", "#f9f9f9");
-			$('#searchDisplay').css("border-radius", "499rem");
-			
+			$('#searchDisplay').css("border-radius", "499rem");			
 		}
 		
 		// keyword -> search_next.ja(search_next.jsp) -> result -> 콜백함수 -> display에 출력
@@ -103,8 +102,211 @@ $(function() {
 			}
 		});
 	});
+	
+	// 질병조회 keyup
+	$('#disease_code').keyup(function() {
+		var disease = $('#disease_code').val();  // input 태그에서 입력한 키워드
+		
+		if(disease.length == 0) {        // 검색글자수가 0인 경우
+			$('#diseaseList').css("display", "none");       // 숨김
+		} else {
+			$('#diseaseList').css("visibility", "visible");      // 표시
+			$('#diseaseList').css("display", "flex");
+			$('#diseaseList').css("align-items", "center");
+			$('#diseaseList').css("min-width", "0");
+			$('#diseaseList').css("max-height", "none");
+			$('#diseaseList').css("background", "#f9f9f9");
+			$('#diseaseList').css("border-radius", "499rem");	
+		}
+		
+		$.ajax({
+			url : '${pageContext.request.contextPath}/diseaseList?${_csrf.parameterName}=${_csrf.token}',
+			type : 'POST',
+			data : 'disease_code=' + disease,
+			success : function(result) { // 콜백함수 호출
+				$('#diseaseList').html(result);   // 결과  출력
+			},
+			error : function() {
+				alert("오류");
+			}
+		});
+	});
+	
+	// 약 조회 1번 keyup
+	$('#drug1').keyup(function() {
+		var drug = $('#drug1').val();  // input 태그에서 입력한 키워드
+		
+		if(drug.length == 0) {        // 검색글자수가 0인 경우
+			$('#drugList1').css("display", "none");       // 숨김
+		} else {
+			$('#drugList1').css("visibility", "visible");      // 표시
+			$('#drugList1').css("display", "flex");
+			$('#drugList1').css("align-items", "center");
+			$('#drugList1').css("min-width", "0");
+			$('#drugList1').css("max-height", "none");
+			$('#drugList1').css("background", "#f9f9f9");
+			$('#drugList1').css("border-radius", "499rem");	
+		}
+		
+		$.ajax({
+			url : '${pageContext.request.contextPath}/drugList1?${_csrf.parameterName}=${_csrf.token}',
+			type : 'POST',
+			data : 'drug=' + drug,
+			success : function(result) { // 콜백함수 호출
+				$('#drugList1').html(result);   // 결과  출력
+			},
+			error : function() {
+				alert("오류");
+			}
+		});
+	});
+	
+	// 약 조회 2번 keyup
+	$('#drug2').keyup(function() {
+		var drug = $('#drug2').val();  // input 태그에서 입력한 키워드
+		
+		if(drug.length == 0) {        // 검색글자수가 0인 경우
+			$('#drugList2').css("display", "none");       // 숨김
+		} else {
+			$('#drugList2').css("visibility", "visible");      // 표시
+			$('#drugList2').css("display", "flex");
+			$('#drugList2').css("align-items", "center");
+			$('#drugList2').css("min-width", "0");
+			$('#drugList2').css("max-height", "none");
+			$('#drugList2').css("background", "#f9f9f9");
+			$('#drugList2').css("border-radius", "499rem");	
+		}
+		
+		$.ajax({
+			url : '${pageContext.request.contextPath}/drugList2?${_csrf.parameterName}=${_csrf.token}',
+			type : 'POST',
+			data : 'drug=' + drug,
+			success : function(result) { // 콜백함수 호출
+				$('#drugList2').html(result);   // 결과  출력
+			},
+			error : function() {
+				alert("오류");
+			}
+		});
+	});
+	
+	// 약 조회 3번 keyup
+	$('#drug3').keyup(function() {
+		var drug = $('#drug3').val();  // input 태그에서 입력한 키워드
+		
+		if(drug.length == 0) {        // 검색글자수가 0인 경우
+			$('#drugList3').css("display", "none");       // 숨김
+		} else {
+			$('#drugList3').css("visibility", "visible");      // 표시
+			$('#drugList3').css("display", "flex");
+			$('#drugList3').css("align-items", "center");
+			$('#drugList3').css("min-width", "0");
+			$('#drugList3').css("max-height", "none");
+			$('#drugList3').css("background", "#f9f9f9");
+			$('#drugList3').css("border-radius", "499rem");	
+		}
+		
+		$.ajax({
+			url : '${pageContext.request.contextPath}/drugList3?${_csrf.parameterName}=${_csrf.token}',
+			type : 'POST',
+			data : 'drug=' + drug,
+			success : function(result) { // 콜백함수 호출
+				$('#drugList3').html(result);   // 결과  출력
+			},
+			error : function() {
+				alert("오류");
+			}
+		});
+	});
+	
+	// 약 조회 4번 keyup
+	$('#drug4').keyup(function() {
+		var drug = $('#drug4').val();  // input 태그에서 입력한 키워드
+		
+		if(drug.length == 0) {        // 검색글자수가 0인 경우
+			$('#drugList4').css("display", "none");       // 숨김
+		} else {
+			$('#drugList4').css("visibility", "visible");      // 표시
+			$('#drugList4').css("display", "flex");
+			$('#drugList4').css("align-items", "center");
+			$('#drugList4').css("min-width", "0");
+			$('#drugList4').css("max-height", "none");
+			$('#drugList4').css("background", "#f9f9f9");
+			$('#drugList4').css("border-radius", "499rem");	
+		}
+		
+		$.ajax({
+			url : '${pageContext.request.contextPath}/drugList4?${_csrf.parameterName}=${_csrf.token}',
+			type : 'POST',
+			data : 'drug=' + drug,
+			success : function(result) { // 콜백함수 호출
+				$('#drugList4').html(result);   // 결과  출력
+			},
+			error : function() {
+				alert("오류");
+			}
+		});
+	});
+	
+	// 약 조회 5번 keyup
+	$('#drug5').keyup(function() {
+		var drug = $('#drug5').val();  // input 태그에서 입력한 키워드
+		
+		if(drug.length == 0) {        // 검색글자수가 0인 경우
+			$('#drugList5').css("display", "none");       // 숨김
+		} else {
+			$('#drugList5').css("visibility", "visible");      // 표시
+			$('#drugList5').css("display", "flex");
+			$('#drugList5').css("align-items", "center");
+			$('#drugList5').css("min-width", "0");
+			$('#drugList5').css("max-height", "none");
+			$('#drugList5').css("background", "#f9f9f9");
+			$('#drugList5').css("border-radius", "499rem");	
+		}
+		
+		$.ajax({
+			url : '${pageContext.request.contextPath}/drugList5?${_csrf.parameterName}=${_csrf.token}',
+			type : 'POST',
+			data : 'drug=' + drug,
+			success : function(result) { // 콜백함수 호출
+				$('#drugList5').html(result);   // 결과  출력
+			},
+			error : function() {
+				alert("오류");
+			}
+		});
+	});
 });
 
+function click(disease_code){
+	document.medicalForm.disease_code.value = disease_code;
+	$('#diseaseList').css("display", "none");
+}
+
+function drug1(drug_number){
+	document.medicalForm.drug1.value = drug_number;
+	$('#drugList1').css("display", "none");
+}
+
+function drug2(drug_number){
+	document.medicalForm.drug2.value = drug_number;
+	$('#drugList2').css("display", "none");
+}
+
+function drug3(drug_number){
+	document.medicalForm.drug3.value = drug_number;
+	$('#drugList3').css("display", "none");
+}
+
+function drug4(drug_number){
+	document.medicalForm.drug4.value = drug_number;
+	$('#drugList4').css("display", "none");
+}
+
+function drug5(drug_number){
+	document.medicalForm.drug5.value = drug_number;
+	$('#drugList5').css("display", "none");
+}
 </script>
 <body>
 	<div class="navbar">
@@ -176,14 +378,17 @@ $(function() {
 							<h3>진료기록작성</h3>
 						</div>
 						<div class="card-block">
-							<form>
+							<form action="${path}/doctor/diagnosisPro" method="post" name="medicalForm">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+							<input type="hidden" name="customer_id" value="${vo.getCustomer_id()}">
 								<fieldset>
-									<input type="text" placeholder="질병코드" id="nameField">
-									<input type="text" placeholder="주증상(C.C)" id="nameField">
-									<input type="text" placeholder="혈압(BP)" id="nameField">
-									<input type="text" placeholder="호흡(RR)" id="nameField">
-									<input type="text" placeholder="맥박(PR)" id="nameField">
-									<input type="text" placeholder="체온(BT)" id="nameField">
+									<input type="text" placeholder="질병코드" id="disease_code" name="disease_code">
+									<input type="text" placeholder="주증상(C.C)" id="nameField" name="cc">
+										<div id="diseaseList"></div>
+									<input type="text" placeholder="혈압(BP)" id="nameField" name="bp">
+									<input type="text" placeholder="호흡(RR)" id="nameField" name="rr">
+									<input type="text" placeholder="맥박(PR)" id="nameField" name="pr">
+									<input type="text" placeholder="체온(BT)" id="nameField" name="bt">
 
 			<div class="row grid-responsive">
 				<div class="column column-50">
@@ -193,7 +398,7 @@ $(function() {
 						</div>
 						<div class="card-block">
 							<div class="canvas-wrapper">
-								<textarea style="height:130px"></textarea>
+								<textarea style="height:130px" name="phx"></textarea>
 							</div>
 						</div>
 					</div>
@@ -205,7 +410,7 @@ $(function() {
 						</div>
 						<div class="card-block">
 							<div class="canvas-wrapper">
-								<textarea style="height:130px"></textarea>
+								<textarea style="height:130px" name="fhx"></textarea>
 							</div>
 						</div>
 					</div>
@@ -219,7 +424,7 @@ $(function() {
 						</div>
 						<div class="card-block">
 							<div class="canvas-wrapper">
-								<textarea style="height:130px"></textarea>
+								<textarea style="height:130px" name="pi"></textarea>
 							</div>
 						</div>
 					</div>
@@ -231,7 +436,7 @@ $(function() {
 						</div>
 						<div class="card-block">
 							<div class="canvas-wrapper">
-								<textarea style="height:130px"></textarea>
+								<textarea style="height:130px" name="ros"></textarea>
 							</div>
 						</div>
 					</div>
@@ -243,18 +448,24 @@ $(function() {
 						</div>
 						<div class="card-block">
 							<div class="canvas-wrapper">
-								<textarea style="height:130px"></textarea>
+								<textarea style="height:130px" name="pex"></textarea>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>	
 									<label for="commentField">처방약</label>									
-									<input type="text" placeholder="처방약1" id="nameField">
-									<input type="text" placeholder="처방약2" id="nameField">
-									<input type="text" placeholder="처방약3" id="nameField">
-									<input type="text" placeholder="처방약4" id="nameField">
-									<input type="text" placeholder="처방약5" id="nameField">
+									<input type="text" placeholder="처방약1" id="drug1" name="drug1">
+									<input type="text" placeholder="처방약2" id="drug2" name="drug2">
+									<div id="drugList1"></div>
+									<div id="drugList2"></div>
+									<input type="text" placeholder="처방약3" id="drug3" name="drug3">
+									<input type="text" placeholder="처방약4" id="drug4" name="drug4">
+									<div id="drugList3"></div>
+									<div id="drugList4"></div>
+									<input type="text" placeholder="처방약5" id="drug5" name="drug5">
+									<input type="text" placeholder="진료금액" name="customer_amount">
+									<div id="drugList5"></div>									
 									<br>
 									<input style="float:left;" class="button-primary" type="submit" value="진료기록저장">
 								</fieldset>

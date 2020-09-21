@@ -22,7 +22,10 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.spring.lifecare.persistence.UserDAO;
 import com.spring.lifecare.vo.AppointmentVO;
 import com.spring.lifecare.vo.CustomerVO;
+import com.spring.lifecare.vo.DiagnosisVO;
+import com.spring.lifecare.vo.DiseaseVO;
 import com.spring.lifecare.vo.DoctorVO;
+import com.spring.lifecare.vo.DrugVO;
 import com.spring.lifecare.vo.ReservationVO;
 
 @Service
@@ -138,9 +141,7 @@ public class DoctorServiceImpl implements DoctorService{
 			rowArray.put("doctor_position", vo.getDoctor_position());
 			jsonArray.add(rowArray);
 		}
-		System.out.println(jsonArray);
-		
-	    
+			    
 	    req.setAttribute("jsonArray", jsonArray);		
 	}
 
@@ -188,9 +189,7 @@ public class DoctorServiceImpl implements DoctorService{
 			rowArray.put("appoint_date", "20" + vo.getAppoint_date());
 			rowArray.put("appoint_time", vo.getAppoint_time());
 			jsonArray.add(rowArray);
-		}
-		System.out.println(jsonArray);
-		
+		}		
 		req.setAttribute("jsonArray", jsonArray);		
 	}
 
@@ -235,8 +234,75 @@ public class DoctorServiceImpl implements DoctorService{
 			rowArray.put("start", vo.getReservation_date());
 			rowArray.put("url", "http://localhost/lifecare/doctor/doctor_medicalNote?customer_id=" + vo.getCustomer_id());
 			jsonArray.add(rowArray);
-		}
-		System.out.println(jsonArray);		
+		}	
 		req.setAttribute("jsonArray", jsonArray);		
+	}
+
+	@Override
+	public void diseaseList(HttpServletRequest req, Model model) {		
+		String disease = req.getParameter("disease_code");
+		
+		List<DiseaseVO> list = new ArrayList<DiseaseVO>();
+		list = userDAO.getDiseaseList(disease);
+
+		model.addAttribute("list", list);
+	}
+
+	@Override
+	public void drugList(HttpServletRequest req, Model model) {
+		String drug = req.getParameter("drug");
+		
+		List<DrugVO> list = new ArrayList<DrugVO>();
+		list = userDAO.getDrugList(drug);
+
+		model.addAttribute("list", list);
+	}
+
+	@Override
+	public void saveDiagonosis(HttpServletRequest req, Model model) {
+		DiagnosisVO vo = new DiagnosisVO();
+		vo.setDoctor_id((String) req.getSession().getAttribute("userSession"));
+		vo.setCustomer_id(req.getParameter("customer_id"));
+		vo.setDisease_code(req.getParameter("disease_code"));
+		vo.setDiagnosis_bp(req.getParameter("bp"));
+		vo.setDiagnosis_pr(req.getParameter("pr"));
+		vo.setDiagnosis_rr(req.getParameter("rr"));
+		vo.setDiagnosis_bt(req.getParameter("bt"));
+		vo.setDiagnosis_cc(req.getParameter("cc"));
+		vo.setDiagnosis_phx(req.getParameter("phx"));
+		vo.setDiagnosis_fhx(req.getParameter("fhx"));
+		vo.setDiagnosis_pi(req.getParameter("pi"));
+		vo.setDiagnosis_ros(req.getParameter("ros"));
+		vo.setDiagnosis_pex(req.getParameter("pex"));
+		
+		if(req.getParameter("drug1").length() != 0) {
+			vo.setDrug1(Integer.parseInt(req.getParameter("drug1")));
+		}
+		if(req.getParameter("drug2").length() != 0) {
+			vo.setDrug2(Integer.parseInt(req.getParameter("drug2")));
+		}
+		if(req.getParameter("drug3").length() != 0) {
+			vo.setDrug3(Integer.parseInt(req.getParameter("drug3")));
+		}
+		if(req.getParameter("drug4").length() != 0) {
+			vo.setDrug4(Integer.parseInt(req.getParameter("drug4")));
+		}
+		if(req.getParameter("drug5").length() != 0) {
+			vo.setDrug5(Integer.parseInt(req.getParameter("drug5")));
+		}
+		if(req.getParameter("customer_amount").length() != 0) {
+			vo.setCustomer_amount(Integer.parseInt(req.getParameter("customer_amount")));
+		}
+		
+		System.out.println("drug 1 출력 : "+vo.getDrug1());
+		int insertCnt = userDAO.insertDiagnosis(vo);
+		model.addAttribute("insertCnt", insertCnt);
+	}
+
+	@Override
+	public void diagnosisList(HttpServletRequest req, Model model) {
+		String doctor_id = (String) req.getSession().getAttribute("userSession");
+		List<DiagnosisVO> list = userDAO.getDiagnosisList(doctor_id);
+		model.addAttribute("list", list);
 	}		
 }

@@ -44,4 +44,16 @@ public interface DoctorService  {
 	  
 	  //스케쥴에 뿌려주는 url
 	  public void reservationList(HttpServletRequest req, Model model);
+	  
+	  // 질병리스트 뿌리기
+	  public void diseaseList(HttpServletRequest req, Model model);
+	  
+	  // 질병리스트 뿌리기
+	  public void drugList(HttpServletRequest req, Model model);
+	  
+	  // 진료기록 저장
+	  public void saveDiagonosis(HttpServletRequest req, Model model);
+	  
+	  // 최근 진료내역 리스트
+	  public void diagnosisList(HttpServletRequest req, Model model);
 }

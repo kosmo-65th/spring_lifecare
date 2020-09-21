@@ -131,7 +131,7 @@ $(function() {
 		var keyword = $('#keyword').val();  // input 태그에서 입력한 키워드
 		
 		if(keyword.length == 0) {        // 검색글자수가 0인 경우
-			$('#searchDisplay').css("visibility", "hidden");       // 숨김
+			$('#searchDisplay').css("display", "none");       // 숨김
 		} else {
 			$('#searchDisplay').css("visibility", "visible");      // 표시
 			$('#searchDisplay').css("display", "flex");
@@ -215,37 +215,25 @@ $(function() {
 							<table>
 								<thead>
 									<tr style="background:#35cebe; color:white;">
-										<th>Name</th>
-										<th>Role</th>
-										<th>Age</th>
-										<th>Location</th>
+										<th>구분</th>
+										<th>이름</th>
+										<th>성별</th>
+										<th>나이</th>
+										<th>진단</th>
+										<th>진료일</th>
 									</tr>
 								</thead>
 								<tbody>
+									<c:forEach var="i" items="${list}">
 									<tr>
-										<td>Jane Donovan</td>
-										<td>UI Developer</td>
-										<td>23</td>
-										<td>Philadelphia, PA</td>
+										<td>${i.getInsurance()}</td>
+										<td>${i.getCustomer_name()}</td>
+										<td>${i.getCustomer_gender()}</td>
+										<td><fmt:formatNumber value="${2020 - i.getCustomer_year()}" pattern="#,###"/>세</td>
+										<td>${i.getDisease_code()}</td>
+										<td>${i.getDiagnosis_time()}</td>
 									</tr>
-									<tr>
-										<td>Jonathan Smith</td>
-										<td>Designer</td>
-										<td>30</td>
-										<td>London, UK</td>
-									</tr>
-									<tr>
-										<td>Kelly Johnson</td>
-										<td>UX Developer</td>
-										<td>25</td>
-										<td>Los Angeles, CA</td>
-									</tr>
-									<tr>
-										<td>Sam Davidson</td>
-										<td>Programmer</td>
-										<td>28</td>
-										<td>Philadelphia, PA</td>
-									</tr>
+									</c:forEach>	
 								</tbody>
 							</table>
 						</div>

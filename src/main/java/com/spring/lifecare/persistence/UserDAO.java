@@ -6,7 +6,10 @@ import java.util.Map;
 
 import com.spring.lifecare.vo.AppointmentVO;
 import com.spring.lifecare.vo.CustomerVO;
+import com.spring.lifecare.vo.DiagnosisVO;
+import com.spring.lifecare.vo.DiseaseVO;
 import com.spring.lifecare.vo.DoctorVO;
+import com.spring.lifecare.vo.DrugVO;
 import com.spring.lifecare.vo.ReservationVO;
 
 public interface UserDAO {	
@@ -96,4 +99,16 @@ public interface UserDAO {
 	 
 	 //reservation리스트 불러오기
 	 public ArrayList<ReservationVO> getReservation(String doctor_id);
+	 
+	 //질병리스트 불러오기
+	 public List<DiseaseVO> getDiseaseList(String disease);
+	 
+	 //약 리스트 불러오기
+	 public List<DrugVO> getDrugList(String drug);
+	 
+	 //진료기록 작성
+	 public int insertDiagnosis(DiagnosisVO vo);
+	 
+	 //최근진료기록 리스트
+	 public List<DiagnosisVO> getDiagnosisList(String doctor_id);
 }
