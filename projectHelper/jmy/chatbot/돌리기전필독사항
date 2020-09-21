@@ -1,0 +1,5 @@
+chatbot폴더에 cmd로 접근 후 
+npm i
+인스톨 완료되면
+chatbot 폴더안에 클라이언트 폴더로접근하여 
+다시한번 npm i
