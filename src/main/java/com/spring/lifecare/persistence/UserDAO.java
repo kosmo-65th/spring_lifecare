@@ -43,9 +43,6 @@ public interface UserDAO {
 	 // 아이디 찾기
 	 public String findId(String customer_phone); 
 	 
-	 //회원이 직접 정보 수정
-	 public int modify(CustomerVO vo);
-	 
 	 //의사 아이디 중복확인
      public int CheckId(String doctor_id);
 		
@@ -103,9 +100,6 @@ public interface UserDAO {
 	 //약찾기
 	 public List<DrugVO>searchDrug(Map<String, Object> map);
 
-	//약 이름 keyup
-	 public List<DrugVO>searchNameNext(String name);
-	 
 	 //회사 keyup
 	 public List<DrugVO>searchEnptNext(String entp);
 

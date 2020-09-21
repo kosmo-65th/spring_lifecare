@@ -39,9 +39,9 @@
 //약 이름 keyup
 $(function() {
 	$('#drug_name').keyup(function() {
-		var name = $('#drug_name').val();  // input 태그에서 입력한 키워드
+		var drug = $('#drug_name').val();  // input 태그에서 입력한 키워드
 		
-		if(entp.length == 0) {        // 검색글자수가 0인 경우
+		if(drug.length == 0) {        // 검색글자수가 0인 경우
 			$('#name_next').css("display", "none");       // 숨김
 		} else {
 			$('#name_next').css("visibility", "visible");      // 표시
@@ -53,9 +53,9 @@ $(function() {
 			$('#name_next').css("border-radius", "499rem");
 		}
 		$.ajax({
-			url : '${pageContext.request.contextPath}/drugList1?${_csrf.parameterName}=${_csrf.token}',
+			url : '${pageContext.request.contextPath}/drug_name_next?${_csrf.parameterName}=${_csrf.token}',
 			type : 'POST',
-			data : 'name=' + name,
+			data : 'drug=' + drug,
 			success : function(result) { // 콜백함수 호출
 				$('#name_next').html(result);   // 결과  출력
 			},
@@ -66,6 +66,10 @@ $(function() {
 	});
 });
 
+function nameClick(drug_name){
+	document.frm.drug_name.value = drug_name;
+	$('#name_next').css("display", "none");
+}
 
 //약 회사 keyup
 $(function() {
@@ -100,27 +104,20 @@ $(function() {
 });
 
 
+function entpClick(entp_name){
+	document.frm.entp_name.value = entp_name;
+	$('#entp_next').css("display", "none");
+}
+
 $(function(){
 	$('#btn_idfysearch').click(function(){
 		var drug_name = document.getElementById("drug_name").value;
 		var drug_enptname = document.getElementById("entp_name").value;
 		
-	    
-		/* var chckList = document.getElementsByName("shapes");
-		var shapeList = "";
-
-		for (var i = 0; i < chckList.length; i++) {
-			if (chckList[i].checked) {
-				shapeList = shapeList + "," + chckList[i].value;
-			}
-		} */
-		 
 		var shapeList = new Array();
         $("input[name=shapes]:checked").each(function(){
         	shapeList.push($(this).val());
         }); 
-
-        
         
 		var formList = new Array();
         $("input[name=forms]:checked").each(function(){
@@ -145,31 +142,6 @@ function searchDrug() {
 </script>
 
 <script type="text/javascript">
-
-//onKeyUp시에 제품명 불러오는 ajax호출
-function drugNmAjax(){
-
-	if ($('#drug_name').val().length < 2) {
-		return false;
-	}
-
-	if (window.event.keyCode == 13) {
-		// 엔터키가 눌렸을 때 실행할 내용
-		//getKpicAtc_btn('1','','','');
-		$("#ul_drugList").css('display','none');
-//		$("#btn_detail_search").click();
-		return false;
-	}
-
-	//var e = jQuery.Event( "keydown", { keyCode: 35 } );	$("#input_upsoNm").trigger( e );
-	if($('#drug_name').val().length > 2){		
-		$("#ul_drugList").css('display','');
-		getDrugName();
-	}else{
-		$("#ul_drugList").css('display','none');
-	}
-}
-
 
 function refreshIdfy() {
 	//문자
@@ -348,6 +320,7 @@ function getCookie(name) {
 					</div>
 				</ul>
 		</div>	
+		
 		<!-- 의약품검색 -->
 		<section id="search_identity">
 			<h2 class="maintitle">의약품검색</h2>
