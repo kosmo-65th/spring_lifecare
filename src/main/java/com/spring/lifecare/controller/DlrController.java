@@ -37,7 +37,7 @@ public class DlrController {
 		return "customer/Questionnaire/index1";
 	}
 	
-	//covid19
+	//코로나 정보
 	@RequestMapping("/covid19")
 	public String covid19(HttpServletRequest req,Model model) {
 		

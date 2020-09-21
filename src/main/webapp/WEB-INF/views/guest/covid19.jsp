@@ -22,6 +22,9 @@
 
     // 파싱할 사이트를 적어준다(해당 사이트에 대한 태그를 다 긁어옴)
  	Document doc2 = Jsoup.connect("http://ncov.mohw.go.kr/").get();
+	Document doc1 = Jsoup.connect("https://coronaboard.kr/").get();
+	
+	Elements cov = doc1.body().getElementsByClass("google-visualization-table-tr-odd");
 	      //System.out.println(doc2.data());
 	      //System.out.println(doc2.body());
 	      // list 속성안에 li 요소 데이터들을 긁어온다
@@ -58,7 +61,6 @@
 	 <%
 	}
 %>
-<%= posts2 %>
 <%@include file="../common/footer.jsp"%>
 </body>
 </html>

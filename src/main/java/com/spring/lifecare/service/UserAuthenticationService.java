@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -41,12 +39,16 @@ public class UserAuthenticationService implements UserDetailsService {
 	 */
 	@Override
 	public UserDetails loadUserByUsername(String userid) throws UsernameNotFoundException {
-		
+		boolean emailcheck = true;
 		Map<String, Object> user = sqlSession.selectOne("com.spring.lifecare.persistence.UserDAO.selectUser", userid);
 		System.out.println("로그인 체크 ==> " + userid);
+		System.out.println(user);
 		
 		// 인증실패시 인위적으로 예외 발생
-		if(user == null) throw new UsernameNotFoundException(userid);
+		if(user==null) throw new UsernameNotFoundException(userid);
+		else {
+			if(user.get("CUSTOMER_ECHECK").toString().equals("0")) emailcheck=false;
+		}
 		
 		// ArrayList 먼저 import, GrantedAuthority import
 		List<GrantedAuthority> authority = new ArrayList<GrantedAuthority>();
@@ -63,6 +65,6 @@ public class UserAuthenticationService implements UserDetailsService {
 		return new UserVO(user.get("USERNAME").toString(),
 					user.get("PASSWORD").toString(),
 					(Integer)Integer.valueOf(user.get("ENABLED").toString()) == 1,
-					true, true, true, authority, user.get("USERNAME").toString());
+					true, true, emailcheck, authority, user.get("USERNAME").toString());
 	}
 }

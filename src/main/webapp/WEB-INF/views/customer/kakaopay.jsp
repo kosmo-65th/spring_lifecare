@@ -69,7 +69,7 @@
         <span id="pointDiscount"><em>0원</em></span>
       </li>
     </ul>
-<form action="${path}/kakaoPayGo" method="post" name="pay">
+<form action="${path}/customer/kakaoPayGo" method="post" name="pay">
 <input type = "hidden" name="${_csrf.parameterName}" value = "${_csrf.token}">
 	<div class="btns">
 	  <button class="btnAccent--l" id="btnBuy" onClick="javascript:document.pay.submit()">결제하기</button>

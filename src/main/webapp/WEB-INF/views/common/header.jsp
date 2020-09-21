@@ -39,12 +39,12 @@
                                 <ul>
                                 	<!-- 로그인 안했을경우 -->
                                 	<c:if test="${sessionScope.userSession == null}">
-	                                    <li><a href="${path}/guest/preJoinIn">회원가입</a></li>
+	                                    <li><a href="${path}/preJoinIn">회원가입</a></li>
 	                                    <li><a href="${path}/login">로그인</a></li>
                                     </c:if>
                                     <!-- 로그인 완료후 -->
                                     <c:if test="${sessionScope.userSession != null}">
-	                                    <li><a href="${path}/Mypage">${sessionScope.userSession}의 마이페이지</a></li>
+	                                    <li><a href="${path}/customer/mypage">${sessionScope.userSession}의 마이페이지</a></li>
 	                                    <li><a href="">고객센터</a></li>
 	                                    <%-- <li><a href="${path}/logout">로그아웃</a></li> --%>
 	                                    <li><a href="#" onclick="document.getElementById('logout-form').submit();">로그아웃</a></li>
@@ -72,25 +72,32 @@
                             <div class="main-menu  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a class="active" href="#">HOME</a></li>
-                                        <li><a href="#">코로나정보</a></li>
-                                        <li><a href="#">예약<i class="ti-angle-down"></i></a>
+                                        <li><a href="${path}/covid19">코로나정보</a></li>
+                                        <li><a href="#">진료서비스<i class="ti-angle-down"></i></a>
                                         	<ul class="submenu">
-                                        		<li><a href="#">메뉴1</a></li>
-                                        		<li><a href="#">메뉴2</a></li>
+                                        		<li><a href="${path}/questionnaire">자가진단</a></li>
+                                        		<li><a href="#">진료예약</a></li>
+                                        		<li><a href="#">예약확인</a></li>
+                                        		<li><a href="#">결제 및 서류발급</a></li>
                                             </ul>
                                         </li>     
                                         <li><a href="#">이용안내<i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="#">병원 오시는길</a></li>
+                                                <li><a href="#">오시는길</a></li>
                                                 <li><a href="#">주변약국</a></li>
                                             </ul>
                                         </li>
                                         <li><a href="#">의료정보 <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
                                                 <li><a href="${path}/drugSearch">약정보</a></li>
-                                                <li><a href="about.html">응급처치방법</a></li>
-                                                <li><a href="${path}/questionnaire">자가진단</a></li>
+                                                <li><a href="#">질병정보</a></li>
+                                                <li><a href="#">응급처치</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">병원소개 <i class="ti-angle-down"></i></a>
+                                            <ul class="submenu">
+                                                <li><a href="#">병원뉴스</a></li>
+                                                <li><a href="#">병원소개</a></li>
                                             </ul>
                                         </li>
                                         <li>
