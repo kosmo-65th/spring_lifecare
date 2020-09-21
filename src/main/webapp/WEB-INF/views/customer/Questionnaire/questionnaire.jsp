@@ -221,7 +221,7 @@ function loading()
 .agree_input { border:1px solid #000; height:45px; padding:0 10px; width:95%; font-size:18px; }
 .agree_btn { width:100%; color:white; background-color:#54b9de; vertical-align:middle; font-size:22px; font-weight:bold; bottom:0px; padding:15px 0; border-radius:0 0 18px 18px; text-align:center; }
 
-.agreeInputBox2 { position:absolute; top:15%; left:50%; margin-left:-350px; width:700px; overflow: auto; font-size:16px; text-align:left; background-color:white; 
+.agreeInputBox2 { position:absolute; top:15%; left:50%; margin-left:-510px; width:970px; overflow: auto; font-size:16px; text-align:left; background-color:white; 
 				z-index:1100; border:1px solid #000; border-radius:20px; padding-bottom:20px; }
 .agreeTxtBox { padding:20px 0; }
 

@@ -74,7 +74,7 @@
 		function popUp() {
 	    	var cookieCheck = getCookie("popupYN");
 	    	if (cookieCheck != "N"){
-	         	window.open('${path}/popup', 'newpop', 'width=630,height=570,left=0,top=0');
+	         	window.open('${path}/popup', 'newpop', 'width=630,height=570,left=0,top=0'); 
 	    	}
 		}
 		
@@ -87,9 +87,11 @@
 		<!-- 코로나 데이터 크롤링 -->
 		<%
 		 	Document doc2 = Jsoup.connect("http://ncov.mohw.go.kr/").get();
-	
-			Elements posts1 = doc2.body().getElementsByClass("live_right main_box_toggle");
+			
+			System.out.println(doc2);
+			Elements posts1 = doc2.body().getElementsByClass("regional_patient_status_A");
 			Elements posts2 = doc2.body().getElementsByClass("live_left");
+			
 		%>
 		<!-- 코로나 데이터 크롤링 -->
 		
@@ -158,8 +160,10 @@
          </div>
       </div>
       <div align="center">
+      	<div>
+      	</div>
 		<%= posts1 %>
-		<div id="abc">
+		<div id="abc"> 
 		<%= posts2 %>
 		</div>
 	  </div>
@@ -215,6 +219,7 @@
      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNUPWkb4Cjd7Wxo-T4uoUldFjoiUA1fJc&callback=myMap"></script>
      <script>
      $(function(){
+    	 
 			//검사현황
 			IS_data = {
 			    label: ["결과음성", "검사중", "결과양성"],
