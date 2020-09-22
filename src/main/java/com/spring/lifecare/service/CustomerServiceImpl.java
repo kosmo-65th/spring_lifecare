@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -21,7 +22,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.spring.lifecare.persistence.UserDAO;
 import com.spring.lifecare.vo.AppointmentVO;
 import com.spring.lifecare.vo.CustomerVO;
-import com.spring.lifecare.vo.DoctorVO;
+import com.spring.lifecare.vo.DiagnosisVO;
+import com.spring.lifecare.vo.ReservationVO;
 
 
 @Service
@@ -194,5 +196,131 @@ public class CustomerServiceImpl implements CustomerService{
 		int insertCnt = userDAO.addReservation(map);		
 		model.addAttribute("insertCnt", insertCnt);
 	}
+
+	@Override
+	public void reservationList(HttpServletRequest req, Model model) {
+		String customer_id = (String) req.getSession().getAttribute("userSession");
+		List<ReservationVO> list = userDAO.getReservationList(customer_id);
+		model.addAttribute("list", list);
+	}
+
+	@Override
+	public void getReservationInfo(HttpServletRequest req, Model model) {
+		int appoint_num = Integer.parseInt(req.getParameter("appoint_num"));
+		JSONArray jsonArray = new JSONArray();		
+		List<ReservationVO> list = userDAO.getReservationInfo(appoint_num);
+		for(ReservationVO vo : list) {
+			JSONObject rowArray = new JSONObject();
+			rowArray.put("doctor_major", vo.getDoctor_major());
+			rowArray.put("doctor_name", vo.getDoctor_name());
+			rowArray.put("reservation_date", vo.getReservation_date());
+			jsonArray.add(rowArray);
+		}
+		System.out.println(jsonArray);
 		
+		req.setAttribute("jsonArray", jsonArray);
+	}
+
+	@Override
+	public void cancelAppointment(HttpServletRequest req, Model model) {
+		int appoint_num = Integer.parseInt(req.getParameter("appoint_num"));
+		int deleteCnt = 0;
+		int updateCnt = 0;
+		
+		deleteCnt = userDAO.delectReservation(appoint_num);
+		updateCnt = userDAO.updateAppointment(appoint_num);
+		
+		model.addAttribute("deleteCnt", deleteCnt);
+		model.addAttribute("updateCnt", updateCnt);
+	}
+
+	@Override
+	public void paymentList(HttpServletRequest req, Model model) {
+		String customer_id = (String) req.getSession().getAttribute("userSession");
+		
+		// 페이징
+		int pageSize = 5;    // 한페이지당 출력한 글 갯수
+		int pageBlock = 5;   // 한 블럭당 페이지 갯수
+				
+		int cnt = 0;         // 글갯수
+		int start = 0;       // 현재 페이지 시작 글번호
+		int end = 0;         // 현재 페이지 마지막 글번호
+		int number = 0;      // 출력용 글번호 (db에서 중간에 글하나가 삭제되어도 보여주는 번호는 순차적으로 보여짐)
+		String pageNum = ""; // 페이지 번호
+		int currentPage = 0; // 현재페이지
+				
+		int pageCount = 0;   // 페이지 갯수
+		int startPage = 0;   // 시작 페이지
+		int endPage = 0;     // 마지막 페이지
+		
+		// 게시글 갯수
+		cnt = userDAO.getDiagnosisCnt(customer_id);
+		
+		pageNum = req.getParameter("pageNum");
+		if(pageNum == null) {
+			pageNum = "1";  // 첫페이지를 1페이지로 지정
+		}
+		
+		currentPage  = Integer.parseInt(pageNum);
+		pageCount = (cnt / pageSize) + (cnt % pageSize > 0 ? 1 : 0);
+		start = (currentPage - 1) * pageSize + 1;
+		end = start + pageSize - 1;
+		number = cnt - (currentPage - 1) * pageSize;
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("customer_id", customer_id);
+		map.put("start", start);
+		map.put("end", end);
+		
+		if(cnt > 0) {
+			// 게시글 목록 조회
+			List<DiagnosisVO> list = userDAO.DiagnosisList(map);
+			model.addAttribute("list", list);
+		}
+		
+		startPage = (currentPage / pageBlock) * pageBlock + 1;  
+		if(currentPage % pageBlock == 0) {
+			startPage -= pageBlock;
+		}
+		endPage = startPage + pageBlock - 1;  
+		if(endPage > pageCount) {
+			endPage = pageCount;
+		}
+		
+		model.addAttribute("cnt", cnt);         // 글갯수
+		model.addAttribute("number", number);   // 보여지는 번호
+		model.addAttribute("pageNum", pageNum); // 화면상 표시되는 페이지 숫자
+		
+		if(cnt > 0) {
+			model.addAttribute("startPage", startPage);
+			model.addAttribute("endPage", endPage);
+			model.addAttribute("pageBlock", pageBlock);
+			model.addAttribute("pageCount", pageCount);
+			model.addAttribute("currentPage", currentPage);
+		}		
+	}
+
+	@Override
+	public void paymentInfo(HttpServletRequest req, Model model) {
+		int diagnosis_num = Integer.parseInt(req.getParameter("diagnosis_num"));
+		JSONArray jsonArray = new JSONArray();		
+		List<DiagnosisVO> list = userDAO.getDiagnosisInfo(diagnosis_num);
+		for(DiagnosisVO vo : list) {
+			JSONObject rowArray = new JSONObject();
+			rowArray.put("customer_amount", vo.getCustomer_amount());
+			rowArray.put("customer_payment", vo.getCustomer_payment());
+			rowArray.put("diagnosis_time", vo.getDiagnosis_time());
+			jsonArray.add(rowArray);
+		}
+		System.out.println(jsonArray);		
+		req.setAttribute("jsonArray", jsonArray);
+	}
+
+	@Override
+	public void successPay(HttpServletRequest req, Model model) {
+		int diagnosis_num = Integer.parseInt(req.getParameter("diagnosis_num"));
+		int updateCnt = userDAO.successPay(diagnosis_num);
+		model.addAttribute("updateCnt", updateCnt);
+	}
+			
 }

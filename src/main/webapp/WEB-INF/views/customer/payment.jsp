@@ -3,6 +3,57 @@
 <%@ include file="/resources/setting/setting.jsp" %>
 <link type="text/css" rel="stylesheet" href="${path_resources}css/payment.css">
 <html>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('input:radio[name=select]').click(function(){
+		var diagnosis_num = $('input:radio[name=select]:checked').val();
+		document.getElementById('diagnosis_num').value = diagnosis_num;
+		
+		var obj = new Object();
+		var customer_payment;
+		var customer_amount;
+		var diagnosis_time;
+		var pay;
+		
+		$.ajax({
+			url : '${pageContext.request.contextPath}/customer/paymentInfo?diagnosis_num=' + diagnosis_num,
+			type : 'GET',   // 전송방식
+			dataType : 'json', // 요청한 데이터 형식 ("html", "xml", "json", "text")
+			success : function(obj) { // 콜백함수 - 전송에 성공했을 때의 결과가 data에 전달된다.
+				for(var i=0; i<obj.length; i++) {
+					customer_payment = obj[i].customer_payment; 
+					customer_amount = obj[i].customer_amount;
+					diagnosis_time = obj[i].diagnosis_time;
+				}
+				var today = new Date(diagnosis_time);
+				var year = today.getFullYear(); // 년도
+				var month = today.getMonth() + 1;  // 월
+				var date = today.getDate();
+				var day = String(year) + "년 " + String(month) + "월 " + String(date) + "일 진료비 내역";
+				
+				var amount7 = customer_amount * 0.7; // 공단부담금
+				var amount3 = customer_amount * 0.3; // 본인부담금
+				
+				// customer_payment가 0이면 미수금 출력 1이면 미수금 출력x
+				if(customer_payment == 0) {
+					pay = "<a href=\"javascript:void(0);\" style=\"color:red;\" onclick=\"window.open('${path}/customer/kakaopay?diagnosis_num=" + diagnosis_num + "', 'kakaopay', 'resizable=no width=850, height=550'); return false;\">" + Math.round(amount3).toLocaleString() + "</a>";
+				} else {
+					pay = 0;
+				}
+				
+				$('#date').html(day); // 날짜 뿌리기
+				$('#total').html(customer_amount.toLocaleString());
+				$('#amount7').html(Math.round(amount7).toLocaleString());
+				$('#amount3').html(Math.round(amount3).toLocaleString());
+				$('#pay').html(pay);
+			},
+			error : function() {
+				alert('오류');
+			}
+		});
+	});
+});
+</script>
 <body>
 
 <%@include file="../common/header.jsp" %>
@@ -13,6 +64,9 @@
 <h3>정덴트님의 수납내역</h3>
 <div class="tablePay">    
     <div class="row1 header blue">
+      <div class="cell1">
+          	&nbsp;
+      </div>
       <div class="cell1">
           	구 분
       </div>
@@ -40,121 +94,86 @@
     </div>
     
     <div class="row1">
+      <c:forEach var="j" items="${list}">
+      <input type="hidden" id="diagnosis_num" value="">	
+      <div class="cell1">
+        	<input type="radio" name="select" value="${j.getDiagnosis_num()}">
+      </div>
       <div class="cell1">
         	건강보험
       </div>
       <div class="cell1">
-        2020-08-27
+        	${j.getDiagnosis_time()}
       </div>
       <div class="cell1">
-        	정덴트
+        	${j.getCustomer_id()}
       </div>
       <div class="cell1">
-        10,000
+       	    <fmt:formatNumber value="${j.getCustomer_amount()}" pattern="#,###"/>
       </div>
       <div class="cell1">
-        6,000
+        	<fmt:formatNumber value="${j.getCustomer_amount() * 0.7}" pattern="#,###"/>
       </div>
       <div class="cell1">
-        4,000
+        	<fmt:formatNumber value="${j.getCustomer_amount() * 0.3}" pattern="#,###"/>
+      </div>
+      <c:if test="${j.getCustomer_payment() == 0}">
+      <div class="cell1">
+        	0
       </div>
       <div class="cell1">
-        0
+        <a href="javascript:void(0)" style="color:red;" onclick="window.open('${path}/customer/kakaopay?diagnosis_num=${j.getDiagnosis_num()}', 'kakaopay', 'resizable=no width=850, height=550'); return false;"><fmt:formatNumber value="${j.getCustomer_amount() * 0.3}" pattern="#,###"/></a>
+      </div>
+      </c:if>
+      <c:if test="${j.getCustomer_payment() == 1}">
+      <div class="cell1">
+        	<fmt:formatNumber value="${j.getCustomer_amount() * 0.3}" pattern="#,###"/>
       </div>
       <div class="cell1">
-        <a href="javascript:void(0)" style="color:red;" onclick="window.open('${path}/customer/kakaopay', 'kakaopay', 'resizable=no width=850, height=550'); return false;">4,000</a>
+        	0
       </div>
-    </div>
-    
-    <div class="row1">
-      <div class="cell1">
-        	건강보험
-      </div>
-      <div class="cell1">
-        2020-08-26
-      </div>
-      <div class="cell1">
-        	정덴트
-      </div>
-      <div class="cell1">
-        10,000
-      </div>
-      <div class="cell1">
-        6,000
-      </div>
-      <div class="cell1">
-        4,000
-      </div>
-      <div class="cell1">
-        4,000
-      </div>
-      <div class="cell1">
-        0
-      </div>
-    </div>
-    
-    <div class="row1">
-      <div class="cell1">
-        	건강보험
-      </div>
-      <div class="cell1">
-        2020-08-25
-      </div>
-      <div class="cell1">
-        	정덴트
-      </div>
-      <div class="cell1">
-        15,000
-      </div>
-      <div class="cell1">
-        9,000
-      </div>
-      <div class="cell1">
-        6,000
-      </div>
-      <div class="cell1">
-        6,000
-      </div>
-      <div class="cell1">
-        0
-      </div>
-    </div>
-    
-    <div class="row1">
-      <div class="cell1">
-        	건강보험
-      </div>
-      <div class="cell1">
-        2020-08-24
-      </div>
-      <div class="cell1">
-        	정덴트
-      </div>
-      <div class="cell1">
-        20,000
-      </div>
-      <div class="cell1">
-        13,000
-      </div>
-      <div class="cell1">
-        7,000
-      </div>
-      <div class="cell1">
-        7,000
-      </div>
-      <div class="cell1">
-        0
-      </div>
-   </div>
-   
+      </c:if>
+      </c:forEach>
+    </div>      
 </div>
 <p class="tail">* 미수금을 클릭하면 결제페이지로 이동하여 결제가 가능합니다.</p>
+<!-- 페이지 컨트롤 -->
+<table style="width:1000px; text-align:center;">
+	<tr>
+		<th align="center">
+			<!-- 게시글이 있는 경우 -->
+			<c:if test="${cnt > 0}">
+				
+				<!-- 처음[◀◀] / 이전블록[◀] -->
+				<c:if test="${startPage > pageBlock}">
+					<a href="${path}/customer/payment"> [◀◀] </a>
+					<a href="${path}/customer/payment?pageNum=${startPage - pageBlock}"> [◀] </a>
+				</c:if>
+				
+				<!-- 블록내의 페이지 번호 -->
+				<c:forEach var="i" begin="${startPage}" end="${endPage}">
+					<c:if test="${i == currentPage}">
+					<span><b>[${i}]</b></span>
+					</c:if>
+					<c:if test="${i != currentPage}">
+					<a href="${path}/customer/payment?pageNum=${i}">[${i}]</a>
+					</c:if>
+				</c:forEach>
+				<!-- 다음블록[▶] / 마지막[▶▶] -->
+				<c:if test="${pageCount > endPage}">
+					<a href="${path}/customer/payment?pageNum=${startPage + pageBlock}"> [▶] </a>
+					<a href="${path}/customer/payment?pageNum=${pageCount}"> [▶▶] </a>
+				</c:if>
+			</c:if>
+		</th>
+	</tr>
+</table>
 </fieldset>
 
 <br><br>
 
 <fieldset class="payment">
-<h3>2020년 08월 27일 진료비 내역</h3>
+<h3 id="date">0000년 00월 00일 진료비 내역</h3>
 <div class="tablePay">    
     <div class="row1 header green">
       <div class="cell1">
@@ -171,14 +190,14 @@
       </div>
     </div>
     <div class="row1">
-      <div class="cell1">
-        	10,000
+      <div class="cell1" id="total">
+        	0
       </div>
-      <div class="cell1">
-        	6,000
+      <div class="cell1" id="amount7">
+        	0
       </div>
-      <div class="cell1">
-        	4,000
+      <div class="cell1" id="amount3">
+        	0
       </div>
       <div class="cell1">
         	0
@@ -206,8 +225,8 @@
       <div class="cell1">
         	0
       </div>
-      <div class="cell1">
-        	<a href="javascript:void(0)" style="color:red;" onclick="window.open('${path}/customer/kakaopay', 'kakaopay', 'resizable=no width=850, height=550'); return false;">4,000</a>
+      <div class="cell1" id="pay">
+        	0
       </div>
       <div class="cell1">
         	0
@@ -216,7 +235,7 @@
 </div>
 <div class="light">	  		
 		<ul style="float: right;">
-       		<li style="display:inline;"><a class="large button green" onclick="window.open('${path}/customer/diagnosis', '진단서발급', 'resizable=no width=750, height=600'); return false;">진단서 발급</a></li>
+       		<li style="display:inline;"><a style="margin-left:450;" class="large button green" onclick="window.open('${path}/customer/diagnosis', '진단서발급', 'resizable=no width=750, height=600'); return false;">진단서 발급</a></li>
        		<li style="display:inline;"><a class="large button green" onclick="window.open('${path}/customer/medicalNote', '진료기록부발급', 'resizable=no width=750, height=600'); return false;">진료기록부 발급</a></li>
        		<li style="display:inline;"><a class="large button green" onclick="window.open('${path}/customer/prescription', '처방전발급', 'resizable=no width=750, height=600'); return false;">처방전 발급</a></li>
 		</ul>

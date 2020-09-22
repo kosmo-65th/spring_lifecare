@@ -42,4 +42,22 @@ public interface CustomerService{
 	
 	//예약 성공
 	public void successReservation(HttpServletRequest req, Model model);
+	
+	//예약확정된 리스트 불러오기
+	public void reservationList(HttpServletRequest req, Model model);
+	
+	//예약정보 뿌리기
+	public void getReservationInfo(HttpServletRequest req, Model model);
+	
+	//예약 취소
+	public void cancelAppointment(HttpServletRequest req, Model model);
+	
+	//결제내역리스트 출력
+	public void paymentList(HttpServletRequest req, Model model);
+	
+	//결제내용 출력
+	public void paymentInfo(HttpServletRequest req, Model model);
+	
+	//결제성공
+	public void successPay(HttpServletRequest req, Model model);
 }

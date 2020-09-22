@@ -192,6 +192,12 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
+	public CustomerVO getCustomerInfo2(String customer_id) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.getCustomerInfo2(customer_id);
+	}
+	
+	@Override
 	public DoctorVO getDoctorInfo(String doctor_id) {
 		UserDAO dao = sqlSession.getMapper(UserDAO.class);
 		return dao.getDoctorInfo(doctor_id);
@@ -238,5 +244,54 @@ public class UserDAOImpl implements UserDAO {
 		UserDAO dao = sqlSession.getMapper(UserDAO.class);
 		return dao.getDiagnosisList(doctor_id);
 	}
+
+	@Override
+	public List<ReservationVO> getReservationList(String customer_id) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.getReservationList(customer_id);
+	}
+
+	@Override
+	public List<ReservationVO> getReservationInfo(int appoint_num) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.getReservationInfo(appoint_num);
+	}
+
+	@Override
+	public int delectReservation(int appoint_num) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.delectReservation(appoint_num);
+	}
+
+	@Override
+	public int updateAppointment(int appoint_num) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.updateAppointment(appoint_num);
+	}
+
+	@Override
+	public int getDiagnosisCnt(String customer_id) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.getDiagnosisCnt(customer_id);
+	}
+	
+	@Override
+	public List<DiagnosisVO> DiagnosisList(Map<String, Object> map) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.DiagnosisList(map);
+	}
+
+	@Override
+	public List<DiagnosisVO> getDiagnosisInfo(int diagnosis_num) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.getDiagnosisInfo(diagnosis_num);
+	}
+
+	@Override
+	public int successPay(int diagnosis_num) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.successPay(diagnosis_num);
+	}
+
 }
 

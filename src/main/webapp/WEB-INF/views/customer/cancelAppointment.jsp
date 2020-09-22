@@ -6,16 +6,16 @@
 <meta charset="UTF-8">
 </head>
 <body>
-<c:if test="${insertCnt != 1}"> <!-- updateCnt 실패 -->
+<c:if test="${deleteCnt != 1}"> <!-- Cnt 실패 -->
 	<script type="text/javascript">
-	alert("예약이 실패했습니다.");
-	window.location="${path}/customer/appointment";
+	alert("예약취소가 실패했습니다.");
+	window.location="${path}/customer/confirmAppointment";
 	</script>
 </c:if>
 
-<c:if test="${insertCnt == 1}"> <!-- updateCnt 성공 -->
+<c:if test="${deleteCnt == 1}"> <!-- Cnt 성공 -->
 	<script type="text/javascript">
-	alert("예약이 성공했습니다.");
+	alert("예약취소가 성공했습니다.");
 	window.location="${path}/customer/confirmAppointment";
 	</script>
 </c:if>

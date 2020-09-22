@@ -19,6 +19,11 @@ public class CustomerVO {
 	private int customer_year;
 	private String insurance;
 	
+	// 진단
+	private String disease_code;
+	private Timestamp diagnosis_time;
+	private String diagnosis_pi;
+	
 	public int getEnabled() {
 		return enabled;
 	}
@@ -102,5 +107,24 @@ public class CustomerVO {
 	}
 	public void setInsurance(String insurance) {
 		this.insurance = insurance;
-	}	
+	}
+	public String getDisease_code() {
+		return disease_code;
+	}
+	public void setDisease_code(String disease_code) {
+		this.disease_code = disease_code;
+	}
+	public Timestamp getDiagnosis_time() {
+		return diagnosis_time;
+	}
+	public void setDiagnosis_time(Timestamp diagnosis_time) {
+		this.diagnosis_time = diagnosis_time;
+	}
+	public String getDiagnosis_pi() {
+		return diagnosis_pi;
+	}
+	public void setDiagnosis_pi(String diagnosis_pi) {
+		this.diagnosis_pi = diagnosis_pi;
+	}		
 }
+
