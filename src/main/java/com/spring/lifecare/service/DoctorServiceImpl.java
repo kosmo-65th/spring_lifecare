@@ -157,13 +157,13 @@ public class DoctorServiceImpl implements DoctorService{
 	@Override
 	public void loadCustomerInfo(HttpServletRequest req, Model model) {
 		String customer_id = (String) req.getParameter("customer_id");
-		
-		int selectCnt = 0;
 		CustomerVO vo = null;
+		CustomerVO vo2 = null;
 		vo = userDAO.getCustomerInfo(customer_id);
+		vo2 = userDAO.getCustomerInfo2(customer_id);
 		
 		model.addAttribute("vo", vo);
-		model.addAttribute("selectCnt", selectCnt);
+		model.addAttribute("vo2", vo2);
 	}
 
 	@Override
@@ -304,5 +304,6 @@ public class DoctorServiceImpl implements DoctorService{
 		String doctor_id = (String) req.getSession().getAttribute("userSession");
 		List<DiagnosisVO> list = userDAO.getDiagnosisList(doctor_id);
 		model.addAttribute("list", list);
-	}		
+	}
+	
 }

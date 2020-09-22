@@ -74,7 +74,7 @@
 		function popUp() {
 	    	var cookieCheck = getCookie("popupYN");
 	    	if (cookieCheck != "N"){
-	         	window.open('${path}/popup', 'newpop', 'width=630,height=570,left=0,top=0'); 
+	         	window.open('${path}/popup', 'newpop', 'left=0,top=0,width=630,height=570');
 	    	}
 		}
 		

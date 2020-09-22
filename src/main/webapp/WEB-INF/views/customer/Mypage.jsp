@@ -23,8 +23,8 @@
     <div class="shopMain_left">
     
 		<div class="shopMain">
-	        <h3><a href="${pathA}/user/cartList"><strong>CONFIRM</strong> 예약 조회</a></h3>
-	        <p><a href="${pathA}/user/cartList">고객님께서 예약하셨던 예약내역을 보여드립니다.</a></p>
+	        <h3><a href="${path}/customer/confirmAppointment"><strong>CONFIRM</strong> 예약 조회</a></h3>
+	        <p><a href="${path}/customer/confirmAppointment">고객님께서 예약하셨던 예약내역을 보여드립니다.</a></p>
 	    </div>
 	      
 	    <div class="shopMain">

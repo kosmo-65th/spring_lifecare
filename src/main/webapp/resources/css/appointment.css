@@ -147,3 +147,10 @@ span[class*="ico1"] {
     height: 35px;
     vertical-align: middle;
 }
+
+.ico_cancel {
+    background: url(https://www.flaticon.com/svg/static/icons/svg/1/1936.svg) no-repeat left top;
+    width: 30px; 
+    height: 35px;
+    vertical-align: middle;
+}

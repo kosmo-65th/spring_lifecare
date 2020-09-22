@@ -67,6 +67,17 @@
 </head>
 <script type="text/javascript">
 
+function logout() {
+	var chk = confirm("로그아웃 하시겠습니까?");
+	
+	if(chk){
+		document.getElementById('logout-form').submit();
+	} else {
+			alert("로그아웃 취소 되었습니다.")
+			return false;
+	}
+}
+
 //환자조회/진료 클릭시 발생 이벤트
 function resReset(){
 	$('#keyword').focus();
@@ -319,7 +330,7 @@ function drug5(drug_number){
 					</div>
 			</div>
 			<div class="column column-30">
-				<div class="user-section"><a href="#">
+				<div class="user-section"><a href="javascript:void(0)"  onclick="logout();">
 					<img src="${path_resources}img/${doctor.getDoctor_faceimg()}" alt="profile photo" class="circle float-left profile-photo" width="50" height="auto">
 					<div class="username">
 						<h4>${doctor.getDoctor_name()}</h4>
@@ -329,6 +340,9 @@ function drug5(drug_number){
 			</div>
 		</div>
 	</div>
+	<form id="logout-form" action="${path}/logout" method="POST">
+		<input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+	</form>
 	<div class="row">
 		<div id="sidebar" class="column">
 			<h5>Navigation</h5>
@@ -349,10 +363,10 @@ function drug5(drug_number){
 			                <div class="row">
 			                    <div class="col-md-5 text-center">
 			                    	<c:if test="${vo.getCustomer_gender() == '남자'}"> 
-			                        	<img class="img-thumbnail md-margin-bottom-10" src="${path_resources}images/남자.png" alt="">
+			                        	<img style="max-width:300px;" class="img-thumbnail md-margin-bottom-10" src="${path_resources}images/남자.png" alt="">
 			                        </c:if>
 			                    	<c:if test="${vo.getCustomer_gender() == '여자'}"> 
-			                        	<img class="img-thumbnail md-margin-bottom-10" src="${path_resources}images/여자.png" alt="">
+			                        	<img style="max-width:300px;" class="img-thumbnail md-margin-bottom-10" src="${path_resources}images/여자.png" alt="">
 			                        </c:if>			                        
 			                    </div>
 			                    <div class="col-md-7">
@@ -360,9 +374,18 @@ function drug5(drug_number){
 			                        <span><strong>나이:</strong> <fmt:formatNumber value="${2020 - vo.getCustomer_year()}" pattern="#,###"/>세</span> &nbsp;&nbsp;&nbsp;&nbsp;
 			                        <span><strong>성별:</strong> ${vo.getCustomer_gender()}</span>
 			                        <hr>
-			                        <span><strong>최근내원일:</strong> 2020-09-11</span> &nbsp;&nbsp;&nbsp;&nbsp;
-			                        <span><strong>진단명:</strong> 당뇨</span>
-			                        <p>(최근내원일 현병력 기재)Proin mauris odio, pharetra quis ligula non, vulputate vehicula quam. Nunc in libero vitae nunc ultricies tincidunt ut sed leo. Sed luctus dui ut congue consequat. Cras consequat nisl ante, nec malesuada velit pellentesque ac. Pellentesque nec arcu in ipsum iaculis convallis.</p>
+			                        <c:if test="${vo2.getDiagnosis_time() != null}">
+			                        <span><strong>최근내원일:</strong> ${vo2.getDiagnosis_time()}</span> &nbsp;&nbsp;&nbsp;&nbsp;
+			                        <span><strong>진단:</strong> ${vo2.getDisease_code()}</span>
+			                        <br><br>
+			                        <p><strong>병력:</strong> ${vo2.getDiagnosis_pi()}</p>
+			                        </c:if>
+			                        <c:if test="${vo2.getDiagnosis_time() == null}">
+			                        <span><strong>최근내원일:</strong> 최근기록없음</span> &nbsp;&nbsp;&nbsp;&nbsp;
+			                        <span><strong>진단:</strong> 최근기록없음</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			                        <br><br>
+			                        <p><strong>병력:</strong> 최근기록없음 &nbsp;&nbsp;&nbsp;&nbsp;</p>
+			                        </c:if>
 			                    </div>
 			                </div>    
 			            </div>
@@ -473,62 +496,7 @@ function drug5(drug_number){
 						</div>
 					</div>
 				</div>
-			</div>			
-	
-			<!--Tables-->
-			<div class="row grid-responsive">
-				<div class="column ">
-					<div class="card">
-						<div class="card-title">
-							<h3>최근 진료 내역</h3>
-						</div>
-						<div class="card-block">
-							<table>
-								<thead>
-									<tr>
-										<th style="background:#35cebe; color:white;">No</th>
-										<th style="background:#35cebe; color:white;">Diagnosis</th>
-										<th style="background:#35cebe; color:white;">Age</th>
-										<th style="background:#35cebe; color:white;">Sex</th>
-										<th style="background:#35cebe; color:white;">Date</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>1</td>
-										<td>UI Developer</td>
-										<td>23</td>
-										<td>남자</td>
-										<td>2020-00-00</td>
-									</tr>
-									<tr>
-										<td>2</td>
-										<td>Designer</td>
-										<td>30</td>
-										<td>남자</td>
-										<td>2020-00-00</td>
-									</tr>
-									<tr>
-										<td>3</td>
-										<td>UX Developer</td>
-										<td>25</td>
-										<td>남자</td>
-										<td>2020-00-00</td>
-									</tr>
-									<tr>
-										<td>4</td>
-										<td>Programmer</td>
-										<td>28</td>
-										<td>남자</td>
-										<td>2020-00-00</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-			</div>
-			
+			</div>						
 			<p class="credit">HTML5 Admin Template by <a href="https://www.medialoot.com">Medialoot</a></p>
 		</section>
 	</div>		

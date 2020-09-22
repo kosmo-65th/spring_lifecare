@@ -34,7 +34,18 @@
 	<script src='${path_resources}calendar/packages/core/main.js'></script>
 	<script src='${path_resources}calendar/packages/list/main.js'></script>
 	<script>
-
+	
+	function logout() {
+		var chk = confirm("로그아웃 하시겠습니까?");
+		
+		if(chk){
+			document.getElementById('logout-form').submit();
+		} else {
+				alert("로그아웃 취소 되었습니다.")
+				return false;
+		}
+	}
+		
   	document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
 
@@ -170,16 +181,20 @@ $(function() {
 					</div>
 			</div>
 			<div class="column column-30">
-				<div class="user-section"><a href="#">
+				<div class="user-section"><a href="javascript:void(0)"  onclick="logout();">	                                    
 					<img src="${path_resources}img/${doctor.getDoctor_faceimg()}" alt="profile photo" class="circle float-left profile-photo" width="50" height="auto">
 					<div class="username">
 						<h4>${doctor.getDoctor_name()}</h4>
 						<p>${doctor.getDoctor_major()}</p>
 					</div>
-				</a></div>
+				</a>
+				</div>
 			</div>
 		</div>
 	</div>
+	<form id="logout-form" action="${path}/logout" method="POST">
+		<input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+	</form>
 	<div class="row">
 		<div id="sidebar" class="column">
 			<h5>Navigation</h5>
