@@ -54,8 +54,7 @@
     
     
 </body>
-
-<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=03cae4fdc6ee5a8de405925656439c0d&libraries=services"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5a4dcbf8bd992d42aecc63827327a18&libraries=services"></script>
 <script>
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	mapCenter = new kakao.maps.LatLng(37.478845,126.878594), // 지도의 중심 좌표

@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/resources/setting/setting.jsp"%>
+
+<%@ page import="util.FinalString" %>
+<%! String ip =FinalString.CALLBACKIP.getValue(); %> 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,10 +38,10 @@
 				<input type="submit" class="btnclass1" value="로그인" style="cursor: pointer"> 
 				<input type="button" class="btnclass2" value="회원가입" style="cursor: pointer" onClick="location.href='${path}/preJoinIn'">
 				<div class="socialLogin">
-					<a href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=LFKH6Ooda771daTdxSSO&redirect_url=http://127.0.0.1//lifecare/naverLogin&state=3">
+					<a href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=LFKH6Ooda771daTdxSSO&redirect_url=http://<%=ip %>//lifecare/naverLogin&state=3">
 						<img src="${path_resources}img/btn_naver.png" border="0" title="네이버 아이디로 로그인" width="185" height="40" style="cursor: pointer">
 					</a> 
-					<a href="https://kauth.kakao.com/oauth/authorize?client_id=db39a7b6654b2f994af177b271416561&redirect_uri=http://localhost/lifecare/kakaoLogin&response_type=code">
+					<a href="https://kauth.kakao.com/oauth/authorize?client_id=db39a7b6654b2f994af177b271416561&redirect_uri=http://<%=ip %>/lifecare/kakaoLogin&response_type=code">
 						<img src="${path_resources}img/btn_kakao.png" alt="" style="cursor: pointer">
 					</a>
 				</div>

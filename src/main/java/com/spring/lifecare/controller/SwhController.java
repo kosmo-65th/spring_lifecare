@@ -17,7 +17,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.lifecare.persistence.UserDAO;
 import com.spring.lifecare.service.KakaoLoginService;
+import com.spring.lifecare.service.LoginService;
 import com.spring.lifecare.service.NaverLoginService;
 import com.spring.lifecare.vo.UserVO;
 
@@ -43,7 +43,7 @@ public class SwhController {
 	UserDAO userDAO;
 	
 	@Autowired
-	PasswordEncoder passwordEncoder;
+	LoginService loginService;
 
 	//메인페이지
 	@RequestMapping(value= {"/","/guest/main","/main"})
@@ -220,34 +220,15 @@ public class SwhController {
 	@ResponseBody
 	@RequestMapping("/android/androidSignIn")
 	public Map<String, String> androidSignIn(HttpServletRequest req){
-		String id = req.getParameter("id");
-		String pwd = req.getParameter("pwd");
-		Boolean loginCheck = false;
-		
-		
-		Map<String, Object> userInfo = userDAO.selectUser(id);
-		
-		System.out.println(userInfo);
-		if(userInfo != null) {
-			if(passwordEncoder.matches(pwd, (String)userInfo.get("PASSWORD"))) {
-				loginCheck = true;
-			}
-		}
-		
-		
-		Map<String, String> out = new HashMap<String, String>();
-		if(loginCheck == true) {
-			out.put("id", id);
-			out.put("enabled", String.valueOf(userInfo.get("ENABLED")));
-			out.put("customer_echeck", String.valueOf(userInfo.get("CUSTOMER_ECHECK")));
-		}else {
-			out.put("id", null);
-			out.put("enabled", null);
-			out.put("customer_echeck", null);
-		}
-		
-		System.out.println(out);
-		return out;
+		Map<String, String>  map = loginService.androidLogin(req);
+		return map;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/android/kakaoSignIn")
+	public Map<String, String> kakaoSignIn(HttpServletRequest req){
+		Map<String, String> map = loginService.kakaoSignIn(req);
+		return map;
 	}
 }
 

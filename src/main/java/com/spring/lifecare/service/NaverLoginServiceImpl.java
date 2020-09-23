@@ -25,6 +25,8 @@ import org.springframework.stereotype.Service;
 
 import com.spring.lifecare.persistence.UserDAO;
 
+import util.FinalString;
+
 @Service
 public class NaverLoginServiceImpl implements NaverLoginService{
 	@Autowired
@@ -32,6 +34,7 @@ public class NaverLoginServiceImpl implements NaverLoginService{
 	
 	String clientId = "LFKH6Ooda771daTdxSSO";
 	String clientSecret = "GWXuQveGk8";//애플리케이션 클라이언트 시크릿값";
+	String redirectIP = FinalString.CALLBACKIP.getValue();
 	
 	/*
 	public void naverLogin(HttpSession session) throws UnsupportedEncodingException {
@@ -51,7 +54,7 @@ public class NaverLoginServiceImpl implements NaverLoginService{
 		
 		String code = request.getParameter("code");
 	    String state = request.getParameter("state");
-	    String redirectURI = URLEncoder.encode("http://127.0.0.1/lifecare/naverLogin", "UTF-8");
+	    String redirectURI = URLEncoder.encode("http://"+redirectIP+"/lifecare/naverLogin", "UTF-8");
 	    String apiURL;
 	    apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&";
 	    apiURL += "client_id=" + clientId;

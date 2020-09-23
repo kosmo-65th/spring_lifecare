@@ -19,6 +19,7 @@ import com.spring.lifecare.vo.KakaoPayApprovalVO;
 import com.spring.lifecare.vo.KakaoPayReadyVO;
 
 import lombok.extern.java.Log;
+import util.FinalString;
 
 @Service
 @Log
@@ -28,13 +29,17 @@ public class KakaoPayServiceImpl implements KakaoPayService{
     private KakaoPayReadyVO kakaoPayReadyVO;
     private KakaoPayApprovalVO kakaoPayApprovalVO;
     
+    String redirectIP = FinalString.CALLBACKIP.getValue();
+    
     public String kakaoPayReady(HttpServletRequest req, Model model) {
  
         RestTemplate restTemplate = new RestTemplate();
       
+        System.out.println(redirectIP);
+        
         // 서버로 요청할 Header
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Authorization", "KakaoAK " + "1906b8f4c6cd4ecc9158233dca3ace4d");
+        headers.add("Authorization", "KakaoAK " + "db9180366a0dd2ed3df7cff2ff111ef6");
         headers.add("Accept", MediaType.APPLICATION_JSON_UTF8_VALUE);
         headers.add("Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE + ";charset=UTF-8");
 
@@ -49,9 +54,9 @@ public class KakaoPayServiceImpl implements KakaoPayService{
         params.add("quantity", "1");
         params.add("total_amount", amount);
         params.add("tax_free_amount", "100");
-        params.add("approval_url", "http://localhost/lifecare/customer/kakaopaySuccess?diagnosis_num=" + diagnosis_num);
-        params.add("cancel_url", "http://localhost/lifecare/customer/kakaopayCencel");
-        params.add("fail_url", "http://localhost/lifecare/customer/kakaopayFail");
+        params.add("approval_url", "http://"+redirectIP+"/lifecare/customer/kakaopaySuccess?diagnosis_num=" + diagnosis_num);
+        params.add("cancel_url", "http://"+redirectIP+"/lifecare/customer/kakaopayCencel");
+        params.add("fail_url", "http://"+redirectIP+"/lifecare/customer/kakaopayFail");
         HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String, String>>(params, headers);
         try {
             kakaoPayReadyVO = restTemplate.postForObject(new URI(HOST + "/v1/payment/ready"), body, KakaoPayReadyVO.class);
