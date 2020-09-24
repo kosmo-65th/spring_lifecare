@@ -19,9 +19,7 @@ import com.spring.lifecare.vo.UserVO;
 
 // 로그인이 성공한 경우 자동으로 실행
 public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
-	@Autowired
-	FooterDao dao;
-	
+
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
@@ -32,14 +30,7 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
 			
 			request.getSession().setAttribute("userSession", vo.getUserid());
 			
-			//의사의 과도 세션으로 보낸다
-			String doctor_ID= vo.getUserid();
-			String doctor_major=dao.doctorMajor(doctor_ID);
-			if(doctor_major==null) {
-				
-			}else {
-				request.getSession().setAttribute("majorSession",doctor_major);
-			}
+			
 			
 			
 			System.out.println("UserVO ==> " + vo);

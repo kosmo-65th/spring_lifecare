@@ -53,6 +53,7 @@
 				<li><a href="${path}/doctor_schedule"><em class="fa fa-table"></em> 스케쥴관리</a></li>
 				<li><a href="${path}/doctor_medicalNote"><em class="fa fa-pencil-square-o"></em> 환자조회/진료</a></li>
 				<li><a href="#alerts"><em class="fa fa-hand-o-up"></em> 진료도우미</a></li>
+				<li><a href="javascript:window.open('http://192.168.219.113:2000/standby?section=')"><em class="fa fa-hand-o-up"></em> 환자와의 채팅</a></li>
 			</ul>
 		</div>
 					

@@ -8,7 +8,7 @@
 	<ul style="list-style:none; margin-left:10px;">
 <c:forEach var="i" items="${list}">
 	<li>		
-		<a href="javascript:click('${i.getDrug_name()}');">${i.getDrug_name()}</a>
+		<a href="javascript:nameClick('${i.getDrug_name()}');">${i.getDrug_name()}</a>
 	</li>
 </c:forEach>
 

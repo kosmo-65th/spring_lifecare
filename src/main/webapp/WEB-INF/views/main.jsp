@@ -29,6 +29,7 @@
    <link rel="stylesheet" href="${path_resources_lifecare}css/versions.css">
    <link rel="stylesheet" href="${path_resources_lifecare}css/responsive.css">
    <link rel="stylesheet" href="${path_resources_lifecare}css/custom.css">
+   <link type="text/css" rel="stylesheet" href="${path_resources_customcss}findWay.css">
    
    <!-- 코로나 css -->
    <link rel="stylesheet" href="${path_resources}css/covid19css.css">
@@ -73,7 +74,7 @@
 		function popUp() {
 	    	var cookieCheck = getCookie("popupYN");
 	    	if (cookieCheck != "N"){
-	         	window.open('${path}/popup', 'newpop', 'width=630,height=570,left=0,top=0');
+	         	window.open('${path}/popup', 'newpop', 'left=0,top=0,width=630,height=570');
 	    	}
 		}
 		
@@ -86,9 +87,10 @@
 		<!-- 코로나 데이터 크롤링 -->
 		<%
 		 	Document doc2 = Jsoup.connect("http://ncov.mohw.go.kr/").get();
-	
-			Elements posts1 = doc2.body().getElementsByClass("live_right main_box_toggle");
+			
+			Elements posts1 = doc2.body().getElementsByClass("regional_patient_status_A");
 			Elements posts2 = doc2.body().getElementsByClass("live_left");
+			
 		%>
 		<!-- 코로나 데이터 크롤링 -->
 		
@@ -157,12 +159,55 @@
          </div>
       </div>
       <div align="center">
+      	<div>
+      	</div>
 		<%= posts1 %>
-		<div id="abc">
+		<div id="abc"> 
 		<%= posts2 %>
 		</div>
 	  </div>
-      <%@include file="./common/chatbot.jsp"%>  
+      <%@include file="./common/chatbot.jsp"%>
+      <br>
+      
+      <div id="map" style="width:47%;height:500px; margin:0 auto;"></div>
+      <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5a4dcbf8bd992d42aecc63827327a181&libraries=services"></script>
+      <script>
+	       var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	         mapOption = { 
+	            center: new kakao.maps.LatLng(37.478845,126.878594), // 지도의 중심좌표
+	            level: 3 // 지도의 확대 레벨
+	         };
+	
+	  		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+	
+	  		// 마커가 표시될 위치
+	  		var markerPosition  = new kakao.maps.LatLng(37.478845,126.878594); 
+	
+	  		// 마커를 생성
+	  		var marker = new kakao.maps.Marker({
+	     	position: markerPosition
+	  		});
+	
+	  		marker.setMap(map);
+      </script>  
+        <br>
+       
+		<div class="findId_area">
+        <p>TRANSFORTATION</p>
+                       지하철<br>
+                       가산디지털단지역 6번출구 나오셔서 좌측횡단보도 건너 좌측으로 10m 가시면 삼거리가 나오고 
+                       삼거리에서 우측 방향으로 직진하셔서 사거리 대각선방향 우리은행 건물 F20호입니다.<br><br>               
+                       버스<br>
+           21, 571, 652, 금천 05
+           [디지털3단지월드벤쳐센터] 정류장에서 하차<br><br>
+           
+         <p>YOUR OWN CAR</p>
+                       자가용<br>  
+                       서부간선도로를 타고 오다가 광명교를 타고 좌회전 후 첫 사거리에서 우회전<br>
+                       가리봉5거리에서 철산방향 수출의 다리를 넘어 첫 사거리(한진사거리)에서 우회전<br>
+                       남부순환도로 구로IC로 나와 좌회전<br>                                                                                        
+       </div>      
+   
       <%@include file="./common/footer.jsp" %>
       <!-- end copyrights -->
       <a href="#home" data-scroll class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
@@ -174,6 +219,7 @@
      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNUPWkb4Cjd7Wxo-T4uoUldFjoiUA1fJc&callback=myMap"></script>
      <script>
      $(function(){
+    	 
 			//검사현황
 			IS_data = {
 			    label: ["결과음성", "검사중", "결과양성"],

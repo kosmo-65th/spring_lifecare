@@ -105,6 +105,17 @@
 	
 <script>
 
+function logout() {
+	var chk = confirm("로그아웃 하시겠습니까?");
+	
+	if(chk){
+		document.getElementById('logout-form').submit();
+	} else {
+			alert("로그아웃 취소 되었습니다.")
+			return false;
+	}
+}
+
 document.addEventListener('DOMContentLoaded', function() {
 	
 	//달력을 생성할 위치를 변수 CalendarEl에 지정	
@@ -398,7 +409,6 @@ $(function() {
 
 </script>
 <body>
-
 	<div class="navbar">
 		<div class="row">
 			<div class="column column-30 col-site-title"><a href="${path}/doctor/doctor_main" class="site-title float-left">Lifecare</a></div>
@@ -409,7 +419,7 @@ $(function() {
 					</div>
 			</div>
 			<div class="column column-30">
-				<div class="user-section"><a href="#">
+				<div class="user-section"><a href="javascript:void(0)"  onclick="logout();">
 					<img src="${path_resources}img/${doctor.getDoctor_faceimg()}" alt="profile photo" class="circle float-left profile-photo" width="50" height="auto">
 					<div class="username">
 						<h4>${doctor.getDoctor_name()}</h4>
@@ -419,6 +429,9 @@ $(function() {
 			</div>
 		</div>
 	</div>
+	<form id="logout-form" action="${path}/logout" method="POST">
+		<input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+	</form>
 	<div class="row">
 		<div id="sidebar" class="column">
 			<h5>Navigation</h5>
@@ -427,6 +440,7 @@ $(function() {
 				<li><a href="${path}/doctor/doctor_schedule"><em class="fa fa-table"></em> 스케쥴관리</a></li>
 				<li><a href="javascript:void(0);" onclick="resReset();"><em class="fa fa-pencil-square-o"></em> 환자조회/진료</a></li>
 				<li><a href="#alerts"><em class="fa fa-hand-o-up"></em> 진료도우미</a></li>
+				<li><a href="javascript:window.open('http://192.168.219.113:2000/standby?section=')"><em class="fa fa-hand-o-up"></em> 환자와의 채팅</a></li>
 			</ul>
 		</div>
 		

@@ -14,6 +14,7 @@
 	}
 </script>
 <style type="text/css">
+
 @media (min-width:1930px) {
 
     .chatbot{

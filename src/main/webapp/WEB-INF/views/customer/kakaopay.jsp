@@ -5,15 +5,52 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<script type="text/javascript">
+$(document).ready(function(){
+	var diagnosis_num = $('input[name=diagnosis_num]').val();
+	
+	var obj = new Object();
+	var customer_payment;
+	var customer_amount;
+	var diagnosis_time;
+	var pay;
+	
+	$.ajax({
+		url : '${pageContext.request.contextPath}/customer/paymentInfo?diagnosis_num=' + diagnosis_num,
+		type : 'GET',   // 전송방식
+		dataType : 'json', // 요청한 데이터 형식 ("html", "xml", "json", "text")
+		success : function(obj) { // 콜백함수 - 전송에 성공했을 때의 결과가 data에 전달된다.
+			for(var i=0; i<obj.length; i++) {
+				customer_payment = obj[i].customer_payment; 
+				customer_amount = obj[i].customer_amount;
+				diagnosis_time = obj[i].diagnosis_time;
+			}
+			var today = new Date(diagnosis_time);
+			var year = today.getFullYear(); // 년도
+			var month = today.getMonth() + 1;  // 월
+			var date = today.getDate();
+			var day = String(year) + "년 " + String(month) + "월 " + String(date) + "일";
+			
+			var amount7 = customer_amount * 0.7; // 공단부담금
+			var amount3 = customer_amount * 0.3; // 본인부담금			
+			$('#date').html(day); // 날짜 뿌리기
+			$('#total').html(customer_amount.toLocaleString());
+			$('#amount7').html("-" + Math.round(amount7).toLocaleString());
+			$('#amount3').html(Math.round(amount3).toLocaleString());
+			$('#amount').val(Math.round(amount3));
+		},
+		error : function() {
+			alert('오류');
+		}
+	});
+});
+</script>
 </head>
-<body onresize="parent.resizeTo(870,550)" onload="parent.resizeTo(870,550)">
-
+<body onresize="parent.resizeTo(870,550)" onload="parent.resizeTo(870,550)">	
 <article id="container" class="mnPayment pgPayment">
 	<section class="productName">
 		<div class="innerContent">
 	  <p><strong>결제하기</strong></p>
-	  <span>(0000년 00월 00일 00시 00분)</span>
 		</div>
 	</section>
 
@@ -52,17 +89,17 @@
     <ul class="productPriceInfo">
       <li>
         <strong class="title">기간</strong>
-        <span>0000년 00월 00일</span>
+        <span id="date">0000년 00월 00일</span>
       </li>
       <li>
         <strong class="title">총 진료비</strong>
-        <span>7,900원</span>
+        <span id="total">0원</span>
       </li>
-      <li id="productDiscountSummary"><strong class="title">공단부담금</strong><span>-3,950원</span></li>
+      <li id="productDiscountSummary"><strong class="title">공단부담금</strong><span id="amount7">0원</span></li>
       <li id="cashDiscount"></li>
       <li class="result">
         <strong class="title">본인부담금액 <span>(VAT 별도)</span></strong>
-        <span><strong id="payPrice">3,950원</strong></span>
+        <span><strong id="amount3">0원</strong></span>
       </li>
       <li class="cardPoint" style="display:none">
         <strong class="title">포인트 사용 시</strong>
@@ -71,6 +108,8 @@
     </ul>
 <form action="${path}/customer/kakaoPayGo" method="post" name="pay">
 <input type = "hidden" name="${_csrf.parameterName}" value = "${_csrf.token}">
+<input type="hidden" name="diagnosis_num" id="diagnosis_num" value="${diagnosis_num}">
+<input type="hidden" name="amount" id="amount" value="">
 	<div class="btns">
 	  <button class="btnAccent--l" id="btnBuy" onClick="javascript:document.pay.submit()">결제하기</button>
 	</div>

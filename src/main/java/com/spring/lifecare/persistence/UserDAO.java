@@ -19,8 +19,8 @@ public interface UserDAO {
 	 //카카오 회원찾기
 	 public Map<String, String> kakaoFindId(String kakaoId);
 	
-	//네이버 회원찾기
-	public Map<String, String> naverFindId(String naverId);
+	 //네이버 회원찾기
+	 public Map<String, String> naverFindId(String naverId);
 	
 	 //아이디 중복확인
      public int idCheck(String customer_id);
@@ -42,9 +42,6 @@ public interface UserDAO {
 	 
 	 // 아이디 찾기
 	 public String findId(String customer_phone); 
-	 
-	 //회원이 직접 정보 수정
-	 public int modify(CustomerVO vo);
 	 
 	 //의사 아이디 중복확인
      public int CheckId(String doctor_id);
@@ -104,13 +101,16 @@ public interface UserDAO {
 	 public List<DrugVO>searchDrug(Map<String, Object> map);
 
 	 //회사 keyup
-	 public List<DrugVO>searchEnptNext(String name);
+	 public List<DrugVO>searchEnptNext(String entp);
 
 	 //약찾기 수량
 	 public int searchDrugCount(Map<String, Object> map);
 	 
 	 //약상세
 	 public DrugVO drugDetail(int drug_number);
+
+	 //회원정보 불러오기2
+	 public CustomerVO getCustomerInfo2(String customer_id);
 	 
 	 //의사정보 불러오기
 	 public DoctorVO getDoctorInfo(String doctor_id);
@@ -135,4 +135,28 @@ public interface UserDAO {
 	 
 	 //최근진료기록 리스트
 	 public List<DiagnosisVO> getDiagnosisList(String doctor_id);
+	 
+	 //예약확정된 리스트 불러오기
+	 public List<ReservationVO> getReservationList(String customer_id);
+	 
+	 //예약정보 뿌려주기
+	 public List<ReservationVO> getReservationInfo(int appoint_num);
+	 
+	 //예약취소하기 (reservation 테이블에서 데이터 삭제)
+	 public int delectReservation(int appoint_num);
+	 
+	 //예약취소하기 (appoint 테이블 데이터 업데이트)
+	 public int updateAppointment(int appoint_num);
+	 
+	 //결제내역 갯수 구하기
+	 public int getDiagnosisCnt(String customer_id);
+	 
+	 //결제내역 리스트 
+	 public List<DiagnosisVO> DiagnosisList(Map<String, Object> map);
+	 
+	 //예약정보 뿌려주기
+	 public List<DiagnosisVO> getDiagnosisInfo(int diagnosis_num);
+	 
+	 //결제성공 update
+	 public int successPay(int diagnosis_num);
 }

@@ -75,12 +75,11 @@
 			where rNum >=#{startList} and rNum <=#{endList}
 		]]>
    </select>
-   
    <!--의사 major 구하기  -->
    <select id="doctorMajor" resultType="String" parameterType="String">
    		SELECT doctor_major
 		FROM doctor
-		WHERE doctor_ID=#{doctor_ID}
+		WHERE doctor_ID=#{doctorId}
    </select>
    
    

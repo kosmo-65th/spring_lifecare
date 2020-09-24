@@ -1,6 +1,15 @@
 package com.spring.lifecare.controller;
 
+import java.awt.List;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +20,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.spring.lifecare.persistence.FooterDao;
+import com.spring.lifecare.persistence.UserDAO;
 import com.spring.lifecare.service.CustomerService;
 import com.spring.lifecare.service.DoctorService;
 import com.spring.lifecare.service.KakaoPayService;
+import com.spring.lifecare.vo.AppointmentVO;
+import com.spring.lifecare.vo.DoctorVO;
 
 import lombok.extern.java.Log;
 
@@ -30,6 +43,12 @@ public class JinController {
     @Autowired
     DoctorService doctor;
     
+    @Autowired
+    UserDAO dao;
+    
+    @Autowired
+    FooterDao doctorMajor;
+    
     JSONArray jsonArray = new JSONArray();
     
     //메인페이지 팝업
@@ -39,48 +58,56 @@ public class JinController {
 		return "common/popup";
 	}
     
+ 	//카카오 결제 - popup
+ 	@RequestMapping("/customer/kakaopay")
+ 	public String kakaopay(HttpServletRequest req, Model model) {
+ 		int diagnosis_num = Integer.parseInt(req.getParameter("diagnosis_num"));
+ 		req.setAttribute("diagnosis_num", diagnosis_num);
+ 		
+ 		return "customer/kakaopay";
+ 	}
+ 	
     //카카오페이- QR코드 페이지 이동
     @RequestMapping("/customer/kakaoPayGo")
-    public String kakaoPay() {
-        return "redirect:" + kakaopay.kakaoPayReady();
+    public String kakaoPay(HttpServletRequest req, Model model) {
+        return "redirect:" + kakaopay.kakaoPayReady(req,model);
     }
     
     //카카오페이 - 결제완료 페이지
     @GetMapping("/customer/kakaopaySuccess")
-    public String kakaoPaySuccess(@RequestParam("pg_token") String pg_token, Model model) {
+    public String kakaoPaySuccess(@RequestParam("pg_token") String pg_token, HttpServletRequest req, Model model) {
         log.info("kakaoPaySuccess get............................................");
         log.info("kakaoPaySuccess pg_token : " + pg_token);
-        // 결제테이블에 insert 해야함
+        customer.successPay(req, model);
         model.addAttribute("info", kakaopay.kakaoPayInfo(pg_token));
         return "customer/kakaopaySuccess";
     }
     
     //카카오 페이 결제 취소
  	@RequestMapping("/customer/kakaopayCancel")
- 	public String kakaopayCancel(Model model) {
- 		
+ 	public String kakaopayCancel(Model model) { 		
  		return "customer/kakaopayCancel";
  	}
  	
     //카카오 페이 결제 실패
  	@RequestMapping("/customer/kakaopayFail")
- 	public String kakaopayFail(Model model) {
- 		
+ 	public String kakaopayFail(Model model) {		
  		return "customer/kakaopayFail";
  	}
  	
     //결제할 내용 리스트 출력
  	@RequestMapping("/customer/payment")
- 	public String payment(Model model) {
- 		
+ 	public String payment(HttpServletRequest req, Model model) {
+ 		customer.paymentList(req, model);
  		return "customer/payment";
  	}
  	
- 	//카카오 결제 - popup
- 	@RequestMapping("/customer/kakaopay")
- 	public String kakaopay(Model model) {
- 		
- 		return "customer/kakaopay";
+ 	//결제정보 출력
+ 	@RequestMapping("/customer/paymentInfo")
+ 	public @ResponseBody JSONArray paymentInfo(HttpServletRequest req, Model model) { 		
+ 		customer.paymentInfo(req, model);
+ 		jsonArray = (JSONArray)req.getAttribute("jsonArray");
+ 		return jsonArray;
  	}
  	
  	//진단서 폼 - 프린트
@@ -106,9 +133,13 @@ public class JinController {
 	
     // 의사 로그인후 메인페이지
     @RequestMapping("/doctor/doctor_main")
-    public String doctor_main(HttpServletRequest req, Model model) {
+    public String doctor_main(HttpServletRequest req, Model model, HttpSession session) {
     	doctor.loadDoctorInfo(req, model);
     	doctor.diagnosisList(req, model);
+    	
+    	req.getSession().setAttribute("major", doctorMajor.doctorMajor((String)session.getAttribute("userSession")));
+    	
+    	
     	return "doctor/doctor_main";
     }
     
@@ -244,6 +275,29 @@ public class JinController {
  		return "customer/appointPro";
  	}
  	
+ 	// 예약 확인
+ 	@RequestMapping("/customer/confirmAppointment")
+ 	public String confirmAppointment(HttpServletRequest req, Model model) { 		 		
+ 		customer.loadInfo(req, model); // 고객이름 불러오기
+ 		customer.reservationList(req, model);
+ 		return "customer/confirmAppointment";
+ 	}
+ 	
+ 	// 예약 정보 뿌리기
+ 	@RequestMapping("/customer/getReservationInfo")
+ 	public @ResponseBody JSONArray getReservationInfo(HttpServletRequest req, Model model) { 		
+ 		customer.getReservationInfo(req, model);		
+ 		jsonArray = (JSONArray)req.getAttribute("jsonArray");
+ 		return jsonArray;
+ 	}
+ 	
+ 	// 예약 취소
+ 	@RequestMapping("/customer/cancelAppointment")
+ 	public String cancelAppointment(HttpServletRequest req, Model model) { 		 		
+ 		customer.cancelAppointment(req, model);
+ 		return "customer/cancelAppointment";
+ 	}
+ 	
  	// 관리자 결산페이지
  	@RequestMapping("/admin/summary")
  	public String summary(Model model) {
@@ -251,4 +305,60 @@ public class JinController {
  		return "host/Summary";
  	}
  	
+	//////////////////////////////안드로이드 관련
+ 	// 의사 리스트 뿌려주기
+	@ResponseBody
+	@RequestMapping("/android/doctorList")
+	public ArrayList<Map<String, String>> doctorList(HttpServletRequest req){
+		String major = req.getParameter("major");					
+		
+		ArrayList<Map<String, String>> out = new ArrayList<Map<String, String>>();
+		
+		ArrayList<DoctorVO> list = dao.getDoctorList();
+		for(DoctorVO vo : list) {
+			if(vo.getDoctor_major().equals(major)) {
+				Map<String, String> map = new HashMap<String, String>();
+				
+				map.put("doctor_id", vo.getDoctor_id());
+				map.put("doctor_major", vo.getDoctor_major());
+				map.put("doctor_name", vo.getDoctor_name());
+				map.put("doctor_position", vo.getDoctor_position());
+				
+				out.add(map);
+			}
+		}				
+		System.out.println(out);
+		return out;
+	}
+	
+	// 가능한 날짜와 시간 뿌려주기
+	@ResponseBody
+	@RequestMapping("/android/dateList")
+	public ArrayList<Map<String, Object>> dateList(HttpServletRequest req){
+		String doctor_id = req.getParameter("doctor_id");							
+		
+		ArrayList<Map<String, Object>> out = new ArrayList<Map<String, Object>>();
+		
+		Calendar cal = Calendar.getInstance();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyMMdd");
+		int datestr = Integer.parseInt(sdf.format(cal.getTime())); // 200924 형식
+		
+		ArrayList<AppointmentVO> list = dao.getTimeList();
+		for(AppointmentVO vo : list) {
+			if(vo.getDoctor_id().equals(doctor_id)) {
+				if(Integer.parseInt(vo.getAppoint_date()) > datestr) {
+					Map<String, Object> map = new HashMap<String, Object>();
+					String appoint_num = Integer.toString(vo.getAppoint_num());
+					String date = "20" + vo.getAppoint_date() + " " + vo.getAppoint_time();
+					map.put("doctor_id", vo.getDoctor_id());
+					map.put("appoint_num", appoint_num);
+					map.put("appoint_date", date);				
+					out.add(map);
+				}
+			}
+		}				
+		System.out.println(out);
+		return out;
+	}
 }

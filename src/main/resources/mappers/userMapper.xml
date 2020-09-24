@@ -103,7 +103,7 @@
 		select doctor_id, appoint_num, SUBSTR(appoint_date,1,2) || SUBSTR(appoint_date,4,2) || SUBSTR(appoint_date,7,2) as appoint_date, appoint_time
   		from appointment
  		where appoint_enable = 0
- 		order by appoint_time
+ 		order by appoint_date, appoint_time
    </select>
    
    <!-- appoint 테이블 예약불가로 update -->
@@ -124,7 +124,19 @@
    
    <!-- 회원정보 불러오기 -->
    <select id="getCustomerInfo" resultType="com.spring.lifecare.vo.CustomerVO" parameterType="String">
-   		select * from customer where customer_id = #{customer_id}
+   		 select customer_id, customer_name, customer_gender, customer_year 
+   		  from customer
+  		 where customer_id = #{customer_id}
+   </select>
+   
+   <!-- 회원정보 불러오기2 -->
+   <select id="getCustomerInfo2" resultType="com.spring.lifecare.vo.CustomerVO" parameterType="String">
+		 select ROWNUM, c.customer_id, c.customer_name, c.customer_gender, c.customer_year, d.disease_code, d.diagnosis_time, d.diagnosis_pi 
+   		  from customer c, diagnosis d 
+  		 where c.customer_id = #{customer_id}
+    	   and c.customer_id = d.customer_id 
+    	   and ROWNUM >= 1
+  		 order by d.diagnosis_time DESC
    </select>
    
    <!-- 임시 비밀번호 부여 메일 -->
@@ -132,7 +144,7 @@
 		select count(*) from customer where customer_id=#{customer_id} AND customer_email=#{customer_email}
 	</select>
 
-  <!--  /////////////////////////// 약찾기////////////////////////// -->
+  <!--  약찾기 -->
    <select id="searchDrug" parameterType="java.util.Map" resultType="com.spring.lifecare.vo.DrugVO">
    		SELECT * FROM ( 
         SELECT  drug_number ,drug_name, drug_enptname, drug_shape , drug_productimage, drug_frontShape ,drug_formulation , drug_color,drug_size_l, drug_size_s,drug_size_w,drug_category ,drug_division,drug_license_date,drug_effect ,drug_storage, drug_expiration_date,drug_dosage,drug_additives, drug_precautions,rowNum rNum
@@ -633,7 +645,7 @@
 	   		</when>
 	   		
 	   	
-		<!-- 5C1	 -->
+		<!-- 5C1 -->
 	   		<when test="drug_name.isEmpty()">
 	   			drug_enptname like '%'||#{drug_enptname}||'%'
 	   			and 
@@ -720,10 +732,26 @@
  	
  	<!-- 약 회사 keyup -->
  	<select id="searchEnptNext" resultType="com.spring.lifecare.vo.DrugVO">
- 		SELECT drug_enptname from DRUG 
+ 		SELECT distinct drug_enptname from DRUG 
  		where drug_enptname like '%'||#{entp}||'%' 
  	</select>
 
+	<!-- 약 리스트 keyup -->
+   <select id="getDrugList" resultType="com.spring.lifecare.vo.DrugVO">
+	  	SELECT  drug_number, drug_name 
+		FROM(
+		SELECT  drug_number, drug_name , rowNum rNum  
+		FROM( SELECT  drug_number, drug_name
+            FROM DRUG 
+            WHERE drug_name like '%'||#{drug}||'%'
+	  		order by drug_name
+	  		)   
+     )
+	  	<![CDATA[
+	  	WHERE rNum >0 AND rNum<=10
+	  	]]>
+   </select>
+   
    <!-- 의사정보 불러오기 -->
    <select id="getDoctorInfo" resultType="com.spring.lifecare.vo.DoctorVO" parameterType="String">
    		select * from doctor where doctor_id = #{doctor_id}
@@ -733,6 +761,7 @@
    <select id="getAppointList" resultType="com.spring.lifecare.vo.AppointmentVO">
 		select doctor_id, appoint_num, SUBSTR(appoint_date,1,2) || SUBSTR(appoint_date,4,2) || SUBSTR(appoint_date,7,2) as appoint_date, appoint_time
   		from appointment
+  		order by appoint_date, appoint_time
    </select>
    
     <!-- appointment 테이블 예약추가 -->
@@ -753,14 +782,8 @@
   		where disease_name like '%'||#{disease}||'%'
    </select>
    
-   <!-- 약 리스트 불러오기 -->
-   <select id="getDrugList" resultType="com.spring.lifecare.vo.DrugVO">
-		select drug_number, drug_name
-  		from drug
-  		where drug_name like '%'||#{drug}||'%'
-   </select>
    
-   <!-- 회원가입 처리 -->
+   <!-- 진료기록 처리 -->
    <insert id ="insertDiagnosis" parameterType="com.spring.lifecare.vo.DiagnosisVO">
      	INSERT INTO diagnosis 
      	values(diagnosis_seqNum.nextval, 
@@ -820,11 +843,75 @@
    <!-- 진료리스트 -->
    <select id="getDiagnosisList" resultType="com.spring.lifecare.vo.DiagnosisVO">
    		<![CDATA[
-   		select ROWNUM, c.insurance, c.customer_name, c.customer_gender, c.customer_year, d.disease_code, d.diagnosis_time
+   		select ROWNUM, c.insurance, c.customer_name, c.customer_gender, c.customer_year, d.disease_code, d.diagnosis_time 
    		  from customer c, diagnosis d
-   		 where c.customer_id = d.customer_id and d.doctor_id = #{doctor_id} and ROWNUM <= 5
+   		 where c.customer_id = d.customer_id 
+   		   and d.doctor_id = #{doctor_id} 
+   		   and ROWNUM <= 5
    		 order by d.diagnosis_time DESC
    		]]>
    </select>
+   
+   <!-- 예약확정된 리스트 -->
+   <select id="getReservationList" resultType="com.spring.lifecare.vo.ReservationVO">
+   		<![CDATA[
+   		select c.insurance, d.doctor_name, d.doctor_major, r.reservation_date, r.appoint_num
+   		  from customer c, doctor d, hospital_reservation r
+   		 where r.customer_id = c.customer_id
+   		   and r.doctor_id = d.doctor_id
+   		   and c.customer_id = #{customer_id}
+   		   and r.reservation_date > sysdate
+   		 order by r.reservation_date DESC
+   		]]>
+   </select>
+   
+   <!-- 예약정보 -->
+   <select id="getReservationInfo" resultType="com.spring.lifecare.vo.ReservationVO">
+		select d.doctor_major, d.doctor_name, r.reservation_date
+  		  from doctor d, hospital_reservation r
+  		 where r.doctor_id = d.doctor_id
+  		   and appoint_num = #{appoint_num}
+   </select>
+   
+   <!-- reservation 테이블에서 데이터 삭제 -->
+   <delete id="delectReservation" parameterType="int">
+	  delete hospital_reservation 
+	  WHERE appoint_num = #{appoint_num} 
+   </delete>
+   
+   <!-- appointment 테이블에서 데이터 수정 -->
+   <update id="updateAppointment" parameterType="int">
+	  UPDATE appointment set appoint_enable = 0 WHERE appoint_num = #{appoint_num} 
+   </update>
+   
+   <!-- 결제내역 갯수 구하기 -->
+   <select id="getDiagnosisCnt" resultType="int">
+   		SELECT count(*) as cnt FROM diagnosis where customer_id = #{customer_id}
+   </select>
+   
+   <!-- 결재내역 리스트 -->
+   <select id="DiagnosisList" resultType="com.spring.lifecare.vo.DiagnosisVO" parameterType="java.util.Map">
+   		<![CDATA[
+		SELECT *
+		FROM(SELECT diagnosis_num, diagnosis_time, customer_id, customer_amount, customer_payment, rowNum as rNum
+			   FROM(SELECT * FROM diagnosis
+				 	 order by diagnosis_time desc))
+		 WHERE rNum >= #{start} and rNum <= #{end} and customer_id = #{customer_id}
+   		 ]]>
+   </select>
+
+   <!-- 예약정보 -->
+   <select id="getDiagnosisInfo" resultType="com.spring.lifecare.vo.DiagnosisVO">
+		select *
+  		  from diagnosis
+  		 where diagnosis_num = #{diagnosis_num}
+   </select>
+   
+   <!-- 결제성공 -->
+   <update id="successPay" parameterType="int">
+   		UPDATE diagnosis set customer_payment = 1 WHERE diagnosis_num = #{diagnosis_num}
+   </update>
+   
+   
 </mapper>  	  
 

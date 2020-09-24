@@ -16,24 +16,38 @@ public class MarController {
 	
 	@Autowired DrugService service;
 	@Autowired DoctorService Dservice;
-	 
-//	 @RequestMapping(value="/drugSearch", method=RequestMethod.POST)
-//	 @ResponseBody 
-//	 public DrugVO drugSearch(@RequestParam("entp_name") String entp_name, Model model) {
-//		 return service.searchDrug(entp_name);
-//	 }
 	
-	
+	//약 검색
 	@RequestMapping("/drugSearch")
 	public String drugSearch(HttpServletRequest req, Model model){
 		return "drug/drugSearch";
 	}
-	
+	//약 검색 결과출력
 	@RequestMapping("/drugSearchPro")
 	public String drugSearchPro(HttpServletRequest req, Model model){
 		service.searchDrug(req, model);
 		return "drug/drugSearch";
 	}
+
+	//약 검색 세부
+	@RequestMapping("/drugDetail")
+	public String drugDetail(HttpServletRequest req, Model model) {
+		service.drugDetail(req, model);
+		return "drug/drugDetail";
+	}
+	
+	//안드로이드 약 검색
+	@RequestMapping("/android_drugSearch")
+	public String android_drugSearch(HttpServletRequest req, Model model){
+		return "drug/android_drugSearch";
+	}
+	//안드로이드 약 검색 결과출력
+	@RequestMapping("/android_drugSearchPro")
+	public String android_drugSearchPro(HttpServletRequest req, Model model){
+		service.searchDrug(req, model);
+		return "drug/android_drugSearchPro";
+	}
+
 	
 	//약 이름 keyup
 	@RequestMapping("/drug_name_next")
@@ -48,25 +62,8 @@ public class MarController {
 		return "drug/drug_enptname_next";
 	}
 	
-//	@RequestMapping("/drug_name_next")
-//	public String drug_name_next(HttpServletRequest req, Model model){
-//		service.searchNametNext(req, model);
-//		return "drug/drug_name_next";
-//	}
-	
-	@RequestMapping("/drugDetail")
-	public String drugDetail(HttpServletRequest req, Model model) {
-		service.drugDetail(req, model);
-		return "drug/drugDetail";
-	}
 	
 
-	@RequestMapping("/NewFile")
-	public String NewFile(Model model) {
-		
-		return "drug/NewFile";
-	}
-	
 	
 }
 	

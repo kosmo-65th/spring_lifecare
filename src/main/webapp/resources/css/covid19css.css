@@ -30,6 +30,12 @@
 .c_chart_is .cc_figure p .num_rnum {display:inline-block; font-family:'Century Gothic'; font-size:16px; font-weight:600; line-height:20px; letter-spacing:0; color:#174069;}
 .c_chart_is .cc_figure p em {display:inline-block; font-size:12px; line-height:16px; margin-left:2px;}
 .c_chart_is .cc_figure p .num_percentage {display:inline-block; font-family:'Century Gothic'; font-size:12px; font-weight:600; line-height:15px; letter-spacing:0; color:#174069;}
+br{
+	display:contents;	
+}
+table.num.midsize{
+	border:1px solid #E6E6E6;
+}
 
 .c_chart_rpr_A {margin-top:24px;}
 .c_chart_rpr_A .cc_graph {height:170px; margin:0 auto;}
@@ -101,7 +107,7 @@
 .rir_text > div > p {display:block; font-family:'Lato'; font-size:24px; line-height:32px;}
 
 /* regional_patient_status_A - map */
-.regional_patient_status_A {display:table; table-layout:fixed; width:1300px; border:1px solid #dcdcdc; margin-top:16px;}
+.regional_patient_status_A {display:table; table-layout:fixed; width:75%; border:1px solid #dcdcdc; margin-top:16px;} 
 .regional_patient_status_A > div {display:table-cell; vertical-align:top; padding:20px 24px;}
 .regional_patient_status_A .rpsa_map {width:65%; padding-bottom:32px;border-top:4px solid #164068}
 .regional_patient_status_A .rpsa_detail {position:relative; background:#fff; border-top:4px solid #164068;}
