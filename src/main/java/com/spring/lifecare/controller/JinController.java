@@ -1,5 +1,13 @@
 package com.spring.lifecare.controller;
 
+import java.awt.List;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.json.simple.JSONArray;
@@ -11,9 +19,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.spring.lifecare.persistence.UserDAO;
 import com.spring.lifecare.service.CustomerService;
 import com.spring.lifecare.service.DoctorService;
 import com.spring.lifecare.service.KakaoPayService;
+import com.spring.lifecare.vo.AppointmentVO;
+import com.spring.lifecare.vo.DoctorVO;
 
 import lombok.extern.java.Log;
 
@@ -29,6 +40,9 @@ public class JinController {
     
     @Autowired
     DoctorService doctor;
+    
+    @Autowired
+    UserDAO dao;
     
     JSONArray jsonArray = new JSONArray();
     
@@ -282,4 +296,60 @@ public class JinController {
  		return "host/Summary";
  	}
  	
+	//////////////////////////////안드로이드 관련
+ 	// 의사 리스트 뿌려주기
+	@ResponseBody
+	@RequestMapping("/android/doctorList")
+	public ArrayList<Map<String, String>> doctorList(HttpServletRequest req){
+		String major = req.getParameter("major");					
+		
+		ArrayList<Map<String, String>> out = new ArrayList<>();
+		
+		ArrayList<DoctorVO> list = dao.getDoctorList();
+		for(DoctorVO vo : list) {
+			if(vo.getDoctor_major().equals(major)) {
+				Map<String, String> map = new HashMap<>();
+				
+				map.put("doctor_id", vo.getDoctor_id());
+				map.put("doctor_major", vo.getDoctor_major());
+				map.put("doctor_name", vo.getDoctor_name());
+				map.put("doctor_position", vo.getDoctor_position());
+				
+				out.add(map);
+			}
+		}				
+		System.out.println(out);
+		return out;
+	}
+	
+	// 가능한 날짜와 시간 뿌려주기
+	@ResponseBody
+	@RequestMapping("/android/dateList")
+	public ArrayList<Map<String, Object>> dateList(HttpServletRequest req){
+		String doctor_id = req.getParameter("doctor_id");							
+		
+		ArrayList<Map<String, Object>> out = new ArrayList<>();
+		
+		Calendar cal = Calendar.getInstance();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyMMdd");
+		int datestr = Integer.parseInt(sdf.format(cal.getTime())); // 200924 형식
+		
+		ArrayList<AppointmentVO> list = dao.getTimeList();
+		for(AppointmentVO vo : list) {
+			if(vo.getDoctor_id().equals(doctor_id)) {
+				if(Integer.parseInt(vo.getAppoint_date()) > datestr) {
+					Map<String, Object> map = new HashMap<>();
+					String appoint_num = Integer.toString(vo.getAppoint_num());
+					String date = "20" + vo.getAppoint_date() + " " + vo.getAppoint_time();
+					map.put("doctor_id", vo.getDoctor_id());
+					map.put("appoint_num", appoint_num);
+					map.put("appoint_date", date);				
+					out.add(map);
+				}
+			}
+		}				
+		System.out.println(out);
+		return out;
+	}
 }

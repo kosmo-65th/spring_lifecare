@@ -103,7 +103,7 @@
 		select doctor_id, appoint_num, SUBSTR(appoint_date,1,2) || SUBSTR(appoint_date,4,2) || SUBSTR(appoint_date,7,2) as appoint_date, appoint_time
   		from appointment
  		where appoint_enable = 0
- 		order by appoint_time
+ 		order by appoint_date, appoint_time
    </select>
    
    <!-- appoint 테이블 예약불가로 update -->
@@ -761,6 +761,7 @@
    <select id="getAppointList" resultType="com.spring.lifecare.vo.AppointmentVO">
 		select doctor_id, appoint_num, SUBSTR(appoint_date,1,2) || SUBSTR(appoint_date,4,2) || SUBSTR(appoint_date,7,2) as appoint_date, appoint_time
   		from appointment
+  		order by appoint_date, appoint_time
    </select>
    
     <!-- appointment 테이블 예약추가 -->
