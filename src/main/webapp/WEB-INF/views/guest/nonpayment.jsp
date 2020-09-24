@@ -199,11 +199,11 @@
 						<a href="nonpayment?code=1&word=${word}">◀◀  </a>
 							<c:choose>
 								<c:when test="${nowPage==1}">
-									<a href="nonpayment?code=1&nowPage=${nowPage}&word=${word}">◀  </a>
+									<a href="nonpayment?code=1&nowPage=${nowPage}&word=${word}">&nbsp;&nbsp; ◀  &nbsp;&nbsp; </a>
 									<!--페이지가 1보다 더이상 안작아지도록  -->
 								</c:when>
 								<c:otherwise>
-									<a href="nonpayment?code=1&nowPage=${nowPage-1}&word=${word}">◀  </a>
+									<a href="nonpayment?code=1&nowPage=${nowPage-1}&word=${word}">&nbsp; &nbsp;◀  &nbsp;&nbsp;</a>
 								</c:otherwise>
 							</c:choose>
 							
@@ -233,10 +233,10 @@
 						 	<c:choose>
 						 		<c:when test="${nowPage==totalBlock}">
 						 		<!--최종 페이지보다 더 뒤로 못가게  --> 
-						 			<a href="nonpayment?code=1&nowPage=${nowPage}&word=${word}"> ▶</a>
+						 			<a href="nonpayment?code=1&nowPage=${nowPage}&word=${word}">&nbsp;&nbsp; ▶&nbsp;&nbsp;</a>
 						 		</c:when>
 						 		<c:otherwise>
-						 			<a href="nonpayment?code=1&nowPage=${nowPage+1}&word=${word}">  ▶</a>
+						 			<a href="nonpayment?code=1&nowPage=${nowPage+1}&word=${word}">&nbsp;&nbsp;  ▶&nbsp;&nbsp;</a>
 						 		</c:otherwise>
 						 	</c:choose>
 						<a href="nonpayment?code=1&nowPage=${totalBlock}&word=${word}"> ▶▶</a>
@@ -537,11 +537,11 @@
 						<a href="nonpayment?code=4&word=${word}">◀◀  </a>
 							<c:choose>
 								<c:when test="${nowPage==1}">
-									<a href="nonpayment?code=4&nowPage=${nowPage}&word=${word}">◀  </a>
+									<a href="nonpayment?code=4&nowPage=${nowPage}&word=${word}">&nbsp;◀  &nbsp;</a>
 									<!--페이지가 1보다 더이상 안작아지도록  -->
 								</c:when>
 								<c:otherwise>
-									<a href="nonpayment?code=4&nowPage=${nowPage-1}&word=${word}">◀  </a>
+									<a href="nonpayment?code=4&nowPage=${nowPage-1}&word=${word}">&nbsp;◀  &nbsp;</a>
 								</c:otherwise>
 							</c:choose>
 							
@@ -571,10 +571,10 @@
 						 	<c:choose>
 						 		<c:when test="${nowPage==totalBlock}">
 						 		<!--최종 페이지보다 더 뒤로 못가게  --> 
-						 			<a href="nonpayment?code=4&nowPage=${nowPage}&word=${word}"> ▶</a>
+						 			<a href="nonpayment?code=4&nowPage=${nowPage}&word=${word}">&nbsp; ▶ &nbsp;</a>
 						 		</c:when>
 						 		<c:otherwise>
-						 			<a href="nonpayment?code=4&nowPage=${nowPage+1}&word=${word}">  ▶</a>
+						 			<a href="nonpayment?code=4&nowPage=${nowPage+1}&word=${word}"> &nbsp; ▶ &nbsp;</a>
 						 		</c:otherwise>
 						 	</c:choose>
 						<a href="nonpayment?code=4&nowPage=${totalBlock}&word=${word}"> ▶▶</a>

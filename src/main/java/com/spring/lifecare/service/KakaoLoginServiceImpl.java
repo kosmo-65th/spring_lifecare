@@ -7,9 +7,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,11 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -31,11 +27,16 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.spring.lifecare.persistence.UserDAO;
 
+import util.FinalString;
+
 @Service
 public class KakaoLoginServiceImpl implements KakaoLoginService{
 	
 	@Autowired
 	UserDAO userDAO;
+	
+	String redirectIP = FinalString.CALLBACKIP.getValue();
+	
     
     public String getAccessToken (String authorize_code) {
         String access_Token = "";
@@ -55,7 +56,7 @@ public class KakaoLoginServiceImpl implements KakaoLoginService{
             StringBuilder sb = new StringBuilder();
             sb.append("grant_type=authorization_code");
             sb.append("&client_id=db39a7b6654b2f994af177b271416561");
-            sb.append("&redirect_uri=http://localhost/lifecare/kakaoLogin");
+            sb.append("&redirect_uri=http://"+redirectIP+"/lifecare/kakaoLogin");
             sb.append("&code=" + authorize_code);
             bw.write(sb.toString());
             bw.flush();

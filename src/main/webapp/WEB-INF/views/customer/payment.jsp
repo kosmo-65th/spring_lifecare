@@ -92,9 +92,8 @@ $(document).ready(function(){
         	미수금
       </div>
     </div>
-    
-    <div class="row1">
-      <c:forEach var="j" items="${list}">
+    <c:forEach var="j" items="${list}">
+    <div class="row1">     
       <input type="hidden" id="diagnosis_num" value="">	
       <div class="cell1">
         	<input type="radio" name="select" value="${j.getDiagnosis_num()}">
@@ -133,8 +132,8 @@ $(document).ready(function(){
         	0
       </div>
       </c:if>
-      </c:forEach>
-    </div>      
+     </div> 
+      </c:forEach>        
 </div>
 <p class="tail">* 미수금을 클릭하면 결제페이지로 이동하여 결제가 가능합니다.</p>
 <!-- 페이지 컨트롤 -->

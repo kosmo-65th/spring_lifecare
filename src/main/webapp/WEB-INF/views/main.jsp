@@ -88,7 +88,6 @@
 		<%
 		 	Document doc2 = Jsoup.connect("http://ncov.mohw.go.kr/").get();
 			
-			System.out.println(doc2);
 			Elements posts1 = doc2.body().getElementsByClass("regional_patient_status_A");
 			Elements posts2 = doc2.body().getElementsByClass("live_left");
 			
@@ -169,8 +168,9 @@
 	  </div>
       <%@include file="./common/chatbot.jsp"%>
       <br>
+      
       <div id="map" style="width:47%;height:500px; margin:0 auto;"></div>
-      <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=03cae4fdc6ee5a8de405925656439c0d&libraries=services"></script>
+      <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5a4dcbf8bd992d42aecc63827327a181&libraries=services"></script>
       <script>
 	       var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	         mapOption = { 
