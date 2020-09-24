@@ -9,7 +9,8 @@
 
 	//챗봇띄우는 펑션(챗봇은 common에서 include한 이미지로 킨다.)
 	function chatbot(){
-	window.open("http://192.168.219.123:3000/","chat-bot","resiable=no,width=650,height=650,menubar=no")
+		window.open("http://192.168.219.113:3000/?id=${sessionScope.userSession}","chat-bot","resiable=no,width=650,height=650,menubar=no")
+		
 	}
 </script>
 <style type="text/css">
