@@ -303,12 +303,12 @@ public class JinController {
 	public ArrayList<Map<String, String>> doctorList(HttpServletRequest req){
 		String major = req.getParameter("major");					
 		
-		ArrayList<Map<String, String>> out = new ArrayList<>();
+		ArrayList<Map<String, String>> out = new ArrayList<Map<String, String>>();
 		
 		ArrayList<DoctorVO> list = dao.getDoctorList();
 		for(DoctorVO vo : list) {
 			if(vo.getDoctor_major().equals(major)) {
-				Map<String, String> map = new HashMap<>();
+				Map<String, String> map = new HashMap<String, String>();
 				
 				map.put("doctor_id", vo.getDoctor_id());
 				map.put("doctor_major", vo.getDoctor_major());
@@ -328,7 +328,7 @@ public class JinController {
 	public ArrayList<Map<String, Object>> dateList(HttpServletRequest req){
 		String doctor_id = req.getParameter("doctor_id");							
 		
-		ArrayList<Map<String, Object>> out = new ArrayList<>();
+		ArrayList<Map<String, Object>> out = new ArrayList<Map<String, Object>>();
 		
 		Calendar cal = Calendar.getInstance();
 		
@@ -339,7 +339,7 @@ public class JinController {
 		for(AppointmentVO vo : list) {
 			if(vo.getDoctor_id().equals(doctor_id)) {
 				if(Integer.parseInt(vo.getAppoint_date()) > datestr) {
-					Map<String, Object> map = new HashMap<>();
+					Map<String, Object> map = new HashMap<String, Object>();
 					String appoint_num = Integer.toString(vo.getAppoint_num());
 					String date = "20" + vo.getAppoint_date() + " " + vo.getAppoint_time();
 					map.put("doctor_id", vo.getDoctor_id());
