@@ -230,6 +230,13 @@ public class SwhController {
 		Map<String, String> map = loginService.kakaoSignIn(req);
 		return map;
 	}
+	
+	@ResponseBody
+	@RequestMapping("/android/naversignIn")
+	public Map<String, String> naversignIn(HttpServletRequest req){
+		Map<String, String> map = loginService.naversignIn(req);
+		return map;
+	}
 }
 
 

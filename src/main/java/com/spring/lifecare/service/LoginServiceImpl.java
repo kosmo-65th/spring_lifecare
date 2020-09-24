@@ -67,4 +67,22 @@ public class LoginServiceImpl implements LoginService{
 		
 		return out;
 	}
+	
+	@Override
+	public Map<String, String> naversignIn(HttpServletRequest req) {
+		Map<String, String> userInfo = userDAO.naverFindId(req.getParameter("naverId"));
+		
+		Map<String, String> out = new HashMap<String, String>();
+		if(userInfo != null) {
+			out.put("id", String.valueOf(userInfo.get("USERNAME")));
+			out.put("enabled", String.valueOf(userInfo.get("ENABLED")));
+			out.put("customer_echeck", String.valueOf(userInfo.get("CUSTOMER_ECHECK")));
+		}else {
+			out.put("id", null);
+			out.put("enabled", null);
+			out.put("customer_echeck", null);
+		}
+		
+		return out;
+	}
 }
