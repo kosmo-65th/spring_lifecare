@@ -1,10 +1,8 @@
 package com.spring.lifecare.controller;
 
-import java.awt.List;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,6 +25,7 @@ import com.spring.lifecare.service.DoctorService;
 import com.spring.lifecare.service.KakaoPayService;
 import com.spring.lifecare.vo.AppointmentVO;
 import com.spring.lifecare.vo.DoctorVO;
+import com.spring.lifecare.vo.ReservationVO;
 
 import lombok.extern.java.Log;
 
@@ -350,7 +349,8 @@ public class JinController {
 				if(Integer.parseInt(vo.getAppoint_date()) > datestr) {
 					Map<String, Object> map = new HashMap<String, Object>();
 					String appoint_num = Integer.toString(vo.getAppoint_num());
-					String date = "20" + vo.getAppoint_date() + " " + vo.getAppoint_time();
+					String date = "20" + vo.getAppoint_date().substring(0, 2) + "년" + vo.getAppoint_date().substring(2, 4) + 
+							"월" + vo.getAppoint_date().substring(4, 6) + "일 " + vo.getAppoint_time().substring(0, 2) + "시" + vo.getAppoint_time().substring(3, 5) + "분";
 					map.put("doctor_id", vo.getDoctor_id());
 					map.put("appoint_num", appoint_num);
 					map.put("appoint_date", date);				
@@ -361,4 +361,96 @@ public class JinController {
 		System.out.println(out);
 		return out;
 	}
+	
+ 	// 예약하기
+	@ResponseBody
+	@RequestMapping("/android/addReservation")
+	public Map<String, String> addReservation(HttpServletRequest req){
+		int appoint_num = Integer.parseInt(req.getParameter("appoint_num"));
+		String customer_id = req.getParameter("customer_id");
+		String doctor_id = req.getParameter("doctor_id");
+		String appoint_date = req.getParameter("appoint_date"); // 받아온 형태 "yyyymmdd hh:mm"		
+		
+		int updateCnt = 0;
+		int insertCnt = 0;
+		
+		updateCnt = dao.updateAppoint(appoint_num);
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		String date = appoint_date.substring(0,4) + "-" + appoint_date.substring(5,7) + "-" + appoint_date.substring(8,10) + 
+					  " " + appoint_date.substring(12,14) + ":" + appoint_date.substring(15,17) + ":00.0";
+		System.out.println(date);
+		java.sql.Timestamp reservation_date = java.sql.Timestamp.valueOf(date);
+		
+		System.out.println(reservation_date);
+		
+		map.put("appoint_num", appoint_num);
+		map.put("customer_id", customer_id);
+		map.put("doctor_id", doctor_id);
+		map.put("reservation_date", reservation_date);		
+		insertCnt = dao.addReservation(map);
+		
+		Map<String, String> out = new HashMap<String, String>();
+		
+		if(updateCnt == 1 && insertCnt == 1) {
+			out.put("updateCnt", Integer.toString(updateCnt));
+			out.put("insertCnt", Integer.toString(insertCnt));
+		}		
+		System.out.println(out);
+		
+		//Date date = new Date(System.currentTimeMillis()); 
+		//String currentDate = new SimpleDateFormat("yyyy-MM-dd").format(date); 날짜 스트링으로 변환
+
+		return out;
+	}
+	
+	// 예약확정 시간 뿌려주기
+	@ResponseBody
+	@RequestMapping("/android/reservationList")
+	public ArrayList<Map<String, Object>> reservationList(HttpServletRequest req){
+		String customer_id = req.getParameter("customer_id");
+		
+		ArrayList<Map<String, Object>> out = new ArrayList<Map<String, Object>>();		
+		
+		ArrayList<ReservationVO> list = dao.getReservationList(customer_id);
+		for(ReservationVO vo : list) {
+					Map<String, Object> map = new HashMap<String, Object>();
+					String date = vo.getReservation_date().toString();
+					String t = date.substring(0,4) + "년" + date.substring(5,7) + "월" + date.substring(8,10) + 
+					  "일 " + date.substring(11,13) + "시" + date.substring(14,16) + "시";
+					map.put("doctor_major", vo.getDoctor_major());
+					map.put("doctor_name", vo.getDoctor_name());
+					map.put("appoint_num", Integer.toString(vo.getAppoint_num()));
+					map.put("reservation_date", t);				
+					out.add(map);
+		}				
+		System.out.println(out);
+		return out;
+	}
+	
+ 	// 예약취소
+	@ResponseBody
+	@RequestMapping("/android/cancelReservation")
+	public Map<String, String> cancelReservation(HttpServletRequest req){
+		int appoint_num = Integer.parseInt(req.getParameter("appoint_num"));	
+		
+		System.out.println(appoint_num);
+		
+		int updateCnt = 0;
+		int deleteCnt = 0;
+		
+		updateCnt = dao.updateAppointment(appoint_num);						
+		deleteCnt = dao.delectReservation(appoint_num);
+		
+		Map<String, String> out = new HashMap<String, String>();
+		
+		if(updateCnt == 1 && deleteCnt == 1) {
+			out.put("updateCnt", Integer.toString(updateCnt));
+			out.put("deleteCnt", Integer.toString(deleteCnt));
+		}		
+		System.out.println(out);	
+		
+		return out;
+	}
+	
 }
