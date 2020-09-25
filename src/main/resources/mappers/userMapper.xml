@@ -131,12 +131,16 @@
    
    <!-- 회원정보 불러오기2 -->
    <select id="getCustomerInfo2" resultType="com.spring.lifecare.vo.CustomerVO" parameterType="String">
-		 select ROWNUM, c.customer_id, c.customer_name, c.customer_gender, c.customer_year, d.disease_code, d.diagnosis_time, d.diagnosis_pi 
-   		  from customer c, diagnosis d 
-  		 where c.customer_id = #{customer_id}
-    	   and c.customer_id = d.customer_id 
-    	   and ROWNUM >= 1
-  		 order by d.diagnosis_time DESC
+		 <![CDATA[
+		 select * 
+           from (select customer_id, customer_name, customer_gender, customer_year, disease_code, diagnosis_time, diagnosis_pi, ROWNUM
+                   from (select c.customer_id, c.customer_name, c.customer_gender, c.customer_year, d.disease_code, d.diagnosis_time, d.diagnosis_pi
+                           from customer c, diagnosis d 
+                          where c.customer_id = #{customer_id}
+                            and c.customer_id = d.customer_id 
+                          order by d.diagnosis_time desc))
+          where ROWNUM <= 1
+  		 ]]>
    </select>
    
    <!-- 임시 비밀번호 부여 메일 -->
@@ -861,7 +865,7 @@
    		   and r.doctor_id = d.doctor_id
    		   and c.customer_id = #{customer_id}
    		   and r.reservation_date > sysdate
-   		 order by r.reservation_date DESC
+   		 order by r.reservation_date
    		]]>
    </select>
    
