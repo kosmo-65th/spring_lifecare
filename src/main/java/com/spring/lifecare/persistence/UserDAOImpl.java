@@ -300,7 +300,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public List<ReservationVO> getReservationList(String customer_id) {
+	public ArrayList<ReservationVO> getReservationList(String customer_id) {
 		UserDAO dao = sqlSession.getMapper(UserDAO.class);
 		return dao.getReservationList(customer_id);
 	}

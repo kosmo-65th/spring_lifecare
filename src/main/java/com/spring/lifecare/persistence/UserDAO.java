@@ -137,7 +137,7 @@ public interface UserDAO {
 	 public List<DiagnosisVO> getDiagnosisList(String doctor_id);
 	 
 	 //예약확정된 리스트 불러오기
-	 public List<ReservationVO> getReservationList(String customer_id);
+	 public ArrayList<ReservationVO> getReservationList(String customer_id);
 	 
 	 //예약정보 뿌려주기
 	 public List<ReservationVO> getReservationInfo(int appoint_num);
