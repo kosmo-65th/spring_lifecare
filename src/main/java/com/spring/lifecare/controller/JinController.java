@@ -401,11 +401,11 @@ public class JinController {
 	public ArrayList<Map<String, Object>> reservationList(HttpServletRequest req){
 		String customer_id = req.getParameter("customer_id");
 		
-		ArrayList<Map<String, Object>> out = new ArrayList<>();		
+		ArrayList<Map<String, Object>> out = new ArrayList<Map<String, Object>>();		
 		
 		ArrayList<ReservationVO> list = dao.getReservationList(customer_id);
 		for(ReservationVO vo : list) {
-					Map<String, Object> map = new HashMap<>();
+					Map<String, Object> map = new HashMap<String, Object>();
 					String date = vo.getReservation_date().toString();
 					String t = date.substring(0,4) + "년" + date.substring(5,7) + "월" + date.substring(8,10) + 
 					  "일 " + date.substring(11,13) + "시" + date.substring(14,16) + "시";
