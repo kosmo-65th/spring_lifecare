@@ -83,8 +83,8 @@
                                         </li>     
                                         <li><a href="#">이용안내<i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="#">오시는길</a></li>
-                                                <li><a href="#">주변약국</a></li>
+                                                <li><a href="${path }/findWay">오시는길</a></li>
+                                                <li><a href="${path }/findPharmacy">주변약국</a></li>
                                             </ul>
                                         </li>
                                         <li><a href="#">의료정보 <i class="ti-angle-down"></i></a>
