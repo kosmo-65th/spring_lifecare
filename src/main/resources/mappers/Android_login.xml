@@ -7,7 +7,7 @@
 <mapper namespace="com.spring.lifecare.persistence.Android_loginDao">
 	<!-- 지문로그인 -->
 	<select id="jimunLogin" resultType="java.util.Map" parameterType="String">
-		SELECT CUSTOMER_ID
+		SELECT CUSTOMER_ID as id
 		  FROM CUSTOMER
 		 WHERE CUSTOMER_FINGERPRINT = #{Customer_fingerprint}
 	</select>	
