@@ -347,4 +347,18 @@ public class UserDAOImpl implements UserDAO {
 		return dao.successPay(diagnosis_num);
 	}
 
+
+	@Override
+	public ArrayList<DiagnosisVO> pickDiagnosisList(String customer_id) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.pickDiagnosisList(customer_id);
+	}
+
+
+	@Override
+	public ArrayList<DiagnosisVO> nonpayList(String customer_id) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.nonpayList(customer_id);
+	}
+
 }

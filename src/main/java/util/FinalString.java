@@ -1,7 +1,7 @@
 package util;
 
 public enum FinalString {
-	CALLBACKIP("192.168.219.111");
+	CALLBACKIP("192.168.0.40");
 	
 	private String value;
 	

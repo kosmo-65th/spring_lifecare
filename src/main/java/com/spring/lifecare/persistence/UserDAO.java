@@ -159,4 +159,10 @@ public interface UserDAO {
 	 
 	 //결제성공 update
 	 public int successPay(int diagnosis_num);
+	 
+	 //진료리스트
+	 public ArrayList<DiagnosisVO> pickDiagnosisList(String customer_id);
+	 
+	 // 미결제리스트
+	 public ArrayList<DiagnosisVO> nonpayList(String customer_id);
 }
