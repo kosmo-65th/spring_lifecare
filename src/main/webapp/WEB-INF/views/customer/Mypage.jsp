@@ -62,8 +62,8 @@
 	    </div>   
 	    
 	    <div class="shopMain">
-	        <h3><a href="${pathA}/user/deleteForm.do"><strong>Membership Withdrawal</strong> 회원탈퇴</a></h3>
-	        <p><a href="${pathA}/user/deleteForm.do">고객님께서 가입하셨던 ID 및 이름 등의 정보가 모두 사라집니다. </a></p>
+	        <h3><a href="${path}/customer/remove"><strong>Membership Withdrawal</strong> 회원탈퇴</a></h3>
+	        <p><a href="${path}/customer/remove">고객님께서 가입하셨던 ID 및 이름 등의 정보가 모두 사라집니다. </a></p>
 	    </div>  
 	    
     </div>

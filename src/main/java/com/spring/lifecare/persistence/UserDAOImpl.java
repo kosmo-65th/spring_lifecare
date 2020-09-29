@@ -21,6 +21,7 @@ import com.spring.lifecare.vo.DoctorVO;
 import com.spring.lifecare.vo.DrugVO;
 import com.spring.lifecare.vo.ReservationVO;
 
+
 @Repository
 public class UserDAOImpl implements UserDAO {
 	@Autowired
@@ -129,23 +130,18 @@ public class UserDAOImpl implements UserDAO {
 	}
 	
 	
-	
 	//내 정보 가져오기
 	@Override
 	public CustomerVO myInformation(String customer_id) {
-		CustomerVO vo = new CustomerVO();
-		vo = sqlSession.selectOne("com.spring.lifecare.persistence.UserDAO.myInformation", customer_id);
-		return vo;
-		
+		return sqlSession.selectOne("com.spring.lifecare.persistence.UserDAO.myInformation", customer_id);
 	}
-
+	
 	//내 정보 수정하기
 	@Override
 	public int updateMyInformation(CustomerVO vo) {
-		 int updateCnt = sqlSession.update("spring.mvc.member_mybatis.persistence.MemberDAO.updateMyInformation", vo);
-		 
-		 return updateCnt;
-		
+		int updateCnt = sqlSession.update("com.spring.lifecare.persistence.UserDAO.updateMyInformation", vo);
+
+		return updateCnt;
 	}
 
 	//마이페이지 비밀번호 변경
@@ -153,9 +149,9 @@ public class UserDAOImpl implements UserDAO {
 	public int changePassword(CustomerVO vo) {
 		int updateCnt = sqlSession.update("com.spring.lifecare.persistence.UserDAO.changePassword", vo);
 
-		return updateCnt;
-		
+		return updateCnt;	
 	}
+	
 	@Override
 	public String loadCustomerName(String customer_id) {
 		return sqlSession.selectOne("com.spring.lifecare.persistence.UserDAO.loadCustomerName", customer_id);
@@ -227,6 +223,7 @@ public class UserDAOImpl implements UserDAO {
 		return dao.getCustomerInfo2(customer_id);
 	}
 	
+	
 	@Override
 	public DoctorVO getDoctorInfo(String doctor_id) {
 		UserDAO dao = sqlSession.getMapper(UserDAO.class);
@@ -297,6 +294,31 @@ public class UserDAOImpl implements UserDAO {
 	public List<DrugVO> searchEnptNext(String entp) {
 		UserDAO dao = sqlSession.getMapper(UserDAO.class);
 		return dao.searchEnptNext(entp);
+	}
+
+	@Override
+	public int memberHuman(CustomerVO vo) {
+		int updateCnt = sqlSession.update("com.spring.lifecare.persistence.UserDAO.memberHuman", vo);
+
+		return updateCnt;
+	}
+
+
+    //관리자 페이지
+	@Override
+	public int getPageNum() {
+		return sqlSession.selectOne("com.spring.project.persistence.UserDAO.getPageNum");
+		
+	}
+
+    //관리자 페이지 회원목록
+	@Override
+	public ArrayList<CustomerVO> getPageNum(Map<String, Object> map) {
+    ArrayList<CustomerVO> dtos = null;
+		
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		dtos = dao.getPageNum(map);
+		return dtos;
 	}
 
 	@Override
