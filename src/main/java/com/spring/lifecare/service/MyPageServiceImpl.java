@@ -1,8 +1,5 @@
 package com.spring.lifecare.service;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,24 +44,6 @@ public class MyPageServiceImpl implements MyPageService {
 		return selectCnt;
 	}	
 	
-
-	//내 정보 조회
-	@Override
-	public int modifyPro(HttpServletRequest req, Model model) {
-		
-		 CustomerVO vo = new CustomerVO();
-		 
-		 vo.setCustomer_id((String) req.getSession().getAttribute("userSession"));
-		 vo.setCustomer_name(req.getParameter("customer_name"));
-	     vo.setCustomer_phone(req.getParameter("customer_phone"));
-	     vo.setCustomer_email(req.getParameter("customer_email"));
-	     
-	     int updateCnt = userDAO.updateMyInformation(vo);
-	 	 model.addAttribute("updateCnt", updateCnt); 
-	 	 return 0;
-		 	
-	}
-
 	@Override
 	public int modifyPassword(HttpServletRequest req, Model model) {
 
@@ -78,6 +57,47 @@ public class MyPageServiceImpl implements MyPageService {
 
 		model.addAttribute("updateCnt", updateCnt);
 		return 0;
+	}
+
+
+
+	@Override
+	public CustomerVO myInfo(String customer_id) {
+		CustomerVO customer = userDAO.myInformation(customer_id);
+		return customer;
+	}
+
+
+
+	@Override
+	public int removeMember(HttpServletRequest req, Model model) {
+		CustomerVO vo = new CustomerVO();
+
+		vo.setCustomer_id((String) req.getSession().getAttribute("userSession"));
+		vo.setCustomer_pw(passwordEncoder.encode(req.getParameter("customer_pw")));
+		
+		//회원 변경 처리
+		int updateCnt = userDAO.memberHuman(vo);
+		model.addAttribute("updateCnt", updateCnt);
+		return 0;
+	}
+
+
+	@Override
+	public int updateMember(HttpServletRequest req, Model model) {
+		
+		CustomerVO vo = new CustomerVO();
+
+		vo.setCustomer_id((String) req.getSession().getAttribute("userSession"));
+		vo.setCustomer_phone((String) req.getParameter("customer_phone"));
+		vo.setCustomer_email((String) req.getParameter("customer_email"));
+		
+		int updateCnt = userDAO.updateMyInformation(vo);
+
+		model.addAttribute("updateCnt", updateCnt);
+		return 0;
+	
+		
 	}
 
 

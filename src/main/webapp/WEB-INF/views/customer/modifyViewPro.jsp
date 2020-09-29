@@ -17,7 +17,7 @@
 	<c:if test="${updateCnt != 0}">
 	     <script type="text/javascript">
 	        alert("개인 정보가 수정되었습니다."); 
-	        window.location='Mypage?updateCnt=${updateCnt}';
+	        window.location='myInformation?updateCnt=${updateCnt}';
 	     </script>
 	</c:if>
 </body>

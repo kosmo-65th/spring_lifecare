@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.spring.lifecare.service.AdminService;
 import com.spring.lifecare.service.CustomerService;
 import com.spring.lifecare.service.DoctorService;
 import com.spring.lifecare.service.MyPageService;
+import com.spring.lifecare.vo.CustomerVO;
 
 @Controller
 public class RosController {
@@ -26,6 +28,7 @@ public class RosController {
 	
 	@Autowired
 	MyPageService myPage;
+	
 	
 	//일반회원, 의사 회원가입 방법 폼
 	@RequestMapping("/preJoinIn")
@@ -59,6 +62,7 @@ public class RosController {
 	public String emailChk(@RequestParam("userEmail") String customer_email, Model model) {
 		return Integer.toString(service.confirmEmail(customer_email));
 	}
+	
 			
 	//회원가입 처리
 	@RequestMapping(value = "/JoinInPro", method = RequestMethod.POST)
@@ -135,7 +139,6 @@ public class RosController {
 		  return "guest/login";
 	}
 	
-	
 	// 의사 id 중복 체크 컨트롤러
 	@RequestMapping(value = "/user/dJoinInForm", method = RequestMethod.GET)
 	@ResponseBody
@@ -160,21 +163,39 @@ public class RosController {
 	public String doctorNumChk(@RequestParam("doctorNum") String doctor_num, Model model) {
 			return Integer.toString(doctor.doctorNum(doctor_num));
 	}
-	//내 정보 수정하기 폼
+	//내 정보  폼
+	@RequestMapping("/customer/myInformation")
+	public String myInformation(HttpServletRequest req, Model model) {
+		
+	   String customer_id = (String)req.getSession().getAttribute("userSession");
+	   CustomerVO customer = myPage.myInfo(customer_id);
+	   model.addAttribute("customer", customer);
+		
+	 return "customer/myInformation";		
+	}
+	
+	//내 정보 수정 폼
 	@RequestMapping("/customer/modify")
 	public String modify(HttpServletRequest req, Model model) {
 		
-	 return "customer/modify";		
-	}
-	
-	//정보 수정 처리 페이지
-	@RequestMapping("/customer/modifyViewPro")
-	public String modifyViewPro(HttpServletRequest req, Model model) {
+		String customer_id = (String)req.getSession().getAttribute("userSession");
+		CustomerVO customer = myPage.myInfo(customer_id);
+		model.addAttribute("customer", customer);
 		
-		myPage.modifyPro(req, model);
-	
+		return "customer/modify";		
+	}
+	//내 정보 수정 처리
+	@RequestMapping("/customer/modifyViewPro")
+	public String modifyPro(HttpServletRequest req, Model model) {
+		try {
+		myPage.updateMember(req, model);
+		}catch(NumberFormatException e){
+            	  
+		 }	 
 		return "customer/modifyViewPro";
 	}
+	
+	
 	
 	//마이페이지 비밀번호 변경전 현재 비밀번호 입력하기 폼
 	@RequestMapping("/customer/preChangePassword")
@@ -226,6 +247,21 @@ public class RosController {
 		return "guest/findPasswordPro";
 
 	}
+	 //회원 휴먼처리 폼
+	 @RequestMapping("/customer/remove")
+	 public String remove(Model model) {
+			
+			return "customer/remove";		
+	}
+		
+	 //회원 휴먼처리 과정
+	 @RequestMapping("/customer/removePro")
+	 public String removePro(HttpServletRequest req, Model model) {
+				
+		myPage.removeMember(req, model);
+			
+		return "customer/removePro";		
+	}
 	
 	//찾아 오시는 길
 	@RequestMapping("/findWay")
@@ -234,6 +270,12 @@ public class RosController {
 		return "guest/findWay";		
 	}
 	
-	
+	//주변 약국
+	@RequestMapping("/findPharmacy")
+	public String findPharmacy(Model model) {
+			
+		return "guest/findPharmacy";		
+	}
+		
 	
 }
