@@ -518,13 +518,13 @@ public class JinController {
     }
     
     //카카오페이 - 결제완료 페이지
-    @GetMapping("/android/kakaopaySuccess")
+    @GetMapping("/android/androidKakao")
     public String kakaoPaySuccessand(@RequestParam("pg_token") String pg_token, HttpServletRequest req, Model model) {
-        log.info("kakaoPaySuccess get............................................");
-        log.info("kakaoPaySuccess pg_token : " + pg_token);
+        //log.info("kakaoPaySuccess get............................................");
+        //log.info("kakaoPaySuccess pg_token : " + pg_token);
         customer.successPay(req, model);
         model.addAttribute("info", kakaopay.kakaoPayInfo(pg_token));
-        return "customer/kakaopaySuccess";
+        return "customer/androidKakao";
     }
     
     //카카오 페이 결제 취소
