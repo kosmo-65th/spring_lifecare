@@ -98,7 +98,7 @@ public class KakaoPayServiceImpl implements KakaoPayService{
         params.add("quantity", "1");
         params.add("total_amount", amount);
         params.add("tax_free_amount", "100");
-        params.add("approval_url", "http://"+redirectIP+"/lifecare/android/kakaopaySuccess?diagnosis_num=" + diagnosis_num);
+        params.add("approval_url", "http://"+redirectIP+"/lifecare/android/androidKakao?diagnosis_num=" + diagnosis_num);
         params.add("cancel_url", "http://"+redirectIP+"/lifecare/android/kakaopayCencel");
         params.add("fail_url", "http://"+redirectIP+"/lifecare/android/kakaopayFail");
         HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String, String>>(params, headers);
