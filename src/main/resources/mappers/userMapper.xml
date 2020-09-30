@@ -77,10 +77,15 @@
         SELECT customer_pw FROM customer WHERE customer_id=#{customer_id}
    </select>
    
-   <!-- 마이페이지 내 정보 수정 -->
-  <update id ="updateMyInformation" parameterType ="com.spring.lifecare.vo.CustomerVO">       
-	 UPDATE customer SET customer_phone=#{customer_phone}, customer_email=#{customer_email}  WHERE customer_id=#{customer_id, jdbcType=VARCHAR} AND customer_name=#{customer_name, jdbcType=VARCHAR} 
-  </update>
+   <!-- 내 정보 가져오기 -->
+    <select id="myInformation" resultType="com.spring.lifecare.vo.CustomerVO">
+        SELECT customer_id, customer_name, customer_phone, customer_email, customer_gender, customer_year FROM customer WHERE customer_id=#{customer_id, jdbcType=VARCHAR}
+   </select> 
+   
+   <!-- 내 정보 수정하기  -->
+   <update id="updateMyInformation"   parameterType ="com.spring.lifecare.vo.CustomerVO">
+       UPDATE customer SET customer_phone=#{customer_phone}, customer_email=#{customer_email} WHERE customer_id=#{customer_id, jdbcType=VARCHAR}   
+   </update>
  
    <!-- 마이페이지 비밀번호 변경  -->
    <update id ="changePassword" parameterType ="com.spring.lifecare.vo.CustomerVO">       
@@ -91,6 +96,13 @@
    <select id="loadCustomerName" parameterType="String" resultType="String">
    		SELECT customer_name FROM customer WHERE customer_id=#{customer_id}
    </select>
+   
+   <!-- 맴버 휴먼처리 -->
+   <update id ="memberHuman" parameterType ="com.spring.lifecare.vo.CustomerVO">       
+	 UPDATE customer SET enabled = 0  WHERE customer_id=#{customer_id, jdbcType=VARCHAR}  
+  </update>
+  
+  
    
    <!-- 의사 리스트 불러오기 -->
    <select id="getDoctorList" resultType="com.spring.lifecare.vo.DoctorVO">
@@ -916,6 +928,29 @@
    		UPDATE diagnosis set customer_payment = 1 WHERE diagnosis_num = #{diagnosis_num}
    </update>
    
+   <!-- 진료결과 조회 리스트 -->
+   <select id="pickDiagnosisList" resultType="com.spring.lifecare.vo.DiagnosisVO" parameterType="String">
+   		<![CDATA[
+		SELECT d.diagnosis_num, d.diagnosis_time, o.doctor_name, o.doctor_major, i.disease_name, d.drug1, d.drug2, d.drug3
+		  FROM diagnosis d, doctor o, disease i
+		 WHERE d.doctor_id = o.doctor_id
+		   AND d.disease_code = i.disease_code
+		   AND customer_id = #{customer_id}
+		 ORDER BY d.diagnosis_time DESC
+   		 ]]>
+   </select>
+   
+   <!-- 미결제 리스트 -->
+      <select id="nonpayList" resultType="com.spring.lifecare.vo.DiagnosisVO" parameterType="String">
+   		<![CDATA[
+		SELECT d.diagnosis_num, d.diagnosis_time, o.doctor_major, d.customer_amount
+		  FROM diagnosis d, doctor o
+		 WHERE d.doctor_id = o.doctor_id
+		   AND customer_payment = 0
+		   AND customer_id = #{customer_id}
+		 ORDER BY d.diagnosis_time DESC
+   		 ]]>
+   </select>
    
 </mapper>  	  
 

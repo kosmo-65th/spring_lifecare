@@ -61,4 +61,14 @@ public class JmyController {
 		
 		return "/guest/nonpayment";
 	}
+	
+	//챗봇 로그인 확인 후 이동
+	@RequestMapping("/customer/chatbot")
+	public String chatbot(HttpServletRequest req, Model model) {
+		//시큐리티 인증을 거쳐야 챗봇 open
+		
+		
+		return "/common/chatbot_open";
+	}
+	
 }

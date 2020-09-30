@@ -93,24 +93,48 @@
   .mr_2 {
     margin-right: 2% !important;
   }
+  
+  .btn-type.btn3.red  {
+    color: red !important;
+    border: 1px #2e3033;
+    background: #e74a3b;
+  }
+  
+  .btn-type.btn3.red {
+    color: #fff !important;
+    border: 1px  #2e3033;
+    background: #e74a3b;
+  }
+  .btn-type.btn3 {
+    width: 15%;
+    height: 45px;
+    line-height: 40px;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-family: 'NotoSansKR';
+    font-style: normal;
+    font-weight: 400;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+  }
 </style>
 
 <title>회원 탈퇴</title>
 </head>
 <body>
 <%@include file="../common/header.jsp" %>
-  <form action="" method="post" name="findIdform" onsubmit="">
+  <form action="${pageContext.request.contextPath}/customer/removePro?${_csrf.parameterName}=${_csrf.token}" method="post" name="findIdform" onsubmit="">
       <div class="title">회원탈퇴 하기</div>
         <div class="remove_area">
           <p>DO YOU WANT TO LEAVE OUR MEMBER?</p>
                            본인 확인을 위해 비밀번호를 한번 더 입력하신 후 탈퇴하기를 누르시면 정상적으로 탈퇴처리 됩니다. <br><br>  
-             <input type="password" name="customer_pw" id="" placeholder="비밀번호" class="mb10" value="" required> 
+             <input type="text" name="customer_pw" id=""  class="mb10" value="${sessionScope.userSession}" required> 
              <input type="password" name="customer_PwChk" id="" placeholder="비밀번호확인" class="mb10" value="" required>                          
-         </div>
-                                       
+         </div>                               
         <div class="press">
               <button type="submit" class="btn-type btn2 blue mr_2">탈퇴하기</button>
-              <button type="reset" class="btn-type btn2 blue">취소</button>
+              <button type="reset" class="btn-type btn3 red mr_3">취소</button>
           </div>
       </form>
 <%@include file="../common/footer.jsp" %>

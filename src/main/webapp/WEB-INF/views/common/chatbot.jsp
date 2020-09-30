@@ -2,17 +2,10 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<%@ include file="/resources/setting/setting.jsp" %> 
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
-
-	//챗봇띄우는 펑션(챗봇은 common에서 include한 이미지로 킨다.)
-	function chatbot(){
-		window.open("http://192.168.219.113:3000/?id=${sessionScope.userSession}","chat-bot","resiable=no,width=650,height=650,menubar=no")
-		
-	}
-</script>
 <style type="text/css">
 
 @media (min-width:1930px) {
@@ -57,7 +50,7 @@
 </head>
 <body>
 	<div class="chatbot">
-  		<a href="javascript:void(0)" onclick="chatbot();"><img title="chat-bot" src="${path_resources}img/chatBot.png" 
+  		<a href= "${path}/customer/chatbot" onclick="chatbot();"><img title="chat-bot" src="${path_resources}img/chatBot.png" 
   		style="width: 120px; height: 120px;"></a>
   	</div>
   	
