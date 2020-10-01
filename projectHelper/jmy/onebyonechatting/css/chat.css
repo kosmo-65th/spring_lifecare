@@ -1,0 +1,370 @@
+body{
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: "proxima-nova", "Source Sans Pro", sans-serif;
+    letter-spacing: 0.1px;
+}
+ul li{
+    text-decoration-style: none;
+    display: inline;
+}
+.window{
+    float: left;
+    padding: 20px;
+    border :  1px solid white;
+    border-collapse: collapse;
+    width:900px;
+    height: 700px;
+    
+}
+.UsersDiv{
+    border :  1px solid black;
+    border-collapse: collapse;
+    width:200px;
+    height: 700px;
+    position: absolute;
+    background-color: #32465a;
+}
+.participant{
+    letter-spacing: 0.1px;
+    text-rendering: optimizeLegibility;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+    color: #f5f5f5;
+    font-size: 100%;
+    width: 80%;
+    height: 92%;
+    margin: 25px auto;
+    background-color: teal;
+    padding-top: 10px;
+}
+
+.participant p{
+    color: #f5f5f5;
+    font-size: 140%;
+    text-align: center;
+    
+}
+.wrap{
+    color: #f5f5f5;
+    font-size: 100%;
+    background-color: rgb(94, 173, 173);
+    padding-top: 10px;
+    height: 8%;
+
+}
+.wrap img{
+    text-align: left;
+    color: #f5f5f5;
+    box-sizing: border-box;
+    margin: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    width: 50px;
+    border-radius: 50%;
+    padding: 3px;
+    height: auto;
+    float: left;
+    cursor: pointer;
+    transition: 0.3s border ease;
+
+}
+.wrap p{
+    text-align: left;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+    color: #f5f5f5;
+    font-size: 120%;
+    float: left;
+    margin-left: 12px;
+    margin-top: 12px;
+
+}
+
+.chatting{
+    float: right;
+    border :  1px solid black;
+    border-left: white;
+    border-collapse: collapse;
+    width:680px;
+    height: 700px;
+    padding-left: 17px;
+    padding-right: 3px;
+    background-color: #60a9eea8 ;
+}
+.profile{
+    text-align: left;
+    letter-spacing: 0.1px;
+    color: #32465a;
+    text-rendering: optimizeLegibility;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+    box-sizing: border-box;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    width: 98.5%;
+    height: 80px;
+    background: #f5f5f5;
+    position: relative;
+}
+.profile img{
+    text-align: left;
+    letter-spacing: 0.1px;
+    color: #32465a;
+    font: inherit;
+    vertical-align: baseline;
+    width: 60px;
+    border-radius: 50%;
+    float: left;
+    margin: 9px 12px 0 9px;
+}
+
+.profile p{
+    text-align: left;
+    color: #32465a;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+    font-size: 25px;
+    float: left;
+    margin-top: 30px;
+}
+.logDiv{
+    text-align: left;
+    letter-spacing: 0.1px;
+    color: #32465a;
+    text-rendering: optimizeLegibility;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+    box-sizing: border-box;
+    height:  540px;
+    width: 670px;
+    overflow-y: auto;
+    overflow-x: hidden; 
+    background-color:#d6e6f7cc;
+    display: flex;
+    flex-direction: column-reverse;
+
+}
+ul{
+    text-align: left;
+    letter-spacing: 0.1px;
+    color: #32465a;
+    text-rendering: optimizeLegibility;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    list-style: none;
+}
+/* 타인이 보낼때 */
+.sent{
+    letter-spacing: 0.1px;
+    color: #32465a;
+    text-rendering: optimizeLegibility;
+    list-style: none;
+    box-sizing: border-box;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+    display: inline-block;
+    clear: both;
+    float: left;
+    margin: 15px 15px 5px 15px;
+    width: calc(100% - 25px);
+
+}
+.sent img{
+    letter-spacing: 0.1px;
+    color: #32465a;
+    text-rendering: optimizeLegibility;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+    -webkit-font-smoothing: antialiased;
+    list-style: none;
+    box-sizing: border-box;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    width: 60px;
+    border-radius: 50%;
+    float: left;
+    margin: 6px 8px 0 0;
+}
+.sent p{
+    letter-spacing: 0.1px;
+    color: #32465a;
+    text-rendering: optimizeLegibility;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+    list-style: none;
+    box-sizing: border-box;
+    margin: 0;
+    margin-top: 5px;
+    border: 0;
+    font: inherit;
+    font-size: 130%;
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 20px;
+    line-height: 100%;
+    max-width: 300px;
+    background: #435f7a;
+    color: #f5f5f5;
+    float: left;
+
+    
+}
+
+/* 본인이 보낼떄 */
+.replies{
+    letter-spacing: 0.1px;
+    color: #32465a;
+    text-rendering: optimizeLegibility;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+    -webkit-font-smoothing: antialiased;
+    list-style: none;
+    box-sizing: border-box;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+    display: inline-block;
+    clear: both;
+    float: left;
+    margin: 15px 15px 5px 15px;
+    width: calc(100% - 25px);
+    font-size: 0.9em;
+}
+.replies img{
+    letter-spacing: 0.1px;
+    color: #32465a;
+    text-rendering: optimizeLegibility;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+    list-style: none;
+    box-sizing: border-box;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    width: 60px;
+    border-radius: 50%;
+    float: right;
+    margin: 6px 0 0 8px;
+}
+p.message{
+    letter-spacing: 0.1px;
+    color: #32465a;
+    text-rendering: optimizeLegibility;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+    list-style: none;
+    box-sizing: border-box;
+    margin: 0;
+    margin-top:15px;
+    border: 0;
+    font: inherit;
+    font-size: 130%;
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 20px;
+    line-height: 100%;
+    max-width: 300px;
+    background: #2054e2;
+    color: white;
+    float: right;
+    
+}
+p.lfl{
+    letter-spacing: 0.1px;
+    text-rendering: optimizeLegibility;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+    list-style: none;
+    box-sizing: border-box;
+    margin: 0;
+    margin-top: 13px;
+    border: 0;
+    font-size: 80%;
+    display: inline-block;
+    padding: 10px 15px;
+    padding-top: 15px;
+    line-height: 130%;
+    color:rgb(63, 77, 209);
+    float: right;
+}
+.input{
+    height: 80px;
+    margin-left: 1px;
+    margin-top: 1px;
+    box-sizing: border-box;
+    overflow: visible;
+    margin: 0;
+    background-image: none;
+    font-family: "proxima-nova",  "Source Sans Pro", sans-serif;
+    float: left;
+    border: none;
+    width: calc(100% - 98px);
+    padding: 11px 32px 10px 8px;
+    font-size: 25px;
+    color: #32465a;
+}
+.button{
+    height: 80px;
+    width: 89px;
+    text-align: center;
+    vertical-align: middle;
+    box-sizing: border-box;
+    border-radius: 0;
+    font-family: inherit;
+    font-size: 130%;
+    line-height: inherit;
+    float: right;
+    border: none;
+    cursor: pointer;
+    background: #32465a;
+    color: #f5f5f5;
+    margin-right: 9px;
+}
+
+.menu{
+    margin-top: 300px;
+    color: #f5f5f5;
+    font-size: 100%;
+    background-color: rgb(46, 150, 150);
+    padding-top: 10px;
+    height: 5%;
+}
+.menu p{
+    line-height: 1;
+    font-family: "proxima-nova", "Source Sans Pro", sans-serif;
+    border-collapse: collapse;
+    color: #f5f5f5;
+    font-size: 100%;
+    text-align: center;
+    margin-top: 5px;
+    
+}
+span{
+    font-weight: bold;
+}
+.start{
+    text-align: center;
+}
+
+.online{
+    border: solid 3px teal;
+    
+}
+
+.offline{
+    border: solid 3px red;
+    
+
+}
+
+
