@@ -927,5 +927,35 @@
    <update id="successPay" parameterType="int">
    		UPDATE diagnosis set customer_payment = 1 WHERE diagnosis_num = #{diagnosis_num}
    </update>
+   
+   <!-- 관리자 회원목록 -->
+   <select id="listMembers" resultType="com.spring.lifecare.vo.CustomerVO">
+     SELECT customer_name, customer_id, customer_gender, customer_year, customer_email, customer_phone, enabled FROM customer WHERE authority = 'ROLE_CUSTOMER'
+  </select>
+  
+  <!-- 관리자 의사 회원목록 -->
+    <select id="listDoctors" resultType="com.spring.lifecare.vo.DoctorVO">
+     SELECT doctor_name, doctor_id, doctor_num, doctor_email, doctor_phone, doctor_major, doctor_position, enabled FROM doctor WHERE authority = 'ROLE_DOCTOR'
+  </select>
+   
+  <!-- 관리자 회원 상세목록 -->
+  <select id="memberInformation" resultType="com.spring.lifecare.vo.CustomerVO">
+        SELECT customer_id, customer_name, customer_gender, customer_year, customer_email, customer_phone FROM customer WHERE customer_id=#{customer_id} 
+  </select>
+  
+  <!-- 관리자 의사 상세목록  --> 
+  <select id="docInformation" resultType="com.spring.lifecare.vo.DoctorVO">
+        SELECT doctor_id, doctor_name, doctor_num, doctor_email, doctor_faceimg, doctor_phone, doctor_major, doctor_position FROM doctor WHERE doctor_id=#{doctor_id} 
+  </select>
+  
+  <!-- 관리자 회원 휴먼처리 -->
+ <update id ="deleteList" parameterType ="com.spring.lifecare.vo.CustomerVO">       
+	 UPDATE customer SET enabled = 0  WHERE customer_id=#{customer_id, jdbcType=VARCHAR}  
+  </update> 
+  
+  <!-- 의사 회원 퇴사처리  -->
+  <update id ="deleteDoctor" parameterType ="com.spring.lifecare.vo.DoctorVO">       
+	 UPDATE doctor SET enabled = 0  WHERE doctor_id=#{doctor_id, jdbcType=VARCHAR}  
+  </update>
 </mapper>  	  
 

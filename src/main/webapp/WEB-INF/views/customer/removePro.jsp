@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-     <button id="logout" onclick="document.getElementById('logout-form').submit();">로그아웃</button>
+    <button id="logout" onclick="document.getElementById('logout-form').submit();">로그아웃</button>
 	<form id="logout-form" action="${path}/logout" method="POST">
 			 <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
 	</form>

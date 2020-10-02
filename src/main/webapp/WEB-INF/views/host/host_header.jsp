@@ -119,11 +119,18 @@
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="${path}/admin/memberManagement">
           <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a>
+          <span>Member Management</span></a>
       </li>
-
+      
+       <!-- Nav Item - Tables -->
+      <li class="nav-item">
+        <a class="nav-link" href="${path}/admin/doctorManagement">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Doctor Management</span></a>
+      </li>
+      
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
