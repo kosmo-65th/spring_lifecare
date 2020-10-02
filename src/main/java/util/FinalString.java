@@ -13,3 +13,9 @@ public enum FinalString {
 		return value;
 	}
 }
+
+
+/*
+JSP 내 소스 구동 순서 
+JAVA>JSTL>HTML>Javascript 
+*/
