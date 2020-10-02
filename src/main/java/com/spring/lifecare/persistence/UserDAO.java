@@ -181,4 +181,10 @@ public interface UserDAO {
 	 
 	 //의사 퇴사 처리
 	 public int deleteDoctor(String doctor_id);
+	 
+	 //진료리스트
+	 public ArrayList<DiagnosisVO> pickDiagnosisList(String customer_id);
+	 
+	 // 미결제리스트
+	 public ArrayList<DiagnosisVO> nonpayList(String customer_id);
 }

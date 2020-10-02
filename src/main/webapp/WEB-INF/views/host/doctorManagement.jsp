@@ -181,7 +181,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                 <c:forEach var="doctor" items="${list}">
+                 <c:forEach var="doctor" items="${doctor}">
                     <tr>
                       <td>${doctor.doctor_name}</td>
                       <td>${doctor.doctor_num}</td>

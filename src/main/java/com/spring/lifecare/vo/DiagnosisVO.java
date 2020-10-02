@@ -35,4 +35,11 @@ public class DiagnosisVO {
 	private String customer_name;
 	private int customer_year;
 	private String customer_gender;
+	
+	//의사
+	private String doctor_major;
+	private String doctor_name;
+	
+	// 질병
+	private String disease_name;
 }

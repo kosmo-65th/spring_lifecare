@@ -110,13 +110,16 @@ public class DoctorServiceImpl implements DoctorService{
 	    
 	    CustomerVO cusotomerVO = new CustomerVO();
 	    
-	    cusotomerVO.setCustomer_id(req.getParameter(doctor_id));
+	    cusotomerVO.setCustomer_id(req.getParameter("doctor_id"));
 	    cusotomerVO.setCustomer_pw(passwordEncoder.encode(doctor_pw));
-	    cusotomerVO.setCustomer_name(req.getParameter(doctor_name));
-	    cusotomerVO.setCustomer_email(req.getParameter(doctor_email));
-	    cusotomerVO.setCustomer_phone(req.getParameter(doctor_phone));
+	    cusotomerVO.setCustomer_name(req.getParameter("doctor_name"));
+	    cusotomerVO.setCustomer_email(req.getParameter("doctor_email"));
+	    cusotomerVO.setCustomer_phone(req.getParameter("doctor_phone"));
 	    cusotomerVO.setCustomer_gender(req.getParameter("customer_gender"));
 	    cusotomerVO.setCustomer_year(Integer.parseInt(req.getParameter("customer_year")));
+	    
+	    System.out.println(cusotomerVO);
+	    
 	    
 	    int insertCnt2 = userDAO.insertMember(cusotomerVO);
 	    System.out.println("insertCnt2 : "+ insertCnt);

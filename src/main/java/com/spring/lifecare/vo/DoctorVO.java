@@ -17,7 +17,7 @@ public class DoctorVO {
     private String authority;
     private String customer_gender;
 	private int customer_year;
-    
+    private int enabled;
     
 	public String getCustomer_gender() {
 		return customer_gender;
@@ -96,6 +96,12 @@ public class DoctorVO {
 	}
 	public void setAuthority(String authority) {
 		this.authority = authority;
+	}
+	public int getEnabled() {
+		return enabled;
+	}
+	public void setEnabled(int enabled) {
+		this.enabled = enabled;
 	}
   
     

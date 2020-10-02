@@ -132,6 +132,17 @@ public class CustomerVO {
 	}
 	public void setDiagnosis_pi(String diagnosis_pi) {
 		this.diagnosis_pi = diagnosis_pi;
+	}
+	@Override
+	public String toString() {
+		return "CustomerVO [customer_id=" + customer_id + ", customer_pw=" + customer_pw + ", customer_repw="
+				+ customer_repw + ", customer_email=" + customer_email + ", customer_name=" + customer_name
+				+ ", customer_phone=" + customer_phone + ", customer_joindate=" + customer_joindate
+				+ ", customer_fingerprint=" + customer_fingerprint + ", customer_logindate=" + customer_logindate
+				+ ", authority=" + authority + ", enabled=" + enabled + ", customer_gender=" + customer_gender
+				+ ", customer_year=" + customer_year + ", insurance=" + insurance + ", customer_echeck="
+				+ customer_echeck + ", disease_code=" + disease_code + ", diagnosis_time=" + diagnosis_time
+				+ ", diagnosis_pi=" + diagnosis_pi + "]";
 	}		
 }
 

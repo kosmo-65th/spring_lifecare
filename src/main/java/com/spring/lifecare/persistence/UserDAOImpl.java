@@ -385,12 +385,22 @@ public class UserDAOImpl implements UserDAO {
 		return updateCnt;
 	}
 
+	@Override
+	public ArrayList<DiagnosisVO> pickDiagnosisList(String customer_id) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.pickDiagnosisList(customer_id);
+	}
+
 
 	@Override
 	public int deleteDoctor(String doctor_id) {
 		int updateCnt = sqlSession.update("com.spring.lifecare.persistence.UserDAO.deleteDoctor", doctor_id);  
 		return updateCnt;
+	}
 	
+	public ArrayList<DiagnosisVO> nonpayList(String customer_id) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.nonpayList(customer_id);
 	}
 
 }
