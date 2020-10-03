@@ -145,6 +145,37 @@
       <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
       </div>
+      
+       <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
+
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+
+    </ul>
+    <!-- End of Sidebar -->
+     <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+     <div id="content"><br><br>
+
+         <!-- Begin Page Content -->
+        <div class="container-fluid">
+        
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800">Doctor Information</h1>
+          <p class="mb-4">Host can see doctor's personal information below</p>
+
+          <!-- DataTales Example -->          
+        
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">${doctor.getDoctor_name()}'s personal information</h6>
+            </div><br>
+      
 
     </ul>
     <!-- End of Sidebar -->
