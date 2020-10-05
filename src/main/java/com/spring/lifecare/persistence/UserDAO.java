@@ -108,7 +108,13 @@ public interface UserDAO {
 	 
 	 //약상세
 	 public DrugVO drugDetail(int drug_number);
-
+	 
+	 //안드로이드 약 사진 조회 
+	 public ArrayList<DrugVO> drugPhotoSeaerch(Map<String, Object> map);
+	 
+	 //안드로이드 약 사진 조회 상세
+	 public ArrayList<DrugVO> drugPhotoDetail(String drug_num);
+	 
 	 //회원정보 불러오기2
 	 public CustomerVO getCustomerInfo2(String customer_id);
 	 

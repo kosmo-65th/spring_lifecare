@@ -128,8 +128,6 @@ public class UserDAOImpl implements UserDAO {
 		return checkIdPwd;	
 	}
 	
-	
-	
 	//내 정보 가져오기
 	@Override
 	public CustomerVO myInformation(String customer_id) {
@@ -298,6 +296,19 @@ public class UserDAOImpl implements UserDAO {
 		UserDAO dao = sqlSession.getMapper(UserDAO.class);
 		return dao.searchEnptNext(entp);
 	}
+	
+	//안드로이드 약 사진 조회 
+	 public ArrayList<DrugVO> drugPhotoSeaerch(Map<String, Object> map) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.drugPhotoSeaerch(map);
+	 }
+	 
+	 //안드로이드 약 사진 조회  상세
+	 public ArrayList<DrugVO> drugPhotoDetail(String drug_num) {
+		 UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		 return dao.drugPhotoDetail(drug_num);
+	 }
+	
 
 	@Override
 	public ArrayList<ReservationVO> getReservationList(String customer_id) {
