@@ -122,12 +122,12 @@ public class UserDAOImpl implements UserDAO {
 	    return dao.insertDoctor(vo);
 	}
 	
+	//아이디에 해당하는 비밀번호 가져오기
 	@Override
 	public String idPwdCheck(String customer_id) {
 		String checkIdPwd = sqlSession.selectOne("com.spring.lifecare.persistence.UserDAO.idPwdCheck", customer_id);
 		return checkIdPwd;	
 	}
-	
 	
 	//내 정보 가져오기
 	@Override
@@ -294,6 +294,19 @@ public class UserDAOImpl implements UserDAO {
 		UserDAO dao = sqlSession.getMapper(UserDAO.class);
 		return dao.searchEnptNext(entp);
 	}
+	
+	//안드로이드 약 사진 조회 
+	 public ArrayList<DrugVO> drugPhotoSeaerch(Map<String, Object> map) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.drugPhotoSeaerch(map);
+	 }
+	 
+	 //안드로이드 약 사진 조회  상세
+	 public ArrayList<DrugVO> drugPhotoDetail(String drug_num) {
+		 UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		 return dao.drugPhotoDetail(drug_num);
+	 }
+	
 
 	@Override
 	public int memberHuman(CustomerVO vo) {

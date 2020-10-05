@@ -768,6 +768,21 @@
 	  	]]>
    </select>
    
+   <!-- 안드로이드 약 사진 조회  -->
+   <select id="drugPhotoSeaerch" resultType="com.spring.lifecare.vo.DrugVO" parameterType="java.util.Map">
+   		select * from Drug where drug_frontShape IN
+  			<foreach collection="mArr" item="frontShape" open="(" close=")" separator=",">
+				#{frontShape}
+			</foreach>
+   		order by drug_name, drug_enptname, drug_number, drug_shape, drug_color
+   </select>
+   
+   <!-- 안드로이드 약 사진 조회  상세-->
+   <select id="drugPhotoDetail" resultType="com.spring.lifecare.vo.DrugVO" parameterType="java.util.Map">
+   		select * from Drug where drug_number = #{drug_num}
+   		order by drug_name, drug_enptname, drug_number, drug_shape, drug_color
+   </select>
+   
    <!-- 의사정보 불러오기 -->
    <select id="getDoctorInfo" resultType="com.spring.lifecare.vo.DoctorVO" parameterType="String">
    		select * from doctor where doctor_id = #{doctor_id}
