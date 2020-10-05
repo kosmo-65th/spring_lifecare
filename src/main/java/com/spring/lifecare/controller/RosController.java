@@ -29,6 +29,10 @@ public class RosController {
 	@Autowired
 	MyPageService myPage;
 	
+	@Autowired
+	AdminService admin;
+	
+	
 	
 	//일반회원, 의사 회원가입 방법 폼
 	@RequestMapping("/preJoinIn")
@@ -276,6 +280,68 @@ public class RosController {
 			
 		return "guest/findPharmacy";		
 	}
+	
+	
+	//관리자 회원관리목록
+	@RequestMapping("/admin/memberManagement")
+	public String memberManagement(HttpServletRequest req, Model model) {
+		try {
+		admin.memberList(req, model);		
+		} catch(NumberFormatException e){
+      	  
+	 }	 		
+		return "host/memberManagement";		
+	}
+	
+	//의사 회원관리목록
+	@RequestMapping("/admin/doctorManagement")
+	public String doctorManagement(HttpServletRequest req, Model model) {
+		try {
+		admin.doctorList(req, model);		
+		} catch(NumberFormatException e){
+      	  
+	 }	 		
+		return "host/doctorManagement";		
+	}
+	
+	
+	//관리자 회원 상세 목록 보기
+	@RequestMapping("/admin/memberDetail")
+	public String memberDetail(@RequestParam String customer_id, Model model) {
 		
+	 model.addAttribute("customer", admin.memberInfo(customer_id));
+		
+	 return "host/memberDetail";		
+	}
+	
+	//관리자 의사 상세 목록 보기
+	@RequestMapping("/admin/doctorDetail")
+	public String doctorDetail(@RequestParam String doctor_id, Model model) {
+		
+	 model.addAttribute("doctor", admin.doctorInform(doctor_id));
+		
+	 return "host/doctorDetail";		
+	}
+	
+	//관리자 회원 휴먼처리
+	@RequestMapping("/admin/memberDeletePro")
+	public String memberDeletePro(HttpServletRequest req, Model model) {
+		
+	 admin.removeMem(req, model);
+		
+	 return "host/memberDeletePro";		
+	}
+	
+	//관리자 의사 퇴사 처리
+	@RequestMapping("/admin/doctorDeletePro")
+	public String doctorDetail(HttpServletRequest req, Model model) {
+		
+	 admin.doctorQuit(req, model);
+		
+	 return "host/doctorDeletePro";		
+	}
+		
+	
+	
 	
 }
