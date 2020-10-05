@@ -35,5 +35,8 @@ public interface FooterDao {
 	//proof_cost
 	public ArrayList<FooterBoard_proofCost> proof_cost(Map< String, Object> map);
 	
+	//의사 major 구하기
+	public String doctorMajor(String doctorId);
+	
 
 }

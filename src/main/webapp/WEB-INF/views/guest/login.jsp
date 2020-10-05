@@ -21,7 +21,7 @@
 </c:if>
 </head>
 <body>
-	<%@include file="../common/header.jsp"%>
+	<%@include file="../common/header_error.jsp"%>
 	<div class="divclass1" align="center">
 		<form action="${path}/login_check" method="post" name="login">
 			<input type ="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">

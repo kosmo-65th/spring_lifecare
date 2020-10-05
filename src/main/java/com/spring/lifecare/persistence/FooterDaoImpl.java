@@ -98,8 +98,12 @@ public class FooterDaoImpl implements FooterDao {
 		return dao.proof_cost(map);
 	}
 	
-	
-	
+	//의사 과 구하기
+	@Override
+	public String doctorMajor(String doctorId) {
+		FooterDao dao=sqlsession.getMapper(FooterDao.class);
+		return dao.doctorMajor(doctorId);
+	}
 	
 	
 

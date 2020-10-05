@@ -35,7 +35,6 @@ public class UserLoginFailureHandler implements AuthenticationFailureHandler {
             errormsg = "회원가입하지 않은 아이디 입니다.";
         } 
         	
-		
 		request.setAttribute("fail", "1");
 		request.setAttribute("errMsg", errormsg);
 		

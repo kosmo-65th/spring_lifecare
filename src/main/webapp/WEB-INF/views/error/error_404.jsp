@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%@include file="../common/header.jsp"%>
+	<%@include file="../common/header_error.jsp"%>
 	<div class="divclass1" align="center">
 		<a href="javascript:history.back();">
 			<img src="${path_resources}img/404error.png">

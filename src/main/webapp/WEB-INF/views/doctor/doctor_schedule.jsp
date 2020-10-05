@@ -116,6 +116,15 @@ function logout() {
 	}
 }
 
+function getFormatDate(date){
+    var year = date.getFullYear();              //yyyy
+    var month = (1 + date.getMonth());          //M
+    month = month >= 10 ? month : '0' + month;  //month 두자리로 저장
+    var day = date.getDate();                   //d
+    day = day >= 10 ? day : '0' + day;          //day 두자리로 저장
+    return  year + '' + month + '' + day;       //'-' 추가하여 yyyy-mm-dd 형태 생성 가능
+}
+
 document.addEventListener('DOMContentLoaded', function() {
 	
 	//달력을 생성할 위치를 변수 CalendarEl에 지정	
@@ -153,37 +162,53 @@ document.addEventListener('DOMContentLoaded', function() {
 			let today = new Date(); // 전역 변수, 오늘 날짜 / 내 컴퓨터 로컬을 기준으로 today에 Date 객체를 넣어줌
 			let year = today.getFullYear(); // 년도
 			let month = today.getMonth() + 1;  // 월
-			let date1 = today.getDate() + 1;  // +1일
-			let date2 = today.getDate() + 2;  // +2일
-			let date3 = today.getDate() + 3;  // +3일
-			let date4 = today.getDate() + 4;  // +4일
-			let date5 = today.getDate() + 5;  // +5일
+			let nextDate1 = new Date();
+			nextDate1.setDate(nextDate1.getDate()+1);
+			var nextDay1 = getFormatDate(nextDate1);
+			let date1 = nextDay1.substring(0,4) + '/' + nextDay1.substring(4,6) + '/' + nextDay1.substring(6,8);  // +1일
+			let nextDate2 = new Date();
+			nextDate2.setDate(nextDate2.getDate()+2);
+			var nextDay2 = getFormatDate(nextDate2);
+			let date2 = nextDay2.substring(0,4) + '/' + nextDay2.substring(4,6) + '/' + nextDay2.substring(6,8);  // +2일
+			let nextDate3 = new Date();
+			nextDate3.setDate(nextDate3.getDate()+3);
+			var nextDay3 = getFormatDate(nextDate3);
+			let date3 = nextDay3.substring(0,4) + '/' + nextDay3.substring(4,6) + '/' + nextDay3.substring(6,8);  // +3일
+			let nextDate4 = new Date();
+			nextDate4.setDate(nextDate4.getDate()+4);
+			var nextDay4 = getFormatDate(nextDate4);
+			let date4 = nextDay4.substring(0,4) + '/' + nextDay4.substring(4,6) + '/' + nextDay4.substring(6,8);  // +4일
+			let nextDate5 = new Date();
+			nextDate5.setDate(nextDate5.getDate()+5);
+			var nextDay5 = getFormatDate(nextDate5);
+			let date5 = nextDay5.substring(0,4) + '/' + nextDay5.substring(4,6) + '/' + nextDay5.substring(6,8);  // +5일
+			
 			let day = today.getDay();  // 요일	
 			
-			document.getElementById("date1").innerText = year + '/' + month + '/' + date1;
-			document.getElementById("date2").innerText = year + '/' + month + '/' + date2;
-			document.getElementById("date3").innerText = year + '/' + month + '/' + date3;
-			document.getElementById("date4").innerText = year + '/' + month + '/' + date4;
-			document.getElementById("date5").innerText = year + '/' + month + '/' + date5;
+			document.getElementById("date1").innerText = date1;
+			document.getElementById("date2").innerText = date2;
+			document.getElementById("date3").innerText = date3;
+			document.getElementById("date4").innerText = date4;
+			document.getElementById("date5").innerText = date5;
 			
 			// input값에 값주기
-			$('#start1').val(year + '/' + month + '/' + date1);
-			$('#start2').val(year + '/' + month + '/' + date2);
-			$('#start3').val(year + '/' + month + '/' + date3);
-			$('#start4').val(year + '/' + month + '/' + date4);
-			$('#start5').val(year + '/' + month + '/' + date5);
+			$('#start1').val(date1);
+			$('#start2').val(date2);
+			$('#start3').val(date3);
+			$('#start4').val(date4);
+			$('#start5').val(date5);
 			
-			document.appointForm.appoint_date[0].value = year + '/0' + month + '/' + date1;
-			document.appointForm.appoint_date[1].value = year + '/0' + month + '/' + date2;
-			document.appointForm.appoint_date[2].value = year + '/0' + month + '/' + date3;
-			document.appointForm.appoint_date[3].value = year + '/0' + month + '/' + date4;
-			document.appointForm.appoint_date[4].value = year + '/0' + month + '/' + date5;						
+			document.appointForm.appoint_date[0].value = nextDay1;
+			document.appointForm.appoint_date[1].value = nextDay2;
+			document.appointForm.appoint_date[2].value = nextDay3;
+			document.appointForm.appoint_date[3].value = nextDay4;
+			document.appointForm.appoint_date[4].value = nextDay5;						
 			
-			var day1 = String(year)+"0"+String(month)+String(date1);
-			var day2 = String(year)+"0"+String(month)+String(date2);
-			var day3 = String(year)+"0"+String(month)+String(date3);
-			var day4 = String(year)+"0"+String(month)+String(date4);
-			var day5 = String(year)+"0"+String(month)+String(date5);
+			var day1 = nextDay1;
+			var day2 = nextDay2;
+			var day3 = nextDay3;
+			var day4 = nextDay4;
+			var day5 = nextDay5;
 			var days = [day1, day2, day3, day4, day5];
 			
 			var times = [$('#time0').val(), $('#time1').val(), $('#time2').val(), $('#time3').val(), $('#time4').val(),
@@ -440,6 +465,7 @@ $(function() {
 				<li><a href="${path}/doctor/doctor_schedule"><em class="fa fa-table"></em> 스케쥴관리</a></li>
 				<li><a href="javascript:void(0);" onclick="resReset();"><em class="fa fa-pencil-square-o"></em> 환자조회/진료</a></li>
 				<li><a href="#alerts"><em class="fa fa-hand-o-up"></em> 진료도우미</a></li>
+				<li><a href="javascript:window.open('http://192.168.219.113:2000/standby?section=${sessionScope.major}')"><em class="fa-weixin"></em> 환자와의 채팅</a></li>
 			</ul>
 		</div>
 		

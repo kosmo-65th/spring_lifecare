@@ -70,6 +70,9 @@ public interface UserDAO {
 	 //비밀번호 변경
 	 public int changePassword(CustomerVO vo);
 	 
+	 //회원 휴먼처리
+	 public int memberHuman(CustomerVO vo);
+	 
 	 //회원 이름 불러오기
 	 public String loadCustomerName(String customer_id);
 	 
@@ -142,6 +145,12 @@ public interface UserDAO {
 	 //최근진료기록 리스트
 	 public List<DiagnosisVO> getDiagnosisList(String doctor_id);
 	 
+	 //관리자 페이지  조회
+	 public int getPageNum();
+		
+	 //관리자 회원 목록 조회
+	 public ArrayList<CustomerVO> getPageNum(Map<String, Object> map);
+	 
 	 //예약확정된 리스트 불러오기
 	 public ArrayList<ReservationVO> getReservationList(String customer_id);
 	 
@@ -165,4 +174,10 @@ public interface UserDAO {
 	 
 	 //결제성공 update
 	 public int successPay(int diagnosis_num);
+	 
+	 //진료리스트
+	 public ArrayList<DiagnosisVO> pickDiagnosisList(String customer_id);
+	 
+	 // 미결제리스트
+	 public ArrayList<DiagnosisVO> nonpayList(String customer_id);
 }

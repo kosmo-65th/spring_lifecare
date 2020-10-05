@@ -1,7 +1,7 @@
 package util;
 
 public enum FinalString {
-	CALLBACKIP("192.168.219.111");
+	CALLBACKIP("192.168.219.115");
 	
 	private String value;
 	
@@ -13,3 +13,9 @@ public enum FinalString {
 		return value;
 	}
 }
+
+
+/*
+JSP 내 소스 구동 순서 
+JAVA>JSTL>HTML>Javascript 
+*/
