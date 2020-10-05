@@ -421,13 +421,7 @@ function drug5(drug_number){
 	<div class="row">
 		<div id="sidebar" class="column">
 			<h5>Navigation</h5>
-			<ul>
-				<li><a href="${path}/doctor/doctor_main"><em class="fa fa-home"></em> Home</a></li>
-				<li><a href="${path}/doctor/doctor_schedule"><em class="fa fa-table"></em> 스케쥴관리</a></li>
-				<li><a href="javascript:void(0);" onclick="resReset();"><em class="fa fa-pencil-square-o"></em> 환자조회/진료</a></li>
-				<li><a href="javascript:window.open('http://192.168.219.113:2000/standby?section=${sessionScope.major}')"><em class="fa-weixin"></em> 환자와의 채팅</a></li>
-				<li><a href="${path}/doctor/doctor_assist"><em class="fa fa-hand-o-up"></em> 진료도우미</a></li>
-			</ul>
+			<jsp:include page="./doctor_nav.jsp"></jsp:include>
 		</div>
 		<section id="main-content" class="column column-offset-20">
 			
