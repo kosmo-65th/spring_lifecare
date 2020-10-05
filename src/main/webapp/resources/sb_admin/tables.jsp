@@ -1,8 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="/resources/setting/setting.jsp" %>
+<link type="text/css" rel="stylesheet" href="${path_resources}css/mypage.css">
+<html>
 <head>
-
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -20,9 +21,7 @@
 
   <!-- Custom styles for this page -->
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
 </head>
-
 <body id="page-top">
 
   <!-- Page Wrapper -->
@@ -82,7 +81,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Utilities:</h6>
             <a class="collapse-item" href="utilities-color.html">Colors</a>
-            <a class="collapse-item" href="utilities-border.html">Borders</a>
+            <a class="collapse-item" href="${path}/board/adminboardList">Boarders</a>
             <a class="collapse-item" href="utilities-animation.html">Animations</a>
             <a class="collapse-item" href="utilities-other.html">Other</a>
           </div>
@@ -875,7 +874,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> tables
 
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
@@ -895,5 +894,4 @@
   <script src="js/demo/datatables-demo.js"></script>
 
 </body>
-
 </html>
