@@ -28,34 +28,12 @@
 </head>
 
 <body>
-	<div class="navbar">
-		<div class="row">
-			<div class="column column-30 col-site-title"><a href="${path}/doctor/doctor_main" class="site-title float-left">Lifecare</a></div>
-			<div class="column column-40 col-search"><a href="#" class="search-btn fa fa-search"></a>
-				<input type="text" name="" value="" placeholder="Search..." />
-			</div>
-			<div class="column column-30">
-				<div class="user-section"><a href="#">
-					<img src="${path_resources}images/doctor.png" alt="profile photo" class="circle float-left profile-photo" width="50" height="auto">
-					<div class="username">
-						<h4>한승운</h4>
-						<p>진료과</p>
-					</div>
-				</a></div>
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div id="sidebar" class="column">
-			<h5>Navigation</h5>
-			<ul>
-				<li><a href="${path}/doctor_main"><em class="fa fa-home"></em> Home</a></li>
-				<li><a href="${path}/doctor_schedule"><em class="fa fa-table"></em> 스케쥴관리</a></li>
-				<li><a href="${path}/doctor_medicalNote"><em class="fa fa-pencil-square-o"></em> 환자조회/진료</a></li>
-				<li><a href="#alerts"><em class="fa fa-hand-o-up"></em> 진료도우미</a></li>
-				<li><a href="javascript:window.open('http://192.168.219.113:2000/standby?section=${sessionScope.major}')"><em class="fa-weixin"></em> 환자와의 채팅</a></li>
-			</ul>
-		</div>
-					
+	<ul>
+		<li><a href="${path}/doctor/doctor_main"><em class="fa fa-home"></em> Home</a></li>
+		<li><a href="${path}/doctor/doctor_schedule"><em class="fa fa-table"></em> 스케쥴관리</a></li>
+		<li><a href="javascript:void(0);" onclick="resReset();"><em class="fa fa-pencil-square-o"></em> 환자조회/진료</a></li>
+		<li><a href="${path}/doctor/doctor_assist"><em class="fa fa-hand-o-up"></em> 진료도우미</a></li>
+		<li><a href="javascript:window.open('http://192.168.219.113:2000/standby?section=${sessionScope.major}')"><em class="fa fa-weixin"></em> 환자와의 채팅</a></li>
+	</ul>
 </body>
 </html>

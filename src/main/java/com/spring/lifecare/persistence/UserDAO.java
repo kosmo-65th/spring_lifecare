@@ -145,11 +145,6 @@ public interface UserDAO {
 	 //최근진료기록 리스트
 	 public List<DiagnosisVO> getDiagnosisList(String doctor_id);
 	 
-	 //관리자 페이지  조회
-	 public int getPageNum();
-		
-	 //관리자 회원 목록 조회
-	 public ArrayList<CustomerVO> getPageNum(Map<String, Object> map);
 	 
 	 //예약확정된 리스트 불러오기
 	 public ArrayList<ReservationVO> getReservationList(String customer_id);
@@ -174,6 +169,24 @@ public interface UserDAO {
 	 
 	 //결제성공 update
 	 public int successPay(int diagnosis_num);
+	 
+	 //관리자 페이지 회원목록 
+	 public List<CustomerVO> listMembers(); 
+	 
+	 //관리자 페이지 의사목록
+	 public List<DoctorVO> listDoctors();
+	 
+	 //관리자 페이지 회원 상세보기
+     public CustomerVO memberInformation(String customer_id);
+     
+     //관리자 페이지 의사 상세보기
+     public DoctorVO docInformation(String doctor_id);
+     
+     //회원 강퇴 처리
+	 public int deleteList(String customer_id);
+	 
+	 //의사 퇴사 처리
+	 public int deleteDoctor(String doctor_id);
 	 
 	 //진료리스트
 	 public ArrayList<DiagnosisVO> pickDiagnosisList(String customer_id);

@@ -21,6 +21,7 @@
 	.profile .profile-body {
 	    padding: 20px;
 	    background: #f7f7f7;
+	    width: 1440px;
 	}
 	
 	.profile .profile-bio {
@@ -42,6 +43,80 @@
 	    font-weight: 200;
 	}
 	
+	.css3-tab {
+	  list-style: none;
+	  position: relative;
+	  width: 100%;
+	}
+	.css3-tab input[type='radio'] {
+	  display: none;
+	}
+	.css3-tab .css3-tab-nav {
+	  display: table;
+	  table-layout: fixed;
+	  width: 100%;
+	}
+	.css3-tab .css3-tab-nav label {
+	  display: table-cell;
+	  background-color: #666666;
+	  color: #FFFFFF;
+	  padding: 15px;
+	  text-align: center;
+	  transition: all .3s ease 0s;
+	}
+	.css3-tab .css3-tab-nav label:hover {
+	  cursor: pointer;
+	  background: white;
+	  color: #666666;
+	  transition: all .3s ease 0s;
+	}
+	@media (max-width: 692px) {
+	  .css3-tab .css3-tab-nav {
+	    display: block;
+	    margin: 0 0 20px;
+	  }
+	  .css3-tab .css3-tab-nav label {
+	    display: block;
+	    box-sizing: border-box;
+	    width: 100%;
+	    padding: 20px;
+	  }
+	}
+	.css3-tab .css3-tab-content {
+	  overflow: hidden;
+	  padding: 25px;
+	  display: none;
+	  background: #FFF;
+	  clear: left;
+	  box-sizing: border-box;
+	}
+	.css3-tab input[id='tabOne']:checked ~ .css3-tab-nav label[for='tabOne'] {
+	  background: #35cebe;
+	  color: white;
+	  cursor: default;
+	}
+	.css3-tab input[id='tabOne']:checked ~ div.tab-one {
+	  display: block;
+	  border-top: solid 3px #35cebe;
+	}
+	.css3-tab input[id='tabTwo']:checked ~ .css3-tab-nav label[for='tabTwo'] {
+	  background: #35cebe;
+	  color: white;
+	  cursor: default;
+	}
+	.css3-tab input[id='tabTwo']:checked ~ div.tab-two {
+	  display: block;
+	  border-top: solid 3px #35cebe;
+	}
+	.css3-tab input[id='addNew']:checked ~ .css3-tab-nav label[for='addNew'] {
+	  background: #35cebe;
+	  color: white;
+	  cursor: default;
+	}
+	.css3-tab input[id='addNew']:checked ~ div.add-new {
+	  display: block;
+	  border-top: solid 3px #35cebe;
+	}
 	</style>
 	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700" rel="stylesheet">
@@ -78,7 +153,7 @@ function logout() {
 	}
 }
 
-//환자조회/진료 클릭시 발생 이벤트
+//환자조회진료 클릭시 발생 이벤트
 function resReset(){
 	$('#keyword').focus();
 }
@@ -346,13 +421,7 @@ function drug5(drug_number){
 	<div class="row">
 		<div id="sidebar" class="column">
 			<h5>Navigation</h5>
-			<ul>
-				<li><a href="${path}/doctor/doctor_main"><em class="fa fa-home"></em> Home</a></li>
-				<li><a href="${path}/doctor/doctor_schedule"><em class="fa fa-table"></em> 스케쥴관리</a></li>
-				<li><a href="javascript:void(0);" onclick="resReset();"><em class="fa fa-pencil-square-o"></em> 환자조회/진료</a></li>
-				<li><a href="#alerts"><em class="fa fa-hand-o-up"></em> 진료도우미</a></li>
-				<li><a href="javascript:window.open('http://192.168.219.113:2000/standby?section=${sessionScope.major}')"><em class="fa-weixin"></em> 환자와의 채팅</a></li>
-			</ul>
+			<jsp:include page="./doctor_nav.jsp"></jsp:include>
 		</div>
 		<section id="main-content" class="column column-offset-20">
 			
@@ -397,17 +466,23 @@ function drug5(drug_number){
 			<!--Forms-->
 			<div class="row grid-responsive">
 				<div class="column ">
-					<div class="card">
-						<div class="card-title">
-							<h3>진료기록작성</h3>
-						</div>
+					<div class="card">					
+						<div class='css3-tab'>
+							<input type='radio' name='a' id='tabOne' tabindex="1" checked>
+							<input type='radio' name='a' id='tabTwo' tabindex="2">
+			
+							<div class="css3-tab-nav">
+								<label for='tabOne'>진료기록작성</label>
+								<label for='tabTwo'>검사결과작성</label>
+							</div>
+							<div class='css3-tab-content tab-one'>														
 						<div class="card-block">
 							<form action="${path}/doctor/diagnosisPro" method="post" name="medicalForm">
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 							<input type="hidden" name="customer_id" value="${vo.getCustomer_id()}">
 								<fieldset>
-									<input type="text" placeholder="질병코드" id="disease_code" name="disease_code">
-									<input type="text" placeholder="주증상(C.C)" id="nameField" name="cc">
+									<input type="text" placeholder="(*)질병코드" id="disease_code" name="disease_code">
+									<input type="text" placeholder="(*)주증상(C.C)" id="nameField" name="cc">
 										<div id="diseaseList"></div>
 									<input type="text" placeholder="혈압(BP)" id="nameField" name="bp">
 									<input type="text" placeholder="호흡(RR)" id="nameField" name="rr">
@@ -444,7 +519,7 @@ function drug5(drug_number){
 				<div class="column column-33">
 					<div class="card">
 						<div class="card-title">
-							<h2>현병력</h2>
+							<h2>*현병력</h2>
 						</div>
 						<div class="card-block">
 							<div class="canvas-wrapper">
@@ -456,7 +531,7 @@ function drug5(drug_number){
 				<div class="column column-33">
 					<div class="card">
 						<div class="card-title">
-							<h2>증세</h2>
+							<h2>*증세</h2>
 						</div>
 						<div class="card-block">
 							<div class="canvas-wrapper">
@@ -496,9 +571,161 @@ function drug5(drug_number){
 							</form>
 						</div>
 					</div>
+					<div class='css3-tab-content tab-two'>
+						<div class="card">
+							<div class="card-title">
+								<h2>기초검사결과 작성</h2>
+							</div>
+						<form action="${path}/doctor/diagnosisPro" method="post" name="medicalForm">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+							<input type="hidden" name="customer_id" value="${vo.getCustomer_id()}">
+																
+							<input type="text" placeholder="체중" name="height">
+							<input type="text" placeholder="몸무게" name="weight">
+							<input type="text" placeholder="허리둘레" name="waist">
+						<label for="commentField">이상지질혈증</label>
+							<input type="text" placeholder="TC" name="tc">
+							<input type="text" placeholder="TG" name="tg">
+							<input type="text" placeholder="LDL" name="ldl">
+							<input type="text" placeholder="HDL" name="hdl">
+						<label for="commentField">혈압</label>
+							<input type="text" placeholder="수축기혈압" name="blood1">
+							<input type="text" placeholder="이완기혈압" name="blood2">	
+						<label for="commentField">당뇨</label>
+							<input type="text" placeholder="공복혈당" name="bloodSugar">
+						<label for="commentField">혈액</label>									
+							<input type="text" placeholder="백혈구" name="white">
+							<input type="text" placeholder="혈소판" name="platelet">
+							<input type="text" placeholder="혈색소" name="hb">
+						<label for="commentField">간질환</label>									
+							<input type="text" placeholder="AST" name="ast">
+							<input type="text" placeholder="ALT" name="alt">
+							<input type="text" placeholder="r-GTP" name="gtp">
+						<label for="commentField">신장질환</label>
+							<input type="text" placeholder="요단백" name="kidney1">
+							<input type="text" placeholder="요소질소" name="kidney2">
+							<input type="text" placeholder="혈창크레아티닌" name="kidney3">
+							<input type="text" placeholder="사구체여과율" name="kidney4">
+						<label for="commentField">Comment</label>
+							<textarea placeholder="소견 작성" id="commentField"></textarea>
+							<input class="button-primary" type="submit" value="Send">
+						</form>
+					</div>
+						<hr>	
+						<div class="row grid-responsive">
+							<div class="column column-50">
+								<div class="card">
+									<div class="card-title">
+										<h2>X-RAY 검사</h2>
+									</div>
+									<div class="card-block">
+										<div class="canvas-wrapper">
+											<form action="${path}/doctor/diagnosisPro" method="post" name="medicalForm">
+											<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+											<input type="hidden" name="customer_id" value="${vo.getCustomer_id()}">
+											<table>
+												<thead>
+												<tr>
+													<th style="width:70%;">이미지</th>
+													<th style="width:30%;" colspan="2">결과</th>
+												</tr>
+												</thead>
+												<tbody style="height:600px;">										    
+												<tr>												
+													<td rowspan="3"><img style="height:350px;" id="image" src="${path_resources}images/man.png"></td>
+													<td>정상확률</td>
+													<td>50%</td>
+												</tr>
+												<tr class='even'>
+													<td>폐렴확률</td>
+													<td>50%</td>
+												</tr>
+												<tr>
+													<td>코로나확률</td>
+													<td>50%</td>
+												</tr>
+												</tbody>	
+											</table>
+											<label for="commentField">Comment</label>
+											<textarea placeholder="소견 작성" id="commentField"></textarea>
+											<input class="button-primary" type="submit" value="Send">
+										</form>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="column column-50">
+								<div class="card">
+									<div class="card-title">
+										<h2>암(유방)검사</h2>
+									</div>
+									<div class="card-block">
+										<div class="canvas-wrapper">
+											<table cellspacing='0'>
+												<tr>
+													<th>Task Details</th>
+													<th>Progress</th>
+													<th>Vital Task</th>
+												</tr>
+											    
+												<tr>
+													<td>Create pretty table design</td>
+													<td>100%</td>
+													<td>Yes</td>
+												</tr>
+												<tr class='even'>
+													<td>Take the dog for a walk</td>
+													<td>100%</td>
+													<td>Yes</td>
+												</tr>
+											
+												<tr>
+													<td>Waste half the day on Twitter</td>
+													<td>20%</td>
+													<td>No</td>
+												</tr>
+												<tr class='even'>
+													<td>Feel inferior after viewing Dribble</td>
+													<td>80%</td>
+													<td>No</td>
+												</tr>
+												
+											    <tr>
+													<td>Wince at "to do" list</td>
+													<td>100%</td>
+													<td>Yes</td>
+												</tr>
+												<tr class='even'>
+													<td>Vow to complete personal project</td>
+													<td>23%</td>
+													<td>yes</td>
+												</tr>
+											
+												<tr>
+													<td>Procrastinate</td>
+													<td>80%</td>
+													<td>No</td>
+												</tr>
+											    <tr class='even'>
+													<td><a href="#">Hyperlink Example</a></td>
+													<td>80%</td>
+													<td><a href="#inexistent-id">Another</a></td>
+												</tr>
+											</table>
+											<label for="commentField">Comment</label>
+											<textarea placeholder="의사소견" id="commentField"></textarea>
+											<input class="button-primary" type="submit" value="Send">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					</div>
 				</div>
-			</div>						
-			<p class="credit">HTML5 Admin Template by <a href="https://www.medialoot.com">Medialoot</a></p>
+			</div>
+		</div>						
+		<p class="credit">HTML5 Admin Template by <a href="https://www.medialoot.com">Medialoot</a></p>
 		</section>
 	</div>		
 </body>
