@@ -21,7 +21,6 @@ import com.spring.lifecare.vo.DoctorVO;
 import com.spring.lifecare.vo.DrugVO;
 import com.spring.lifecare.vo.ReservationVO;
 
-
 @Repository
 public class UserDAOImpl implements UserDAO {
 	@Autowired
@@ -123,12 +122,12 @@ public class UserDAOImpl implements UserDAO {
 	    return dao.insertDoctor(vo);
 	}
 	
+	//아이디에 해당하는 비밀번호 가져오기
 	@Override
 	public String idPwdCheck(String customer_id) {
 		String checkIdPwd = sqlSession.selectOne("com.spring.lifecare.persistence.UserDAO.idPwdCheck", customer_id);
 		return checkIdPwd;	
 	}
-	
 	
 	//내 정보 가져오기
 	@Override
@@ -295,6 +294,19 @@ public class UserDAOImpl implements UserDAO {
 		UserDAO dao = sqlSession.getMapper(UserDAO.class);
 		return dao.searchEnptNext(entp);
 	}
+	
+	//안드로이드 약 사진 조회 
+	 public ArrayList<DrugVO> drugPhotoSeaerch(Map<String, Object> map) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.drugPhotoSeaerch(map);
+	 }
+	 
+	 //안드로이드 약 사진 조회  상세
+	 public ArrayList<DrugVO> drugPhotoDetail(String drug_num) {
+		 UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		 return dao.drugPhotoDetail(drug_num);
+	 }
+	
 
 	@Override
 	public int memberHuman(CustomerVO vo) {
@@ -304,22 +316,6 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 
-    //관리자 페이지
-	@Override
-	public int getPageNum() {
-		return sqlSession.selectOne("com.spring.project.persistence.UserDAO.getPageNum");
-		
-	}
-
-    //관리자 페이지 회원목록
-	@Override
-	public ArrayList<CustomerVO> getPageNum(Map<String, Object> map) {
-    ArrayList<CustomerVO> dtos = null;
-		
-		UserDAO dao = sqlSession.getMapper(UserDAO.class);
-		dtos = dao.getPageNum(map);
-		return dtos;
-	}
 
 	@Override
 	public ArrayList<ReservationVO> getReservationList(String customer_id) {
@@ -369,6 +365,38 @@ public class UserDAOImpl implements UserDAO {
 		return dao.successPay(diagnosis_num);
 	}
 
+    //관리자 페이지 회원목록 
+	@Override
+	public List<CustomerVO> listMembers() {
+		List<CustomerVO> list = sqlSession.selectList("com.spring.lifecare.persistence.UserDAO.listMembers");
+		return list;	
+	}
+
+    //관리자 페이지 의사목록
+	@Override
+	public List<DoctorVO> listDoctors() {
+		List<DoctorVO> doctor = sqlSession.selectList("com.spring.lifecare.persistence.UserDAO.listDoctors");
+		return doctor;	
+	}
+
+   //관리자 회원목록 상세보기
+	@Override
+	public CustomerVO memberInformation(String customer_id) {
+		return sqlSession.selectOne("com.spring.lifecare.persistence.UserDAO.memberInformation", customer_id);
+	}
+
+    //관리자 의사 목록 상세보기
+	@Override
+	public DoctorVO docInformation(String doctor_id) {
+		return sqlSession.selectOne("com.spring.lifecare.persistence.UserDAO.docInformation", doctor_id);
+	}
+
+    //회원강퇴처리
+	@Override
+	public int deleteList(String customer_id) {
+		int updateCnt = sqlSession.update("com.spring.lifecare.persistence.UserDAO.deleteList", customer_id);  
+		return updateCnt;
+	}
 
 	@Override
 	public ArrayList<DiagnosisVO> pickDiagnosisList(String customer_id) {
@@ -378,6 +406,11 @@ public class UserDAOImpl implements UserDAO {
 
 
 	@Override
+	public int deleteDoctor(String doctor_id) {
+		int updateCnt = sqlSession.update("com.spring.lifecare.persistence.UserDAO.deleteDoctor", doctor_id);  
+		return updateCnt;
+	}
+	
 	public ArrayList<DiagnosisVO> nonpayList(String customer_id) {
 		UserDAO dao = sqlSession.getMapper(UserDAO.class);
 		return dao.nonpayList(customer_id);

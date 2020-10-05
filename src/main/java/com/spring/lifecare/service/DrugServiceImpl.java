@@ -151,10 +151,87 @@ public class DrugServiceImpl implements DrugService {
 	}
 	
 	//상세
-		@Override
-		public void drugDetail(HttpServletRequest req, Model model) {
-			int drug_number =Integer.parseInt( req.getParameter("drug_number"));
-			DrugVO vo = userDAO.drugDetail(drug_number);
-			model.addAttribute("detail", vo); 
+	@Override
+	public void drugDetail(HttpServletRequest req, Model model) {
+		int drug_number =Integer.parseInt( req.getParameter("drug_number"));
+		DrugVO vo = userDAO.drugDetail(drug_number);
+		model.addAttribute("detail", vo); 
+	}
+
+	
+	// -------------------------- 안드로이드  --------------------------
+	//사진으로 약 조회
+	@Override
+	public ArrayList<Map<String, Object>> drugPhotoSeaerch(HttpServletRequest req) {
+		String message =  req.getParameter("result");	
+		System.out.println(message);
+		
+		String [] mArr = message.split("\n");
+		if(mArr[0] == "") {
+			mArr = new String[0];
 		}
+		
+		System.out.println("mArr : " + mArr[0] +" , " + mArr[1]);
+		
+		Map<String,Object> shaps = new HashMap<String, Object>();
+		shaps.put("mArr", mArr);
+		
+		ArrayList<Map<String, Object>> out = new ArrayList<Map<String, Object>>();
+		
+		ArrayList<DrugVO> result =  userDAO.drugPhotoSeaerch(shaps);
+	
+		for(DrugVO vo : result) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			
+			map.put("d_num", Integer.toString(vo.getDrug_number()));
+			map.put("d_name", vo.getDrug_name());
+			map.put("d_emtp", vo.getDrug_enptname());
+			map.put("d_img", vo.getDrug_productimage());
+			map.put("d_f_shape", vo.getDrug_frontShape());
+			
+			out.add(map);
+		}
+		
+		System.out.println("out : " + out);
+		
+		return out;
+		
+	}
+	//사진으로 약 조회 상세
+	@Override
+	public ArrayList<Map<String, Object>> drugPhotoDetail(HttpServletRequest req) {
+		String drug_num =  req.getParameter("drug_num");	
+		System.out.println(drug_num);
+		
+		
+		ArrayList<Map<String, Object>> out = new ArrayList<Map<String, Object>>();
+		
+		ArrayList<DrugVO> result =  userDAO.drugPhotoDetail(drug_num);
+		
+		for(DrugVO vo : result) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			
+			map.put("drug_image", vo.getDrug_productimage());
+			map.put("drug_name", vo.getDrug_name());
+			map.put("drug_emtp", vo.getDrug_enptname());
+			map.put("drug_division", vo.getDrug_division());
+			map.put("drug_lisenceDate", vo.getDrug_license_date());
+			map.put("drug_category", vo.getDrug_category());
+			map.put("drug_formulation", vo.getDrug_formulation());
+			map.put("drug_color", vo.getDrug_color());
+			map.put("drug_num", drug_num);
+			map.put("drug_storage", vo.getDrug_storage());
+			map.put("drug_additives", vo.getDrug_additives());
+			map.put("drug_effect", vo.getDrug_effect());
+			map.put("drug_precautions", vo.getDrug_precautions());
+			
+			out.add(map);
+		}
+		
+		System.out.println("out : " + out);
+		
+		return out;
+		
+	}
+		
 }
