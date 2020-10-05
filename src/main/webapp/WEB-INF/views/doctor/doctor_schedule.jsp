@@ -162,28 +162,61 @@ document.addEventListener('DOMContentLoaded', function() {
 			let today = new Date(); // 전역 변수, 오늘 날짜 / 내 컴퓨터 로컬을 기준으로 today에 Date 객체를 넣어줌
 			let year = today.getFullYear(); // 년도
 			let month = today.getMonth() + 1;  // 월
+			
 			let nextDate1 = new Date();
+			nextDate1.setMonth(nextDate1.getMonth());
 			nextDate1.setDate(nextDate1.getDate()+1);
+			if(nextDate1.getDay() == 6) {
+				nextDate1.setDate(nextDate1.getDate()+2);
+			} else if(nextDate1.getDay() == 7) {
+				nextDate1.setDate(nextDate1.getDate()+1);
+			}
 			var nextDay1 = getFormatDate(nextDate1);
 			let date1 = nextDay1.substring(0,4) + '/' + nextDay1.substring(4,6) + '/' + nextDay1.substring(6,8);  // +1일
+			
 			let nextDate2 = new Date();
-			nextDate2.setDate(nextDate2.getDate()+2);
+			nextDate2.setMonth(nextDate1.getMonth());
+			nextDate2.setDate(nextDate1.getDate()+1);
+			if(nextDate2.getDay() == 6) {
+				nextDate2.setDate(nextDate2.getDate()+2);
+			} else if(nextDate2.getDay() == 7) {
+				nextDate2.setDate(nextDate2.getDate()+1);
+			}
 			var nextDay2 = getFormatDate(nextDate2);
 			let date2 = nextDay2.substring(0,4) + '/' + nextDay2.substring(4,6) + '/' + nextDay2.substring(6,8);  // +2일
+			
 			let nextDate3 = new Date();
-			nextDate3.setDate(nextDate3.getDate()+3);
+			nextDate3.setMonth(nextDate2.getMonth());
+			nextDate3.setDate(nextDate2.getDate()+1);
+			if(nextDate3.getDay() == 6) {
+				nextDate3.setDate(nextDate3.getDate()+2);
+			} else if(nextDate3.getDay() == 7) {
+				nextDate3.setDate(nextDate3.getDate()+1);
+			}
 			var nextDay3 = getFormatDate(nextDate3);
 			let date3 = nextDay3.substring(0,4) + '/' + nextDay3.substring(4,6) + '/' + nextDay3.substring(6,8);  // +3일
+			
 			let nextDate4 = new Date();
-			nextDate4.setDate(nextDate4.getDate()+4);
+			nextDate4.setMonth(nextDate3.getMonth());
+			nextDate4.setDate(nextDate3.getDate()+1);
+			if(nextDate4.getDay() == 6) {
+				nextDate4.setDate(nextDate4.getDate()+2);
+			} else if(nextDate4.getDay() == 7) {
+				nextDate4.setDate(nextDate4.getDate()+1);
+			}
 			var nextDay4 = getFormatDate(nextDate4);
 			let date4 = nextDay4.substring(0,4) + '/' + nextDay4.substring(4,6) + '/' + nextDay4.substring(6,8);  // +4일
+			
 			let nextDate5 = new Date();
-			nextDate5.setDate(nextDate5.getDate()+5);
+			nextDate5.setMonth(nextDate4.getMonth());
+			nextDate5.setDate(nextDate4.getDate()+1);
+			if(nextDate5.getDay() == 6) {
+				nextDate5.setDate(nextDate5.getDate()+2);
+			} else if(nextDate5.getDay() == 7) {
+				nextDate5.setDate(nextDate5.getDate()+1);
+			}
 			var nextDay5 = getFormatDate(nextDate5);
 			let date5 = nextDay5.substring(0,4) + '/' + nextDay5.substring(4,6) + '/' + nextDay5.substring(6,8);  // +5일
-			
-			let day = today.getDay();  // 요일	
 			
 			document.getElementById("date1").innerText = date1;
 			document.getElementById("date2").innerText = date2;
@@ -464,7 +497,7 @@ $(function() {
 				<li><a href="${path}/doctor/doctor_main"><em class="fa fa-home"></em> Home</a></li>
 				<li><a href="${path}/doctor/doctor_schedule"><em class="fa fa-table"></em> 스케쥴관리</a></li>
 				<li><a href="javascript:void(0);" onclick="resReset();"><em class="fa fa-pencil-square-o"></em> 환자조회/진료</a></li>
-				<li><a href="#alerts"><em class="fa fa-hand-o-up"></em> 진료도우미</a></li>
+				<li><a href="${path}/doctor/doctor_assist"><em class="fa fa-hand-o-up"></em> 진료도우미</a></li>
 			</ul>
 		</div>
 		

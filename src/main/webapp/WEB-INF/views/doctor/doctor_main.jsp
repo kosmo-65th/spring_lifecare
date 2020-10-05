@@ -202,7 +202,7 @@ $(function() {
 				<li><a href="${path}/doctor/doctor_main"><em class="fa fa-home"></em> Home</a></li>
 				<li><a href="${path}/doctor/doctor_schedule"><em class="fa fa-table"></em> 스케쥴관리</a></li>
 				<li><a href="javascript:void(0);" onclick="resReset();"><em class="fa fa-pencil-square-o"></em> 환자조회/진료</a></li>
-				<li><a href="#alerts"><em class="fa fa-hand-o-up"></em> 진료도우미</a></li>
+				<li><a href="${path}/doctor/doctor_assist"><em class="fa fa-hand-o-up"></em> 진료도우미</a></li>
 			</ul>
 		</div>
 

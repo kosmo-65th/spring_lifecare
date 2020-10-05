@@ -175,6 +175,13 @@ public class JinController {
     	return "doctor/doctor_medicalNote";
     }
     
+    // 의사 진단 도우미
+    @RequestMapping("/doctor/doctor_assist")
+    public String doctor_assist(HttpServletRequest req, Model model) {
+    	doctor.loadDoctorInfo(req, model);
+    	return "doctor/doctor_assist";
+    }
+    
     // 의사페이지에서 환자 검색리스트 뿌리기
     @RequestMapping("/search_next")
     public String search_next(HttpServletRequest req, Model model) {
