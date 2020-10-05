@@ -393,6 +393,31 @@ function drug5(drug_number){
 	document.medicalForm.drug5.value = drug_number;
 	$('#drugList5').css("display", "none");
 }
+
+window.onload = function(){
+	//파일을 선택할 때
+	document.getElementById('file').onchange = function(){
+		readImage();
+	};
+};
+
+function readImage() {
+	var file = document.getElementById('file');
+	if(file.files && file.files[0]) {
+		var reader = new FileReader();
+		
+		//이미지 읽기
+		reader.readAsDataURL(file.files[0]);
+		
+		//이미지 전부 읽어들였으면 호출
+		reader.onload = function(){
+			var image = document.getElementById('img');
+			image.src = reader.result;
+			//img 태그 노출
+			image.style.display = '';
+		};
+	}
+};
 </script>
 <body>
 	<div class="navbar">
@@ -488,7 +513,7 @@ function drug5(drug_number){
 								<fieldset>
 									<input type="text" placeholder="(*)질병코드" id="disease_code" name="disease_code">
 									<input type="text" placeholder="(*)주증상(C.C)" id="nameField" name="cc">
-										<div id="diseaseList"></div>
+									<div id="diseaseList"></div>
 									<input type="text" placeholder="혈압(BP)" id="nameField" name="bp">
 									<input type="text" placeholder="호흡(RR)" id="nameField" name="rr">
 									<input type="text" placeholder="맥박(PR)" id="nameField" name="pr">
@@ -581,13 +606,11 @@ function drug5(drug_number){
 							<div class="card-title">
 								<h2>기초검사결과 작성</h2>
 							</div>
-						<form action="${path}/doctor/diagnosisPro" method="post" name="medicalForm">
+						<form action="${path}/doctor/diagnosisPro" method="post" name="fda">
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-							<input type="hidden" name="customer_id" value="${vo.getCustomer_id()}">
-																
+							<input type="hidden" name="customer_id" value="${vo.getCustomer_id()}">																
 							<input type="text" placeholder="체중" name="height">
 							<input type="text" placeholder="몸무게" name="weight">
-							<input type="text" placeholder="허리둘레" name="waist">
 						<label for="commentField">이상지질혈증</label>
 							<input type="text" placeholder="TC" name="tc">
 							<input type="text" placeholder="TG" name="tg">
@@ -625,7 +648,8 @@ function drug5(drug_number){
 									</div>
 									<div class="card-block">
 										<div class="canvas-wrapper">
-											<form action="${path}/doctor/diagnosisPro" method="post" name="medicalForm">
+											<form action="${path}/doctor/diagnosisPro" method="post" name="asdf">
+											<input type="file" name="xray_img" id="file">
 											<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 											<input type="hidden" name="customer_id" value="${vo.getCustomer_id()}">
 											<table>
@@ -637,7 +661,7 @@ function drug5(drug_number){
 												</thead>
 												<tbody style="height:600px;">										    
 												<tr>												
-													<td rowspan="3"><img style="height:350px;" id="image" src="${path_resources}images/man.png"></td>
+													<td rowspan="3"><img style="height:350px;" id="img"></td>
 													<td>정상확률</td>
 													<td>50%</td>
 												</tr>
@@ -666,60 +690,33 @@ function drug5(drug_number){
 									</div>
 									<div class="card-block">
 										<div class="canvas-wrapper">
+											<form action="${path}/doctor/diagnosisPro" method="post" name="qwer">
+											<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+											<input type="hidden" name="customer_id" value="${vo.getCustomer_id()}">
+											<input type="hidden" name="age" value=${2020 - vo.getCustomer_year()}">
+											<label for="commentField">검사정보입력</label>
+												<input type="text" placeholder="radius" name="radius">
+												<input type="text" placeholder="texture" name="texture">
+												<input type="text" placeholder="perimeter" name="perimeter">
+												<input type="text" placeholder="area" name="area">
+												<input type="text" placeholder="smoothness" name="smoothness">
+												<input type="text" placeholder="compactness" name="compactness">
+												<input type="text" placeholder="concavity" name="concavity">
+												<input type="text" placeholder="symmetry" name="symmetry">
+												<input type="text" placeholder="fractal_dimension" name="fractal_dimension">																																			
 											<table cellspacing='0'>
 												<tr>
-													<th>Task Details</th>
-													<th>Progress</th>
-													<th>Vital Task</th>
-												</tr>
-											    
-												<tr>
-													<td>Create pretty table design</td>
-													<td>100%</td>
-													<td>Yes</td>
-												</tr>
+													<th colspan="2">결과</th>
+												</tr>											    
 												<tr class='even'>
-													<td>Take the dog for a walk</td>
-													<td>100%</td>
-													<td>Yes</td>
-												</tr>
-											
-												<tr>
-													<td>Waste half the day on Twitter</td>
-													<td>20%</td>
-													<td>No</td>
-												</tr>
-												<tr class='even'>
-													<td>Feel inferior after viewing Dribble</td>
-													<td>80%</td>
-													<td>No</td>
-												</tr>
-												
-											    <tr>
-													<td>Wince at "to do" list</td>
-													<td>100%</td>
-													<td>Yes</td>
-												</tr>
-												<tr class='even'>
-													<td>Vow to complete personal project</td>
-													<td>23%</td>
-													<td>yes</td>
-												</tr>
-											
-												<tr>
-													<td>Procrastinate</td>
-													<td>80%</td>
-													<td>No</td>
-												</tr>
-											    <tr class='even'>
-													<td><a href="#">Hyperlink Example</a></td>
-													<td>80%</td>
-													<td><a href="#inexistent-id">Another</a></td>
-												</tr>
+													<td>양성</td>
+													<td>82%</td>
+												</tr>											
 											</table>
 											<label for="commentField">Comment</label>
 											<textarea placeholder="의사소견" id="commentField"></textarea>
 											<input class="button-primary" type="submit" value="Send">
+											</form>
 										</div>
 									</div>
 								</div>
