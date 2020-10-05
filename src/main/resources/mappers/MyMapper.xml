@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "com.spring.lifecare.persistence.MyDAO">
+	<!-- 게시글 갯수 구하기 -->
+	<select id = "getArticleCnt" resultType = "int">
+	<![CDATA[
+		SELECT COUNT(*) as cnt FROM boardQA
+	]]>
+	</select>
+	
+	<!-- 게시물 목록 조회 -->
+	<select id = "getArticleList" parameterType = "java.util.Map" resultType = "com.spring.lifecare.vo.BoardVO">
+	<![CDATA[
+		SELECT * 
+		FROM (SELECT board_sortnum, customer_id, board_subject, board_content, board_writedate, board_replycode, rowNum rNum 
+				FROM (
+						SELECT * 
+						FROM boardQA
+						where customer_id = #{customer_id}
+						order by board_writedate asc
+					 )
+			  )
+		WHERE rNum >= #{start} AND rNum <= #{end}
+		order by rNum desc
+		]]>
+	</select>
+	
+	<!-- 상세페이지 조회(한개의 게시물) -->
+	<select id = "getArticle" parameterType = "java.util.Map" resultType = "com.spring.lifecare.vo.BoardVO">
+		<![CDATA[
+		SELECT * 
+		FROM (SELECT board_sortnum, customer_id, board_subject, board_content, board_writedate, board_reply , board_replycode, rowNum rNum 
+				FROM (
+						SELECT * 
+						FROM boardQA
+						where customer_id = #{customer_id}
+						order by board_writedate asc
+					 )
+			  )
+		WHERE board_sortnum = #{board_sortnum}
+		order by rNum desc
+		]]>
+	</select>
+	
+	<!-- 수정페이지 조회(한개의 게시물) -->
+	<select id = "modifyArticle" parameterType = "int" resultType = "com.spring.lifecare.vo.BoardVO">
+		<![CDATA[
+		SELECT board_sortnum, customer_id, board_subject, board_content
+		FROM boardQA
+		WHERE board_sortnum = #{board_sortnum}
+		]]>
+	</select>
+	
+	<!-- 현재 로그인된 아이디 세션에서 사용중인 비밀번호 인증을 위함 -->
+	<select id = "numPwdCheck" parameterType = "String" resultType = "String">
+		SELECT customer_pw FROM customer WHERE customer_id = #{customer_id}
+	</select>
+	
+	<!-- 유저글쓰기 확인 -->
+	<select id = "newWrite" resultType = "int">
+		SELECT MAX(board_sortnum) as maxNum FROM boardQA
+	</select>
+	
+	<!-- user글쓰기 insert -->
+	<insert id = "writeContent" parameterType = "com.spring.lifecare.vo.BoardVO">
+		INSERT INTO boardQA(board_sortnum, customer_id, board_subject, board_content)
+		VALUES(board_sortnum.nextval, #{customer_id}, #{board_subject}, #{board_content})
+	</insert>
+	
+	<!-- user게시글 modify -->
+	<update id = "updateContent" parameterType = "com.spring.lifecare.vo.BoardVO">
+		UPDATE boardQA SET board_subject = #{board_subject}, board_content = #{board_content} WHERE board_sortnum = #{board_sortnum}
+	</update>
+	
+	<!-- user + admin 게시물 삭제(board_replycode가 Y인 경우에도 삭제가 가능하다) --> 
+	<delete id = "contentDelete" parameterType = "com.spring.lifecare.vo.BoardVO">
+		delete boardQA WHERE board_sortnum = #{board_sortnum}
+	</delete>
+	
+	<!--admin 총 게시글 갯수  -->
+	<select id = "adminboardList" parameterType = "java.util.Map" resultType = "com.spring.lifecare.vo.BoardVO">
+	<![CDATA[
+		SELECT * 
+		FROM (SELECT board_sortnum, customer_id, board_subject, board_content, board_writedate, board_replycode, rowNum rNum 
+				FROM (
+						SELECT * 
+						FROM boardQA
+						order by board_writedate asc
+					 )
+			  )
+		WHERE rNum >= #{start} AND rNum <= #{end}
+		order by rNum desc
+		]]>
+	</select>
+	
+	<!-- admin 총 게시글 조회 -->
+	<select id = "adminboardcontent" parameterType = "java.util.Map" resultType = "com.spring.lifecare.vo.BoardVO">
+		<![CDATA[
+		SELECT board_sortnum, customer_id, board_subject, board_content , board_reply , board_replycode,  rowNum rNum 
+		FROM boardQA
+		where board_sortnum = #{board_sortnum}
+		order by rNum desc
+		]]>
+	</select>
+	
+	<!-- 게시글 작성자 조회 -->
+	<select id="searchBoardCnt" parameterType="String" resultType="int" >
+		SELECT count(*) as cnt FROM boardQA WHERE customer_id LIKE '%'||#{search}||'%' OR board_subject LIKE '%'||#{search}||'%' OR board_content LIKE '%'||#{search}||'%'
+	</select>
+	
+	<!-- 게시글 제목으로 조회 -->
+	<select id="searchBoardList" parameterType="java.util.Map" resultType="com.spring.lifecare.vo.BoardVO"> 
+	<![CDATA[
+ 		SELECT board_sortnum, customer_id, board_subject, board_content, board_writedate, board_reply , board_replycode , board_replydate , ROWNUM rNum 
+		FROM boardQA 
+		where (customer_id LIKE '%'||#{search}||'%' OR board_subject LIKE '%'||#{search}||'%' OR board_content LIKE '%'||#{search}||'%') 
+        ORDER BY rNum DESC
+	]]>
+	</select> 
+	<!-- admin 답변글쓰기 update -->
+	<update id = "adminboardreply" parameterType = "com.spring.lifecare.vo.BoardVO">
+		update boardQA set board_reply = #{board_reply} , board_replycode = 'O' where board_sortnum = #{board_sortnum} and board_subject = #{board_subject}
+	</update>
+	
+	<!-- admin 답변글 삭제 -->
+	<update id = "adminboardreplydelete" parameterType = "com.spring.lifecare.vo.BoardVO">
+		update boardQA set board_reply = null , board_replycode = 'X' where board_sortnum = #{board_sortnum} and board_reply =#{board_reply}
+	</update>
+	
+	<!-- 진료내역 갯수 구하기 -->
+	<select id = "medicalCnt" resultType = "int">
+	<![CDATA[
+		SELECT COUNT(*) as cnt FROM diagnosis
+	]]>
+	</select>
+	
+	<!-- 진료내역 목록 조회 -->
+	<select id = "medicalList" parameterType = "java.util.Map" resultType = "com.spring.lifecare.vo.medicalVO">
+	<![CDATA[
+        select d.diagnosis_num, d.diagnosis_time, c.customer_name, o.doctor_name, o.doctor_major, d.customer_amount
+        from diagnosis d, customer c, doctor o
+        where d.doctor_id = o.doctor_id
+        and d.customer_id = c.customer_id
+        and c.customer_id = #{customer_id}
+        order by d.diagnosis_time desc
+		]]>
+	</select>
+	
+	<!-- 상세페이지 조회(한개의 정보 = 진료기록) -->
+	<select id = "medicalnote" parameterType = "java.util.Map" resultType = "com.spring.lifecare.vo.medicalVO">
+		<![CDATA[
+        select d.diagnosis_num, d.diagnosis_time, c.customer_name, c.customer_gender, customer_year, to_char(sysdate,'YYYY')-c.customer_year as customer_age, 
+        	   c.customer_email, c.customer_phone, o.doctor_name, o.doctor_major, d.customer_amount, d.diagnosis_phx, d.diagnosis_fhx, 
+        	   d.diagnosis_pi, d.diagnosis_ros, d.diagnosis_pex
+        from diagnosis d, customer c, doctor o
+        where d.doctor_id = o.doctor_id
+        and d.customer_id = c.customer_id
+        and d.diagnosis_num = #{diagnosis_num}
+		]]>
+	</select>
+</mapper>
