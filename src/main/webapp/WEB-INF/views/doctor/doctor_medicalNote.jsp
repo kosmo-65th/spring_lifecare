@@ -601,36 +601,35 @@ function readImage() {
 							<div class="card-title">
 								<h2>기초검사결과 작성</h2>
 							</div>
-						<form action="${path}/doctor/diagnosisPro" method="post" name="fda">
+						<form action="${path}/doctor/basicExPro" method="post" name="fda">
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 							<input type="hidden" name="customer_id" value="${vo.getCustomer_id()}">																
-							<input type="text" placeholder="체중" name="height">
+							<input type="text" placeholder="키" name="height">
 							<input type="text" placeholder="몸무게" name="weight">
-						<label for="commentField">이상지질혈증</label>
-							<input type="text" placeholder="TC" name="tc">
-							<input type="text" placeholder="TG" name="tg">
-							<input type="text" placeholder="LDL" name="ldl">
-							<input type="text" placeholder="HDL" name="hdl">
-						<label for="commentField">혈압</label>
-							<input type="text" placeholder="수축기혈압" name="blood1">
-							<input type="text" placeholder="이완기혈압" name="blood2">	
-						<label for="commentField">당뇨</label>
-							<input type="text" placeholder="공복혈당" name="bloodSugar">
-						<label for="commentField">혈액</label>									
-							<input type="text" placeholder="백혈구" name="white">
-							<input type="text" placeholder="혈소판" name="platelet">
-							<input type="text" placeholder="혈색소" name="hb">
-						<label for="commentField">간질환</label>									
-							<input type="text" placeholder="AST" name="ast">
-							<input type="text" placeholder="ALT" name="alt">
-							<input type="text" placeholder="r-GTP" name="gtp">
-						<label for="commentField">신장질환</label>
-							<input type="text" placeholder="요단백" name="kidney1">
-							<input type="text" placeholder="요소질소" name="kidney2">
-							<input type="text" placeholder="혈창크레아티닌" name="kidney3">
-							<input type="text" placeholder="사구체여과율" name="kidney4">
+						<label for="commentField">이상지질혈증(정상범위)</label>
+							<input type="text" placeholder="TC(200mg/dl미만)" name="tc">
+							<input type="text" placeholder="TG(150mg/dl미만)" name="tg">
+							<input type="text" placeholder="LDL(130mg/dl미만)" name="ldl">
+							<input type="text" placeholder="HDL(60mg/dl미만)" name="hdl">
+						<label for="commentField">혈압(정상범위)</label>
+							<input type="text" placeholder="수축기혈압(120mmHg미만)" name="blood1">
+							<input type="text" placeholder="이완기혈압(80mmHg미만)" name="blood2">	
+						<label for="commentField">당뇨(정상범위)</label>
+							<input type="text" placeholder="공복혈당(100mg/dL미만)" name="bloodSugar">
+						<label for="commentField">혈액(정상범위)</label>									
+							<input type="text" placeholder="백혈구(4천~1만개)" name="white">
+							<input type="text" placeholder="혈색소(12~16.5g/dL)" name="hb">
+						<label for="commentField">간질환(정상범위)</label>									
+							<input type="text" placeholder="AST(40IU/L이하)" name="ast">
+							<input type="text" placeholder="ALT(35IU/L이하)" name="alt">
+							<input type="text" placeholder="r-GTP(8~63IU/L)" name="gtp">
+						<label for="commentField">신장질환(정상범위)</label>
+							<input type="text" placeholder="요단백(음성)" name="kidney1">
+							<input type="text" placeholder="요소질소(6~20mg/dL)" name="kidney2">
+							<input type="text" placeholder="혈창크레아티닌(1.5mg/dL이하)" name="kidney3">
+							<input type="text" placeholder="사구체여과율(60ml/min이상)" name="kidney4">
 						<label for="commentField">Comment</label>
-							<textarea placeholder="소견 작성" id="commentField"></textarea>
+							<textarea placeholder="소견 작성" id="commentField" name="ex_result"></textarea>
 							<input class="button-primary" type="submit" value="Send">
 						</form>
 					</div>
