@@ -1,18 +1,20 @@
 @charset "UTF-8";
 
 .body {
-  font-family: "Helvetica Neue", Helvetica, Arial;
-  font-size: 20px;
-  line-height: 20px;
-  font-weight: 400;
-  color: #3b3b3b;
-  -webkit-font-smoothing: antialiased;
-  font-smoothing: antialiased;
-  background: white;
+	font-family: "Helvetica Neue", Helvetica, Arial;
+	font-size: 20px;
+	line-height: 20px;
+	font-weight: 400;
+	color: #3b3b3b;
+	-webkit-font-smoothing: antialiased;
+	font-smoothing: antialiased;
+	background: white;
 }
+
 h3 {
 	text-align: left;
 }
+
 .payment {
 	width: 1000px;
 	text-align: center;
@@ -21,108 +23,140 @@ h3 {
 }
 
 .wrapper {
-  margin: 0 auto;
-  padding: 40px;
-  max-width: 800px;
+	margin: 0 auto;
+	padding: 40px;
+	max-width: 800px;
 }
 
 .tablePay {
-  margin: 0 0 40px 0;
-  width: 100%;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-  display: table;
+	margin: 0 0 40px 0;
+	width: 100%;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+	display: grid;
 }
+
 @media screen and (max-width: 580px) {
-  .tablePay {
-    display: block;
-  }
+	.tablePay {
+	 	display: block;
+	}
 }
 
 .row1 {
-  display: table-row;
-  background: #f6f6f6;
+	display: table-row;
+	background: #f6f6f6;
 }
+
 .row1:nth-of-type(odd) {
-  background: #e9e9e9;
+	background: #e9e9e9;
 }
+
 .row1.header {
-  font-weight: 900;
-  color: #ffffff;
-  background: #ea6153;
+	font-weight: 900;
+	color: #ffffff;
+	background: #ea6153;
 }
+
 .row1.green {
-  background: #27ae60;
+	background: #27ae60;
 }
+
 .row1.blue {
-  background: #2980b9;
+	background: #2980b9;
 }
+
 @media screen and (max-width: 580px) {
-  .row1 {
-    padding: 8px 0;
-    display: block;
-  }
+	.row1 {
+		padding: 8px 0;
+		display: block;
+	}
 }
 
 .cell1 {
-  padding: 6px 12px;
-  display: table-cell;
+	padding: 6px 12px;
+	display: table-cell;
+	margin-left : 2px;
+	text-align : center;
 }
+
 @media screen and (max-width: 580px) {
-  .cell1 {
-    padding: 2px 12px;
-    display: block;
-  }
+	.cell1 {
+		padding: 2px 12px;
+		display: block;
+	}
 }
+
 .red {
 	color: red;
 	text-decoration: none;
 }
+
 .tail {
 	color: red;
 	text-align: left;
 	font-size: 12px;
 }
-.right li{ 
-	display:inline;
-	list-style:none;
-	padding-top:10px;
-	padding-bottom:10px;
+
+.right li {
+	display: inline;
+	list-style: none;
+	padding-top: 10px;
+	padding-bottom: 10px;
 	margin-right: 10px;
 }
+
 .button, .button:visited {
-background: #222 url(/data/201012/IJ12931325586279/overlay.png) repeat-x; 
-display: inline; 
-padding: 5px 10px 6px; 
-color: #fff; 
-text-decoration: none;
--moz-border-radius: 6px; 
--webkit-border-radius: 6px;
--moz-box-shadow: 0 1px 3px rgba(0,0,0,0.6);
--webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.6);
-text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
-border-bottom: 1px solid rgba(0,0,0,0.25);
-cursor: pointer;
+	background: #222 url(/data/201012/IJ12931325586279/overlay.png) repeat-x;
+	display: inline;
+	padding: 5px 10px 6px;
+	color: #fff;
+	text-decoration: none;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+	text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+	cursor: pointer;
 }
 
-.button:hover							{ background-color: #111; color: #fff; }
-.button:active							{ top: 1px; }
-.small.button, .small.button:visited 			{ font-size: 11px}
-.button, .button:visited,
-.medium.button, .medium.button:visited 		{ font-size: 13px; 
-											  font-weight: bold; 
-											  line-height: 1; 
-											  text-shadow: 0 -1px 1px rgba(0,0,0,0.25); 
-											  }
-											  
-.large.button, .large.button:visited 			{ font-size: 14px; 
-												  padding: 8px 14px 9px; }
-												  
-.super.button, .super.button:visited 			{ font-size: 34px; 
-												  padding: 8px 14px 9px; }
+.button:hover {
+	background-color: #111;
+	color: #fff;
+}
 
-.green.button, .green.button:visited		{ background-color: #91bd09; }
-.green.button:hover						    { background-color: #749a02; }
+.button:active {
+	top: 1px;
+}
+
+.small.button, .small.button:visited {
+	font-size: 11px
+}
+
+.button, .button:visited, .medium.button, .medium.button:visited {
+	font-size: 13px;
+	font-weight: bold;
+	line-height: 1;
+	text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
+}
+
+.large.button, .large.button:visited {
+	font-size: 14px;
+	padding: 8px 14px 9px;
+}
+
+.super.button, .super.button:visited {
+	font-size: 34px;
+	padding: 8px 14px 9px;
+}
+
+.green.button, .green.button:visited {
+	background-color: #91bd09;
+}
+
+.green.button:hover {
+	background-color: #749a02;
+}
 
 .light {
-	display: inline;	
+	display: inline;
 }

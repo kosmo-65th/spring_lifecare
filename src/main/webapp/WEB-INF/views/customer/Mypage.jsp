@@ -28,13 +28,13 @@
 	    </div>
 	      
 	    <div class="shopMain">
-	        <h3><a href="${pathA}/user/cartList"><strong>DIAGNOSIS</strong> 진료결과 조회</a></h3>
-	        <p><a href="${pathA}/user/cartList">고객님께서 진료받으셨던 진료내역 목록을 보여드립니다.</a></p>
+	        <h3><a href="${path}/Medicalrecords/medicalList"><strong>DIAGNOSIS</strong> 진료결과 조회</a></h3>
+	        <p><a href="${pathA}/Medicalrecords/medicalList">고객님께서 진료받으셨던 진료내역 목록을 보여드립니다.</a></p>
 	    </div>  
 	    
 	    <div class="shopMain">
-	        <h3><a href="${pathA}/user/orderList"><strong>PRESCRIPTION</strong> 처방내역 조회</a></h3>
-	        <p><a href="${pathA}/user/orderList">고객님께서 처방받으셨던 처방내역 목록을 보여드립니다.</a></p>
+	        <h3><a href="${path}/board/adminboardList"><strong>PRESCRIPTION</strong> 처방내역 조회</a></h3>
+	        <p><a href="${path}/board/adminboardList">고객님께서 처방받으셨던 처방내역 목록을 보여드립니다.</a></p>
 	    </div>
 	    
 	     <div class="shopMain">
@@ -47,8 +47,8 @@
     <div class="shopMain_right">
     
 	    <div class="shopMain">
-	        <h3><a href="${pathA}/user/myPage_board"><strong>Q&A</strong> 게시판 관리</a></h3>
-	        <p><a href="${pathA}/user/myPage_board">고객님께서 궁금하던 사항을 질문할 수 있는 게시물 공간입니다.<br>고객님께서 질문하신 게시물을 한눈에 확인할 수 있습니다.</a></p>
+	        <h3><a href="${path}/board/customerboardList"><strong>Q&A</strong> 게시판 관리</a></h3>
+	        <p><a href="${path}/board/customerboardList">고객님께서 궁금하던 사항을 질문할 수 있는 게시물 공간입니다.<br>고객님께서 질문하신 게시물을 한눈에 확인할 수 있습니다.</a></p>
 	    </div>
 	    
 	    <div class="shopMain">
@@ -69,6 +69,5 @@
     </div>
     </div>
 	<%@include file="../common/footer.jsp"%>
-	
 </body>
 </html>

@@ -7,11 +7,6 @@
 <title>Insert title here</title>
 <!-- jQuery 추가 -->
 <script src="${path_resources}setting/jquery-3.5.1.js"></script>
-<script type="text/javascript">
-	$(document).ready(function(){
-		window.print();
-	});
-</script>
 </head>
 <body>
 
@@ -77,7 +72,7 @@
 					<td class="tg-c3ow" width="100px"></td>
 				</tr>
 				<tr>
-					<th class="tg-c3ow">주소</th>
+					<th class="tg-c3ow">이메일 주소</th>
 					<td class="tg-c3ow" colspan="3"></td>
 					<th class="tg-c3ow">전화번호 </th>
 					<td class="tg-c3ow" width="100px"></td>
@@ -117,8 +112,8 @@ problem :
 				</tr>
 				<tr>
 					<th class="tg-c3ow" colspan="2">진료 날짜 </th>
-					<td class="tg-c3ow" width="100px">  20. 08 . 27 .</td>
-					<th class="tg-c3ow" colspan="5" style ="text-align:right">의사성명 :</th>
+					<td class="tg-c3ow" width="100px"></td>
+					<th class="tg-c3ow" colspan="5" style ="text-align:right"></th>
 					<td class="tg-dvpl">(인)</td>
 				</tr>
 		</table>
