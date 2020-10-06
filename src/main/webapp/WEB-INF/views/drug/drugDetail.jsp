@@ -12,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
   <!-- Site Metas -->
-  <title>Life Care</title>
+  <title>의약품 상세정보</title>
   <meta name="keywords" content="">
   <meta name="description" content="">
   <meta name="author" content="">
@@ -38,15 +38,10 @@
 <script src="https://cdn.jsdelivr.net/jquery.loadingoverlay/latest/loadingoverlay.min.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.loadingoverlay/latest/loadingoverlay_progress.min.js"></script>
 
-
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js"></script>
-
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-
-
 
 <body>
 
@@ -221,8 +216,6 @@ $( document ).ready(function() {
 					<div class="druginfo">
 						<h4 class="title_dept3 ico">효능 · 효과</h4>
 						<p id="effect"><a href="${detail.drug_effect }">효능 · 효과 정보 확인하기</a></p>
-						
-						
 					</div>
 					<div class="druginfo">
 						<h4 class="title_dept3 ico">용법 · 용량</h4>

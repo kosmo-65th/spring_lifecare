@@ -12,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
   <!-- Site Metas -->
-  <title>Life Care</title>
+  <title></title>
   <meta name="keywords" content="">
   <meta name="description" content="">
   <meta name="author" content="">
@@ -62,10 +62,10 @@ function drugDetail(drug_number) {
 					<div style="float:right; margin-right: 30px">
 					
 					<li class="nxt"><span > > </span></li>
-					<li><a href="${path}/android_drugSearch" >의약품 검색</a></li>
+					<li><a href="${path}/android_drugSearch" >의약품 &nbsp; 검색</a></li>
 					
 					<li class="nxt"><span > > </span></li>
-					<li>의약품 검색 결과</li>
+					<li>의약품 &nbsp; 검색 결과</li>
 					</div>
 				</ul>
 		</div>	

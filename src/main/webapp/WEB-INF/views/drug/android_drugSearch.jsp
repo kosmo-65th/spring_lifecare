@@ -12,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
   <!-- Site Metas -->
-  <title>Life Care</title>
+  <title>의약품 검색</title>
   <meta name="keywords" content="">
   <meta name="description" content="">
   <meta name="author" content="">
@@ -315,14 +315,14 @@ function getCookie(name) {
 				<ul style="width:100%; float:right;">
 					<div style="float:right; margin-right: 30px">
 					<li class="nxt"><span class="ico"></span></li>
-					<li>의약품 검색</li>
+					<li>의약품&nbsp; 검색</li>
 					</div>
 				</ul>
 		</div>	
 		
 		<!-- 의약품검색 -->
 		<section id="search_identity">
-			<h2 class="maintitle">의약품검색</h2>
+			<h2 class="maintitle">의약품&nbsp; 검색</h2>
 			<div style="height: 20px;"></div>
 		
 			<!-- 검색테이블 -->
