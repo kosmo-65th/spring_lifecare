@@ -44,7 +44,7 @@
 .tg .tg-c3ow {
 	border-color: inherit;
 	text-align: center;
-	vertical-align: top
+	vertical-align: middle;
 }
 
 .tg .tg-dvpl {
@@ -54,7 +54,7 @@
 }
 </style>
 <form>
-	<table class="tg" style="align:center; margin:auto;width: 800px;">
+	<table class="tg" style="align:center; margin:auto;width: 800px; margin-bottom:20px;">
 			<tr>
 				<td class="tg-c3ow" colspan="9" style="text-align:center; height :70px" >
 					진료 기록부  
@@ -81,7 +81,7 @@
 			</tr>
 			<tr>
 				<td class="tg-c3ow" colspan="9">
-					<textarea class="tg-c3ow" style="width:800px; height:450px; text-align:left" >
+					<textarea readonly class="tg-c3ow" style="width:800px; height:450px; text-align:left" >
 						
 						
 V/S : 

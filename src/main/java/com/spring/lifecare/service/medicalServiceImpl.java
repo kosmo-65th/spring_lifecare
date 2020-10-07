@@ -115,7 +115,7 @@ public class medicalServiceImpl implements medicalService {
 		}
 	}
 
-	//회원-게시글 상세 페이지
+	//회원-진료기록부 상세 페이지
 	@Override
 	public void medicalcontentForm(HttpServletRequest req, Model model) {
 
@@ -132,5 +132,25 @@ public class medicalServiceImpl implements medicalService {
 		
 		//6.request | session에 처리 결과를 저장(jsp에 전달하기 위함)
 		model.addAttribute("dto", vo);
+	}
+
+	//회원-처방전 상세 페이지
+	@Override
+	public void prescriptioncontentForm(HttpServletRequest req, Model model) {
+		
+		int diagnosis_num = Integer.parseInt(req.getParameter("diagnosis_num"));
+		String customer_id = (String)req.getSession().getAttribute("userSession");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("customer_id", customer_id);
+		map.put("diagnosis_num", diagnosis_num);
+		
+		// 상세페이지 조회
+		medicalVO vo = dao.prescriptionnote(map);
+		
+		//6.request | session에 처리 결과를 저장(jsp에 전달하기 위함)
+		model.addAttribute("dto", vo);
+		
 	}
 }

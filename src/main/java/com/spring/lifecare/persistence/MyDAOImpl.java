@@ -139,4 +139,11 @@ public class MyDAOImpl implements MyDAO {
 		MyDAO dao = sqlSession.getMapper(MyDAO.class);
 		return dao.medicalnote(map);
 	}
+
+	//상세페이지 조회(한건의 정보 = 처방전기록)
+	@Override
+	public medicalVO prescriptionnote(Map<String, Object> map) {
+		MyDAO dao = sqlSession.getMapper(MyDAO.class);
+		return dao.prescriptionnote(map);
+	}
 }
