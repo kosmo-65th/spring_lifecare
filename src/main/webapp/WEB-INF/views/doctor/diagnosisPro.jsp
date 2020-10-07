@@ -9,13 +9,13 @@
 <!-- 회원가입 실패시 -->
      <c:if test="${insertCnt == 0}">
 		<script type="text/javascript">
-			alert("진료기록 저장이 실패했습니다.");
+			alert("저장이 실패했습니다.");
 		</script>
 	</c:if>
 	
 	<c:if test="${insertCnt != 0}">
 	     <script type="text/javascript">
-			alert("진료기록 저장에 성공했습니다.");
+			alert("저장에 성공했습니다.");
 			window.location="${path}/doctor/doctor_main";
 		</script>
 	</c:if>

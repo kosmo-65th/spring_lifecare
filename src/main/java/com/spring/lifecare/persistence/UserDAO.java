@@ -5,12 +5,15 @@ import java.util.List;
 import java.util.Map;
 
 import com.spring.lifecare.vo.AppointmentVO;
+import com.spring.lifecare.vo.BasicExVO;
+import com.spring.lifecare.vo.CancerVO;
 import com.spring.lifecare.vo.CustomerVO;
 import com.spring.lifecare.vo.DiagnosisVO;
 import com.spring.lifecare.vo.DiseaseVO;
 import com.spring.lifecare.vo.DoctorVO;
 import com.spring.lifecare.vo.DrugVO;
 import com.spring.lifecare.vo.ReservationVO;
+import com.spring.lifecare.vo.XrayExVO;
 
 public interface UserDAO {
 	//로그인
@@ -193,4 +196,25 @@ public interface UserDAO {
 	 
 	 // 미결제리스트
 	 public ArrayList<DiagnosisVO> nonpayList(String customer_id);
+	 
+	 // 기초검사결과 작성
+	 public int insertBasicEx(BasicExVO vo);	 
+	 
+	 // 기초검사결과리스트 
+	 public List<BasicExVO> basicExList();
+	 
+	 // 기초검사결과 정보 불러오기
+	 public BasicExVO getBasicExInfo(int ex_num);
+	 
+	 // 암검사결과리스트 
+	 public List<CancerVO> cancerList();
+	 
+	 // 암검사결과 정보 불러오기
+	 public CancerVO getCancerExInfo(int cancer_num);
+	 
+	 // xray검사결과리스트 
+	 public List<XrayExVO> xrayList();
+	 
+	 // xray검사결과 정보 불러오기
+	 public XrayExVO getXrayExInfo(int xray_num);
 }

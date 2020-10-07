@@ -9,11 +9,11 @@
 <br><br>
 <fieldset class="payment">
 
-<h3>진료 기록부 조회 결과</h3>
+<h3 style = "font-size:30px">진료 기록부 조회 결과</h3>
 
 <form name="form" method="post">
 	
-	<div class="tablePay">    
+	<div class="tablePay" style = "display:grid">    
 	    <div class="row1 header blue">
 	      <div class="cell1" style = "width : 250px">
 	          	진료번호

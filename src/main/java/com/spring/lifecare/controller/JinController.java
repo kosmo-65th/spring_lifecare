@@ -18,10 +18,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.spring.lifecare.persistence.FooterDao;
 import com.spring.lifecare.persistence.UserDAO;
 import com.spring.lifecare.service.CustomerService;
+import com.spring.lifecare.service.DeepLearningService;
 import com.spring.lifecare.service.DoctorService;
 import com.spring.lifecare.service.KakaoPayService;
 import com.spring.lifecare.vo.AppointmentVO;
@@ -44,6 +46,9 @@ public class JinController {
     
     @Autowired
     DoctorService doctor;
+    
+    @Autowired
+    DeepLearningService learning;
     
     @Autowired
     UserDAO dao;
@@ -141,7 +146,6 @@ public class JinController {
     	
     	req.getSession().setAttribute("major", doctorMajor.doctorMajor((String)session.getAttribute("userSession")));
     	
-    	
     	return "doctor/doctor_main";
     }
     
@@ -183,11 +187,38 @@ public class JinController {
     	return "doctor/doctor_medicalNote";
     }
     
-    // 의사 진단 도우미
+    // 검사결과 리스트 출력
     @RequestMapping("/doctor/doctor_assist")
     public String doctor_assist(HttpServletRequest req, Model model) {
     	doctor.loadDoctorInfo(req, model);
+    	// 기초검사 리스트 출력
+    	doctor.basicExList(req, model);
+    	// 암(유방)검사 리스트 출력
+    	doctor.cancerList(req, model);
+    	// x-ray검사 리스트 출력
+    	doctor.xrayList(req, model);
     	return "doctor/doctor_assist";
+    }
+    
+    // 기초검사결과 정보 출력
+    @RequestMapping("/doctor/resultBasicEx")
+    public String resultBasicEx(HttpServletRequest req, Model model) {
+    	doctor.loadBasicExInfo(req, model);
+    	return "doctor/resultBasicEx";
+    }
+    
+    // 암검사결과 정보 출력
+    @RequestMapping("/doctor/resultCancerEx")
+    public String resultCancerEx(HttpServletRequest req, Model model) {
+    	doctor.loadCancerExInfo(req, model);
+    	return "doctor/resultCancerEx";
+    }
+    
+    // x-ray검사결과 정보 출력
+    @RequestMapping("/doctor/resultXrayEx")
+    public String resultXrayEx(HttpServletRequest req, Model model) {
+    	doctor.loadXrayExInfo(req, model);
+    	return "doctor/resultXrayEx";
     }
     
     // 의사페이지에서 환자 검색리스트 뿌리기
@@ -243,6 +274,13 @@ public class JinController {
  	@RequestMapping("/doctor/diagnosisPro")
  	public String diagnosisPro(HttpServletRequest req, Model model) { 		
  		doctor.saveDiagonosis(req, model);
+ 		return "doctor/diagnosisPro";
+ 	}
+ 	
+    // 기초검사기록 저장
+ 	@RequestMapping("/doctor/basicExPro")
+ 	public String basicExPro(HttpServletRequest req, Model model) { 		
+ 		doctor.saveBasicEx(req, model);
  		return "doctor/diagnosisPro";
  	}
  	
@@ -547,4 +585,12 @@ public class JinController {
  	public String kakaopayFailand(Model model) {		
  		return "customer/kakaopayFail";
  	}
+ 	
+	//딥러닝 
+	@ResponseBody
+	@RequestMapping("/doctor/DeepLearningCancer")
+	public Map<String, Object> DeepLearningCancer(HttpServletRequest req, Model model) {
+		
+		return learning.DeepLearningCancer(req, model);
+	}
 }

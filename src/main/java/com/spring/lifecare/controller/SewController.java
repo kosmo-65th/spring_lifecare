@@ -114,14 +114,14 @@ public class SewController {
 		return "/board/adminboardUpdate";
 	}
 	
-	//mypage-진료기록부 조회
+	//mypage-진료기록 조회
 	@RequestMapping("/Medicalrecords/medicalList")
-	public String MypageMedicalNote(HttpServletRequest req, Model model) {
+	public String MypageMedicalList(HttpServletRequest req, Model model) {
 		medical.medicalList(req, model);
 		return "Medicalrecords/medicalList";
 	}	
 	
-	//mypage-진료기록부 조회
+	//mypage-진료기록부 상세 보기
 	@RequestMapping("/Medicalrecords/medicalNote")
 	public String MypageMedicalcontent(HttpServletRequest req, Model model) {
 		medical.medicalcontentForm(req, model);
@@ -129,9 +129,17 @@ public class SewController {
 	}
 	
 	//mypage-처방전 조회
-	@RequestMapping("/Medicalrecords/prescription")
+	@RequestMapping("/Medicalrecords/prescriptionList")
 	public String Mypageprescription(HttpServletRequest req, Model model) {
-		return "Medicalrecords/prescription";
+		medical.medicalList(req, model);
+		return "Medicalrecords/prescriptionList";
+	}
+	
+	//mypage-처방전 조회
+	@RequestMapping("/Medicalrecords/prescriptionNote")
+	public String Mypageprescriptioncontent(HttpServletRequest req, Model model) {
+		medical.prescriptioncontentForm(req, model);
+		return "Medicalrecords/prescriptionNote";
 	}	
-
+	
 }

@@ -62,4 +62,7 @@ public interface MyDAO {
 	//회원-진료내용 상세 조회(한건의 정보 = 진료기록)
 	public medicalVO medicalnote(Map<String, Object> map);
 	
+	//회원-처방전내용 상세 조회(한건의 정보 = 처방전 조회)
+	public medicalVO prescriptionnote(Map<String, Object> map);
+	
 }

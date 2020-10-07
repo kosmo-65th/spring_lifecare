@@ -152,7 +152,7 @@
 	
 	<!-- 상세페이지 조회(한개의 정보 = 진료기록) -->
 	<select id = "medicalnote" parameterType = "java.util.Map" resultType = "com.spring.lifecare.vo.medicalVO">
-		<![CDATA[
+	<![CDATA[
         select d.diagnosis_num, d.diagnosis_time, c.customer_name, c.customer_gender, customer_year, to_char(sysdate,'YYYY')-c.customer_year as customer_age, 
         	   c.customer_email, c.customer_phone, o.doctor_name, o.doctor_major, d.customer_amount, d.diagnosis_phx, d.diagnosis_fhx, 
         	   d.diagnosis_pi, d.diagnosis_ros, d.diagnosis_pex
@@ -160,6 +160,33 @@
         where d.doctor_id = o.doctor_id
         and d.customer_id = c.customer_id
         and d.diagnosis_num = #{diagnosis_num}
-		]]>
+	]]>
+	</select>
+	
+	<!-- 상세페이지 조회(한개의 정보 = 처방전 기록) -->
+	<select id = "prescriptionnote" parameterType = "java.util.Map" resultType = "com.spring.lifecare.vo.medicalVO">
+	<![CDATA[
+        select i.diagnosis_num , i.diagnosis_time , c.customer_name , c.customer_year , s.disease_code , s.disease_name, d.doctor_num , d.doctor_name,
+        i.drug1 , d1.drug_name as drug_name1, d1.drug_enptname as drug_enptname1, d1.drug_category as drug_category1, d1.drug_storage as drug_storage1 , d1.drug_EXPIRATION_DATE as drug_EXPIRATION_DATE1,
+        i.drug2 , d2.drug_name as drug_name2, d2.drug_enptname as drug_enptname2, d2.drug_category as drug_category2, d2.drug_storage as drug_storage2 , d2.drug_EXPIRATION_DATE as drug_EXPIRATION_DATE2,
+        i.drug3 , d3.drug_name as drug_name3, d3.drug_enptname as drug_enptname3, d3.drug_category as drug_category3, d3.drug_storage as drug_storage3 , d3.drug_EXPIRATION_DATE as drug_EXPIRATION_DATE3,
+        i.drug4 , d4.drug_name as drug_name4, d4.drug_enptname as drug_enptname4, d4.drug_category as drug_category4, d4.drug_storage as drug_storage4 , d4.drug_EXPIRATION_DATE as drug_EXPIRATION_DATE4,
+        i.drug5 , d5.drug_name as drug_name5, d5.drug_enptname as drug_enptname5, d5.drug_category as drug_category5, d5.drug_storage as drug_storage5 , d5.drug_EXPIRATION_DATE as drug_EXPIRATION_DATE5
+        from customer c , doctor d , disease s , diagnosis i , drug d1 , drug d2 , drug d3 , drug d4 , drug d5
+        where c.customer_id = i.customer_id
+        and s.disease_code = i.disease_code
+        and i.doctor_id = d.doctor_id
+        and i.drug1 = d1.drug_number(+)
+        and (i.drug1 is not null or i.drug1 is null)
+        and i.drug2 = d2.drug_number(+)
+        and (i.drug2 is not null or i.drug2 is null)
+        and i.drug3 = d3.drug_number(+)
+        and (i.drug3 is not null or i.drug3 is null)
+        and i.drug4 = d4.drug_number(+)
+        and (i.drug4 is not null or i.drug4 is null)
+        and i.drug5 = d5.drug_number(+)
+        and (i.drug5 is not null or i.drug5 is null)
+        and i.diagnosis_num = #{diagnosis_num}
+     ]]>
 	</select>
 </mapper>

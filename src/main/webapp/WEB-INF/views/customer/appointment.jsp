@@ -372,7 +372,7 @@ function getTimeList(doctor_num, date){
 
 // 예약정보 확인에 예약시간 뿌리기
 function selectTime(appoint_time, i, appoint_num){
-	for(var j=0; j<100; j++) {
+	for(var j=0; j<1000; j++) {
 		if(document.getElementById('dt' + j)) {
 			document.getElementById('dt' + j).style.background = "#fff";
 		}

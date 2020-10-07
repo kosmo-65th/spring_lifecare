@@ -33,8 +33,8 @@
 	    </div>  
 	    
 	    <div class="shopMain">
-	        <h3><a href="${path}/board/adminboardList"><strong>PRESCRIPTION</strong> 처방내역 조회</a></h3>
-	        <p><a href="${path}/board/adminboardList">고객님께서 처방받으셨던 처방내역 목록을 보여드립니다.</a></p>
+	        <h3><a href="${path}/Medicalrecords/prescriptionList"><strong>PRESCRIPTION</strong> 처방내역 조회</a></h3>
+	        <p><a href="${path}/Medicalrecords/prescriptionList">고객님께서 처방받으셨던 처방내역 목록을 보여드립니다.</a></p>
 	    </div>
 	    
 	     <div class="shopMain">
