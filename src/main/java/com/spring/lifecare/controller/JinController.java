@@ -190,7 +190,8 @@ public class JinController {
     	doctor.basicExList(req, model);
     	// 암(유방)검사 리스트 출력
     	doctor.cancerList(req, model);
-    	
+    	// x-ray검사 리스트 출력
+    	doctor.xrayList(req, model);
     	return "doctor/doctor_assist";
     }
     
@@ -206,6 +207,13 @@ public class JinController {
     public String resultCancerEx(HttpServletRequest req, Model model) {
     	doctor.loadCancerExInfo(req, model);
     	return "doctor/resultCancerEx";
+    }
+    
+    // x-ray검사결과 정보 출력
+    @RequestMapping("/doctor/resultXrayEx")
+    public String resultXrayEx(HttpServletRequest req, Model model) {
+    	doctor.loadXrayExInfo(req, model);
+    	return "doctor/resultXrayEx";
     }
     
     // 의사페이지에서 환자 검색리스트 뿌리기

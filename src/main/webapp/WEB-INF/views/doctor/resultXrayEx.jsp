@@ -15,53 +15,40 @@
 .tbl_type td.ranking{font-weight:bold}
 /* //UI Object */
 </style>
-<title>암검사결과</title>
+<title>X-RAY검사결과</title>
 </head>
 <body onresize="parent.resizeTo(530,480)" onload="parent.resizeTo(530,480)">
 <!--ui object -->
 <table class="tbl_type" border="1">
 <tr>
-<th>이름</th>
-<td>${vo.getCustomer_name()}</td>
-<th>성별</th>
-<td>${vo.getCustomer_gender()}</td>
+<th style="width:30%;">이름</th>
+<td style="width:30%;">${vo.getCustomer_name()}</td>
+<th style="width:20%;">성별</th>
+<td style="width:20%;">${vo.getCustomer_gender()}</td>
 </tr>
 <tr>
-<th>radius</th>
-<td>${vo.getRadius()}</td>
-<th>texture</th>
-<td>${vo.getTexture()}</td>
+<th style="width:70%;" colspan="2">이미지</th>
+<th style="width:30%;" colspan="2">결과</th>
+</tr>
+<tbody>										    
+<tr>												
+<td rowspan="3" colspan="2"><img style="height:300px;" id="img" src="${path_resources}images/${vo.getXray_img()}"></td>
+<td>정상확률</td>
+<td>${vo.getNormal_percentage()}</td>
 </tr>
 <tr>
-<th>perimeter</th>
-<td>${vo.getPerimeter()}</td>
-<th>area</th>
-<td>${vo.getArea()}</td>
+<td>폐렴확률</td>
+<td>${vo.getPneumonia_percentage()}</td>
 </tr>
 <tr>
-<th>smoothness</th>
-<td>${vo.getSmoothness()}</td>
-<th>compactness</th>
-<td>${vo.getCompactness()}</td>
+<td>코로나확률</td>
+<td>${vo.getCorona_percentage()}</td>
 </tr>
-<tr>
-<th>concavity</th>
-<td>${vo.getConcavity()}</td>
-<th>symmetry</th>
-<td>${vo.getSymmetry()}</td>
-</tr>
-<tr>
-<th colspan="2">fractal_dimension</th>
-<td colspan="2">${vo.getFractal_dimension()}</td>
-</tr>
-<tr>
-<th colspan="2">AI검사결과확률</th>
-<td colspan="2">${vo.getPercentage()}</td>
-</tr>
+</tbody>	
 <tfoot>
 <tr>
 <th>의사소견</th>
-<td colspan="3" style="font-weight:bolder;">${vo.getCancer_result()}</td>
+<td colspan="3">${vo.getXray_result()}</td>
 </tr>
 </tfoot>
 </table>

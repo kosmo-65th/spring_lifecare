@@ -522,7 +522,7 @@ function readImage() {
 						</div>
 						<div class="card-block">
 							<div class="canvas-wrapper">
-								<textarea style="height:130px" name="phx"></textarea>
+								<textarea style="height:130px; resize: none;" name="phx"></textarea>
 							</div>
 						</div>
 					</div>
@@ -534,7 +534,7 @@ function readImage() {
 						</div>
 						<div class="card-block">
 							<div class="canvas-wrapper">
-								<textarea style="height:130px" name="fhx"></textarea>
+								<textarea style="height:130px; resize: none;" name="fhx"></textarea>
 							</div>
 						</div>
 					</div>
@@ -548,7 +548,7 @@ function readImage() {
 						</div>
 						<div class="card-block">
 							<div class="canvas-wrapper">
-								<textarea style="height:130px" name="pi"></textarea>
+								<textarea style="height:130px; resize: none;" name="pi"></textarea>
 							</div>
 						</div>
 					</div>
@@ -560,7 +560,7 @@ function readImage() {
 						</div>
 						<div class="card-block">
 							<div class="canvas-wrapper">
-								<textarea style="height:130px" name="ros"></textarea>
+								<textarea style="height:130px; resize: none;" name="ros"></textarea>
 							</div>
 						</div>
 					</div>
@@ -572,7 +572,7 @@ function readImage() {
 						</div>
 						<div class="card-block">
 							<div class="canvas-wrapper">
-								<textarea style="height:130px" name="pex"></textarea>
+								<textarea style="height:130px; resize: none;" name="pex"></textarea>
 							</div>
 						</div>
 					</div>
@@ -629,7 +629,7 @@ function readImage() {
 							<input type="text" placeholder="혈창크레아티닌(1.5mg/dL이하)" name="kidney3">
 							<input type="text" placeholder="사구체여과율(60ml/min이상)" name="kidney4">
 						<label for="commentField">Comment</label>
-							<textarea placeholder="소견 작성" id="commentField" name="ex_result"></textarea>
+							<textarea style="resize: none;" placeholder="소견 작성" id="commentField" name="ex_result"></textarea>
 							<input class="button-primary" type="submit" value="Send">
 						</form>
 					</div>
@@ -638,8 +638,11 @@ function readImage() {
 							<div class="column column-50">
 								<div class="card">
 									<div class="card-title">
-										<h2>X-RAY 검사</h2>
-									</div>
+										<span style="font-size: 1.8em; font-weight:500;">X-RAY 검사</span>
+										<div style="width:50px; height:50px; float:right;">
+											<a href="javascript:void(0)"><img src="${path_resources}images/ai.png"></a>
+										</div>	
+									</div>								
 									<div class="card-block">
 										<div class="canvas-wrapper">
 											<form action="${path}/doctor/diagnosisPro" method="post" name="asdf">
@@ -670,7 +673,7 @@ function readImage() {
 												</tbody>	
 											</table>
 											<label for="commentField">Comment</label>
-											<textarea placeholder="소견 작성" id="commentField"></textarea>
+											<textarea style="resize: none;" placeholder="소견 작성" id="commentField"></textarea>
 											<input class="button-primary" type="submit" value="Send">
 										</form>
 										</div>
@@ -680,7 +683,10 @@ function readImage() {
 							<div class="column column-50">
 								<div class="card">
 									<div class="card-title">
-										<h2>암(유방)검사</h2>
+										<span style="font-size: 1.8em; font-weight:500;">암(유방)검사</span>
+										<div style="width:50px; height:50px; float:right;">
+											<a href="javascript:void(0)"><img src="${path_resources}images/ai.png"></a>
+										</div>	
 									</div>
 									<div class="card-block">
 										<div class="canvas-wrapper">
@@ -708,7 +714,7 @@ function readImage() {
 												</tr>											
 											</table>
 											<label for="commentField">Comment</label>
-											<textarea placeholder="의사소견" id="commentField"></textarea>
+											<textarea style="resize: none;" placeholder="의사소견" id="commentField"></textarea>
 											<input class="button-primary" type="submit" value="Send">
 											</form>
 										</div>

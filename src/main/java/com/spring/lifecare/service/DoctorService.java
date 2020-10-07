@@ -71,4 +71,10 @@ public interface DoctorService  {
 	  
 	  // 암검사결과 불러오기
 	  public void loadCancerExInfo(HttpServletRequest req, Model model);
+	  
+	  // x-ray 검사결과 리스트 뿌리기
+	  public void xrayList(HttpServletRequest req, Model model);
+	  
+	  // x-ray 검사결과 불러오기
+	  public void loadXrayExInfo(HttpServletRequest req, Model model);
 }

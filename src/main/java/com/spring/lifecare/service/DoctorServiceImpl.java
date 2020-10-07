@@ -29,6 +29,7 @@ import com.spring.lifecare.vo.DiseaseVO;
 import com.spring.lifecare.vo.DoctorVO;
 import com.spring.lifecare.vo.DrugVO;
 import com.spring.lifecare.vo.ReservationVO;
+import com.spring.lifecare.vo.XrayExVO;
 
 @Service
 public class DoctorServiceImpl implements DoctorService{
@@ -364,6 +365,20 @@ public class DoctorServiceImpl implements DoctorService{
 		int cancer_num = Integer.parseInt(req.getParameter("cancer_num"));		
 		CancerVO vo = null;
 		vo = userDAO.getCancerExInfo(cancer_num);		
+		model.addAttribute("vo", vo);
+	}
+
+	@Override
+	public void xrayList(HttpServletRequest req, Model model) {
+		List<XrayExVO> list = userDAO.xrayList();
+		model.addAttribute("list3", list);	
+	}
+
+	@Override
+	public void loadXrayExInfo(HttpServletRequest req, Model model) {
+		int xray_num = Integer.parseInt(req.getParameter("xray_num"));		
+		XrayExVO vo = null;
+		vo = userDAO.getXrayExInfo(xray_num);		
 		model.addAttribute("vo", vo);
 	}
 	

@@ -13,6 +13,7 @@ import com.spring.lifecare.vo.DiseaseVO;
 import com.spring.lifecare.vo.DoctorVO;
 import com.spring.lifecare.vo.DrugVO;
 import com.spring.lifecare.vo.ReservationVO;
+import com.spring.lifecare.vo.XrayExVO;
 
 public interface UserDAO {
 	//로그인
@@ -210,4 +211,10 @@ public interface UserDAO {
 	 
 	 // 암검사결과 정보 불러오기
 	 public CancerVO getCancerExInfo(int cancer_num);
+	 
+	 // xray검사결과리스트 
+	 public List<XrayExVO> xrayList();
+	 
+	 // xray검사결과 정보 불러오기
+	 public XrayExVO getXrayExInfo(int xray_num);
 }

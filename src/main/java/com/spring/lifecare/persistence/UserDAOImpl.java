@@ -22,6 +22,7 @@ import com.spring.lifecare.vo.DiseaseVO;
 import com.spring.lifecare.vo.DoctorVO;
 import com.spring.lifecare.vo.DrugVO;
 import com.spring.lifecare.vo.ReservationVO;
+import com.spring.lifecare.vo.XrayExVO;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
@@ -450,6 +451,20 @@ public class UserDAOImpl implements UserDAO {
 	public CancerVO getCancerExInfo(int cancer_num) {
 		UserDAO dao = sqlSession.getMapper(UserDAO.class);
 		return dao.getCancerExInfo(cancer_num);
+	}
+
+
+	@Override
+	public List<XrayExVO> xrayList() {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.xrayList();
+	}
+
+
+	@Override
+	public XrayExVO getXrayExInfo(int xray_num) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.getXrayExInfo(xray_num);
 	}
 
 }

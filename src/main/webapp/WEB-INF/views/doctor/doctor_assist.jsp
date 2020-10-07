@@ -277,13 +277,15 @@ $(function() {
 											</tr>
 										</thead>
 										<tbody>
+											<c:forEach var="i" items="${list3}">
 											<tr>
-												<td>1</td>
-												<td>기초검사</td>
-												<td>1</td>
-												<td>1</td>
-												<td><a href="${path}"><img style="width:30px; height:30px" src="${path_resources}images/돋보기.png"></a></td>
+												<td>${i.getCustomer_name()}</td>
+												<td>X-RAY검사</td>
+												<td>${i.getXray_result()}</td>
+												<td>${i.getXray_date()}</td>
+												<td><a href="javascript:void(0)" onclick="window.open('${path}/doctor/resultXrayEx?xray_num=${i.getXray_num()}','x-ray검사결과','resizable=no width=530 height=370');return false"><img style="width:30px; height:30px" src="${path_resources}images/돋보기.png"></a></td>
 											</tr>
+											</c:forEach>
 										</tbody>
 									</table>
 								</div>
