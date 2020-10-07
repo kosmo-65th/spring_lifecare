@@ -194,28 +194,38 @@ $(function() {
 });
 
 
-//딥러닝 - 코로나
+//딥러닝 - 유방암
 $(function() {
     //이미지 클릭시 업로드창 실행
     $('#CancerStart').click(function() {
         console.log('암검사 딥러닝 시작');        
-    	
+        
+       // var CancerForm = new FormData(document.getElementById('CancerForm'));
+    	var CanerForm = $("#CancerForm").serialize();
+       /*  var radius = document.qwer.radius.value;
+        var texture = document.qwer.texture.value;
+        var perimeter = document.qwer.perimeter.value;
+        var area = document.qwer.area.value;        
+        var smoothness = document.qwer.smoothness.value;
+        var compactness = document.qwer.compactness.value;        
+        var concavity = document.qwer.concavity.value;
+        var symmetry = document.qwer.symmetry.value;
+        var fractal_dimension = document.qwer.fractal_dimension.value;
+        var age = document.qwer.age.value;
+        	 */
     	$.ajax({
             type: "post",
-            enctype: 'multipart/form-data',
             url: "${path}/doctor/DeepLearningCancer?${_csrf.parameterName}=${_csrf.token}",
-            data: CoronaForm,
-            processData: false,
-            contentType: false,
+            data: CanerForm,
             success: function(data){
             	console.log("data : " + JSON.stringify(data));
             	
             	var data_JSON_String = JSON.stringify(data);
             	var data_parse = JSON.parse(data_JSON_String);
-            	           	
-                //$("#normal").text(data_parse.normal+"%");
-                //$("#corona").text(data_parse.corona+"%");
-                //$("#pneumonia").text(data_parse.pneumonia+"%"); 
+            	
+            	
+                $("#resultCancer").text(data_parse.result);
+                $("#resultPercent").text(data_parse.percent);
                 alert("딥러닝 완료");
             }
         });
@@ -755,10 +765,10 @@ function readImage() {
 									</div>
 									<div class="card-block">
 										<div class="canvas-wrapper">
-											<form action="${path}/doctor/diagnosisPro" method="post" name="qwer">
+											<form action="${path}/doctor/diagnosisPro" method="post" name="qwer" id="CancerForm">
 											<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 											<input type="hidden" name="customer_id" value="${vo.getCustomer_id()}">
-											<input type="hidden" name="age" value=${2020 - vo.getCustomer_year()}">
+											<input type="hidden" name="age" value="${2020 - vo.getCustomer_year()}">
 											<label for="commentField">검사정보입력</label>
 												<input type="text" placeholder="radius" name="radius">
 												<input type="text" placeholder="texture" name="texture">
@@ -774,8 +784,8 @@ function readImage() {
 													<th colspan="2">결과</th>
 												</tr>											    
 												<tr class='even'>
-													<td>양성</td>
-													<td>82%</td>
+													<td id="resultCancer"></td>
+													<td id="resultPercent"></td>
 												</tr>											
 											</table>
 											<label for="commentField">Comment</label>

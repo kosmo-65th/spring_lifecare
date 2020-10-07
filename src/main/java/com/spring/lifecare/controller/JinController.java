@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.spring.lifecare.persistence.FooterDao;
 import com.spring.lifecare.persistence.UserDAO;
 import com.spring.lifecare.service.CustomerService;
+import com.spring.lifecare.service.DeepLearningService;
 import com.spring.lifecare.service.DoctorService;
 import com.spring.lifecare.service.KakaoPayService;
 import com.spring.lifecare.vo.AppointmentVO;
@@ -45,6 +46,9 @@ public class JinController {
     
     @Autowired
     DoctorService doctor;
+    
+    @Autowired
+    DeepLearningService learning;
     
     @Autowired
     UserDAO dao;
@@ -591,8 +595,8 @@ public class JinController {
 	//딥러닝 
 	@ResponseBody
 	@RequestMapping("/doctor/DeepLearningCancer")
-	public Map<String, Object> DeepLearningCancer(MultipartHttpServletRequest req, Model model) {
+	public Map<String, Object> DeepLearningCancer(HttpServletRequest req, Model model) {
 		
-		return doctor.DeepLearningCancer(req, model);
+		return learning.DeepLearningCancer(req, model);
 	}
 }
