@@ -226,104 +226,98 @@ $(function() {
 		<section id="main-content" class="column column-offset-20">
 					
 			<!-- Pure CSS Menu -->
-			<div class="row grid-responsive mt-1">
+			<div class="row grid-responsive">
 				<div class="column">
 					<div class="card">
-						<div class="card-block">
-							<table>
-								<thead>
-									<tr>
-										<th>Name</th>
-										<th>Role</th>
-										<th>Age</th>
-										<th>Location</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Jane Donovan</td>
-										<td>UI Developer</td>
-										<td>23</td>
-										<td>Philadelphia, PA</td>
-									</tr>
-									<tr>
-										<td>Jonathan Smith</td>
-										<td>Designer</td>
-										<td>30</td>
-										<td>London, UK</td>
-									</tr>
-									<tr>
-										<td>Kelly Johnson</td>
-										<td>UX Developer</td>
-										<td>25</td>
-										<td>Los Angeles, CA</td>
-									</tr>
-									<tr>
-										<td>Sam Davidson</td>
-										<td>Programmer</td>
-										<td>28</td>
-										<td>Philadelphia, PA</td>
-									</tr>
-								</tbody>
-							</table>
+						<div class='css3-tab'>
+							<input type='radio' name='a' id='tabOne' tabindex="1" checked>
+							<input type='radio' name='a' id='tabTwo' tabindex="2">
+							<input type='radio' name='a' id='addNew' tabindex="3">
+							<div class="css3-tab-nav">
+								<label for='tabOne'>기초검사결과</label>
+								<label for='tabTwo'>X-RAY검사결과</label>
+								<label for='addNew'>암(유방)검사결과</label>
+							</div>
+							<div class='css3-tab-content tab-one'>	
+								<div class="card-block">
+									<table>
+										<thead>
+											<tr style="background:#35cebe; color:white;">
+												<th style="width:15%">이름</th>
+												<th style="width:25%">검사종류</th>
+												<th style="width:30%">소견</th>
+												<th style="width:20%">검사날짜</th>
+												<th style="width:10%">검사결과</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach var="i" items="${list1}">
+											<tr>
+												<td>${i.getCustomer_name()}</td>
+												<td>기초검사</td>
+												<td>${i.getEx_result()}</td>
+												<td>${i.getBasic_date()}</td>
+												<td><a href="javascript:void(0)" onclick="window.open('${path}/doctor/resultBasicEx?ex_num=${i.getEx_num()}','기초검사결과','resizable=no width=530 height=370');return false"><img style="width:30px; height:30px" src="${path_resources}images/돋보기.png"></a></td>
+											</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class='css3-tab-content tab-two'>
+								<div class="card-block">
+									<table>
+										<thead>
+											<tr style="background:#35cebe; color:white;">
+												<th style="width:15%">이름</th>
+												<th style="width:25%">검사종류</th>
+												<th style="width:30%">소견</th>
+												<th style="width:20%">검사날짜</th>
+												<th style="width:10%">검사결과</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>1</td>
+												<td>기초검사</td>
+												<td>1</td>
+												<td>1</td>
+												<td><a href="${path}"><img style="width:30px; height:30px" src="${path_resources}images/돋보기.png"></a></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class='css3-tab-content add-new'>
+								<div class="card-block">
+									<table>
+										<thead>
+											<tr style="background:#35cebe; color:white;">
+												<th style="width:15%">이름</th>
+												<th style="width:25%">검사종류</th>
+												<th style="width:30%">소견</th>
+												<th style="width:20%">검사날짜</th>
+												<th style="width:10%">검사결과</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach var="i" items="${list2}">
+											<tr>
+												<td>${i.getCustomer_name()}</td>
+												<td>암(유방)검사</td>
+												<td>${i.getCancer_result()}</td>
+												<td>${i.getCancer_date()}</td>
+												<td><a href="javascript:void(0);" onclick="window.open('${path}/doctor/resultCancerEx?cancer_num=${i.getCancer_num()}','암검사결과','resizable=no width=530 height=370');return false"><img style="width:30px; height:30px" src="${path_resources}images/돋보기.png"></a></td>
+											</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
-				<div class="column">
-				<div class='css3-tab'>
-					<input type='radio' name='a' id='tabOne' tabindex="1" checked>
-					<input type='radio' name='a' id='tabTwo' tabindex="2">
-					<input type='radio' name='a' id='addNew' tabindex="3">
-			
-					<div class="css3-tab-nav">
-							<label for='tabOne'>기초검사</label>
-							<label for='tabTwo'>X-Ray검사</label>
-							<label for='addNew'>암(유방)검사</label>
-					</div>
-			
-					<div class='css3-tab-content tab-one'>
-							<!-- start slipsum code -->
-							<h1>Tab One</h1> In facilisis scelerisque dui vel dignissim. Sed nunc orci, ultricies congue vehicula quis, facilisis a orci. In aliquet facilisis condimentum. Donec at orci orci, a dictum justo. Sed a nunc non lectus fringilla suscipit. Vivamus pretium sapien sit
-							amet mauris aliquet eleifend vel vitae arcu. Fusce pharetra dignissim nisl egestas pretium.
-			
-							<h2>Nullam commodo neque</h2> Etiam aliquam sem ac velit feugiat elementum. Nunc eu elit velit, nec vestibulum nibh. Curabitur ultrices, diam non ullamcorper blandit, nunc lacus ornare nisi, egestas rutrum magna est id nunc. Pellentesque imperdiet malesuada quam, et rhoncus eros
-							auctor eu. Nullam vehicula metus ac lacus rutrum nec fermentum urna congue. Vestibulum et risus at mi ultricies sagittis quis nec ligula. Suspendisse dignissim dignissim luctus. Duis ac dictum nibh. Etiam id massa magna. Morbi molestie posuere posuere.
-			
-							<h2>Maecenas eu placerat</h2> Integer elementum massa at nulla placerat varius. Suspendisse in libero risus, in interdum massa. Vestibulum ac leo vitae metus faucibus gravida ac in neque. Nullam est eros, suscipit sed dictum quis, accumsan a ligula. In sit amet justo lectus.
-							Etiam feugiat dolor ac elit suscipit in elementum orci fringilla. Aliquam in felis eros. Praesent hendrerit lectus sit amet turpis tempus hendrerit. Donec laoreet volutpat molestie. Praesent tempus dictum nibh ac ullamcorper. Sed eu consequat nisi.
-							Quisque ligula metus, tristique eget euismod at, ullamcorper et nibh. Duis ultricies quam egestas nibh mollis in ultrices turpis pharetra. Vivamus et volutpat mi. Donec nec est eget dolor laoreet iaculis a sit amet diam.
-					</div>
-			
-					<div class='css3-tab-content tab-two'>
-							<!-- start slipsum code -->
-							<h1>Tab Two will be shown by default via the checked attr on the corresponding input</h1> Integer elementum massa at nulla placerat varius. Suspendisse in libero risus, in interdum massa. Vestibulum ac leo vitae metus faucibus gravida ac in neque. Nullam est eros, suscipit sed dictum quis, accumsan a ligula. In sit amet justo lectus.
-							Etiam feugiat dolor ac elit suscipit in elementum orci fringilla. Aliquam in felis eros. Praesent hendrerit lectus sit amet turpis tempus hendrerit. Donec laoreet volutpat molestie. Praesent tempus dictum nibh ac ullamcorper. Sed eu consequat nisi.
-							Quisque ligula metus, tristique eget euismod at, ullamcorper et nibh. Duis ultricies quam egestas nibh mollis in ultrices turpis pharetra. Vivamus et volutpat mi. Donec nec est eget dolor laoreet iaculis a sit amet diam.
-			
-							<h2>Donec malesuada vehicula</h2> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac magna non augue porttitor scelerisque ac id diam. Mauris elit velit, lobortis sed interdum at, vestibulum vitae libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Quisque iaculis ligula ut ipsum mattis viverra. Nulla a libero metus. Integer gravida tempor metus eget condimentum. Integer eget iaculis tortor. Nunc sed ligula sed augue rutrum ultrices eget nec odio. Morbi rhoncus, sem laoreet tempus pulvinar,
-							leo diam varius nisi, sed accumsan ligula urna sed felis. Mauris molestie augue sed nunc adipiscing et pharetra ligula suscipit. In euismod lectus ac sapien fringilla ut eleifend lacus venenatis.
-			
-							<h2>Nullam eros mi</h2> Nullam eros mi, mollis in sollicitudin non, tincidunt sed enim. Sed et felis metus, rhoncus ornare nibh. Ut at magna leo. Suspendisse egestas est ac dolor imperdiet pretium. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam porttitor,
-							erat sit amet venenatis luctus, augue libero ultrices quam, ut congue nisi risus eu purus. Cras semper consectetur elementum. Nulla vel aliquet libero. Vestibulum eget felis nec purus commodo convallis. Aliquam erat volutpat.
-					</div>
-			
-					<div class='css3-tab-content add-new'>
-							<!-- start slipsum code -->
-							<h1>Add New</h1> Integer elementum massa at nulla placerat varius. Suspendisse in libero risus, in interdum massa. Vestibulum ac leo vitae metus faucibus gravida ac in neque. Nullam est eros, suscipit sed dictum quis, accumsan a ligula. In sit amet justo lectus.
-							Etiam feugiat dolor ac elit suscipit in elementum orci fringilla. Aliquam in felis eros. Praesent hendrerit lectus sit amet turpis tempus hendrerit. Donec laoreet volutpat molestie. Praesent tempus dictum nibh ac ullamcorper. Sed eu consequat nisi.
-							Quisque ligula metus, tristique eget euismod at, ullamcorper et nibh. Duis ultricies quam egestas nibh mollis in ultrices turpis pharetra. Vivamus et volutpat mi. Donec nec est eget dolor laoreet iaculis a sit amet diam.
-			
-							<h2>Donec malesuada vehicula</h2> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac magna non augue porttitor scelerisque ac id diam. Mauris elit velit, lobortis sed interdum at, vestibulum vitae libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Quisque iaculis ligula ut ipsum mattis viverra. Nulla a libero metus. Integer gravida tempor metus eget condimentum. Integer eget iaculis tortor. Nunc sed ligula sed augue rutrum ultrices eget nec odio. Morbi rhoncus, sem laoreet tempus pulvinar,
-							leo diam varius nisi, sed accumsan ligula urna sed felis. Mauris molestie augue sed nunc adipiscing et pharetra ligula suscipit. In euismod lectus ac sapien fringilla ut eleifend lacus venenatis.
-			
-							<h2>Nullam eros mi</h2> Nullam eros mi, mollis in sollicitudin non, tincidunt sed enim. Sed et felis metus, rhoncus ornare nibh. Ut at magna leo. Suspendisse egestas est ac dolor imperdiet pretium. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam porttitor,
-							erat sit amet venenatis luctus, augue libero ultrices quam, ut congue nisi risus eu purus. Cras semper consectetur elementum. Nulla vel aliquet libero. Vestibulum eget felis nec purus commodo convallis. Aliquam erat volutpat.
-					</div>
-				</div>
 			</div>
-		</div>
 			<p class="credit">HTML5 Admin Template by <a href="https://www.medialoot.com">Medialoot</a></p>
 		</section>
 	</div>		
