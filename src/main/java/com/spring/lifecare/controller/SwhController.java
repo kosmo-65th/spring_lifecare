@@ -237,6 +237,16 @@ public class SwhController {
 		Map<String, String> map = loginService.naversignIn(req);
 		return map;
 	}
+	
+	/////////////////////////// 딥러닝 관련
+	@RequestMapping("/guest/covidTestTest")
+	public String covidTestTest(HttpServletRequest req, Model model) {
+		dservice.covidTestTest(req);
+			
+		
+		return "doctor/covidTest";
+	}
+	
 }
 
 
