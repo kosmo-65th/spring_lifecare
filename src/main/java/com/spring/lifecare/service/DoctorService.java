@@ -54,6 +54,27 @@ public interface DoctorService  {
 	  // 진료기록 저장
 	  public void saveDiagonosis(HttpServletRequest req, Model model);
 	  
+	  // 기초검사결과 기록 저장
+	  public void saveBasicEx(HttpServletRequest req, Model model);
+	  
 	  // 최근 진료내역 리스트
 	  public void diagnosisList(HttpServletRequest req, Model model);
+	  
+	  // 기초검사결과 리스트 뿌리기
+	  public void basicExList(HttpServletRequest req, Model model);
+	  
+	  //기초검사결과 불러오기
+	  public void loadBasicExInfo(HttpServletRequest req, Model model);
+	  
+	  // 암검사결과 리스트 뿌리기
+	  public void cancerList(HttpServletRequest req, Model model);
+	  
+	  // 암검사결과 불러오기
+	  public void loadCancerExInfo(HttpServletRequest req, Model model);
+	  
+	  // x-ray 검사결과 리스트 뿌리기
+	  public void xrayList(HttpServletRequest req, Model model);
+	  
+	  // x-ray 검사결과 불러오기
+	  public void loadXrayExInfo(HttpServletRequest req, Model model);
 }
