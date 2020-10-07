@@ -158,6 +158,71 @@ function resReset(){
 	$('#keyword').focus();
 }
 
+//딥러닝 - 코로나
+$(function() {
+    //이미지 클릭시 업로드창 실행
+    $('#CoronaStart').click(function() {
+        console.log('코로나 딥러닝 시작');
+        
+        var CoronaForm = new FormData(document.getElementById('CoronaForm'));
+    	
+    	$.ajax({
+            type: "post",
+            enctype: 'multipart/form-data',
+            url: "${path}/doctor/DeepLearningCorona?${_csrf.parameterName}=${_csrf.token}",
+            data: CoronaForm,
+            // processData: true=> get방식, false => post방식
+            // contentType: true => application/x-www-form-urlencoded, 
+            //                false => multipart/form-data
+            processData: false,
+            contentType: false,
+            success: function(data){
+            	console.log("data : " + JSON.stringify(data));
+            	
+            	var data_JSON_String = JSON.stringify(data);
+            	var data_parse = JSON.parse(data_JSON_String);
+            	
+            	
+                $("#normal").text(data_parse.normal+"%");
+                $("#corona").text(data_parse.corona+"%");
+                $("#pneumonia").text(data_parse.pneumonia+"%"); 
+                alert("딥러닝 완료");
+            }
+        });
+    });
+    //업로드 파일체인지가 됬을경우 실행되는 이벤트  form태그에 fileProfile은 hidden으로 넣어줌
+});
+
+
+//딥러닝 - 코로나
+$(function() {
+    //이미지 클릭시 업로드창 실행
+    $('#CancerStart').click(function() {
+        console.log('암검사 딥러닝 시작');        
+    	
+    	$.ajax({
+            type: "post",
+            enctype: 'multipart/form-data',
+            url: "${path}/doctor/DeepLearningCancer?${_csrf.parameterName}=${_csrf.token}",
+            data: CoronaForm,
+            processData: false,
+            contentType: false,
+            success: function(data){
+            	console.log("data : " + JSON.stringify(data));
+            	
+            	var data_JSON_String = JSON.stringify(data);
+            	var data_parse = JSON.parse(data_JSON_String);
+            	           	
+                //$("#normal").text(data_parse.normal+"%");
+                //$("#corona").text(data_parse.corona+"%");
+                //$("#pneumonia").text(data_parse.pneumonia+"%"); 
+                alert("딥러닝 완료");
+            }
+        });
+    });
+    //업로드 파일체인지가 됬을경우 실행되는 이벤트  form태그에 fileProfile은 hidden으로 넣어줌
+});
+
 // 환자조회 keyup
 $(function() {
 	$('#keyword').keyup(function() {
@@ -640,12 +705,12 @@ function readImage() {
 									<div class="card-title">
 										<span style="font-size: 1.8em; font-weight:500;">X-RAY 검사</span>
 										<div style="width:50px; height:50px; float:right;">
-											<a href="javascript:void(0)"><img src="${path_resources}images/ai.png"></a>
+											<a href="javascript:void(0)" id="CoronaStart"><img src="${path_resources}images/ai.png"></a>
 										</div>	
 									</div>								
 									<div class="card-block">
 										<div class="canvas-wrapper">
-											<form action="${path}/doctor/diagnosisPro" method="post" name="asdf">
+											<form action="${path}/doctor/diagnosisPro" method="post" name="asdf" id="CoronaForm">
 											<input type="file" name="xray_img" id="file">
 											<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 											<input type="hidden" name="customer_id" value="${vo.getCustomer_id()}">
@@ -660,15 +725,15 @@ function readImage() {
 												<tr>												
 													<td rowspan="3"><img style="height:350px;" id="img"></td>
 													<td>정상확률</td>
-													<td>50%</td>
+													<td id ="normal"></td>
 												</tr>
 												<tr class='even'>
 													<td>폐렴확률</td>
-													<td>50%</td>
+													<td id ="pneumonia"></td>
 												</tr>
 												<tr>
 													<td>코로나확률</td>
-													<td>50%</td>
+													<td id="corona"></td>
 												</tr>
 												</tbody>	
 											</table>
@@ -685,7 +750,7 @@ function readImage() {
 									<div class="card-title">
 										<span style="font-size: 1.8em; font-weight:500;">암(유방)검사</span>
 										<div style="width:50px; height:50px; float:right;">
-											<a href="javascript:void(0)"><img src="${path_resources}images/ai.png"></a>
+											<a href="javascript:void(0)" id="CancerStart"><img src="${path_resources}images/ai.png"></a>
 										</div>	
 									</div>
 									<div class="card-block">

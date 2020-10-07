@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.spring.lifecare.persistence.FooterDao;
 import com.spring.lifecare.persistence.UserDAO;
@@ -586,4 +587,12 @@ public class JinController {
  	public String kakaopayFailand(Model model) {		
  		return "customer/kakaopayFail";
  	}
+ 	
+	//딥러닝 
+	@ResponseBody
+	@RequestMapping("/doctor/DeepLearningCancer")
+	public Map<String, Object> DeepLearningCancer(MultipartHttpServletRequest req, Model model) {
+		
+		return doctor.DeepLearningCancer(req, model);
+	}
 }
