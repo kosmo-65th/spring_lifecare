@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.lifecare.persistence.UserDAO;
+import com.spring.lifecare.service.DeepLearningService;
 import com.spring.lifecare.service.KakaoLoginService;
 import com.spring.lifecare.service.LoginService;
 import com.spring.lifecare.service.NaverLoginService;
@@ -44,6 +45,9 @@ public class SwhController {
 	
 	@Autowired
 	LoginService loginService;
+	
+	@Autowired
+	DeepLearningService dservice;
 
 	//메인페이지
 	@RequestMapping(value= {"/","/guest/main","/main"})
@@ -236,6 +240,15 @@ public class SwhController {
 	public Map<String, String> naversignIn(HttpServletRequest req){
 		Map<String, String> map = loginService.naversignIn(req);
 		return map;
+	}
+	
+	/////////////////////////// 딥러닝 관련
+	@RequestMapping("/guest/covidTestTest")
+	public String covidTestTest(HttpServletRequest req, Model model) {
+		dservice.covidTestTest(req);
+			
+		
+		return "doctor/covidTest";
 	}
 }
 

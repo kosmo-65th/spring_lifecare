@@ -393,6 +393,31 @@ function drug5(drug_number){
 	document.medicalForm.drug5.value = drug_number;
 	$('#drugList5').css("display", "none");
 }
+
+window.onload = function(){
+	//파일을 선택할 때
+	document.getElementById('file').onchange = function(){
+		readImage();
+	};
+};
+
+function readImage() {
+	var file = document.getElementById('file');
+	if(file.files && file.files[0]) {
+		var reader = new FileReader();
+		
+		//이미지 읽기
+		reader.readAsDataURL(file.files[0]);
+		
+		//이미지 전부 읽어들였으면 호출
+		reader.onload = function(){
+			var image = document.getElementById('img');
+			image.src = reader.result;
+			//img 태그 노출
+			image.style.display = '';
+		};
+	}
+};
 </script>
 <body>
 	<div class="navbar">
@@ -483,7 +508,7 @@ function drug5(drug_number){
 								<fieldset>
 									<input type="text" placeholder="(*)질병코드" id="disease_code" name="disease_code">
 									<input type="text" placeholder="(*)주증상(C.C)" id="nameField" name="cc">
-										<div id="diseaseList"></div>
+									<div id="diseaseList"></div>
 									<input type="text" placeholder="혈압(BP)" id="nameField" name="bp">
 									<input type="text" placeholder="호흡(RR)" id="nameField" name="rr">
 									<input type="text" placeholder="맥박(PR)" id="nameField" name="pr">
@@ -497,7 +522,7 @@ function drug5(drug_number){
 						</div>
 						<div class="card-block">
 							<div class="canvas-wrapper">
-								<textarea style="height:130px" name="phx"></textarea>
+								<textarea style="height:130px; resize: none;" name="phx"></textarea>
 							</div>
 						</div>
 					</div>
@@ -509,7 +534,7 @@ function drug5(drug_number){
 						</div>
 						<div class="card-block">
 							<div class="canvas-wrapper">
-								<textarea style="height:130px" name="fhx"></textarea>
+								<textarea style="height:130px; resize: none;" name="fhx"></textarea>
 							</div>
 						</div>
 					</div>
@@ -523,7 +548,7 @@ function drug5(drug_number){
 						</div>
 						<div class="card-block">
 							<div class="canvas-wrapper">
-								<textarea style="height:130px" name="pi"></textarea>
+								<textarea style="height:130px; resize: none;" name="pi"></textarea>
 							</div>
 						</div>
 					</div>
@@ -535,7 +560,7 @@ function drug5(drug_number){
 						</div>
 						<div class="card-block">
 							<div class="canvas-wrapper">
-								<textarea style="height:130px" name="ros"></textarea>
+								<textarea style="height:130px; resize: none;" name="ros"></textarea>
 							</div>
 						</div>
 					</div>
@@ -547,7 +572,7 @@ function drug5(drug_number){
 						</div>
 						<div class="card-block">
 							<div class="canvas-wrapper">
-								<textarea style="height:130px" name="pex"></textarea>
+								<textarea style="height:130px; resize: none;" name="pex"></textarea>
 							</div>
 						</div>
 					</div>
@@ -576,38 +601,35 @@ function drug5(drug_number){
 							<div class="card-title">
 								<h2>기초검사결과 작성</h2>
 							</div>
-						<form action="${path}/doctor/diagnosisPro" method="post" name="medicalForm">
+						<form action="${path}/doctor/basicExPro" method="post" name="fda">
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-							<input type="hidden" name="customer_id" value="${vo.getCustomer_id()}">
-																
-							<input type="text" placeholder="체중" name="height">
+							<input type="hidden" name="customer_id" value="${vo.getCustomer_id()}">																
+							<input type="text" placeholder="키" name="height">
 							<input type="text" placeholder="몸무게" name="weight">
-							<input type="text" placeholder="허리둘레" name="waist">
-						<label for="commentField">이상지질혈증</label>
-							<input type="text" placeholder="TC" name="tc">
-							<input type="text" placeholder="TG" name="tg">
-							<input type="text" placeholder="LDL" name="ldl">
-							<input type="text" placeholder="HDL" name="hdl">
-						<label for="commentField">혈압</label>
-							<input type="text" placeholder="수축기혈압" name="blood1">
-							<input type="text" placeholder="이완기혈압" name="blood2">	
-						<label for="commentField">당뇨</label>
-							<input type="text" placeholder="공복혈당" name="bloodSugar">
-						<label for="commentField">혈액</label>									
-							<input type="text" placeholder="백혈구" name="white">
-							<input type="text" placeholder="혈소판" name="platelet">
-							<input type="text" placeholder="혈색소" name="hb">
-						<label for="commentField">간질환</label>									
-							<input type="text" placeholder="AST" name="ast">
-							<input type="text" placeholder="ALT" name="alt">
-							<input type="text" placeholder="r-GTP" name="gtp">
-						<label for="commentField">신장질환</label>
-							<input type="text" placeholder="요단백" name="kidney1">
-							<input type="text" placeholder="요소질소" name="kidney2">
-							<input type="text" placeholder="혈창크레아티닌" name="kidney3">
-							<input type="text" placeholder="사구체여과율" name="kidney4">
+						<label for="commentField">이상지질혈증(정상범위)</label>
+							<input type="text" placeholder="TC(200mg/dl미만)" name="tc">
+							<input type="text" placeholder="TG(150mg/dl미만)" name="tg">
+							<input type="text" placeholder="LDL(130mg/dl미만)" name="ldl">
+							<input type="text" placeholder="HDL(60mg/dl미만)" name="hdl">
+						<label for="commentField">혈압(정상범위)</label>
+							<input type="text" placeholder="수축기혈압(120mmHg미만)" name="blood1">
+							<input type="text" placeholder="이완기혈압(80mmHg미만)" name="blood2">	
+						<label for="commentField">당뇨(정상범위)</label>
+							<input type="text" placeholder="공복혈당(100mg/dL미만)" name="bloodSugar">
+						<label for="commentField">혈액(정상범위)</label>									
+							<input type="text" placeholder="백혈구(4천~1만개)" name="white">
+							<input type="text" placeholder="혈색소(12~16.5g/dL)" name="hb">
+						<label for="commentField">간질환(정상범위)</label>									
+							<input type="text" placeholder="AST(40IU/L이하)" name="ast">
+							<input type="text" placeholder="ALT(35IU/L이하)" name="alt">
+							<input type="text" placeholder="r-GTP(8~63IU/L)" name="gtp">
+						<label for="commentField">신장질환(정상범위)</label>
+							<input type="text" placeholder="요단백(음성)" name="kidney1">
+							<input type="text" placeholder="요소질소(6~20mg/dL)" name="kidney2">
+							<input type="text" placeholder="혈창크레아티닌(1.5mg/dL이하)" name="kidney3">
+							<input type="text" placeholder="사구체여과율(60ml/min이상)" name="kidney4">
 						<label for="commentField">Comment</label>
-							<textarea placeholder="소견 작성" id="commentField"></textarea>
+							<textarea style="resize: none;" placeholder="소견 작성" id="commentField" name="ex_result"></textarea>
 							<input class="button-primary" type="submit" value="Send">
 						</form>
 					</div>
@@ -616,11 +638,15 @@ function drug5(drug_number){
 							<div class="column column-50">
 								<div class="card">
 									<div class="card-title">
-										<h2>X-RAY 검사</h2>
-									</div>
+										<span style="font-size: 1.8em; font-weight:500;">X-RAY 검사</span>
+										<div style="width:50px; height:50px; float:right;">
+											<a href="javascript:void(0)"><img src="${path_resources}images/ai.png"></a>
+										</div>	
+									</div>								
 									<div class="card-block">
 										<div class="canvas-wrapper">
-											<form action="${path}/doctor/diagnosisPro" method="post" name="medicalForm">
+											<form action="${path}/doctor/diagnosisPro" method="post" name="asdf">
+											<input type="file" name="xray_img" id="file">
 											<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 											<input type="hidden" name="customer_id" value="${vo.getCustomer_id()}">
 											<table>
@@ -632,7 +658,7 @@ function drug5(drug_number){
 												</thead>
 												<tbody style="height:600px;">										    
 												<tr>												
-													<td rowspan="3"><img style="height:350px;" id="image" src="${path_resources}images/man.png"></td>
+													<td rowspan="3"><img style="height:350px;" id="img"></td>
 													<td>정상확률</td>
 													<td>50%</td>
 												</tr>
@@ -647,7 +673,7 @@ function drug5(drug_number){
 												</tbody>	
 											</table>
 											<label for="commentField">Comment</label>
-											<textarea placeholder="소견 작성" id="commentField"></textarea>
+											<textarea style="resize: none;" placeholder="소견 작성" id="commentField"></textarea>
 											<input class="button-primary" type="submit" value="Send">
 										</form>
 										</div>
@@ -657,64 +683,40 @@ function drug5(drug_number){
 							<div class="column column-50">
 								<div class="card">
 									<div class="card-title">
-										<h2>암(유방)검사</h2>
+										<span style="font-size: 1.8em; font-weight:500;">암(유방)검사</span>
+										<div style="width:50px; height:50px; float:right;">
+											<a href="javascript:void(0)"><img src="${path_resources}images/ai.png"></a>
+										</div>	
 									</div>
 									<div class="card-block">
 										<div class="canvas-wrapper">
+											<form action="${path}/doctor/diagnosisPro" method="post" name="qwer">
+											<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+											<input type="hidden" name="customer_id" value="${vo.getCustomer_id()}">
+											<input type="hidden" name="age" value=${2020 - vo.getCustomer_year()}">
+											<label for="commentField">검사정보입력</label>
+												<input type="text" placeholder="radius" name="radius">
+												<input type="text" placeholder="texture" name="texture">
+												<input type="text" placeholder="perimeter" name="perimeter">
+												<input type="text" placeholder="area" name="area">
+												<input type="text" placeholder="smoothness" name="smoothness">
+												<input type="text" placeholder="compactness" name="compactness">
+												<input type="text" placeholder="concavity" name="concavity">
+												<input type="text" placeholder="symmetry" name="symmetry">
+												<input type="text" placeholder="fractal_dimension" name="fractal_dimension">																																			
 											<table cellspacing='0'>
 												<tr>
-													<th>Task Details</th>
-													<th>Progress</th>
-													<th>Vital Task</th>
-												</tr>
-											    
-												<tr>
-													<td>Create pretty table design</td>
-													<td>100%</td>
-													<td>Yes</td>
-												</tr>
+													<th colspan="2">결과</th>
+												</tr>											    
 												<tr class='even'>
-													<td>Take the dog for a walk</td>
-													<td>100%</td>
-													<td>Yes</td>
-												</tr>
-											
-												<tr>
-													<td>Waste half the day on Twitter</td>
-													<td>20%</td>
-													<td>No</td>
-												</tr>
-												<tr class='even'>
-													<td>Feel inferior after viewing Dribble</td>
-													<td>80%</td>
-													<td>No</td>
-												</tr>
-												
-											    <tr>
-													<td>Wince at "to do" list</td>
-													<td>100%</td>
-													<td>Yes</td>
-												</tr>
-												<tr class='even'>
-													<td>Vow to complete personal project</td>
-													<td>23%</td>
-													<td>yes</td>
-												</tr>
-											
-												<tr>
-													<td>Procrastinate</td>
-													<td>80%</td>
-													<td>No</td>
-												</tr>
-											    <tr class='even'>
-													<td><a href="#">Hyperlink Example</a></td>
-													<td>80%</td>
-													<td><a href="#inexistent-id">Another</a></td>
-												</tr>
+													<td>양성</td>
+													<td>82%</td>
+												</tr>											
 											</table>
 											<label for="commentField">Comment</label>
-											<textarea placeholder="의사소견" id="commentField"></textarea>
+											<textarea style="resize: none;" placeholder="의사소견" id="commentField"></textarea>
 											<input class="button-primary" type="submit" value="Send">
+											</form>
 										</div>
 									</div>
 								</div>

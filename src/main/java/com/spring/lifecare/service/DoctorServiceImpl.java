@@ -21,12 +21,15 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.spring.lifecare.persistence.UserDAO;
 import com.spring.lifecare.vo.AppointmentVO;
+import com.spring.lifecare.vo.BasicExVO;
+import com.spring.lifecare.vo.CancerVO;
 import com.spring.lifecare.vo.CustomerVO;
 import com.spring.lifecare.vo.DiagnosisVO;
 import com.spring.lifecare.vo.DiseaseVO;
 import com.spring.lifecare.vo.DoctorVO;
 import com.spring.lifecare.vo.DrugVO;
 import com.spring.lifecare.vo.ReservationVO;
+import com.spring.lifecare.vo.XrayExVO;
 
 @Service
 public class DoctorServiceImpl implements DoctorService{
@@ -307,6 +310,76 @@ public class DoctorServiceImpl implements DoctorService{
 		String doctor_id = (String) req.getSession().getAttribute("userSession");
 		List<DiagnosisVO> list = userDAO.getDiagnosisList(doctor_id);
 		model.addAttribute("list", list);
+	}
+
+	@Override
+	public void saveBasicEx(HttpServletRequest req, Model model) {
+		BasicExVO vo = new BasicExVO();
+		vo.setCustomer_id(req.getParameter("customer_id"));
+		vo.setHeight(req.getParameter("height"));
+		vo.setWeight(req.getParameter("weight"));
+		vo.setTc(req.getParameter("tc"));
+		vo.setTg(req.getParameter("tg"));
+		vo.setLdl(req.getParameter("ldl"));
+		vo.setHdl(req.getParameter("hdl"));
+		vo.setBlood1(req.getParameter("blood1"));
+		vo.setBlood2(req.getParameter("blood2"));
+		vo.setBloodSugar(req.getParameter("bloodSugar"));
+		vo.setWhite(req.getParameter("white"));
+		vo.setHb(req.getParameter("hb"));
+		vo.setAst(req.getParameter("ast"));
+		vo.setAlt(req.getParameter("alt"));
+		vo.setGtp(req.getParameter("gtp"));
+		vo.setKidney1(req.getParameter("kidney1"));
+		vo.setKidney2(req.getParameter("kidney2"));
+		vo.setKidney3(req.getParameter("kidney3"));
+		vo.setKidney4(req.getParameter("kidney4"));
+		vo.setEx_result(req.getParameter("ex_result"));		
+		
+		int insertCnt = userDAO.insertBasicEx(vo);
+		model.addAttribute("insertCnt", insertCnt);
+	}
+
+	@Override
+	public void basicExList(HttpServletRequest req, Model model) {				
+		List<BasicExVO> list = userDAO.basicExList();
+		model.addAttribute("list1", list);				
+	}
+
+	@Override
+	public void loadBasicExInfo(HttpServletRequest req, Model model) {
+		int ex_num = Integer.parseInt(req.getParameter("ex_num"));		
+		BasicExVO vo = null;
+		vo = userDAO.getBasicExInfo(ex_num);		
+		model.addAttribute("vo", vo);
+	}
+
+	@Override
+	public void cancerList(HttpServletRequest req, Model model) {
+		List<CancerVO> list = userDAO.cancerList();
+		model.addAttribute("list2", list);	
+	}
+
+	@Override
+	public void loadCancerExInfo(HttpServletRequest req, Model model) {
+		int cancer_num = Integer.parseInt(req.getParameter("cancer_num"));		
+		CancerVO vo = null;
+		vo = userDAO.getCancerExInfo(cancer_num);		
+		model.addAttribute("vo", vo);
+	}
+
+	@Override
+	public void xrayList(HttpServletRequest req, Model model) {
+		List<XrayExVO> list = userDAO.xrayList();
+		model.addAttribute("list3", list);	
+	}
+
+	@Override
+	public void loadXrayExInfo(HttpServletRequest req, Model model) {
+		int xray_num = Integer.parseInt(req.getParameter("xray_num"));		
+		XrayExVO vo = null;
+		vo = userDAO.getXrayExInfo(xray_num);		
+		model.addAttribute("vo", vo);
 	}
 	
 }

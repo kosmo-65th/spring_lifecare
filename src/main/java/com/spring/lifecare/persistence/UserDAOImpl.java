@@ -14,12 +14,15 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Repository;
 
 import com.spring.lifecare.vo.AppointmentVO;
+import com.spring.lifecare.vo.BasicExVO;
+import com.spring.lifecare.vo.CancerVO;
 import com.spring.lifecare.vo.CustomerVO;
 import com.spring.lifecare.vo.DiagnosisVO;
 import com.spring.lifecare.vo.DiseaseVO;
 import com.spring.lifecare.vo.DoctorVO;
 import com.spring.lifecare.vo.DrugVO;
 import com.spring.lifecare.vo.ReservationVO;
+import com.spring.lifecare.vo.XrayExVO;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
@@ -414,6 +417,54 @@ public class UserDAOImpl implements UserDAO {
 	public ArrayList<DiagnosisVO> nonpayList(String customer_id) {
 		UserDAO dao = sqlSession.getMapper(UserDAO.class);
 		return dao.nonpayList(customer_id);
+	}
+
+
+	@Override
+	public int insertBasicEx(BasicExVO vo) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.insertBasicEx(vo);
+	}
+
+	@Override
+	public List<BasicExVO> basicExList() {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.basicExList();
+	}
+
+
+	@Override
+	public BasicExVO getBasicExInfo(int ex_num) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.getBasicExInfo(ex_num);
+	}
+
+
+	@Override
+	public List<CancerVO> cancerList() {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.cancerList();
+	}
+
+
+	@Override
+	public CancerVO getCancerExInfo(int cancer_num) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.getCancerExInfo(cancer_num);
+	}
+
+
+	@Override
+	public List<XrayExVO> xrayList() {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.xrayList();
+	}
+
+
+	@Override
+	public XrayExVO getXrayExInfo(int xray_num) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.getXrayExInfo(xray_num);
 	}
 
 }
