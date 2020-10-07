@@ -307,12 +307,6 @@ public class JinController {
  		return "customer/cancelAppointment";
  	}
  	
- 	// 관리자 결산페이지
- 	@RequestMapping("/admin/summary")
- 	public String summary(Model model) {
- 		
- 		return "host/Summary";
- 	}
  	
 	//////////////////////////////안드로이드 관련
  	// 의사 리스트 뿌려주기

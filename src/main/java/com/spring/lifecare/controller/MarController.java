@@ -1,8 +1,6 @@
 package com.spring.lifecare.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,15 +11,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.spring.lifecare.service.AdminService;
 import com.spring.lifecare.service.DoctorService;
 import com.spring.lifecare.service.DrugService;
-import com.spring.lifecare.vo.DrugVO;
 
 @Controller
 public class MarController {
 	
-	@Autowired DrugService service;
-	@Autowired DoctorService Dservice;
+	@Autowired 
+	DrugService service;
+	@Autowired 
+	DoctorService Dservice;
+	@Autowired 
+	AdminService aservice;
 	
 	//약 검색
 	@RequestMapping("/drugSearch")
@@ -56,6 +58,12 @@ public class MarController {
 		return "drug/drug_enptname_next";
 	}
 	
+	// 관리자 결산페이지
+ 	@RequestMapping("/admin/summary")
+ 	public String summary(HttpServletRequest req, Model model) {
+ 		aservice.summary(req, model);
+ 		return "host/Summary";
+ 	}
 	// -------------------------- 안드로이드  --------------------------
 	
 	//WebView 용 페이지 
@@ -63,6 +71,7 @@ public class MarController {
 	@RequestMapping("/android_drugSearch")
 	public String android_drugSearch(HttpServletRequest req, Model model){
 		return "drug/android_drugSearch";
+		
 	}
 	//안드로이드 약 검색 결과출력
 	@RequestMapping("/android_drugSearchPro")

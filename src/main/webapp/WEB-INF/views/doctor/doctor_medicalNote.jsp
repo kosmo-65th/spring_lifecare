@@ -560,7 +560,7 @@ function drug5(drug_number){
 					}
 				} 
 			
-			$(".blood_result").html(parseFloat(blood1).toFixed(2)+ " mmHg /dL " + " "+ blood_msg + "입니다."); 
+			$(".blood_result").html("이완기 혈압 " + parseFloat(blood1).toFixed(2)+ " mmHg /dL " + " "+ blood_msg + "입니다."); 
 			
 			return; 
 			
@@ -624,7 +624,7 @@ $(function() {
 				}
 			} 
 		
-		$(".bloodSugar_result").html("이완기 혈압 " + parseFloat(bloodSugar).toFixed(2)+ " mg/dL " + " "+ bloodSugar_msg + "입니다."); 
+		$(".bloodSugar_result").html(parseFloat(bloodSugar).toFixed(2)+ " mg/dL " + " "+ bloodSugar_msg + "입니다."); 
 		
 		return; 
 		

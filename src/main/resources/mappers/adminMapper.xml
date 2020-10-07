@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ 	  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 	  
+<mapper namespace="com.spring.lifecare.persistence.AdminDAO">
+	<select id="monthlyProfit" resultType="int">
+	SELECT NVL(SUM(customer_amount),0)
+	FROM diagnosis WHERE DIAGNOSIS_TIME LIKE TO_CHAR(systimestamp, 'YY/MM')||'%'
+	</select>
+	
+
+	<select id="yearlyProfit" resultType="int">
+	SELECT NVL(SUM(customer_amount),0)
+	FROM diagnosis WHERE DIAGNOSIS_TIME LIKE TO_CHAR(systimestamp, 'YY')||'%'
+	</select>
+	
+	<select id="monthlyTreatment" resultType="int">
+	SELECT NVL(count(diagnosis_num),0)
+	FROM diagnosis WHERE DIAGNOSIS_TIME LIKE TO_CHAR(systimestamp, 'YY/MM')||'%'
+	</select>
+	
+	<select id="yearlyTreatment" resultType="int">
+	SELECT NVL(count(diagnosis_num),0)
+	FROM diagnosis WHERE DIAGNOSIS_TIME LIKE TO_CHAR(systimestamp, 'YY/')||'%'
+	</select>
+	
+	<select id="monthlyProfitChart" resultType="int" parameterType="String">
+	SELECT NVL(SUM(customer_amount),0)
+	FROM diagnosis 
+	WHERE to_char(DIAGNOSIS_TIME,'YY/MM') LIKE '%'||#{month}||'%'
+	</select>
+	
+	<select id="monthlyTreatmentChart" resultType="int" parameterType="String">
+	SELECT count(*) 
+	FROM diagnosis 
+	WHERE to_char(DIAGNOSIS_TIME,'YY/MM') LIKE '%'||#{month}||'%'
+	</select>
+	
+	<select id="doctorMajor" resultType="String">
+	SELECT DOCTOR_MAJOR
+	FROM DOCTOR
+    </select>
+	
+	<select id="monthlyMajorCntChart" resultType="int" parameterType="java.util.Map">
+		SELECT NVL(count(diagnosis_num), 0)
+		FROM DIAGNOSIS di , DOCTOR dr 
+		where dr.doctor_id = di.doctor_id
+		AND dr.doctor_major = #{major}
+		AND to_char(di.DIAGNOSIS_TIME,'YYYY/MM') LIKE '%'||#{yyy}||'%'
+		
+	</select>
+	
+</mapper>  	  
+
