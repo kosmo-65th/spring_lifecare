@@ -5,7 +5,9 @@
 <html>
 <script type="text/javascript">
 $(document).ready(function(){
+	
 	$('input:radio[name=select]').click(function(){
+		
 		var diagnosis_num = $('input:radio[name=select]:checked').val();
 		document.getElementById('diagnosis_num').value = diagnosis_num;
 		
@@ -46,11 +48,39 @@ $(document).ready(function(){
 				$('#amount7').html(Math.round(amount7).toLocaleString());
 				$('#amount3').html(Math.round(amount3).toLocaleString());
 				$('#pay').html(pay);
+				
 			},
 			error : function() {
 				alert('오류');
 			}
 		});
+		
+	});
+	
+	$('#medishow').click(function(){
+		
+		var diagnosis_num = $('input:radio[name=select]:checked').val();
+		var pay = $('#pay').text();
+		
+		if(pay != "0"){
+			alert("미결제 진료분은 조회하실수 없습니다.");
+		}else{
+			window.open('${pageContext.request.contextPath}/Medicalrecords/medicalPrint?diagnosis_num=' + diagnosis_num , '진료기록부발급', 'resizable=no width=750, height=600');
+		}
+		
+	});
+	
+	$('#showpres').click(function(){
+		
+		var diagnosis_num = $('input:radio[name=select]:checked').val();
+		var pay = $('#pay').text(); 
+		
+		if(pay != "0"){
+			alert("미결제 진료분은 조회하실수 없습니다.");
+		}else{
+			window.open('${pageContext.request.contextPath}/Medicalrecords/prescriptionprint?diagnosis_num=' + diagnosis_num , '처방전발급', 'resizable=no width=750, height=600');
+		}
+		
 	});
 });
 </script>
@@ -61,7 +91,7 @@ $(document).ready(function(){
 <div class="body">
 <br><br>
 <fieldset class="payment">
-<h3>정덴트님의 수납내역</h3>
+<h3 style = "font-size:30px">수납내역 조회 결과</h3>
 <div class="tablePay">    
     <div class="row1 header blue">
       <div class="cell1">
@@ -93,8 +123,8 @@ $(document).ready(function(){
       </div>
     </div>
     <c:forEach var="j" items="${list}">
-    <div class="row1">     
-      <input type="hidden" id="diagnosis_num" value="">	
+    <input type = "hidden" id="diagnosis_num" value="">
+    <div class="row1">           
       <div class="cell1">
         	<input type="radio" name="select" value="${j.getDiagnosis_num()}">
       </div>
@@ -172,7 +202,7 @@ $(document).ready(function(){
 <br><br>
 
 <fieldset class="payment">
-<h3 id="date">0000년 00월 00일 진료비 내역</h3>
+<h3 id="date" style = "font-size:30px">0000년 00월 00일 진료비 내역</h3>
 <div class="tablePay">    
     <div class="row1 header green">
       <div class="cell1">
@@ -232,11 +262,11 @@ $(document).ready(function(){
       </div>          
     </div>    
 </div>
-<div class="light">	  		
+<div class="light">	  			
 		<ul style="float: right;">
        		<li style="display:inline;"><a style="margin-left:450;" class="large button green" onclick="window.open('${path}/customer/diagnosis', '진단서발급', 'resizable=no width=750, height=600'); return false;">진단서 발급</a></li>
-       		<li style="display:inline;"><a class="large button green" onclick="window.open('${path}/customer/medicalNote', '진료기록부발급', 'resizable=no width=750, height=600'); return false;">진료기록부 발급</a></li>
-       		<li style="display:inline;"><a class="large button green" onclick="window.open('${path}/customer/prescription', '처방전발급', 'resizable=no width=750, height=600'); return false;">처방전 발급</a></li>
+       		<li style="display:inline;"><a class="large button green" href="javascript:void(0)" id = "medishow">진료기록부 발급</a></li>
+       		<li style="display:inline;"><a class="large button green" href="javascript:void(0)" id = "showpres">처방전 발급</a></li>
 		</ul>
 		<p class="tail">* 미수금을 클릭하면 결제페이지로 이동하여 결제가 가능합니다.</p>
 </div>

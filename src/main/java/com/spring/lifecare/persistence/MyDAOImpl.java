@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 import com.spring.lifecare.vo.BoardVO;
 import com.spring.lifecare.vo.medicalVO;
 
-
 @Repository
 public class MyDAOImpl implements MyDAO {
 	
@@ -145,5 +144,19 @@ public class MyDAOImpl implements MyDAO {
 	public medicalVO prescriptionnote(Map<String, Object> map) {
 		MyDAO dao = sqlSession.getMapper(MyDAO.class);
 		return dao.prescriptionnote(map);
+	}
+	
+	//회원-결제된 진료내용 상세조회(한건의 정보 = 진료기록)
+	@Override
+	public medicalVO medicalprint(Map<String, Object> map) {
+		MyDAO dao = sqlSession.getMapper(MyDAO.class);
+		return dao.medicalprint(map);
+	}
+	
+	//회원-결제된 처방전 상세조회(한건의 정보 = 진료기록)
+	@Override
+	public medicalVO prescriptionprint(Map<String, Object> map) {
+		MyDAO dao = sqlSession.getMapper(MyDAO.class);
+		return dao.prescriptionprint(map);
 	}
 }

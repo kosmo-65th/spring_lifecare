@@ -14,4 +14,10 @@ public interface medicalService {
 	//회원-처방내용 상세 페이지
 	public void prescriptioncontentForm(HttpServletRequest req, Model model);
 	
+	//회원-결제된 진료내역 print
+	public void medicalprint(HttpServletRequest req, Model model);
+	
+	//회원-결제된 처방내용 print
+	public void prescriptionprint(HttpServletRequest req, Model model);
+	
 }

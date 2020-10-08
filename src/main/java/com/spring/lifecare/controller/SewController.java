@@ -114,32 +114,45 @@ public class SewController {
 		return "/board/adminboardUpdate";
 	}
 	
-	//mypage-진료기록 조회
+	//mypage-진료기록 리스트 조회
 	@RequestMapping("/Medicalrecords/medicalList")
 	public String MypageMedicalList(HttpServletRequest req, Model model) {
 		medical.medicalList(req, model);
 		return "Medicalrecords/medicalList";
 	}	
 	
-	//mypage-진료기록부 상세 보기
+	//mypage-진료기록부 상세 페이지
 	@RequestMapping("/Medicalrecords/medicalNote")
 	public String MypageMedicalcontent(HttpServletRequest req, Model model) {
 		medical.medicalcontentForm(req, model);
 		return "Medicalrecords/medicalNote";
 	}
 	
-	//mypage-처방전 조회
+	//mypage-처방전 리스트 조회
 	@RequestMapping("/Medicalrecords/prescriptionList")
 	public String Mypageprescription(HttpServletRequest req, Model model) {
 		medical.medicalList(req, model);
 		return "Medicalrecords/prescriptionList";
 	}
 	
-	//mypage-처방전 조회
+	//mypage-처방전 상세 페이지
 	@RequestMapping("/Medicalrecords/prescriptionNote")
 	public String Mypageprescriptioncontent(HttpServletRequest req, Model model) {
 		medical.prescriptioncontentForm(req, model);
 		return "Medicalrecords/prescriptionNote";
 	}	
 	
+	//mypage-진료기록부 print
+	@RequestMapping("/Medicalrecords/medicalPrint")
+	public String Mypagemedicalprint(HttpServletRequest req, Model model) {
+		medical.medicalprint(req, model);
+		return "Medicalrecords/medicalPrint";
+	}
+	
+	//mypage-처방전 print
+	@RequestMapping("/Medicalrecords/prescriptionprint")
+	public String Mypageprescriptionprint(HttpServletRequest req, Model model) {
+		medical.prescriptionprint(req, model);
+		return "Medicalrecords/prescriptionprint";
+	}
 }

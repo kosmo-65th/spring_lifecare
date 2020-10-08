@@ -13,7 +13,6 @@ import org.springframework.ui.Model;
 import com.spring.lifecare.persistence.MyDAO;
 import com.spring.lifecare.vo.medicalVO;
 
-
 @Service
 public class medicalServiceImpl implements medicalService {
 
@@ -152,5 +151,42 @@ public class medicalServiceImpl implements medicalService {
 		//6.request | session에 처리 결과를 저장(jsp에 전달하기 위함)
 		model.addAttribute("dto", vo);
 		
+	}
+	
+	//회원-결제된 진료내역 print
+	@Override
+	public void medicalprint(HttpServletRequest req, Model model) {
+		
+		int diagnosis_num = Integer.parseInt(req.getParameter("diagnosis_num"));
+		String customer_id = (String)req.getSession().getAttribute("userSession");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("customer_id", customer_id);
+		map.put("diagnosis_num", diagnosis_num);
+		
+		// 상세페이지 조회
+		medicalVO vo = dao.medicalprint(map);
+		
+		//6.request | session에 처리 결과를 저장(jsp에 전달하기 위함)
+		model.addAttribute("dto", vo);
+	}
+	
+	//회원-결제된 처방내용 print
+	@Override
+	public void prescriptionprint(HttpServletRequest req, Model model) {
+		int diagnosis_num = Integer.parseInt(req.getParameter("diagnosis_num"));
+		String customer_id = (String)req.getSession().getAttribute("userSession");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("customer_id", customer_id);
+		map.put("diagnosis_num", diagnosis_num);
+		
+		// 상세페이지 조회
+		medicalVO vo = dao.prescriptionprint(map);
+		
+		//6.request | session에 처리 결과를 저장(jsp에 전달하기 위함)
+		model.addAttribute("dto", vo);
 	}
 }
