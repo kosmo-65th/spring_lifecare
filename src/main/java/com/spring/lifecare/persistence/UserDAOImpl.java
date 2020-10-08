@@ -467,4 +467,18 @@ public class UserDAOImpl implements UserDAO {
 		return dao.getXrayExInfo(xray_num);
 	}
 
+
+	@Override
+	public int insertCancerEx(CancerVO vo) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.insertCancerEx(vo);
+	}
+
+
+	@Override
+	public int insertXrayEx(XrayExVO vo) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.insertXrayEx(vo);
+	}
+
 }

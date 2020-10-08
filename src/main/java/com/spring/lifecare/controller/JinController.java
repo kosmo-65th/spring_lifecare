@@ -116,27 +116,6 @@ public class JinController {
  		jsonArray = (JSONArray)req.getAttribute("jsonArray");
  		return jsonArray;
  	}
- 	
- 	//진단서 폼 - 프린트
- 	@RequestMapping("/customer/diagnosis")
-	public String diagnosis(Model model) {
-		
-		return "customer/diagnosis";
-	}
-	
- 	//진료기록부 폼 - 프린트
-	@RequestMapping("/customer/medicalNote")
-	public String medicalNote(Model model) {
-		
-		return "customer/medicalNote";
-	}
-	
-	//처방전 폼 - 프린트
-	@RequestMapping("/customer/prescription")
-	public String prescription(Model model) {
-		
-		return "customer/prescription";
-	}
 	
     // 의사 로그인후 메인페이지
     @RequestMapping("/doctor/doctor_main")
@@ -284,10 +263,24 @@ public class JinController {
  		return "doctor/diagnosisPro";
  	}
  	
+    // 암검사기록 저장
+ 	@RequestMapping("/doctor/cancerExPro")
+ 	public String cancerExPro(HttpServletRequest req, Model model) { 		
+ 		doctor.saveCancerEx(req, model);
+ 		return "doctor/diagnosisPro";
+ 	}
+ 	
+    // xray검사기록 저장
+ 	@RequestMapping("/doctor/xrayExPro")
+ 	public String xrayExPro(MultipartHttpServletRequest req, Model model) { 		
+ 		doctor.saveXrayEx(req, model);
+ 		return "doctor/diagnosisPro";
+ 	}
+ 	
     // 마이페이지
  	@RequestMapping("/customer/mypage")
  	public String mypage(HttpServletRequest req, Model model) {
- 		
+ 		doctor.saveCancerEx(req, model);
  		return "customer/Mypage";
  	}
  	

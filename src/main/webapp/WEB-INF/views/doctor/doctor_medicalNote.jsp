@@ -185,7 +185,11 @@ $(function() {
             	
                 $("#normal").text(data_parse.normal+"%");
                 $("#corona").text(data_parse.corona+"%");
-                $("#pneumonia").text(data_parse.pneumonia+"%"); 
+                $("#pneumonia").text(data_parse.pneumonia+"%");
+                
+                document.asdf.normal_percentage.value = data_parse.normal+"%";
+                document.asdf.corona_percentage.value = data_parse.corona+"%";
+                document.asdf.pneumonia_percentage.value = data_parse.pneumonia+"%";
                 alert("딥러닝 완료");
             }
         });
@@ -222,10 +226,10 @@ $(function() {
             	
             	var data_JSON_String = JSON.stringify(data);
             	var data_parse = JSON.parse(data_JSON_String);
-            	
-            	
+            	           	
                 $("#resultCancer").text(data_parse.result);
                 $("#resultPercent").text(data_parse.percent);
+                document.qwer.percentage.value = data_parse.result + " " + data_parse.percent;
                 alert("딥러닝 완료");
             }
         });
@@ -724,6 +728,9 @@ function readImage() {
 											<input type="file" name="xray_img" id="file">
 											<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 											<input type="hidden" name="customer_id" value="${vo.getCustomer_id()}">
+											<input type="hidden" name="normal_percentage" value="">
+											<input type="hidden" name="corona_percentage" value="">
+											<input type="hidden" name="pneumonia_percentage" value="">
 											<table>
 												<thead>
 												<tr>
@@ -748,7 +755,7 @@ function readImage() {
 												</tbody>	
 											</table>
 											<label for="commentField">Comment</label>
-											<textarea style="resize: none;" placeholder="소견 작성" id="commentField"></textarea>
+											<textarea style="resize: none;" placeholder="소견 작성" id="commentField" name="xray_result"></textarea>
 											<input class="button-primary" type="submit" value="Send">
 										</form>
 										</div>
@@ -765,10 +772,11 @@ function readImage() {
 									</div>
 									<div class="card-block">
 										<div class="canvas-wrapper">
-											<form action="${path}/doctor/diagnosisPro" method="post" name="qwer" id="CancerForm">
+											<form action="${path}/doctor/cancerExPro" method="post" name="qwer" id="CancerForm">
 											<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 											<input type="hidden" name="customer_id" value="${vo.getCustomer_id()}">
 											<input type="hidden" name="age" value="${2020 - vo.getCustomer_year()}">
+											<input type="hidden" name="percentage" value="">
 											<label for="commentField">검사정보입력</label>
 												<input type="text" placeholder="radius" name="radius">
 												<input type="text" placeholder="texture" name="texture">
@@ -789,7 +797,7 @@ function readImage() {
 												</tr>											
 											</table>
 											<label for="commentField">Comment</label>
-											<textarea style="resize: none;" placeholder="의사소견" id="commentField"></textarea>
+											<textarea style="resize: none;" placeholder="의사소견" id="commentField" name="cancer_result"></textarea>
 											<input class="button-primary" type="submit" value="Send">
 											</form>
 										</div>
