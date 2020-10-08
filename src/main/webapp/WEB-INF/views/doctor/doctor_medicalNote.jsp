@@ -9,6 +9,7 @@
 	<!-- jQuery 추가 -->
 	<script src="${path_resources}js/jquery-3.5.1.min.js"></script>
 	
+	
 	<!-- 프로필 css -->
 	<style type="text/css">
 	.card{
@@ -129,6 +130,9 @@
 	
 	<!-- Milligram CSS minified -->
 	<link rel="stylesheet" href="${path_resources}css/doctormilligram.min.css">
+	
+	<!-- loading -->
+	<link rel="stylesheet" href="${path_resources}css/loading.css">
 	
 	<!-- Main Styles -->
 	<link rel="stylesheet" href="${path_resources}css/doctorStyles.css">
@@ -522,6 +526,7 @@ function readImage() {
 };
 </script>
 <body>
+
 	<div class="navbar">
 		<div class="row">
 			<div class="column column-30 col-site-title"><a href="${path}/doctor/doctor_main" class="site-title float-left">Lifecare</a></div>
@@ -593,8 +598,9 @@ function readImage() {
 			<!--Forms-->
 			<div class="row grid-responsive">
 				<div class="column ">
-					<div class="card">					
+					<div class="card">
 						<div class='css3-tab'>
+						
 							<input type='radio' name='a' id='tabOne' tabindex="1" checked>
 							<input type='radio' name='a' id='tabTwo' tabindex="2">
 			
@@ -746,8 +752,11 @@ function readImage() {
 										</div>	
 									</div>								
 									<div class="card-block">
+									<div class="wrap-loading display-none">
+	    <div><img src="${path_resources }img/deepLearning2_edit.gif" /></div>
+	</div>  	
 										<div class="canvas-wrapper">
-											<form action="${path}/doctor/diagnosisPro" method="post" name="asdf" id="CoronaForm">
+											<form action="${path}/doctor/xrayExPro?${_csrf.parameterName}=${_csrf.token}" method="post" name="asdf" id="CoronaForm" enctype="multipart/form-data">
 											<input type="file" name="xray_img" id="file">
 											<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 											<input type="hidden" name="customer_id" value="${vo.getCustomer_id()}">
@@ -836,8 +845,6 @@ function readImage() {
 		<p class="credit">HTML5 Admin Template by <a href="https://www.medialoot.com">Medialoot</a></p>
 		</section>
 	</div>
-	<div class="wrap-loading display-none">
-	    <div><img src="${path_resources }/img/deepLearning2_edit.gif" /></div>
-	</div>    
+	  
 </body>
 </html>

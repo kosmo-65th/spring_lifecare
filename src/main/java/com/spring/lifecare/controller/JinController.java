@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -271,7 +272,7 @@ public class JinController {
  	}
  	
     // xray검사기록 저장
- 	@RequestMapping("/doctor/xrayExPro")
+ 	@RequestMapping(value="/doctor/xrayExPro", method=RequestMethod.POST)
  	public String xrayExPro(MultipartHttpServletRequest req, Model model) { 		
  		doctor.saveXrayEx(req, model);
  		return "doctor/diagnosisPro";

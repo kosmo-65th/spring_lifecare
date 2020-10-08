@@ -77,24 +77,25 @@ public class DeepLearningServiceImpl implements DeepLearningService{
 		try {
 			file.transferTo(new File(saveDir+file.getOriginalFilename()));
 			System.out.println("file :" + file);
-			BufferedReader in = new BufferedReader(
-					new FileReader(saveDir + file.getOriginalFilename())
-			);
-			BufferedWriter out = new BufferedWriter(
-					new FileWriter(realDir + "/test2."+formatType)
-			);
+//			BufferedReader in = new BufferedReader(
+//					new FileReader(saveDir + file.getOriginalFilename())
+//			);
+//			BufferedWriter out = new BufferedWriter(
+//					new FileWriter(realDir + "/test2."+formatType)
+//			);
 			
-			//FileInputStream fis = new FileInputStream(saveDir + file.getOriginalFilename());
-			//FileOutputStream fos = new FileOutputStream(realDir + "/test2."+formatType);
+			FileInputStream fis = new FileInputStream(saveDir + file.getOriginalFilename());
+			FileOutputStream fos = new FileOutputStream(realDir + "/test2."+formatType);
 			TestImgSrc = realDir + "/test2."+formatType;
 			int data = 0;
 		
-			while((data = in.read()) != -1) {
-				out.write(data);
+			while((data = fis.read()) != -1) {
+				fos.write(data);
 			}
+			//fos.flush();
 			
-			in.close();
-			out.close();
+			//in.close();
+			//out.close();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
