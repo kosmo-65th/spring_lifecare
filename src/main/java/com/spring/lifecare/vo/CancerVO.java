@@ -18,6 +18,7 @@ public class CancerVO {
 	String symmetry;
 	String fractal_dimension;
 	String percentage;
+	String age;
 	String cancer_result;
 	Timestamp cancer_date;
 	

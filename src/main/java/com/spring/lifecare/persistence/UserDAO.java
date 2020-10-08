@@ -200,6 +200,12 @@ public interface UserDAO {
 	 // 기초검사결과 작성
 	 public int insertBasicEx(BasicExVO vo);	 
 	 
+	 // 암검사결과 작성
+	 public int insertCancerEx(CancerVO vo);
+	 
+	 // xray검사결과 작성
+	 public int insertXrayEx(XrayExVO vo);
+	 
 	 // 기초검사결과리스트 
 	 public List<BasicExVO> basicExList();
 	 

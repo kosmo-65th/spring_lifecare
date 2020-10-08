@@ -5,6 +5,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -75,6 +77,13 @@ public class DeepLearningServiceImpl implements DeepLearningService{
 		try {
 			file.transferTo(new File(saveDir+file.getOriginalFilename()));
 			System.out.println("file :" + file);
+//			BufferedReader in = new BufferedReader(
+//					new FileReader(saveDir + file.getOriginalFilename())
+//			);
+//			BufferedWriter out = new BufferedWriter(
+//					new FileWriter(realDir + "/test2."+formatType)
+//			);
+			
 			FileInputStream fis = new FileInputStream(saveDir + file.getOriginalFilename());
 			FileOutputStream fos = new FileOutputStream(realDir + "/test2."+formatType);
 			TestImgSrc = realDir + "/test2."+formatType;
@@ -83,9 +92,15 @@ public class DeepLearningServiceImpl implements DeepLearningService{
 			while((data = fis.read()) != -1) {
 				fos.write(data);
 			}
+			//fos.flush();
+			
+			//in.close();
+			//out.close();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+		
+		
 		/////////////////////////// 여기까지 사진 저장
 		String modelSrc = "";
 		try {

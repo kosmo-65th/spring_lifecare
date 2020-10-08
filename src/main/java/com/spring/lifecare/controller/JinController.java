@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -116,27 +117,6 @@ public class JinController {
  		jsonArray = (JSONArray)req.getAttribute("jsonArray");
  		return jsonArray;
  	}
- 	
- 	//진단서 폼 - 프린트
- 	@RequestMapping("/customer/diagnosis")
-	public String diagnosis(Model model) {
-		
-		return "customer/diagnosis";
-	}
-	
- 	//진료기록부 폼 - 프린트
-	@RequestMapping("/customer/medicalNote")
-	public String medicalNote(Model model) {
-		
-		return "customer/medicalNote";
-	}
-	
-	//처방전 폼 - 프린트
-	@RequestMapping("/customer/prescription")
-	public String prescription(Model model) {
-		
-		return "customer/prescription";
-	}
 	
     // 의사 로그인후 메인페이지
     @RequestMapping("/doctor/doctor_main")
@@ -284,10 +264,24 @@ public class JinController {
  		return "doctor/diagnosisPro";
  	}
  	
+    // 암검사기록 저장
+ 	@RequestMapping("/doctor/cancerExPro")
+ 	public String cancerExPro(HttpServletRequest req, Model model) { 		
+ 		doctor.saveCancerEx(req, model);
+ 		return "doctor/diagnosisPro";
+ 	}
+ 	
+    // xray검사기록 저장
+ 	@RequestMapping(value="/doctor/xrayExPro", method=RequestMethod.POST)
+ 	public String xrayExPro(MultipartHttpServletRequest req, Model model) { 		
+ 		doctor.saveXrayEx(req, model);
+ 		return "doctor/diagnosisPro";
+ 	}
+ 	
     // 마이페이지
  	@RequestMapping("/customer/mypage")
  	public String mypage(HttpServletRequest req, Model model) {
- 		
+ 		doctor.saveCancerEx(req, model);
  		return "customer/Mypage";
  	}
  	
