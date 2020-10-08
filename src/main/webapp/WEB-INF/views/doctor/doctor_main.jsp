@@ -2,6 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/resources/setting/setting.jsp" %>
 <html>
+<style>
+	.fc-ltr .fc-list-heading-alt{
+		margin-right:15px !important;		
+	}
+	
+</style>
 <head>
 	<meta charset="utf-8">
 	<title>Doctor Template</title>
@@ -150,7 +156,7 @@ $(function() {
 			$('#searchDisplay').css("min-width", "0");
 			$('#searchDisplay').css("max-height", "none");
 			$('#searchDisplay').css("background", "#f9f9f9");
-			$('#searchDisplay').css("border-radius", "499rem");
+			$('#searchDisplay').css("width", "570px");
 			
 		}
 		

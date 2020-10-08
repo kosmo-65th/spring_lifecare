@@ -588,11 +588,4 @@ public class JinController {
  		return "customer/kakaopayFail";
  	}
  	
-	//딥러닝 
-	@ResponseBody
-	@RequestMapping("/doctor/DeepLearningCancer")
-	public Map<String, Object> DeepLearningCancer(MultipartHttpServletRequest req, Model model) {
-		
-		return doctor.DeepLearningCancer(req, model);
-	}
 }
