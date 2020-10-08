@@ -277,8 +277,7 @@ $(function() {
 			$('#searchDisplay').css("align-items", "center");
 			$('#searchDisplay').css("min-width", "0");
 			$('#searchDisplay').css("max-height", "none");
-			$('#searchDisplay').css("background", "#f9f9f9");
-			$('#searchDisplay').css("border-radius", "499rem");			
+			$('#searchDisplay').css("background", "#f9f9f9");		
 		}
 		
 		// keyword -> search_next.ja(search_next.jsp) -> result -> 콜백함수 -> display에 출력
@@ -302,13 +301,13 @@ $(function() {
 		if(disease.length == 0) {        // 검색글자수가 0인 경우
 			$('#diseaseList').css("display", "none");       // 숨김
 		} else {
-			$('#diseaseList').css("visibility", "visible");      // 표시
-			$('#diseaseList').css("display", "flex");
-			$('#diseaseList').css("align-items", "center");
-			$('#diseaseList').css("min-width", "0");
-			$('#diseaseList').css("max-height", "none");
-			$('#diseaseList').css("background", "#f9f9f9");
-			$('#diseaseList').css("border-radius", "499rem");	
+			$('#searchDisplay').css("visibility", "visible");      // 표시
+			$('#searchDisplay').css("display", "flex");
+			$('#searchDisplay').css("align-items", "center");
+			$('#searchDisplay').css("min-width", "0");
+			$('#searchDisplay').css("max-height", "none");
+			$('#searchDisplay').css("background", "#f9f9f9");
+			$('#searchDisplay').css("width", "570px");
 		}
 		
 		$.ajax({
@@ -331,13 +330,12 @@ $(function() {
 		if(drug.length == 0) {        // 검색글자수가 0인 경우
 			$('#drugList1').css("display", "none");       // 숨김
 		} else {
-			$('#drugList1').css("visibility", "visible");      // 표시
-			$('#drugList1').css("display", "flex");
-			$('#drugList1').css("align-items", "center");
-			$('#drugList1').css("min-width", "0");
-			$('#drugList1').css("max-height", "none");
-			$('#drugList1').css("background", "#f9f9f9");
-			$('#drugList1').css("border-radius", "499rem");	
+			$('#searchDisplay').css("visibility", "visible");      // 표시
+			$('#searchDisplay').css("display", "flex");
+			$('#searchDisplay').css("align-items", "center");
+			$('#searchDisplay').css("min-width", "0");
+			$('#searchDisplay').css("max-height", "none");
+			$('#searchDisplay').css("background", "#f9f9f9");
 		}
 		
 		$.ajax({
@@ -360,13 +358,12 @@ $(function() {
 		if(drug.length == 0) {        // 검색글자수가 0인 경우
 			$('#drugList2').css("display", "none");       // 숨김
 		} else {
-			$('#drugList2').css("visibility", "visible");      // 표시
-			$('#drugList2').css("display", "flex");
-			$('#drugList2').css("align-items", "center");
-			$('#drugList2').css("min-width", "0");
-			$('#drugList2').css("max-height", "none");
-			$('#drugList2').css("background", "#f9f9f9");
-			$('#drugList2').css("border-radius", "499rem");	
+			$('#searchDisplay').css("visibility", "visible");      // 표시
+			$('#searchDisplay').css("display", "flex");
+			$('#searchDisplay').css("align-items", "center");
+			$('#searchDisplay').css("min-width", "0");
+			$('#searchDisplay').css("max-height", "none");
+			$('#searchDisplay').css("background", "#f9f9f9");	
 		}
 		
 		$.ajax({
@@ -389,13 +386,12 @@ $(function() {
 		if(drug.length == 0) {        // 검색글자수가 0인 경우
 			$('#drugList3').css("display", "none");       // 숨김
 		} else {
-			$('#drugList3').css("visibility", "visible");      // 표시
-			$('#drugList3').css("display", "flex");
-			$('#drugList3').css("align-items", "center");
-			$('#drugList3').css("min-width", "0");
-			$('#drugList3').css("max-height", "none");
-			$('#drugList3').css("background", "#f9f9f9");
-			$('#drugList3').css("border-radius", "499rem");	
+			$('#searchDisplay').css("visibility", "visible");      // 표시
+			$('#searchDisplay').css("display", "flex");
+			$('#searchDisplay').css("align-items", "center");
+			$('#searchDisplay').css("min-width", "0");
+			$('#searchDisplay').css("max-height", "none");
+			$('#searchDisplay').css("background", "#f9f9f9");
 		}
 		
 		$.ajax({
@@ -418,13 +414,12 @@ $(function() {
 		if(drug.length == 0) {        // 검색글자수가 0인 경우
 			$('#drugList4').css("display", "none");       // 숨김
 		} else {
-			$('#drugList4').css("visibility", "visible");      // 표시
-			$('#drugList4').css("display", "flex");
-			$('#drugList4').css("align-items", "center");
-			$('#drugList4').css("min-width", "0");
-			$('#drugList4').css("max-height", "none");
-			$('#drugList4').css("background", "#f9f9f9");
-			$('#drugList4').css("border-radius", "499rem");	
+			$('#searchDisplay').css("visibility", "visible");      // 표시
+			$('#searchDisplay').css("display", "flex");
+			$('#searchDisplay').css("align-items", "center");
+			$('#searchDisplay').css("min-width", "0");
+			$('#searchDisplay').css("max-height", "none");
+			$('#searchDisplay').css("background", "#f9f9f9");
 		}
 		
 		$.ajax({
@@ -447,13 +442,12 @@ $(function() {
 		if(drug.length == 0) {        // 검색글자수가 0인 경우
 			$('#drugList5').css("display", "none");       // 숨김
 		} else {
-			$('#drugList5').css("visibility", "visible");      // 표시
-			$('#drugList5').css("display", "flex");
-			$('#drugList5').css("align-items", "center");
-			$('#drugList5').css("min-width", "0");
-			$('#drugList5').css("max-height", "none");
-			$('#drugList5').css("background", "#f9f9f9");
-			$('#drugList5').css("border-radius", "499rem");	
+			$('#searchDisplay').css("visibility", "visible");      // 표시
+			$('#searchDisplay').css("display", "flex");
+			$('#searchDisplay').css("align-items", "center");
+			$('#searchDisplay').css("min-width", "0");
+			$('#searchDisplay').css("max-height", "none");
+			$('#searchDisplay').css("background", "#f9f9f9");
 		}
 		
 		$.ajax({
