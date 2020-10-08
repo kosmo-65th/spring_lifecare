@@ -175,7 +175,7 @@ $(function() {
 		<div class="row">
 			<div class="column column-30 col-site-title"><a href="${path}/doctor/doctor_main" class="site-title float-left">Lifecare</a></div>
 			<div class="column column-40 col-search"><a href="#" class="search-btn fa fa-search"></a>
-				<input type="text" id="keyword" name="" value="" placeholder="Search..." style="margin-bottom: 0;">
+				<input type="text" id="keyword" name="" value="" placeholder="Search..." style="margin-bottom: 0;" autocomplete="off">
 					<div id="searchDisplay">
 					<!-- 결과 출력 위치 -->
 					</div>

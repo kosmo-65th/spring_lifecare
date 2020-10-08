@@ -176,6 +176,17 @@ $(function() {
             //                false => multipart/form-data
             processData: false,
             contentType: false,
+            beforeSend: function() {
+                //통신을 시작할때 처리되는 함수 
+                $('html').css("cursor","wait");   // 현재 html 문서위에 있는 마우스 커서를 로딩 중 커서로 변경
+                $('.wrap-loading').removeClass('display-none');
+                
+       		},
+       		complete: function() {
+                //통신이 완료된 후 처리되는 함수
+                $('html').css("cursor","auto"); // 통신이 완료 된 후 다시 일반적인 커서 모양으로 변경
+                $('.wrap-loading').addClass('display-none');
+            },
             success: function(data){
             	console.log("data : " + JSON.stringify(data));
             	
@@ -188,6 +199,7 @@ $(function() {
                 $("#pneumonia").text(data_parse.pneumonia+"%"); 
                 alert("딥러닝 완료");
             }
+       		
         });
     });
     //업로드 파일체인지가 됬을경우 실행되는 이벤트  form태그에 fileProfile은 hidden으로 넣어줌
@@ -217,6 +229,17 @@ $(function() {
             type: "post",
             url: "${path}/doctor/DeepLearningCancer?${_csrf.parameterName}=${_csrf.token}",
             data: CanerForm,
+            beforeSend: function() {
+                //통신을 시작할때 처리되는 함수 
+                $('html').css("cursor","wait");   // 현재 html 문서위에 있는 마우스 커서를 로딩 중 커서로 변경
+                $('.wrap-loading').removeClass('display-none');
+                
+       		},
+       		complete: function() {
+                //통신이 완료된 후 처리되는 함수
+                $('html').css("cursor","auto"); // 통신이 완료 된 후 다시 일반적인 커서 모양으로 변경
+                $('.wrap-loading').addClass('display-none');
+            },
             success: function(data){
             	console.log("data : " + JSON.stringify(data));
             	
@@ -499,7 +522,7 @@ function readImage() {
 		<div class="row">
 			<div class="column column-30 col-site-title"><a href="${path}/doctor/doctor_main" class="site-title float-left">Lifecare</a></div>
 			<div class="column column-40 col-search"><a href="#" class="search-btn fa fa-search"></a>
-				<input type="text" id="keyword" name="" value="" placeholder="Search..." style="margin-bottom: 0;">
+				<input type="text" id="keyword" name="" value="" placeholder="Search..." style="margin-bottom: 0;" autocomplete="off" >
 					<div id="searchDisplay" class="col">
 					<!-- 결과 출력 위치 -->
 					</div>
@@ -804,6 +827,9 @@ function readImage() {
 		</div>						
 		<p class="credit">HTML5 Admin Template by <a href="https://www.medialoot.com">Medialoot</a></p>
 		</section>
-	</div>		
+	</div>
+	<div class="wrap-loading display-none">
+	    <div><img src="${path_resources }/img/deepLearning2_edit.gif" /></div>
+	</div>    
 </body>
 </html>
