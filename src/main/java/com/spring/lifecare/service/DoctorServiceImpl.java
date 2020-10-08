@@ -381,5 +381,60 @@ public class DoctorServiceImpl implements DoctorService{
 		vo = userDAO.getXrayExInfo(xray_num);		
 		model.addAttribute("vo", vo);
 	}
+
+	@Override
+	public void saveCancerEx(HttpServletRequest req, Model model) {
+		CancerVO vo = new CancerVO();
+		vo.setCustomer_id(req.getParameter("customer_id"));
+		vo.setRadius(req.getParameter("radius"));
+		vo.setTexture(req.getParameter("texture"));
+		vo.setPerimeter(req.getParameter("perimeter"));
+		vo.setArea(req.getParameter("area"));
+		vo.setSmoothness(req.getParameter("smoothness"));
+		vo.setCompactness(req.getParameter("compactness"));
+		vo.setConcavity(req.getParameter("concavity"));
+		vo.setSymmetry(req.getParameter("symmetry"));
+		vo.setFractal_dimension(req.getParameter("fractal_dimension"));
+		vo.setAge(req.getParameter("age"));
+		vo.setPercentage(req.getParameter("percentage"));
+		vo.setCancer_result(req.getParameter("cancer_result"));
+		
+		int insertCnt = userDAO.insertCancerEx(vo);
+		model.addAttribute("insertCnt", insertCnt);
+	}
+
+	@Override
+	public void saveXrayEx(MultipartHttpServletRequest req, Model model) {
+        MultipartFile file = req.getFile("xray_img");
+		
+		// 업로드할 파일의 최대 사이즈(10 * 1024 * 1024 = 10MB)
+		String saveDir = req.getSession().getServletContext().getRealPath("/resources/img/");	
+		String realDir = "D:\\test2\\spring_lifecare\\src\\main\\webapp\\resources\\img\\";
+		
+		try {
+			file.transferTo(new File(saveDir+file.getOriginalFilename()));
+			System.out.println("file :" + file);
+			FileInputStream fis = new FileInputStream(saveDir + file.getOriginalFilename());
+			FileOutputStream fos = new FileOutputStream(realDir + file.getOriginalFilename());
+			int data = 0;
+		
+			while((data = fis.read()) != -1) {
+				fos.write(data);
+			}
+		}catch(Exception e) {
+			
+		}
+		
+		XrayExVO vo = new XrayExVO();
+		vo.setCustomer_id(req.getParameter("customer_id"));
+		vo.setXray_img(file.getOriginalFilename());
+		vo.setNormal_percentage(req.getParameter("normal_percentage"));
+		vo.setCorona_percentage(req.getParameter("corona_percentage"));
+		vo.setPneumonia_percentage(req.getParameter("pneumonia_percentage"));
+		vo.setXray_result(req.getParameter("xray_result"));
+		
+		int insertCnt = userDAO.insertXrayEx(vo);
+		model.addAttribute("insertCnt", insertCnt);
+	}
 	
 }

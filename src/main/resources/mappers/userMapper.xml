@@ -1061,4 +1061,17 @@
    		 where x.customer_id=c.customer_id
    		   and xray_num = #{xray_num}
    </select>
+   
+   <!-- 암검사결과 작성 -->
+   <insert id ="insertCancerEx" parameterType="com.spring.lifecare.vo.CancerVO">
+     	INSERT INTO cancerEx 
+     	values(cancer_seq.nextval, #{customer_id}, #{radius}, #{texture}, #{perimeter}, #{area}, #{smoothness}, #{compactness}, #{concavity}, 
+				#{symmetry}, #{fractal_dimension}, #{percentage}, #{cancer_result}, sysdate)
+   </insert>   
+   
+   <!-- xray검사결과 작성 -->
+   <insert id ="insertXrayEx" parameterType="com.spring.lifecare.vo.XrayExVO">
+     	INSERT INTO xray 
+     	values(xray_seq.nextval, #{customer_id}, #{xray_img}, #{normal_percentage}, #{corona_percentage}, #{pneumonia_percentage}, #{xray_result}, sysdate)
+   </insert> 
 </mapper>  	  

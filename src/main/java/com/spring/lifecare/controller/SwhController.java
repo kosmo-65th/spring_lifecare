@@ -23,6 +23,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.spring.lifecare.persistence.UserDAO;
 import com.spring.lifecare.service.DeepLearningService;
@@ -249,6 +250,14 @@ public class SwhController {
 			
 		
 		return "doctor/covidTest";
+	}
+	
+	//딥러닝 
+	@ResponseBody
+	@RequestMapping("/doctor/DeepLearningCorona")
+	public Map<String, Object> DeepLearningCorona(MultipartHttpServletRequest req, Model model) {
+		
+		return dservice.DeepLearningCorona(req, model);
 	}
 }
 

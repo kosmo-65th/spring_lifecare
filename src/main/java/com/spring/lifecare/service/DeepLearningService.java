@@ -11,4 +11,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 public interface DeepLearningService {
 	public Map<String, String> covidTest(MultipartHttpServletRequest req, Model model) throws IOException;
 	public Map<String, String> covidTestTest(HttpServletRequest req) ;
+	
+	public Map<String, Object> DeepLearningCorona(MultipartHttpServletRequest req, Model model);
+	
+	public Map<String, Object> DeepLearningCancer(HttpServletRequest req, Model model);
+	
 }

@@ -9,6 +9,7 @@
 	<!-- jQuery 추가 -->
 	<script src="${path_resources}js/jquery-3.5.1.min.js"></script>
 	
+	
 	<!-- 프로필 css -->
 	<style type="text/css">
 	.card{
@@ -130,6 +131,9 @@
 	<!-- Milligram CSS minified -->
 	<link rel="stylesheet" href="${path_resources}css/doctormilligram.min.css">
 	
+	<!-- loading -->
+	<link rel="stylesheet" href="${path_resources}css/loading.css">
+	
 	<!-- Main Styles -->
 	<link rel="stylesheet" href="${path_resources}css/doctorStyles.css">
 	
@@ -157,6 +161,108 @@ function logout() {
 function resReset(){
 	$('#keyword').focus();
 }
+
+//딥러닝 - 코로나
+$(function() {
+    //이미지 클릭시 업로드창 실행
+    $('#CoronaStart').click(function() {
+        console.log('코로나 딥러닝 시작');
+        
+        var CoronaForm = new FormData(document.getElementById('CoronaForm'));
+    	
+    	$.ajax({
+            type: "post",
+            enctype: 'multipart/form-data',
+            url: "${path}/doctor/DeepLearningCorona?${_csrf.parameterName}=${_csrf.token}",
+            data: CoronaForm,
+            // processData: true=> get방식, false => post방식
+            // contentType: true => application/x-www-form-urlencoded, 
+            //                false => multipart/form-data
+            processData: false,
+            contentType: false,
+            beforeSend: function() {
+                //통신을 시작할때 처리되는 함수 
+                $('html').css("cursor","wait");   // 현재 html 문서위에 있는 마우스 커서를 로딩 중 커서로 변경
+                $('.wrap-loading').removeClass('display-none');
+                
+       		},
+       		complete: function() {
+                //통신이 완료된 후 처리되는 함수
+                $('html').css("cursor","auto"); // 통신이 완료 된 후 다시 일반적인 커서 모양으로 변경
+                $('.wrap-loading').addClass('display-none');
+            },
+            success: function(data){
+            	console.log("data : " + JSON.stringify(data));
+            	
+            	var data_JSON_String = JSON.stringify(data);
+            	var data_parse = JSON.parse(data_JSON_String);
+            	
+            	
+                $("#normal").text(data_parse.normal+"%");
+                $("#corona").text(data_parse.corona+"%");
+                $("#pneumonia").text(data_parse.pneumonia+"%");
+                
+                document.asdf.normal_percentage.value = data_parse.normal+"%";
+                document.asdf.corona_percentage.value = data_parse.corona+"%";
+                document.asdf.pneumonia_percentage.value = data_parse.pneumonia+"%";
+                alert("딥러닝 완료");
+            }
+       		
+        });
+    });
+    //업로드 파일체인지가 됬을경우 실행되는 이벤트  form태그에 fileProfile은 hidden으로 넣어줌
+});
+
+
+//딥러닝 - 유방암
+$(function() {
+    //이미지 클릭시 업로드창 실행
+    $('#CancerStart').click(function() {
+        console.log('암검사 딥러닝 시작');        
+        
+       // var CancerForm = new FormData(document.getElementById('CancerForm'));
+    	var CanerForm = $("#CancerForm").serialize();
+       /*  var radius = document.qwer.radius.value;
+        var texture = document.qwer.texture.value;
+        var perimeter = document.qwer.perimeter.value;
+        var area = document.qwer.area.value;        
+        var smoothness = document.qwer.smoothness.value;
+        var compactness = document.qwer.compactness.value;        
+        var concavity = document.qwer.concavity.value;
+        var symmetry = document.qwer.symmetry.value;
+        var fractal_dimension = document.qwer.fractal_dimension.value;
+        var age = document.qwer.age.value;
+        	 */
+    	$.ajax({
+            type: "post",
+            url: "${path}/doctor/DeepLearningCancer?${_csrf.parameterName}=${_csrf.token}",
+            data: CanerForm,
+            beforeSend: function() {
+                //통신을 시작할때 처리되는 함수 
+                $('html').css("cursor","wait");   // 현재 html 문서위에 있는 마우스 커서를 로딩 중 커서로 변경
+                $('.wrap-loading').removeClass('display-none');
+                
+       		},
+       		complete: function() {
+                //통신이 완료된 후 처리되는 함수
+                $('html').css("cursor","auto"); // 통신이 완료 된 후 다시 일반적인 커서 모양으로 변경
+                $('.wrap-loading').addClass('display-none');
+            },
+            success: function(data){
+            	console.log("data : " + JSON.stringify(data));
+            	
+            	var data_JSON_String = JSON.stringify(data);
+            	var data_parse = JSON.parse(data_JSON_String);
+            	           	
+                $("#resultCancer").text(data_parse.result);
+                $("#resultPercent").text(data_parse.percent);
+                document.qwer.percentage.value = data_parse.result + " " + data_parse.percent;
+                alert("딥러닝 완료");
+            }
+        });
+    });
+    //업로드 파일체인지가 됬을경우 실행되는 이벤트  form태그에 fileProfile은 hidden으로 넣어줌
+});
 
 // 환자조회 keyup
 $(function() {
@@ -420,11 +526,12 @@ function readImage() {
 };
 </script>
 <body>
+
 	<div class="navbar">
 		<div class="row">
 			<div class="column column-30 col-site-title"><a href="${path}/doctor/doctor_main" class="site-title float-left">Lifecare</a></div>
 			<div class="column column-40 col-search"><a href="#" class="search-btn fa fa-search"></a>
-				<input type="text" id="keyword" name="" value="" placeholder="Search..." style="margin-bottom: 0;">
+				<input type="text" id="keyword" name="" value="" placeholder="Search..." style="margin-bottom: 0;" autocomplete="off" >
 					<div id="searchDisplay" class="col">
 					<!-- 결과 출력 위치 -->
 					</div>
@@ -491,8 +598,9 @@ function readImage() {
 			<!--Forms-->
 			<div class="row grid-responsive">
 				<div class="column ">
-					<div class="card">					
+					<div class="card">
 						<div class='css3-tab'>
+						
 							<input type='radio' name='a' id='tabOne' tabindex="1" checked>
 							<input type='radio' name='a' id='tabTwo' tabindex="2">
 			
@@ -640,15 +748,21 @@ function readImage() {
 									<div class="card-title">
 										<span style="font-size: 1.8em; font-weight:500;">X-RAY 검사</span>
 										<div style="width:50px; height:50px; float:right;">
-											<a href="javascript:void(0)"><img src="${path_resources}images/ai.png"></a>
+											<a href="javascript:void(0)" id="CoronaStart"><img src="${path_resources}images/ai.png"></a>
 										</div>	
 									</div>								
 									<div class="card-block">
+									<div class="wrap-loading display-none">
+	    <div><img src="${path_resources }img/deepLearning2_edit.gif" /></div>
+	</div>  	
 										<div class="canvas-wrapper">
-											<form action="${path}/doctor/diagnosisPro" method="post" name="asdf">
+											<form action="${path}/doctor/xrayExPro?${_csrf.parameterName}=${_csrf.token}" method="post" name="asdf" id="CoronaForm" enctype="multipart/form-data">
 											<input type="file" name="xray_img" id="file">
 											<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 											<input type="hidden" name="customer_id" value="${vo.getCustomer_id()}">
+											<input type="hidden" name="normal_percentage" value="">
+											<input type="hidden" name="corona_percentage" value="">
+											<input type="hidden" name="pneumonia_percentage" value="">
 											<table>
 												<thead>
 												<tr>
@@ -660,20 +774,20 @@ function readImage() {
 												<tr>												
 													<td rowspan="3"><img style="height:350px;" id="img"></td>
 													<td>정상확률</td>
-													<td>50%</td>
+													<td id ="normal"></td>
 												</tr>
 												<tr class='even'>
 													<td>폐렴확률</td>
-													<td>50%</td>
+													<td id ="pneumonia"></td>
 												</tr>
 												<tr>
 													<td>코로나확률</td>
-													<td>50%</td>
+													<td id="corona"></td>
 												</tr>
 												</tbody>	
 											</table>
 											<label for="commentField">Comment</label>
-											<textarea style="resize: none;" placeholder="소견 작성" id="commentField"></textarea>
+											<textarea style="resize: none;" placeholder="소견 작성" id="commentField" name="xray_result"></textarea>
 											<input class="button-primary" type="submit" value="Send">
 										</form>
 										</div>
@@ -685,15 +799,16 @@ function readImage() {
 									<div class="card-title">
 										<span style="font-size: 1.8em; font-weight:500;">암(유방)검사</span>
 										<div style="width:50px; height:50px; float:right;">
-											<a href="javascript:void(0)"><img src="${path_resources}images/ai.png"></a>
+											<a href="javascript:void(0)" id="CancerStart"><img src="${path_resources}images/ai.png"></a>
 										</div>	
 									</div>
 									<div class="card-block">
 										<div class="canvas-wrapper">
-											<form action="${path}/doctor/diagnosisPro" method="post" name="qwer">
+											<form action="${path}/doctor/cancerExPro" method="post" name="qwer" id="CancerForm">
 											<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 											<input type="hidden" name="customer_id" value="${vo.getCustomer_id()}">
-											<input type="hidden" name="age" value=${2020 - vo.getCustomer_year()}">
+											<input type="hidden" name="age" value="${2020 - vo.getCustomer_year()}">
+											<input type="hidden" name="percentage" value="">
 											<label for="commentField">검사정보입력</label>
 												<input type="text" placeholder="radius" name="radius">
 												<input type="text" placeholder="texture" name="texture">
@@ -709,12 +824,12 @@ function readImage() {
 													<th colspan="2">결과</th>
 												</tr>											    
 												<tr class='even'>
-													<td>양성</td>
-													<td>82%</td>
+													<td id="resultCancer"></td>
+													<td id="resultPercent"></td>
 												</tr>											
 											</table>
 											<label for="commentField">Comment</label>
-											<textarea style="resize: none;" placeholder="의사소견" id="commentField"></textarea>
+											<textarea style="resize: none;" placeholder="의사소견" id="commentField" name="cancer_result"></textarea>
 											<input class="button-primary" type="submit" value="Send">
 											</form>
 										</div>
@@ -729,6 +844,7 @@ function readImage() {
 		</div>						
 		<p class="credit">HTML5 Admin Template by <a href="https://www.medialoot.com">Medialoot</a></p>
 		</section>
-	</div>		
+	</div>
+	  
 </body>
 </html>

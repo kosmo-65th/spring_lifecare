@@ -57,6 +57,12 @@ public interface DoctorService  {
 	  // 기초검사결과 기록 저장
 	  public void saveBasicEx(HttpServletRequest req, Model model);
 	  
+	  // 암 검사결과 기록 저장
+	  public void saveCancerEx(HttpServletRequest req, Model model);
+	  
+	  // xray검사결과 기록 저장
+	  public void saveXrayEx(MultipartHttpServletRequest req, Model model);
+	  
 	  // 최근 진료내역 리스트
 	  public void diagnosisList(HttpServletRequest req, Model model);
 	  
