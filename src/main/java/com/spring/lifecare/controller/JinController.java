@@ -281,7 +281,6 @@ public class JinController {
     // 마이페이지
  	@RequestMapping("/customer/mypage")
  	public String mypage(HttpServletRequest req, Model model) {
- 		doctor.saveCancerEx(req, model);
  		return "customer/Mypage";
  	}
  	
@@ -593,4 +592,10 @@ public class JinController {
 		
 		return learning.DeepLearningCancer(req, model);
 	}
+	
+    //카카오 페이 결제 실패
+ 	@RequestMapping("/first_aid")
+ 	public String first_aid(Model model) {		
+ 		return "guest/first-aid";
+ 	}
 }

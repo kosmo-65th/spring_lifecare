@@ -253,7 +253,7 @@ $(function() {
             	
             	var data_JSON_String = JSON.stringify(data);
             	var data_parse = JSON.parse(data_JSON_String);
-            	           	
+            	
                 $("#resultCancer").text(data_parse.result);
                 $("#resultPercent").text(data_parse.percent);
                 document.qwer.percentage.value = data_parse.result + " " + data_parse.percent;

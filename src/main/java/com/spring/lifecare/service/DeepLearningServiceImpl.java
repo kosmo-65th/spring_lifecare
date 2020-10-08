@@ -127,7 +127,7 @@ public class DeepLearningServiceImpl implements DeepLearningService{
 			//입력 stream을 BufferedWriter로 받아서 콘솔로부터 받은 입력을 Process 클래스로 실행시킨다.
 			System.out.println("modelSrc : "+modelSrc.substring(0,modelSrc.length()-9));
 			List<String> commendList = new ArrayList<String>();
-			commendList.add("activate tensorflow3.6.5");
+			//commendList.add("activate tensorflow3.6.5");
 			commendList.add("cd "+modelSrc.substring(0,modelSrc.length()-10));
 			System.out.println("실행어 : "+ "cd "+modelSrc.substring(0,modelSrc.length()-10));
 			modelSrc=modelSrc.substring(0,modelSrc.length()-9) +"mobileNetV2model7.h5";
@@ -325,22 +325,22 @@ public class DeepLearningServiceImpl implements DeepLearningService{
 		}
 		
 		ArrayList<String> realresult = new ArrayList<String>();
+		Map<String, Object> result = new HashMap<String, Object>();
 		
 		for(String test : list) {
 			if(test.contains("[")) {
-				System.out.println(test.substring(1,test.length()-1));
+				System.out.println("test : " +test.substring(1,test.length()-1));
 				test = test.substring(1,test.length()-1);
 				realresult.add(test);
+				
+				if(test.equals("0")) {
+					result.put("result", "악성");
+				} else {
+					result.put("result", "양성");
+				}
 			}
 		}
 		
-		Map<String, Object> result = new HashMap<String, Object>();
-		
-		if(realresult.get(0).equals("0")) {
-			result.put("result", "악성");
-		} else {
-			result.put("result", "양성");
-		}
 		result.put("percent", "82.09%");
 		
 		System.out.println("결과 : "+result.get("result"));
