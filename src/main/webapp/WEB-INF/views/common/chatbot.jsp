@@ -50,7 +50,8 @@
 </head>
 <body>
 	<div class="chatbot">
-  		<a href= "${path}/customer/chatbot" onclick="chatbot();"><img title="chat-bot" src="${path_resources}img/chatBot.png" 
+  		<a href= "javascript:window.open('${path}/customer/chatbot')" onclick="chatbot();">
+  		<img title="chat-bot" src="${path_resources}img/chatBot.png" 
   		style="width: 120px; height: 120px;"></a>
   	</div>
   	
