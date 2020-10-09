@@ -207,6 +207,9 @@ $(function() {
                 document.asdf.pneumonia_percentage.value = data_parse.pneumonia+"%";
                 alert("딥러닝 완료");
             }
+	        error : function(){
+	        	alert("이미지를 넣어주세요.");
+	        }
        		
         });
     });
@@ -259,6 +262,9 @@ $(function() {
                 document.qwer.percentage.value = data_parse.result + " " + data_parse.percent;
                 alert("딥러닝 완료");
             }
+	        error : function(){
+	        	alert("수치를 모두 입력해주세요.");
+	        }
         });
     });
     //업로드 파일체인지가 됬을경우 실행되는 이벤트  form태그에 fileProfile은 hidden으로 넣어줌
