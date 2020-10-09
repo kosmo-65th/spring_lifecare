@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 
 public class medicalVO {
 	private int diagnosis_num;
+	private int customer_payment;
 	private String customer_id;
 	private String customer_name;
 	private String customer_gender;
@@ -61,6 +62,13 @@ public class medicalVO {
 	}
 	public void setDiagnosis_num(int diagnosis_num) {
 		this.diagnosis_num = diagnosis_num;
+	}
+	
+	public int getCustomer_payment() {
+		return customer_payment;
+	}
+	public void setCustomer_payment(int customer_payment) {
+		this.customer_payment = customer_payment;
 	}
 	public String getCustomer_id() {
 		return customer_id;
