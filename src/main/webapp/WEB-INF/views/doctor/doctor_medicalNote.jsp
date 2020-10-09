@@ -118,6 +118,29 @@
 	  display: block;
 	  border-top: solid 3px #35cebe;
 	}
+	
+	/*  bmi  */
+	.skyblue{
+		color:#1E96FF;	
+		font-size:24px;
+	}
+	.green{
+		color:#80E12A;	
+		font-size:24px;
+	}
+	.yellow{
+		color:#FFB400;	
+		font-size:24px;
+	}
+	.orange{
+		color:#FF8200;
+		font-size:24px;	
+	}
+	.red{
+		color:#EB0000;	
+		font-size:24px;
+	}
+	
 	</style>
 	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700" rel="stylesheet">
@@ -525,6 +548,222 @@ function readImage() {
 	}
 };
 </script>
+
+<script> 
+// bmi
+	$(function() {
+		
+			$('#bmi_result_div').hide();
+				
+			$('#weight').on('focusout', function() {
+				if($("#height").val() != "" && $("#weight").val() != ""){
+					$('#bmi_result_div').show();
+				}
+				
+				if($("#height").val() == "" && $("#weight").val() == "") {
+					$('#bmi_result_div').hide();
+				}	
+			});
+			
+			$('#height').on('focusout', function() {
+				if($("#height").val() != "" && $("#weight").val() != ""){
+					$('#bmi_result_div').show();
+				}
+				
+				if($("#height").val() == "" && $("#weight").val() == "") {
+					$('#bmi_result_div').hide();
+				}	
+			});
+			
+			let bmi_range = [
+				 { id : 'low_weight',
+						 min_val : 0 ,
+						 max_val : 18.5 , 
+						 msg : '<font class="skyblue">저체중</font>' } ,
+				 { id : 'standard_weight', 
+						 min_val : 18.5, 
+						 max_val : 23, 
+						 msg : '<font class="green">정상</font>' },
+				 { id : 'over_weight', 
+					 	min_val : 23, 
+					 	max_val : 25, 
+					 	msg : '<font class="yellow">과체중</font>' },
+			 	 { id : 'Mild_obesity', 
+				 		min_val : 25,
+				 		max_val : 30, 
+				 		msg : '<font class="orange">비만</font>' },
+		 		{ id : 'Moderate_obesity', 
+			 			min_val : 30,
+			 			max_val : 99999, 
+			 			msg : '<font class="red">고도비만</font>' }
+				 		
+				 		] 
+			
+			$("#height").on('change keyup paste',function(){
+				
+				setBmiResult(); 
+				}); 
+			$("#weight").on('change keyup paste',function(){ 
+				setBmiResult(); 
+				}); 
+			
+			setBmiResult = () => { 
+				
+				let height = $("#height").val(); 
+				let weight = $("#weight").val(); 
+			
+			
+			height = height / 100; 
+			let bmi_result = (weight / ( height * height ));
+			
+			let bmi_msg; 
+			
+			for( let bm of bmi_range ){ 
+				if( bmi_result >= bm.min_val && bmi_result < bm.max_val ){
+					bmi_msg = bm.msg; 
+					}
+				} 
+			
+			$(".bmi_result").html(parseFloat(bmi_result).toFixed(2) + "  " + bmi_msg + " 입니다."); 
+			
+			return; 
+			
+			} 
+		}
+	);
+</script>
+<script> 
+//blood
+	$(function() {
+			$('#blood_result_div').hide();
+				
+			$('#blood1').on('focusout', function() {
+				if($("#blood1").val() != "" && $("#blood2").val() != ""){
+					$('#blood_result_div').show();
+				}
+				
+				if($("#blood1").val() == "" && $("#blood2").val() == "") {
+					$('#blood_result_div').hide();
+				}	
+			});
+			
+			$('#blood2').on('focusout', function() {
+				if($("#blood2").val() != "" && $("#blood1").val() != ""){
+					$('#blood_result_div').show();
+				}
+				
+				if($("#blood2").val() == "" && $("#blood1").val() == "") {
+					$('#blood_result_div').hide();
+				}	
+			});
+			
+			
+			let blood_range  = [
+				
+				 { id : 'low',
+						 min_val : 0 ,
+						 max_val : 89 , 
+						 msg : '<font class="skyblue">저혈압 </font>' } ,
+				 { id : 'standard', 
+						 min_val : 90, 
+						 max_val : 120, 
+						 msg : '<font class="green">정상</font>' },
+		 		{ id : 'Moderate', 
+			 			min_val : 121,
+			 			max_val : 99999, 
+			 			msg : '<font class="red">고혈압</font>' }
+				 		
+				 		] 
+
+			$("#blood2").on('change keyup paste',function(){
+				setbloodResult(); 
+				}); 
+		
+			setbloodResult = () => { 
+				
+				let blood1 = $("#blood1").val(); 
+		
+			let blood_msg; 
+			
+			for( let b of blood_range ){ 
+				if( blood1 >= b.min_val && blood1 <= b.max_val ){
+					blood_msg = b.msg; 
+					}
+				} 
+			
+			$(".blood_result").html("이완기 혈압 " + parseFloat(blood1).toFixed(2)+ " mmHg /dL " + " "+ blood_msg + "입니다."); 
+			
+			return; 
+			
+			} 
+		}
+	);
+		
+			
+</script>
+
+<script>
+//bloodSugar
+$(function() {
+	
+	$('#bloodSugar_result_div').hide();
+		
+	$('#bloodSugar').on('focusout', function() {
+		if($("#bloodSugar").val() != "" ){
+			$('#bloodSugar_result_div').show();
+		}
+		
+		if($("#bloodSugar").val() == "") {
+			$('#bloodSugar_result_div').hide();
+		}	
+	});
+	
+		let bloodSugar_range = [
+			
+			 { id : 'low',
+					 min_val : 0 ,
+					 max_val : 80 , 
+					 msg : '<font class="skyblue">다소 낮음 </font>' } ,
+			 { id : 'standard', 
+					 min_val : 80, 
+					 max_val : 100, 
+					 msg : '<font class="green">정상</font>' },
+		 	 { id : 'Mild', 
+			 		min_val : 100,
+			 		max_val : 126, 
+			 		msg : '<font class="orange">다소 높음</font>' },
+	 		{ id : 'Moderate_obesity', 
+		 			min_val : 126,
+		 			max_val : 99999, 
+		 			msg : '<font class="red">당뇨병</font> 의심' }
+			 		
+			 		] 
+		
+		$("#bloodSugar").on('change keyup paste',function(){
+			setbloodSugarResult(); 
+			}); 
+	
+		setbloodSugarResult = () => { 
+			
+			let bloodSugar = $("#bloodSugar").val(); 
+	
+		let bloodSugar_msg; 
+		
+		for( let bs of bloodSugar_range ){ 
+			if( bloodSugar >= bs.min_val && bloodSugar < bs.max_val ){
+				bloodSugar_msg = bs.msg; 
+				}
+			} 
+		
+		$(".bloodSugar_result").html(parseFloat(bloodSugar).toFixed(2)+ " mg/dL " + " "+ bloodSugar_msg + "입니다."); 
+		
+		return; 
+		
+		} 
+	}
+);
+	
+</script>
 <body>
 
 	<div class="navbar">
@@ -711,6 +950,47 @@ function readImage() {
 							</div>
 						<form action="${path}/doctor/basicExPro" method="post" name="fda">
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+							<input type="hidden" name="customer_id" value="${vo.getCustomer_id()}">
+																
+							<input type="text" placeholder="체중" name="height" id="height">
+							<input type="text" placeholder="몸무게" name="weight" id="weight">
+							
+							<div style="font-weight: bold;" class="bmi_result_div" id ="bmi_result_div"> BMI 결과 :&nbsp;<span style="text-align: center;" class="bmi_result" id=""></span></div> <p>&nbsp;</p>
+							
+
+						<label for="commentField">이상지질혈증</label>
+							<input type="text" placeholder="TC" name="tc">
+							<input type="text" placeholder="TG" name="tg">
+							<input type="text" placeholder="LDL" name="ldl">
+							<input type="text" placeholder="HDL" name="hdl">
+						<label for="commentField">혈압</label>
+							<input type="text" placeholder="수축기혈압" name="blood1" id="blood1">
+							<input type="text" placeholder="이완기혈압" name="blood2" id="blood2">	
+						<div style="font-weight: bold;" class="blood_result_div" id ="blood_result_div"> 혈압 결과 :&nbsp;<span style="text-align: center;" class="blood_result" id=""></span></div> <p>&nbsp;</p>
+							
+							
+							
+							
+						<label for="commentField">당뇨</label>
+						<div>
+							<input type="text" placeholder="공복혈당" name="bloodSugar" id="bloodSugar" style="float:left;">
+							<div style="font-weight: bold;" class="bloodSugar_result_div" id="bloodSugar_result_div"> &nbsp;&nbsp;&nbsp;혈당 수치 :&nbsp;<span style="text-align: center;" class="bloodSugar_result"></span></div> <p>&nbsp;</p>
+						</div>
+							
+							
+						<label for="commentField">혈액</label>									
+							<input type="text" placeholder="백혈구" name="white">
+							<input type="text" placeholder="혈소판" name="platelet">
+							<input type="text" placeholder="혈색소" name="hb">
+						<label for="commentField">간질환</label>									
+							<input type="text" placeholder="AST" name="ast">
+							<input type="text" placeholder="ALT" name="alt">
+							<input type="text" placeholder="r-GTP" name="gtp">
+						<label for="commentField">신장질환</label>
+							<input type="text" placeholder="요단백" name="kidney1">
+							<input type="text" placeholder="요소질소" name="kidney2">
+							<input type="text" placeholder="혈창크레아티닌" name="kidney3">
+							<input type="text" placeholder="사구체여과율" name="kidney4">
 							<input type="hidden" name="customer_id" value="${vo.getCustomer_id()}">																
 							<input type="text" placeholder="키" name="height">
 							<input type="text" placeholder="몸무게" name="weight">
