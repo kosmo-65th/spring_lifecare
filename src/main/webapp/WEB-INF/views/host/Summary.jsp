@@ -23,17 +23,16 @@
       google.charts.setOnLoadCallback(drawChart);
 
       function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Year', 'Sales', 'Expenses'],
-          ['2004',  1000,      400],
-          ['2005',  1170,      460],
-          ['2006',  660,       1120],
-          ['2007',  1030,      540]
-        ]);
+    	  var resource = new Array();
+    	  
+        var data = google.visualization.arrayToDataTable(
+        	${jsonArray}		
+        );
 
         var options = {
-          title: 'Company Performance',
+        /*   title: '수입(월별)', */
           curveType: 'function',
+          pointSize: 5,
           legend: { position: 'bottom' }
         };
 
@@ -50,24 +49,17 @@
       google.charts.setOnLoadCallback(drawVisualization);
 
       function drawVisualization() {
-        // Some raw data (not necessarily accurate)
-        //var jsonData = document.getElementById("jsonData");
+       
+        var resource = new Array();
+        
         var data = google.visualization.arrayToDataTable(
-        		 [
-          ['Month', '진료수'],
-          ['2020/01',  614],
-          ['2020/02',  682],
-          ['2020/03',  623],
-          ['2020/04',  609],
-          ['2020/05',  569],
-          ['2020/06',  620]
-       			 ]
+        		${jsonArray1}
         		);
 
         var options = {
-          title : '월별 진료수',
+         /*  title : '월별 진료수',
           vAxis: {title: 'COUNT'},
-          hAxis: {title: 'Month'},
+          hAxis: {title: 'Month'}, */
           seriesType: 'bars',
         };
 
@@ -93,18 +85,14 @@
 
         // Create the data table.
         var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Topping');
-        data.addColumn('number', 'Slices');
-        data.addRows([
-          ['Mushrooms', 3],
-          ['Onions', 1],
-          ['Olives', 1],
-          ['Zucchini', 1],
-          ['Pepperoni', 2]
-        ]);
+        data.addColumn('string','진료과')
+        data.addColumn('number','진료수')
+        data.addRows(
+        	${jsonArray2}
+       );
 
         // Set chart options
-        var options = {'title':'How Much Pizza I Ate Last Night',
+        var options = {
         			   'height':300};
 
         // Instantiate and draw our chart, passing in some options.
@@ -116,9 +104,9 @@
 <body id="page-top">
 
 	<!-- header -->
-	<%@include file="host_header.jsp" %>
-        <!-- End of Topbar -->
-
+	<%@include file="./host_header.jsp" %>
+	<!-- End of header -->
+	
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
@@ -139,7 +127,8 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">수입 (Monthly)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">40,000</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                    <fmt:formatNumber type="number" maxFractionDigits="3" value="${monthlyProfit}"/>￦
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -156,7 +145,8 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">수입 (Annual)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">215,000</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                       <fmt:formatNumber type="number" maxFractionDigits="3" value="${yearlyProfit}"/>￦
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -175,7 +165,8 @@
                       <div class="text-xs font-weight-bold text-info text-uppercase mb-1">진료수 (Monthly)</div>
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50</div>
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"></div>
+                              <fmt:formatNumber type="number" maxFractionDigits="3" value="${monthlyTreatment}"/>회
                         </div>
                       </div>
                     </div>
@@ -194,7 +185,8 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">진료수 (Annual)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">200</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                         <fmt:formatNumber type="number" maxFractionDigits="3" value="${yearlyTreatment}"/>회
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -256,64 +248,11 @@
         </div>
         <!-- /.container-fluid -->
 
-      </div>
-      <!-- End of Main Content -->
+	<!-- Footer -->
+	 <%@include file="./host_footer.jsp" %>	
+	<!-- End of Footer -->
 
-        </div>
-        <!-- /.container-fluid -->
-
-      </div>
-      <!-- End of Main Content -->
-
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2020</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
-
-    </div>
-    <!-- End of Content Wrapper -->
-
-  </div>
-  <!-- End of Page Wrapper -->
-
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
-
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Bootstrap core JavaScript-->
-  <script src="${path_resources}sb_admin/vendor/jquery/jquery.min.js"></script>
-  <script src="${path_resources}sb_admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Core plugin JavaScript-->
-  <script src="${path_resources}sb_admin/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="${path_resources}sb_admin/js/sb-admin-2.min.js"></script>
 
 </body>
+ 
 </html>

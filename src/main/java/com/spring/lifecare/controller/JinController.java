@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -116,27 +117,6 @@ public class JinController {
  		jsonArray = (JSONArray)req.getAttribute("jsonArray");
  		return jsonArray;
  	}
- 	
- 	//진단서 폼 - 프린트
- 	@RequestMapping("/customer/diagnosis")
-	public String diagnosis(Model model) {
-		
-		return "customer/diagnosis";
-	}
-	
- 	//진료기록부 폼 - 프린트
-	@RequestMapping("/customer/medicalNote")
-	public String medicalNote(Model model) {
-		
-		return "customer/medicalNote";
-	}
-	
-	//처방전 폼 - 프린트
-	@RequestMapping("/customer/prescription")
-	public String prescription(Model model) {
-		
-		return "customer/prescription";
-	}
 	
     // 의사 로그인후 메인페이지
     @RequestMapping("/doctor/doctor_main")
@@ -285,10 +265,25 @@ public class JinController {
  		return insertCnt;
  	}
  	
+    // 암검사기록 저장
+ 	@RequestMapping("/doctor/cancerExPro")
+ 	public @ResponseBody int cancerExPro(HttpServletRequest req, Model model) { 		
+ 		doctor.saveCancerEx(req, model);
+ 		int insertCnt = (Integer) req.getAttribute("insertCnt");
+ 		return insertCnt;
+ 	}
+ 	
+    // xray검사기록 저장
+ 	@RequestMapping(value="/doctor/xrayExPro", method=RequestMethod.POST)
+ 	public @ResponseBody int xrayExPro(MultipartHttpServletRequest req, Model model) { 		
+ 		doctor.saveXrayEx(req, model);
+ 		int insertCnt = (Integer) req.getAttribute("insertCnt");
+ 		return insertCnt;
+ 	}
+ 	
     // 마이페이지
  	@RequestMapping("/customer/mypage")
  	public String mypage(HttpServletRequest req, Model model) {
- 		
  		return "customer/Mypage";
  	}
  	
@@ -346,12 +341,6 @@ public class JinController {
  		return "customer/cancelAppointment";
  	}
  	
- 	// 관리자 결산페이지
- 	@RequestMapping("/admin/summary")
- 	public String summary(Model model) {
- 		
- 		return "host/Summary";
- 	}
  	
 	//////////////////////////////안드로이드 관련
  	// 의사 리스트 뿌려주기
@@ -600,4 +589,10 @@ public class JinController {
 		
 		return learning.DeepLearningCancer(req, model);
 	}
+	
+    //카카오 페이 결제 실패
+ 	@RequestMapping("/first_aid")
+ 	public String first_aid(Model model) {		
+ 		return "guest/first-aid";
+ 	}
 }

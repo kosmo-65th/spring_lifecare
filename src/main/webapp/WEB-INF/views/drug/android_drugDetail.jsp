@@ -12,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
   <!-- Site Metas -->
-  <title>Life Care</title>
+  <title>의약품 상세정보</title>
   <meta name="keywords" content="">
   <meta name="description" content="">
   <meta name="author" content="">
@@ -95,17 +95,17 @@ $( document ).ready(function() {
 					<li class="home"><a href="${path}/" class="ico"></a></li>
 					
 					<li class="nxt"><span > > </span></li>
-					<li><a href="${path}/drugSearch" >의약품 검색</a></li>
+					<li><a href="${path}/drugSearch" >의약품 &nbsp; 검색</a></li>
 					
 					<li class="nxt"><span > > </span></li>
-					<li>의약품 상세정보</li>
+					<li>의약품 &nbsp; 상세정보</li>
 					</div>
 				</ul>
 		</div>	
 		
 		<!-- 의약품상세정보 -->
 		<section id="search_detail_result">
-			<h2 class="maintitle">의약품 상세정보</h2>
+			<h2 class="maintitle">의약품 &nbsp; 상세정보</h2>
 
 			<div style="height:30px;"></div>
 			<!-- 기본정보 -->

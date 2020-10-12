@@ -32,7 +32,7 @@
 </tr>
 <tbody>										    
 <tr>												
-<td rowspan="3" colspan="2"><img style="height:300px;" id="img" src="${path_resources}images/${vo.getXray_img()}"></td>
+<td rowspan="3" colspan="2"><img style="height:300px;" id="img" src="${path_resources}img/${vo.getXray_img()}"></td>
 <td>정상확률</td>
 <td>${vo.getNormal_percentage()}</td>
 </tr>

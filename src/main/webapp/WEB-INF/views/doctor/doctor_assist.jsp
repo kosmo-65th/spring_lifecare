@@ -174,7 +174,7 @@ $(function() {
 			$('#searchDisplay').css("min-width", "0");
 			$('#searchDisplay').css("max-height", "none");
 			$('#searchDisplay').css("background", "#f9f9f9");
-			$('#searchDisplay').css("border-radius", "499rem");			
+			$('#searchDisplay').css("width", "570px");
 		}
 		
 		// keyword -> search_next.ja(search_next.jsp) -> result -> 콜백함수 -> display에 출력

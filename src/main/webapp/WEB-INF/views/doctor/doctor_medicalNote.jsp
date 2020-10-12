@@ -9,6 +9,7 @@
 	<!-- jQuery 추가 -->
 	<script src="${path_resources}js/jquery-3.5.1.min.js"></script>
 	
+	
 	<!-- 프로필 css -->
 	<style type="text/css">
 	.card{
@@ -117,6 +118,48 @@
 	  display: block;
 	  border-top: solid 3px #35cebe;
 	}
+	
+	/*  bmi  */
+	.skyblue{
+		color:#1E96FF;	
+		font-size:24px;
+	}
+	.green{
+		color:#64CD3C;	
+		font-size:24px;
+	}
+	.yellow{
+		color:#FFB400;	
+		font-size:22px;
+	}
+	.orange{
+		color:#FF8200;
+		font-size:23px;	
+	}
+	.red{
+		color:#EB0000;	
+		font-size:24px;
+	}
+	
+	.greens{
+		color:#64CD3C;	
+	}
+	
+	.oranges{
+		color:#FF8200;
+	    font-style: italic
+	}
+	.reds{
+		color:#EB0000;	
+		font-weight:bold;
+		font-style: italic
+	}
+	
+	#label {
+		text-align: center !important;
+	}
+	
+
 	</style>
 	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700" rel="stylesheet">
@@ -129,6 +172,9 @@
 	
 	<!-- Milligram CSS minified -->
 	<link rel="stylesheet" href="${path_resources}css/doctormilligram.min.css">
+	
+	<!-- loading -->
+	<link rel="stylesheet" href="${path_resources}css/loading.css">
 	
 	<!-- Main Styles -->
 	<link rel="stylesheet" href="${path_resources}css/doctorStyles.css">
@@ -157,6 +203,10 @@ function logout() {
 function resReset(){
 	$('#keyword').focus();
 }
+
+
+	
+
 
 //딥러닝 - 코로나
 $(function() {
@@ -196,7 +246,11 @@ $(function() {
             	
                 $("#normal").text(data_parse.normal+"%");
                 $("#corona").text(data_parse.corona+"%");
-                $("#pneumonia").text(data_parse.pneumonia+"%"); 
+                $("#pneumonia").text(data_parse.pneumonia+"%");
+                
+                document.asdf.normal_percentage.value = data_parse.normal+"%";
+                document.asdf.corona_percentage.value = data_parse.corona+"%";
+                document.asdf.pneumonia_percentage.value = data_parse.pneumonia+"%";
                 alert("딥러닝 완료");
             }
        		
@@ -213,6 +267,7 @@ $(function() {
         console.log('암검사 딥러닝 시작');        
         
     	var CanerForm = $("#CancerForm").serialize();
+
     	$.ajax({
             type: "post",
             url: "${path}/doctor/DeepLearningCancer?${_csrf.parameterName}=${_csrf.token}",
@@ -233,10 +288,10 @@ $(function() {
             	
             	var data_JSON_String = JSON.stringify(data);
             	var data_parse = JSON.parse(data_JSON_String);
-            	
-            	
+            	           	
                 $("#resultCancer").text(data_parse.result);
                 $("#resultPercent").text(data_parse.percent);
+                document.qwer.percentage.value = data_parse.result + " " + data_parse.percent;
                 alert("딥러닝 완료");
             }
         });
@@ -244,9 +299,8 @@ $(function() {
     //업로드 파일체인지가 됬을경우 실행되는 이벤트  form태그에 fileProfile은 hidden으로 넣어줌
 });
 
-// 기초검사결과 저장
+//기초검사결과 저장
 $(function() {
-    //이미지 클릭시 업로드창 실행
     $('#basicExPro').click(function() {      
         
     	var BasicForm = $("#BasicForm").serialize();
@@ -259,7 +313,56 @@ $(function() {
 				if(data == 1) {
 	                alert("검사기록 저장 완료");
 				}
-            }
+            },
+            error : function() {
+				alert("수치를 모두 입력해주세요.");
+			}
+        });
+    });
+});
+
+//xray검사결과 저장
+$(function() {
+    //이미지 클릭시 업로드창 실행
+    $('#xrayExPro').click(function() {      
+        
+    	var CoronaForm = $("#CoronaForm").serialize();
+    	$.ajax({
+            type: "post",
+            url: "${path}/doctor/xrayExPro?${_csrf.parameterName}=${_csrf.token}",
+            data: CoronaForm,
+            success: function(data){
+            	console.log("data : " + data);
+				if(data == 1) {
+	                alert("검사기록 저장 완료");
+				}
+            },
+            error : function() {
+				alert("수치를 모두 입력해주세요.");
+			}
+        });
+    });
+});
+
+//암검사결과 저장
+$(function() {
+    //이미지 클릭시 업로드창 실행
+    $('#cancerExPro').click(function() {      
+        
+    	var CancerForm = $("#CancerForm").serialize();
+    	$.ajax({
+            type: "post",
+            url: "${path}/doctor/cancerExPro?${_csrf.parameterName}=${_csrf.token}",
+            data: CancerForm,
+            success: function(data){
+            	console.log("data : " + data);
+				if(data == 1) {
+	                alert("검사기록 저장 완료");
+				}
+            }, 
+            error : function() {
+				alert("수치를 모두 입력해주세요.");
+			}
         });
     });
 });
@@ -525,7 +628,463 @@ function readImage() {
 	}
 };
 </script>
+
+<script> 
+//bmi
+$(function() {
+		$('#bmi_result_div').hide();
+			
+		$('#weight').on('focusout', function() {
+			if($("#height").val() != "" && $("#weight").val() != ""){
+				$('#bmi_result_div').show();
+			}
+			
+			if($("#height").val() == "" && $("#weight").val() == "") {
+				$('#bmi_result_div').hide();
+			}	
+		});
+		
+		$('#height').on('focusout', function() {
+			if($("#height").val() != "" && $("#weight").val() != ""){
+				$('#bmi_result_div').show();
+			}
+			
+			if($("#height").val() == "" && $("#weight").val() == "") {
+				$('#bmi_result_div').hide();
+			}	
+		});
+		
+		let bmi_range = [
+			 { id : 'low_weight',
+					 min_val : 0 ,
+					 max_val : 18.5 , 
+					 msg : '<font class="skyblue">저체중</font>' } ,
+			 { id : 'standard_weight', 
+					 min_val : 18.5, 
+					 max_val : 23, 
+					 msg : '<font class="green">정상</font>' },
+			 { id : 'over_weight', 
+				 	min_val : 23, 
+				 	max_val : 25, 
+				 	msg : '<font class="yellow">과체중</font>' },
+		 	 { id : 'Mild_obesity', 
+			 		min_val : 25,
+			 		max_val : 30, 
+			 		msg : '<font class="orange">비만</font>' },
+	 		{ id : 'Moderate_obesity', 
+		 			min_val : 30,
+		 			max_val : 99999, 
+		 			msg : '<font class="red">고도비만</font>' }
+			 		
+			 		] 
+		
+		$("#height").on('change keyup paste',function(){
+			
+			setBmiResult(); 
+			}); 
+		$("#weight").on('change keyup paste',function(){ 
+			setBmiResult(); 
+			}); 
+		
+		setBmiResult = () => { 
+			
+			let height = $("#height").val(); 
+			let weight = $("#weight").val(); 
+		
+		
+		height = height / 100; 
+		let bmi_result = (weight / ( height * height ));
+		
+		let bmi_msg; 
+		
+		for( let bm of bmi_range ){ 
+			if( bmi_result >= bm.min_val && bmi_result < bm.max_val ){
+				bmi_msg = bm.msg; 
+				}
+			} 
+		
+		$(".bmi_result").html(parseFloat(bmi_result).toFixed(2) + "  " + bmi_msg + " 입니다."); 
+		
+		return; 
+		
+		} 
+	}
+);
+//blood
+	$(function() {
+			$('#blood_result_div').hide();
+				
+			$('#blood1').on('focusout', function() {
+				if($("#blood1").val() != "" && $("#blood2").val() != ""){
+					$('#blood_result_div').show();
+				}
+				
+				if($("#blood1").val() == "" && $("#blood2").val() == "") {
+					$('#blood_result_div').hide();
+				}	
+			});
+			
+			$('#blood2').on('focusout', function() {
+				if($("#blood2").val() != "" && $("#blood1").val() != ""){
+					$('#blood_result_div').show();
+				}
+				
+				if($("#blood2").val() == "" && $("#blood1").val() == "") {
+					$('#blood_result_div').hide();
+				}	
+			});
+			
+			
+			let blood_range  = [
+				
+				 { id : 'low',
+						 min_val : 0 ,
+						 max_val : 89 , 
+						 msg : '<font class="skyblue">저혈압 </font>' } ,
+				 { id : 'standard', 
+						 min_val : 90, 
+						 max_val : 120, 
+						 msg : '<font class="green">정상</font>' },
+		 		{ id : 'Moderate', 
+			 			min_val : 121,
+			 			max_val : 99999, 
+			 			msg : '<font class="red">고혈압</font>' }
+				 		
+				 		] 
+
+			$("#blood2").on('change keyup paste',function(){
+				setbloodResult(); 
+				}); 
+		
+			setbloodResult = () => { 
+				
+				let blood1 = $("#blood1").val(); 
+		
+			let blood_msg; 
+			
+			for( let b of blood_range ){ 
+				if( blood1 >= b.min_val && blood1 <= b.max_val ){
+					blood_msg = b.msg; 
+					}
+				} 
+			
+			$(".blood_result").html("이완기 혈압 " + parseFloat(blood1).toFixed(2)+ " mmHg /dL " + " "+ blood_msg + "입니다."); 
+			
+			return; 
+			
+			} 
+		}
+	);
+		
+//bloodSugar
+$(function() {
+	
+	$('#bloodSugar_result_div').hide();
+		
+	$('#bloodSugar').on('focusout', function() {
+		if($("#bloodSugar").val() != "" ){
+			$('#bloodSugar_result_div').show();
+		}
+		
+		if($("#bloodSugar").val() == "") {
+			$('#bloodSugar_result_div').hide();
+		}	
+	});
+	
+		let bloodSugar_range = [
+			
+			 { id : 'low',
+					 min_val : 0 ,
+					 max_val : 80 , 
+					 msg : '<font class="skyblue">다소 낮음 </font>' } ,
+			 { id : 'standard', 
+					 min_val : 80, 
+					 max_val : 100, 
+					 msg : '<font class="green">정상</font>' },
+		 	 { id : 'Mild', 
+			 		min_val : 100,
+			 		max_val : 126, 
+			 		msg : '<font class="orange">다소 높음</font>' },
+	 		{ id : 'Moderate_obesity', 
+		 			min_val : 126,
+		 			max_val : 99999, 
+		 			msg : '<font class="red">당뇨병</font> 의심' }
+			 		
+			 		] 
+		
+		$("#bloodSugar").on('change keyup paste',function(){
+			setbloodSugarResult(); 
+			}); 
+	
+		setbloodSugarResult = () => { 
+			
+			let bloodSugar = $("#bloodSugar").val(); 
+	
+		let bloodSugar_msg; 
+		
+		for( let bs of bloodSugar_range ){ 
+			if( bloodSugar >= bs.min_val && bloodSugar < bs.max_val ){
+				bloodSugar_msg = bs.msg; 
+				}
+			} 
+		
+		$(".bloodSugar_result").html(parseFloat(bloodSugar).toFixed(2)+ " mg/dL " + " "+ bloodSugar_msg + "입니다."); 
+		
+		return; 
+		
+		} 
+	}
+);
+//이상지질혈증
+//tc
+$(function(){
+	$('#tc').on('input',function(){
+		var value = $('#tc').val(); 
+		
+		if (value <= 200){
+	        $("#tc").addClass('greens');
+	        $("#tc").removeClass('reds');
+			 $("#tc").removeClass('oranges');
+	    }
+	    if(value > 200 && value <= 240){
+	        $("#tc").addClass('oranges');
+	        $("#tc").removeClass('reds');
+	        $("#tc").removeClass('greens');
+	    }
+	    if(value >240){
+	        $("#tc").addClass('reds');
+	        $("#tc").removeClass('oranges');
+			$("#tc").removeClass('greens');
+ 		 }
+		if(value == ""){
+			$("#tc").removeClass('reds');
+			$("#tc").removeClass('oranges');
+			$("#tc").removeClass('greens');
+		}
+	})
+});  
+//tg
+$(function(){
+	$('#tg').on('input',function(){
+	var value = $('#tg').val();  
+		if (value <= 200){
+	        $("#tg").addClass('greens');
+			 $("#tg").removeClass('reds');
+		}
+	    else{
+	        $("#tg").addClass('reds');
+			 $("#tg").removeClass('greens');
+	    }
+		if(value == ""){
+			 $("#tg").removeClass('reds');
+			 $("#tg").removeClass('greens');
+		}
+	})
+});  
+//ldl
+$(function(){
+	$('#ldl').on('input',function(){
+	var value = $('#ldl').val();  
+	if (value <= 130){
+      $("#ldl").addClass('greens');
+      $("#ldl").removeClass('reds');
+		$("#ldl").removeClass('oranges');
+  }
+  if(value > 130 && value <= 160){
+      $("#ldl").addClass('oranges');
+      $("#ldl").removeClass('reds');
+      $("#ldl").removeClass('greens');
+  }
+  if(value >160){
+      $("#ldl").addClass('reds');
+      $("#ldl").removeClass('oranges');
+		$("#ldl").removeClass('greens');
+	 }
+	if(value == ""){
+		 $("#ldl").removeClass('reds');
+		 $("#ldl").removeClass('oranges');
+		 $("#ldl").removeClass('greens');
+	}
+	})
+});  
+
+//tg
+$(function(){
+	$('#hdl').on('input',function(){
+	var value = $('#hdl').val();  
+	    if(value >= 60){
+	    	$("#hdl").addClass('greens');
+			 $("#hdl").removeClass('reds');
+	    }
+	    else{
+	    	$("#hdl").addClass('reds');
+			 $("#hdl").removeClass('greens');
+	    }
+		if(value == ""){
+			 $("#hdl").removeClass('reds');
+			 $("#hdl").removeClass('greens');
+		}
+	})
+});  
+//백혈구
+$(function(){
+	$('#white').on('input',function(){
+	var value = $('#white').val();  
+	    if(value >= 4000 && value <=10000){
+	    	$("#white").addClass('greens');
+			 $("#white").removeClass('reds');
+	    }else{
+	    	$("#white").addClass('reds');
+			 $("#white").removeClass('greens');
+	    }
+		if(value == ""){
+			 $("#white").removeClass('reds');
+			 $("#white").removeClass('greens');
+		}
+	})
+});  
+//혈소판
+$(function(){
+	$('#platelet').on('input',function(){
+	var value = $('#platelet').val();  
+	    if(value >= 12 && value <=16.5){
+	    	$("#platelet").addClass('greens');
+			 $("#platelet").removeClass('reds');
+	    }else{
+	    	$("#platelet").addClass('reds');
+			 $("#platelet").removeClass('greens');
+	    }
+		if(value == ""){
+			 $("#platelet").removeClass('reds');
+			 $("#platelet").removeClass('greens');
+		}
+	})
+});  
+//AST
+$(function(){
+	$('#ast').on('input',function(){
+	var value = $('#ast').val();  
+	    if(value >= 13 && value <= 40){
+	    	$("#ast").addClass('greens');
+			 $("#ast").removeClass('reds');
+	    }else{
+	    	$("#ast").addClass('reds');
+			 $("#ast").removeClass('greens');
+	    }
+		if(value == ""){
+			 $("#ast").removeClass('reds');
+			 $("#ast").removeClass('greens');
+		}
+	})
+});  
+//ALT
+$(function(){
+	$('#alt').on('input',function(){
+	var value = $('#alt').val();  
+	    if(value >= 7 && value <= 40){
+	    	$("#alt").addClass('greens');
+			 $("#alt").removeClass('reds');
+	    }else{
+	    	$("#alt").addClass('reds');
+			 $("#alt").removeClass('greens');
+	    }
+		if(value == ""){
+			 $("#alt").removeClass('reds');
+			 $("#alt").removeClass('greens');
+		}
+	})
+});  
+//gtp
+$(function(){
+	$('#gtp').on('input',function(){
+	var value = $('#gtp').val();  
+	    if(value >= 8 && value <= 63){
+	    	$("#gtp").addClass('greens');
+			 $("#gtp").removeClass('reds');
+	    }else{
+	    	$("#gtp").addClass('reds');
+			 $("#gtp").removeClass('greens');
+	    }
+		if(value == ""){
+			 $("#gtp").removeClass('reds');
+			 $("#gtp").removeClass('greens');
+		}
+	})
+});  
+//요단백
+$(function(){
+	$('#kidney1').on('input',function(){
+	var value = $('#kidney1').val();  
+	    if(value == "음성"){
+	    	$("#kidney1").addClass('greens');
+			 $("#kidney1").removeClass('reds');
+	    }
+	    if(value == "양성"){
+	    	$("#kidney1").addClass('reds');
+			 $("#kidney1").removeClass('greens');
+	    }
+		if(value == ""){
+			 $("#kidney1").removeClass('reds');
+			 $("#kidney1").removeClass('greens');
+		}
+	})
+});  
+//요소질소
+$(function(){
+	$('#kidney2').on('input',function(){
+	var value = $('#kidney2').val();  
+	    if(value >=6 && value <=20){
+	    	$("#kidney2").addClass('greens');
+			 $("#kidney2").removeClass('reds');
+	    }else{
+	    	$("#kidney2").addClass('reds');
+			 $("#kidney2").removeClass('greens');
+	    }
+		if(value == ""){
+			 $("#kidney2").removeClass('reds');
+			 $("#kidney2").removeClass('greens');
+		}
+	})
+});  
+//혈창크레아티닌
+$(function(){
+	$('#kidney3').on('input',function(){
+	var value = $('#kidney3').val();  
+	    if(value <=1.5){
+	    	$("#kidney3").addClass('greens');
+			 $("#kidney3").removeClass('reds');
+	    }else{
+	    	$("#kidney3").addClass('reds');
+			 $("#kidney3").removeClass('greens');
+	    }
+		if(value == ""){
+			 $("#kidney3").removeClass('reds');
+			 $("#kidney3").removeClass('greens');
+		}
+	})
+});  
+//사구체여과율
+$(function(){
+	$('#kidney4').on('input',function(){
+	var value = $('#kidney4').val();  
+	    if(value >=60){
+	    	$("#kidney4").addClass('greens');
+			 $("#kidney4").removeClass('reds');
+	    }else{
+	    	$("#kidney4").addClass('reds');
+			 $("#kidney4").removeClass('greens');
+	    }
+		if(value == ""){
+			 $("#kidney4").removeClass('reds');
+			 $("#kidney4").removeClass('greens');
+		}
+	})
+});  
+
+</script>
+				
 <body>
+
 	<div class="navbar">
 		<div class="row">
 			<div class="column column-30 col-site-title"><a href="${path}/doctor/doctor_main" class="site-title float-left">Lifecare</a></div>
@@ -597,8 +1156,9 @@ function readImage() {
 			<!--Forms-->
 			<div class="row grid-responsive">
 				<div class="column ">
-					<div class="card">					
+					<div class="card">
 						<div class='css3-tab'>
+						
 							<input type='radio' name='a' id='tabOne' tabindex="1" checked>
 							<input type='radio' name='a' id='tabTwo' tabindex="2">
 			
@@ -612,13 +1172,13 @@ function readImage() {
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 							<input type="hidden" name="customer_id" value="${vo.getCustomer_id()}">
 								<fieldset>
-									<span style="text-align:left; color:#797979; font-family:'Ruda', sans-serif; margin-right:20px;">*질병</span><input type="text" placeholder="질병코드" id="disease_code" name="disease_code">									
-									<span style="text-align:left; color:#797979; font-family:'Ruda', sans-serif; margin-right:20px; margin-left:20px;">*주증상</span><input type="text" placeholder="주증상(C.C)" id="nameField" name="cc">
+									<input type="text" placeholder="(*)질병코드" id="disease_code" name="disease_code">
+									<input type="text" placeholder="(*)주증상(C.C)" id="nameField" name="cc">
 									<div id="diseaseList"></div>
-									<span style="text-align:left; color:#797979; font-family:'Ruda', sans-serif; margin-right:20px;">혈압</span><input type="text" placeholder="혈압(BP)" id="nameField" name="bp">
-									<span style="text-align:left; color:#797979; font-family:'Ruda', sans-serif; margin-right:20px; margin-left:20px;">호흡 </span><input type="text" placeholder="호흡(RR)" id="nameField" name="rr">
-									<span style="text-align:left; color:#797979; font-family:'Ruda', sans-serif; margin-right:20px;">맥박</span><input type="text" placeholder="맥박(PR)" id="nameField" name="pr">
-									<span style="text-align:left; color:#797979; font-family:'Ruda', sans-serif; margin-right:20px; margin-left:20px;">체온 </span><input type="text" placeholder="체온(BT)" id="nameField" name="bt"> 
+									<input type="text" placeholder="혈압(BP)" id="nameField" name="bp">
+									<input type="text" placeholder="호흡(RR)" id="nameField" name="rr">
+									<input type="text" placeholder="맥박(PR)" id="nameField" name="pr">
+									<input type="text" placeholder="체온(BT)" id="nameField" name="bt">
 
 			<div class="row grid-responsive">
 				<div class="column column-50">
@@ -697,7 +1257,7 @@ function readImage() {
 									<input type="text" placeholder="진료금액" name="customer_amount">
 									<div id="drugList5"></div>									
 									<br>
-									<input style="float:left; font-size:20px;" class="button-primary" type="submit" value="진료기록저장">
+									<input style="float:left;" class="button-primary" type="submit" value="진료기록저장">
 								</fieldset>
 							</form>
 						</div>
@@ -707,39 +1267,76 @@ function readImage() {
 							<div class="card-title">
 								<h2>기초검사결과 작성</h2>
 							</div>
-							<div class="card-block">
 						<form action="${path}/doctor/basicExPro" method="post" name="fda" id="BasicForm">
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-							<input type="hidden" name="customer_id" value="${vo.getCustomer_id()}">																
-							<span style="text-align:left; color:#797979; font-family:'Ruda', sans-serif; margin-right:20px;">신장</span><input type="text" placeholder="키" name="height">
-							<span style="text-align:left; color:#797979; font-family:'Ruda', sans-serif; margin-right:20px; margin-left:20px;">체중</span><input type="text" placeholder="몸무게" name="weight">
-						<label for="commentField">이상지질혈증(정상범위)</label>
-							<span style="text-align:left; color:#797979; font-family:'Ruda', sans-serif; margin-right:20px;">TC</span><input type="text" placeholder="TC(200mg/dl미만)" name="tc">
-							<span style="text-align:left; color:#797979; font-family:'Ruda', sans-serif; margin-right:20px; margin-left:20px;">TG</span><input type="text" placeholder="TG(150mg/dl미만)" name="tg">
-							<span style="text-align:left; color:#797979; font-family:'Ruda', sans-serif; margin-right:20px;">LDL</span><input type="text" placeholder="LDL(130mg/dl미만)" name="ldl">
-							<span style="text-align:left; color:#797979; font-family:'Ruda', sans-serif; margin-right:20px; margin-left:20px;">HDL</span><input type="text" placeholder="HDL(60mg/dl미만)" name="hdl">
-						<label for="commentField">혈압(정상범위)</label>
-							<span style="text-align:left; color:#797979; font-family:'Ruda', sans-serif; margin-right:20px;">수축기</span><input type="text" placeholder="수축기혈압(120mmHg미만)" name="blood1">
-							<span style="text-align:left; color:#797979; font-family:'Ruda', sans-serif; margin-right:20px; margin-left:20px;">이완기</span><input type="text" placeholder="이완기혈압(80mmHg미만)" name="blood2">	
-						<label for="commentField">당뇨(정상범위)</label>
-							<input type="text" placeholder="공복혈당(100mg/dL미만)" name="bloodSugar">
-						<label for="commentField">혈액(정상범위)</label>									
-							<input type="text" placeholder="백혈구(4천~1만개)" name="white">
-							<input type="text" placeholder="혈색소(12~16.5g/dL)" name="hb">
-						<label for="commentField">간질환(정상범위)</label>									
-							<input type="text" placeholder="AST(40IU/L이하)" name="ast">
-							<input type="text" placeholder="ALT(35IU/L이하)" name="alt">
-							<input type="text" placeholder="r-GTP(8~63IU/L)" name="gtp">
-						<label for="commentField">신장질환(정상범위)</label>
-							<input type="text" placeholder="요단백(음성)" name="kidney1">
-							<input type="text" placeholder="요소질소(6~20mg/dL)" name="kidney2">
-							<input type="text" placeholder="혈창크레아티닌(1.5mg/dL이하)" name="kidney3">
-							<input type="text" placeholder="사구체여과율(60ml/min이상)" name="kidney4">
+							<input type="hidden" name="customer_id" value="${vo.getCustomer_id()}">
+																
+							<input type="text" value="신장(cm)" style="width:100px" id="label" disabled>
+							<input type="text" placeholder="" style="width:500px" name="height" id="height">
+							<input type="text" value="체중(kg)" style="width:100px" id="label" disabled>
+							<input type="text" placeholder="" style="width:500px" name="weight" id="weight">
+							
+							<div style="font-weight: bold;" class="bmi_result_div" id ="bmi_result_div"> BMI 결과 :&nbsp;<span style="text-align: center;" class="bmi_result" id=""></span></div> <p>&nbsp;</p>
+
+						<label for="commentField">이상지질혈증</label>
+							<input type="text" value="TC(Total Cholesterole)" id="label" style="width:200px" disabled>
+							<input type="text" placeholder="총콜레스테롤(200mg/dl이하)" style="width:450px" name="tc" id="tc" class="tc" >
+							
+							
+							<input type="text" value="TG(Triglyceride)" id="label" style="width:200px" disabled>
+							<input type="text" placeholder="중성지방(200mg/dl이하)" style="width:450px" name="tg"id="tg" class="tg" >
+							
+							<input type="text" value="LDL(LEL Cholesterole)" id="label" style="width:200px" disabled>
+							<input type="text" placeholder="저밀도지단백 콜레스테롤(130mg/dl이하)" style="width:450px" name="ldl" id="ldl" class="ldl">
+							
+							<input type="text" value="HDL(HDL Cholesterole)" id="label" style="width:200px" disabled>
+							<input type="text" placeholder="고밀도지단백 콜레스테롤(60mg/dl이상)" style="width:450px" name="hdl" id="hdl" class="hdl">
+
+							
+						<label for="commentField">혈압</label>
+							<input type="text" value="수축기혈압" id="label" style="width:200px" disabled>	
+							<input type="text" placeholder="120mmHg미만" name="blood1" style="width:450px" id="blood1">
+							<input type="text" value="이완기혈압" id="label" style="width:200px" disabled>	
+							<input type="text" placeholder="80mmHg미만" name="blood2" style="width:450px" id="blood2">	
+							<div style="font-weight: bold;" class="blood_result_div" id ="blood_result_div"> 혈압 결과 :&nbsp;<span style="text-align: center;" class="blood_result" id=""></span></div> <p>&nbsp;</p>
+						
+							
+						<label for="commentField">당뇨</label>
+							<div>
+								<input type="text" placeholder="공복혈당" id="label" name="bloodSugar" style="width:200px" style="float:left;" disabled>
+								<input type="text" placeholder="80mg/dL ~ 100mg/dL" name="bloodSugar" id="bloodSugar" style="width:450px">
+								<div style="font-weight: bold;" class="bloodSugar_result_div" id="bloodSugar_result_div"> &nbsp;&nbsp;&nbsp;혈당 수치 :&nbsp;<span style="text-align: center;" class="bloodSugar_result"></span></div> <p>&nbsp;</p>
+							</div>
+							
+						<label for="commentField">혈액</label>					
+							<input type="text" value="백혈구" id="label" style="width:200px" disabled>					
+							<input type="text" placeholder="4천~1만개" name="white" style="width:450px" id="white" class="white">
+							<input type="text" value="혈색소" id="label" style="width:200px" disabled>					
+							<input type="text" placeholder="12~16.5g/dL" name="hb"  style="width:450px" id="platelet" class="platelet">
+						
+						
+						<label for="commentField">간질환</label>					
+							<input type="text" value="AST(GOT)" id="label" style="width:200px" disabled>						
+							<input type="text" placeholder="아스파르테이트 아미노전이효소(13~40IU/L이하)" name="ast" style="width:450px" id="ast" class="ast">
+							<input type="text" value="ALT(GPT)" id="label" style="width:200px" disabled>						
+							<input type="text" placeholder="알라닌 아미노전이효소(7~40IU/L이하)" name="alt" style="width:450px" id="alt" class="alt">
+							<input type="text" value="r-GTP" id="label" style="width:200px" disabled>						
+							<input type="text" placeholder="감마 지티피(8~63IU/L)" name="gtp" style="width:450px" id="gtp" class="gtp">
+														
+						<label for="commentField">신장질환</label>
+							<input type="text" value="요단백" id="label" style="width:200px" disabled>	
+							<input type="text" placeholder="음성/양성" name="kidney1" style="width:450px" id="kidney1" class="kidney1">
+							<input type="text" value="요소질소" id="label" style="width:200px" disabled>	
+							<input type="text" placeholder="6~20mg/dL" name="kidney2" style="width:450px" id="kidney2" class="kidney2">
+							<input type="text" value="혈창크레아티닌" id="label" style="width:200px" disabled>	
+							<input type="text" placeholder="1.5mg/dL이하" name="kidney3" style="width:450px" id="kidney3" class="kidney3">
+							<input type="text" value="사구체여과율" id="label" style="width:200px" disabled>	
+							<input type="text" placeholder="60ml/min이상" name="kidney4" style="width:450px" id="kidney4" class="kidney4">																						
+												
 						<label for="commentField">Comment</label>
 							<textarea style="resize: none;" placeholder="소견 작성" id="commentField" name="ex_result"></textarea>
-							<input type="button" class="button-primary" id="basicExPro" value="검사기록저장">						
+							<input type="button" class="button-primary" id="basicExPro" value="검사기록저장">
 						</form>
-						</div>
 					</div>
 						<hr>	
 						<div class="row grid-responsive">
@@ -752,11 +1349,17 @@ function readImage() {
 										</div>	
 									</div>								
 									<div class="card-block">
+									<div class="wrap-loading display-none">
+								    <div><img src="${path_resources }img/deepLearning2_edit.gif" /></div>
+								</div>  	
 										<div class="canvas-wrapper">
-											<form action="${path}/doctor/diagnosisPro" method="post" name="asdf" id="CoronaForm">
+											<form action="${path}/doctor/xrayExPro?${_csrf.parameterName}=${_csrf.token}" method="post" name="asdf" id="CoronaForm" enctype="multipart/form-data">
 											<input type="file" name="xray_img" id="file">
 											<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 											<input type="hidden" name="customer_id" value="${vo.getCustomer_id()}">
+											<input type="hidden" name="normal_percentage" value="">
+											<input type="hidden" name="corona_percentage" value="">
+											<input type="hidden" name="pneumonia_percentage" value="">
 											<table>
 												<thead>
 												<tr>
@@ -781,8 +1384,8 @@ function readImage() {
 												</tbody>	
 											</table>
 											<label for="commentField">Comment</label>
-											<textarea style="resize: none;" placeholder="소견 작성" id="commentField"></textarea>
-											<input class="button-primary" type="submit" value="Send">
+											<textarea style="resize: none;" placeholder="소견 작성" id="commentField" name="xray_result"></textarea>
+											<input class="button-primary" type="button" value="검사시록저장" id="xrayExPro">
 										</form>
 										</div>
 									</div>
@@ -798,10 +1401,11 @@ function readImage() {
 									</div>
 									<div class="card-block">
 										<div class="canvas-wrapper">
-											<form action="${path}/doctor/diagnosisPro" method="post" name="qwer" id="CancerForm">
+											<form action="${path}/doctor/cancerExPro" method="post" name="qwer" id="CancerForm">
 											<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 											<input type="hidden" name="customer_id" value="${vo.getCustomer_id()}">
 											<input type="hidden" name="age" value="${2020 - vo.getCustomer_year()}">
+											<input type="hidden" name="percentage" value="">
 											<label for="commentField">검사정보입력</label>
 												<input type="text" placeholder="radius" name="radius">
 												<input type="text" placeholder="texture" name="texture">
@@ -822,8 +1426,8 @@ function readImage() {
 												</tr>											
 											</table>
 											<label for="commentField">Comment</label>
-											<textarea style="resize: none;" placeholder="의사소견" id="commentField"></textarea>
-											<input class="button-primary" type="submit" value="Send">
+											<textarea style="resize: none;" placeholder="의사소견" id="commentField" name="cancer_result"></textarea>
+											<input class="button-primary" type="button" value="검사기록저장" id="cancerExPro">
 											</form>
 										</div>
 									</div>
@@ -838,8 +1442,6 @@ function readImage() {
 		<p class="credit">HTML5 Admin Template by <a href="https://www.medialoot.com">Medialoot</a></p>
 		</section>
 	</div>
-	<div class="wrap-loading display-none">
-	    <div><img src="${path_resources }/img/deepLearning2_edit.gif" /></div>
-	</div>    
+	  
 </body>
 </html>

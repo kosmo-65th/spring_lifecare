@@ -7,7 +7,7 @@
 <style type="text/css">
 /* UI Object */
 .tbl_type,.tbl_type th,.tbl_type td{border: 1px solid #000;}
-.tbl_type{width:500px;font-family:'돋움',dotum;font-size:12px;text-align:center;border-collapse:collapse}
+.tbl_type{width:500px;height:350px;font-family:'돋움',dotum;font-size:12px;text-align:center;border-collapse:collapse}
 .tbl_type caption{display:none}
 .tbl_type tfoot{background-color:#f5f7f9;font-weight:bold}
 .tbl_type th{padding:7px 0 4px;background-color:#4c4c4c1a;color:#000;font-family:'돋움',dotum;font-size:12px;font-weight:bold}

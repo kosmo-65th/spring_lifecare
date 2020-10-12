@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import com.spring.lifecare.vo.CustomerVO;
 import com.spring.lifecare.vo.DoctorVO;
 
-@Service
 public interface AdminService {
 	
 	//회원목록 가져오기
@@ -28,5 +27,8 @@ public interface AdminService {
 	
 	//의사 퇴사 처리
 	public int doctorQuit(HttpServletRequest req, Model model);
+	
+	//결산 
+	public void summary(HttpServletRequest request, Model model);
 	
 }

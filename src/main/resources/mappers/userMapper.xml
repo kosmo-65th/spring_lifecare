@@ -950,7 +950,9 @@
   
   <!-- 관리자 의사 회원목록 -->
     <select id="listDoctors" resultType="com.spring.lifecare.vo.DoctorVO">
-     SELECT doctor_name, doctor_id, doctor_num, doctor_email, doctor_phone, doctor_major, doctor_position, enabled FROM doctor WHERE authority = 'ROLE_DOCTOR'
+     SELECT d.doctor_name, d.doctor_id, d.doctor_email, d.doctor_phone, d.doctor_major, d.doctor_position, c.enabled 
+     FROM doctor d, customer c
+     where d.doctor_id = c.CUSTOMER_ID
   </select>
    
   <!-- 관리자 회원 상세목록 -->
@@ -970,7 +972,7 @@
   
   <!-- 의사 회원 퇴사처리  -->
   <update id ="deleteDoctor" parameterType ="com.spring.lifecare.vo.DoctorVO">       
-	 UPDATE doctor SET enabled = 0  WHERE doctor_id=#{doctor_id, jdbcType=VARCHAR}  
+	 UPDATE customer SET enabled = 0  WHERE customer_id=#{customer_id, jdbcType=VARCHAR}  
   </update>
 
    <!-- 진료결과 조회 리스트 -->
@@ -1061,4 +1063,17 @@
    		 where x.customer_id=c.customer_id
    		   and xray_num = #{xray_num}
    </select>
+   
+   <!-- 암검사결과 작성 -->
+   <insert id ="insertCancerEx" parameterType="com.spring.lifecare.vo.CancerVO">
+     	INSERT INTO cancerEx 
+     	values(cancer_seq.nextval, #{customer_id}, #{radius}, #{texture}, #{perimeter}, #{area}, #{smoothness}, #{compactness}, #{concavity}, 
+				#{symmetry}, #{fractal_dimension}, #{percentage}, #{cancer_result}, sysdate)
+   </insert>   
+   
+   <!-- xray검사결과 작성 -->
+   <insert id ="insertXrayEx" parameterType="com.spring.lifecare.vo.XrayExVO">
+     	INSERT INTO xray 
+     	values(xray_seq.nextval, #{customer_id}, #{xray_img}, #{normal_percentage}, #{corona_percentage}, #{pneumonia_percentage}, #{xray_result}, sysdate)
+   </insert> 
 </mapper>  	  

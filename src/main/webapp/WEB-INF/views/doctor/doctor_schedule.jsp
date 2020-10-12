@@ -446,7 +446,7 @@ $(function() {
 			$('#searchDisplay').css("min-width", "0");
 			$('#searchDisplay').css("max-height", "none");
 			$('#searchDisplay').css("background", "#f9f9f9");
-			$('#searchDisplay').css("border-radius", "499rem");
+			$('#searchDisplay').css("width", "570px");
 			
 		}
 		
