@@ -75,6 +75,7 @@ public class MarController {
 	}
 	//안드로이드 약 검색 결과출력
 	@RequestMapping("/android_drugSearchPro")
+	
 	public String android_drugSearchPro(HttpServletRequest req, Model model){
 		service.searchDrug(req, model);
 		return "drug/android_drugSearchPro";
