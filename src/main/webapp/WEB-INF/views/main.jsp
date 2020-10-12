@@ -159,12 +159,10 @@
       <div align="center" style="margin:40px;">
       <div style="width:75%;">
       <div style="border-bottom:1px solid #000; background-color:#E0ECF8;">
-      	<p style="font-size:30px;">실시간 상황판</p>
-      	<br>
-      	<p>코로나19(COVID-19)</p>
+      	<p style="font-size:30px;">실시간 코로나19(COVID-19) 현황</p>
       </div>
 	      <div align="right"> 
-	      	<a href="${path}/covid19">코로나 정보 상세보기</a>
+	      	<a href="${path}/covid19" style="color:gray;">코로나 정보 상세보기 >></a>
 	      </div>
       </div>
 		<%= posts1 %>
@@ -197,9 +195,9 @@
 	  		marker.setMap(map);
       </script>  
         <br>
-       
-        <img src="${path_resources }img/LFMAP.JPG" style="width:47%; margin:0 auto;">
-   
+       <div style="width:47%; margin:0 auto;">
+        <img src="${path_resources }img/LFMAP.JPG" >
+  		 </div>
       <%@include file="./common/footer.jsp" %>
       <!-- end copyrights -->
       <a href="#home" data-scroll class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
