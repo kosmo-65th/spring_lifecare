@@ -409,7 +409,7 @@ public class DoctorServiceImpl implements DoctorService{
 		
 		// 업로드할 파일의 최대 사이즈(10 * 1024 * 1024 = 10MB)
 		String saveDir = req.getSession().getServletContext().getRealPath("/resources/img/");	
-		String realDir = "D:\\test2\\spring_lifecare\\src\\main\\webapp\\resources\\img\\";
+		String realDir = "D:\\test4\\spring_lifecare\\src\\main\\webapp\\resources\\img\\";
 		
 		try {
 			file.transferTo(new File(saveDir+file.getOriginalFilename()));

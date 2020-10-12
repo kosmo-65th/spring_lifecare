@@ -204,10 +204,6 @@ function resReset(){
 	$('#keyword').focus();
 }
 
-
-	
-
-
 //딥러닝 - 코로나
 $(function() {
     //이미지 클릭시 업로드창 실행
@@ -326,11 +322,15 @@ $(function() {
     //이미지 클릭시 업로드창 실행
     $('#xrayExPro').click(function() {      
         
-    	var CoronaForm = $("#CoronaForm").serialize();
+    	var CoronaForm = new FormData(document.getElementById('CoronaForm'));
+    	
     	$.ajax({
             type: "post",
+            enctype: 'multipart/form-data',
             url: "${path}/doctor/xrayExPro?${_csrf.parameterName}=${_csrf.token}",
             data: CoronaForm,
+            processData: false,
+            contentType: false,
             success: function(data){
             	console.log("data : " + data);
 				if(data == 1) {
