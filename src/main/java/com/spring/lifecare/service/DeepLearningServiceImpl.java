@@ -127,7 +127,7 @@ public class DeepLearningServiceImpl implements DeepLearningService{
 			//입력 stream을 BufferedWriter로 받아서 콘솔로부터 받은 입력을 Process 클래스로 실행시킨다.
 			System.out.println("modelSrc : "+modelSrc.substring(0,modelSrc.length()-9));
 			List<String> commendList = new ArrayList<String>();
-			//commendList.add("activate tensorflow3.6.5");
+			commendList.add("activate tensorflow3.6.5");
 			commendList.add("cd "+modelSrc.substring(0,modelSrc.length()-10));
 			System.out.println("실행어 : "+ "cd "+modelSrc.substring(0,modelSrc.length()-10));
 			modelSrc=modelSrc.substring(0,modelSrc.length()-9) +"mobileNetV2model7.h5";

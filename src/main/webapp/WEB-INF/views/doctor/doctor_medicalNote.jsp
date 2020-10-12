@@ -205,10 +205,6 @@ function resReset(){
 	$('#keyword').focus();
 }
 
-
-	
-
-
 //딥러닝 - 코로나
 $(function() {
     //이미지 클릭시 업로드창 실행
@@ -267,19 +263,8 @@ $(function() {
     $('#CancerStart').click(function() {
         console.log('암검사 딥러닝 시작');        
         
-       // var CancerForm = new FormData(document.getElementById('CancerForm'));
     	var CanerForm = $("#CancerForm").serialize();
-       /*  var radius = document.qwer.radius.value;
-        var texture = document.qwer.texture.value;
-        var perimeter = document.qwer.perimeter.value;
-        var area = document.qwer.area.value;        
-        var smoothness = document.qwer.smoothness.value;
-        var compactness = document.qwer.compactness.value;        
-        var concavity = document.qwer.concavity.value;
-        var symmetry = document.qwer.symmetry.value;
-        var fractal_dimension = document.qwer.fractal_dimension.value;
-        var age = document.qwer.age.value;
-        	 */
+
     	$.ajax({
             type: "post",
             url: "${path}/doctor/DeepLearningCancer?${_csrf.parameterName}=${_csrf.token}",
@@ -309,6 +294,78 @@ $(function() {
         });
     });
     //업로드 파일체인지가 됬을경우 실행되는 이벤트  form태그에 fileProfile은 hidden으로 넣어줌
+});
+
+//기초검사결과 저장
+$(function() {
+    $('#basicExPro').click(function() {      
+        
+    	var BasicForm = $("#BasicForm").serialize();
+    	$.ajax({
+            type: "post",
+            url: "${path}/doctor/basicExPro?${_csrf.parameterName}=${_csrf.token}",
+            data: BasicForm,
+            success: function(data){
+            	console.log("data : " + data);
+				if(data == 1) {
+	                alert("검사기록 저장 완료");
+				}
+            },
+            error : function() {
+				alert("수치를 모두 입력해주세요.");
+			}
+        });
+    });
+});
+
+//xray검사결과 저장
+$(function() {
+    //이미지 클릭시 업로드창 실행
+    $('#xrayExPro').click(function() {      
+        
+    	var CoronaForm = new FormData(document.getElementById('CoronaForm'));
+    	
+    	$.ajax({
+            type: "post",
+            enctype: 'multipart/form-data',
+            url: "${path}/doctor/xrayExPro?${_csrf.parameterName}=${_csrf.token}",
+            data: CoronaForm,
+            processData: false,
+            contentType: false,
+            success: function(data){
+            	console.log("data : " + data);
+				if(data == 1) {
+	                alert("검사기록 저장 완료");
+				}
+            },
+            error : function() {
+				alert("수치를 모두 입력해주세요.");
+			}
+        });
+    });
+});
+
+//암검사결과 저장
+$(function() {
+    //이미지 클릭시 업로드창 실행
+    $('#cancerExPro').click(function() {      
+        
+    	var CancerForm = $("#CancerForm").serialize();
+    	$.ajax({
+            type: "post",
+            url: "${path}/doctor/cancerExPro?${_csrf.parameterName}=${_csrf.token}",
+            data: CancerForm,
+            success: function(data){
+            	console.log("data : " + data);
+				if(data == 1) {
+	                alert("검사기록 저장 완료");
+				}
+            }, 
+            error : function() {
+				alert("수치를 모두 입력해주세요.");
+			}
+        });
+    });
 });
 
 // 환자조회 keyup
@@ -1223,7 +1280,7 @@ $(function(){
 							<div class="card-title">
 								<h2>기초검사결과 작성</h2>
 							</div>
-						<form action="${path}/doctor/basicExPro" method="post" name="fda" id="fda">
+						<form action="${path}/doctor/basicExPro" method="post" name="fda" id="BasicForm">
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 							<input type="hidden" name="customer_id" value="${vo.getCustomer_id()}">
 																
@@ -1268,7 +1325,7 @@ $(function(){
 							<input type="text" value="백혈구" id="label" style="width:200px" disabled>					
 							<input type="text" placeholder="4천~1만개" name="white" style="width:450px" id="white" class="white">
 							<input type="text" value="혈색소" id="label" style="width:200px" disabled>					
-							<input type="text" placeholder="남성 13.0~17.0g/dL , 여성 12.0~16.0g/dL" name="hb"  style="width:450px">
+							<input type="text" placeholder="12~16.5g/dL" name="hb"  style="width:450px" id="platelet" class="platelet">
 						
 						<label for="commentField">간질환</label>					
 							<input type="text" value="AST(GOT)" id="label" style="width:200px" disabled>						
@@ -1277,10 +1334,7 @@ $(function(){
 							<input type="text" placeholder="알라닌 아미노전이효소(7~40IU/L이하)" name="alt" style="width:450px" id="alt" class="alt">
 							<input type="text" value="r-GTP" id="label" style="width:200px" disabled>						
 							<input type="text" placeholder="감마 지티피(8~63IU/L)" name="gtp" style="width:450px" id="gtp" class="gtp">
-							
-		
-					
-					
+														
 						<label for="commentField">신장질환</label>
 							<input type="text" value="요단백" id="label" style="width:200px" disabled>	
 							<input type="text" placeholder="음성/양성" name="kidney1" style="width:450px" id="kidney1" class="kidney1">
@@ -1291,12 +1345,10 @@ $(function(){
 							<input type="text" value="사구체여과율" id="label" style="width:200px" disabled>	
 							<input type="text" placeholder="60ml/min이상" name="kidney4" style="width:450px" id="kidney4" class="kidney4">
 							<input type="hidden" name="customer_id" value="${vo.getCustomer_id()}">																
-							
-						
-						
+												
 						<label for="commentField">Comment</label>
 							<textarea style="resize: none;" placeholder="소견 작성" id="commentField" name="ex_result"></textarea>
-							<input class="button-primary" type="submit" value="Send">
+							<input type="button" class="button-primary" id="basicExPro" value="검사기록저장">
 						</form>
 					</div>
 						<hr>	
@@ -1346,7 +1398,7 @@ $(function(){
 											</table>
 											<label for="commentField">Comment</label>
 											<textarea style="resize: none;" placeholder="소견 작성" id="commentField" name="xray_result"></textarea>
-											<input class="button-primary" type="submit" value="Send">
+											<input class="button-primary" type="button" value="검사시록저장" id="xrayExPro">
 										</form>
 										</div>
 									</div>
@@ -1397,7 +1449,7 @@ $(function(){
 											</table>
 											<label for="commentField">Comment</label>
 											<textarea style="resize: none;" placeholder="의사소견" id="commentField" name="cancer_result"></textarea>
-											<input class="button-primary" type="submit" value="Send">
+											<input class="button-primary" type="button" value="검사기록저장" id="cancerExPro">
 											</form>
 										</div>
 									</div>
