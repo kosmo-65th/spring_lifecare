@@ -240,6 +240,18 @@ $(function() {
             	var data_JSON_String = JSON.stringify(data);
             	var data_parse = JSON.parse(data_JSON_String);
             	
+            	if(data_parse.normal >80){
+            		$("#normal").css({"color":"#FF0004", "background-color":"#FAFA96", "font-weight":"bold"});
+            		$("#normal").siblings().css({"background-color":"#FAFA96", "color":"#FF0004", "font-weight":"bold"});
+            	}
+            	if(data_parse.corona >80){
+            		$("#corona").css({"color":"#FF0004", "background-color":"#FAFA96", "font-weight":"bold"});
+            		$("#corona").siblings().css({"background-color":"#FAFA96", "color":"#FF0004", "font-weight":"bold"});
+            	}
+            	if(data_parse.pneumonia >80){
+            		$("#pneumonia").css({"color":"#FF0004", "background-color":"#FAFA96", "font-weight":"bold"});
+            		$("#pneumonia").siblings().css({"background-color":"#FAFA96", "color":"#FF0004", "font-weight":"bold"});
+            	}
             	
                 $("#normal").text(data_parse.normal+"%");
                 $("#corona").text(data_parse.corona+"%");
@@ -1394,8 +1406,8 @@ $(function(){
 											<table>
 												<thead>
 												<tr>
-													<th style="width:70%;">이미지</th>
-													<th style="width:30%;" colspan="2">결과</th>
+													<th style="width:60%;">이미지</th>
+													<th style="width:40%; text-align:center" colspan="2">결과</th>
 												</tr>
 												</thead>
 												<tbody style="height:600px;">										    
