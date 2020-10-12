@@ -99,6 +99,12 @@
 	
 	.fc-content {
 		cursor: pointer;
+		text-align: center;
+		width: 100%;
+	}
+	
+	td:first-child, th:first-child {
+    	padding-left: 0 !important;
 	}
 	</style>
 	
@@ -143,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
       },
       editable:false,
       selectable:true,
-      selectOverlap:true,
+      selectOverlap:false,
       eventLimit:true,
       displayEventTime:false,
       
@@ -396,13 +402,11 @@ document.addEventListener('DOMContentLoaded', function() {
 		        		var event = {
 		        				title: result[i].title,
 		        				start: result[i].start,
+		        				allDay: true,
 		        				url: result[i].url
-		        		};
-		        		
-		        		events.push(event);
-		        		
-		        	}
-		        	
+		        		};		        		
+		        		events.push(event);	        		
+		        	}		        	
 		        	successCallback(events);
 		        },
 		        
@@ -411,7 +415,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		        }
 		    })
 		}
-
     });
 
     calendar.render();

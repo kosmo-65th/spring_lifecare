@@ -62,7 +62,7 @@
           var eventObj = info.event;
 
           if (eventObj.url) {
-            window.open(eventObj.url);
+        	  window.location.href = eventObj.url;
 
             info.jsEvent.preventDefault(); // prevents browser from following link in current tab.
           } else {
@@ -108,9 +108,10 @@
 		        		var event = {
 		        				title: result[i].title,
 		        				start: result[i].start,
+		        				duration: '02:00',
 		        				url: result[i].url
 		        		};
-		        		
+		        	
 		        		events.push(event);
 		        		
 		        	}
