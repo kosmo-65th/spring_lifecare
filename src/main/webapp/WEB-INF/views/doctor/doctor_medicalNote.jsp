@@ -159,7 +159,10 @@
 		text-align: center !important;
 		color: #000 !important; 
 	}
-	 
+	
+	.CoronaText{
+		color:#FF0004 !important; background-color:#FAFA96 !important; font-weight:bold !important;
+	}
 
 	</style>
 	<!-- Google Fonts -->
@@ -240,17 +243,24 @@ $(function() {
             	var data_JSON_String = JSON.stringify(data);
             	var data_parse = JSON.parse(data_JSON_String);
             	
+            	$("#normal").removeClass();
+            	$("#normal").prev().removeClass();
+            	$("#corona").removeClass();
+            	$("#corona").siblings().removeClass();
+            	$("#pneumonia").removeClass();
+            	$("#pneumonia").siblings().removeClass();
+            	
             	if(data_parse.normal >80){
-            		$("#normal").css({"color":"#FF0004", "background-color":"#FAFA96", "font-weight":"bold"});
-            		$("#normal").siblings().css({"background-color":"#FAFA96", "color":"#FF0004", "font-weight":"bold"});
+            		$("#normal").addClass("CoronaText");
+            		$("#normal").prev().addClass("CoronaText");
             	}
             	if(data_parse.corona >80){
-            		$("#corona").css({"color":"#FF0004", "background-color":"#FAFA96", "font-weight":"bold"});
-            		$("#corona").siblings().css({"background-color":"#FAFA96", "color":"#FF0004", "font-weight":"bold"});
+            		$("#corona").addClass("CoronaText");
+            		$("#corona").siblings().addClass("CoronaText");
             	}
             	if(data_parse.pneumonia >80){
-            		$("#pneumonia").css({"color":"#FF0004", "background-color":"#FAFA96", "font-weight":"bold"});
-            		$("#pneumonia").siblings().css({"background-color":"#FAFA96", "color":"#FF0004", "font-weight":"bold"});
+            		$("#pneumonia").addClass("CoronaText");
+            		$("#pneumonia").siblings().addClass("CoronaText");
             	}
             	
                 $("#normal").text(data_parse.normal+"%");
