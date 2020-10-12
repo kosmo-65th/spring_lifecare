@@ -337,7 +337,7 @@ public class DoctorServiceImpl implements DoctorService{
 		vo.setEx_result(req.getParameter("ex_result"));		
 		
 		int insertCnt = userDAO.insertBasicEx(vo);
-		model.addAttribute("insertCnt", insertCnt);
+		req.setAttribute("insertCnt", insertCnt);
 	}
 
 	@Override
@@ -400,7 +400,7 @@ public class DoctorServiceImpl implements DoctorService{
 		vo.setCancer_result(req.getParameter("cancer_result"));
 		
 		int insertCnt = userDAO.insertCancerEx(vo);
-		model.addAttribute("insertCnt", insertCnt);
+		req.setAttribute("insertCnt", insertCnt);
 	}
 
 	@Override
@@ -434,7 +434,7 @@ public class DoctorServiceImpl implements DoctorService{
 		vo.setXray_result(req.getParameter("xray_result"));
 		
 		int insertCnt = userDAO.insertXrayEx(vo);
-		model.addAttribute("insertCnt", insertCnt);
+		req.setAttribute("insertCnt", insertCnt);
 	}
 	
 }

@@ -96,7 +96,7 @@ public class JinController {
  	public String kakaopayCancel(Model model) { 		
  		return "customer/kakaopayCancel";
  	}
- 	
+
     //카카오 페이 결제 실패
  	@RequestMapping("/customer/kakaopayFail")
  	public String kakaopayFail(Model model) {		
@@ -259,23 +259,26 @@ public class JinController {
  	
     // 기초검사기록 저장
  	@RequestMapping("/doctor/basicExPro")
- 	public String basicExPro(HttpServletRequest req, Model model) { 		
+ 	public @ResponseBody int basicExPro(HttpServletRequest req, Model model) { 		
  		doctor.saveBasicEx(req, model);
- 		return "doctor/diagnosisPro";
+ 		int insertCnt = (Integer) req.getAttribute("insertCnt");
+ 		return insertCnt;
  	}
  	
     // 암검사기록 저장
  	@RequestMapping("/doctor/cancerExPro")
- 	public String cancerExPro(HttpServletRequest req, Model model) { 		
+ 	public @ResponseBody int cancerExPro(HttpServletRequest req, Model model) { 		
  		doctor.saveCancerEx(req, model);
- 		return "doctor/diagnosisPro";
+ 		int insertCnt = (Integer) req.getAttribute("insertCnt");
+ 		return insertCnt;
  	}
  	
     // xray검사기록 저장
  	@RequestMapping(value="/doctor/xrayExPro", method=RequestMethod.POST)
- 	public String xrayExPro(MultipartHttpServletRequest req, Model model) { 		
+ 	public @ResponseBody int xrayExPro(MultipartHttpServletRequest req, Model model) { 		
  		doctor.saveXrayEx(req, model);
- 		return "doctor/diagnosisPro";
+ 		int insertCnt = (Integer) req.getAttribute("insertCnt");
+ 		return insertCnt;
  	}
  	
     // 마이페이지

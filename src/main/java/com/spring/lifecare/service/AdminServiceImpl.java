@@ -24,12 +24,9 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Autowired
 	UserDAO userDAO;
-	
 	@Autowired
 	AdminDAO adminDAO;
 	
-	
-
     //관리자 회원목록
 	@Override
 	public void memberList(HttpServletRequest req, Model model) {
@@ -188,9 +185,7 @@ public class AdminServiceImpl implements AdminService {
 			jsonArray2.add(rowArray2);
 			System.out.println("jsonArray2 : " + jsonArray2);
 		}
-		
-		
-		
+						
 		model.addAttribute("monthly",monthly);
 		model.addAttribute("monthlyProfitChart", monthlyProfitChart);
 		model.addAttribute("jsonArray",jsonArray);

@@ -48,7 +48,6 @@
 			</div>
 		</form>
 	</div>
-	<%@include file="../guest/chatbotRPA.jsp"%>
 	<%@include file="../common/footer.jsp"%>
 </body>
 </html>
