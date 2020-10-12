@@ -253,9 +253,6 @@ $(function() {
                 document.asdf.pneumonia_percentage.value = data_parse.pneumonia+"%";
                 alert("딥러닝 완료");
             }
-	        error : function(){
-	        	alert("이미지를 넣어주세요.");
-	        }
        		
         });
     });
@@ -302,15 +299,12 @@ $(function() {
             	
             	var data_JSON_String = JSON.stringify(data);
             	var data_parse = JSON.parse(data_JSON_String);
-            	
+            	           	
                 $("#resultCancer").text(data_parse.result);
                 $("#resultPercent").text(data_parse.percent);
                 document.qwer.percentage.value = data_parse.result + " " + data_parse.percent;
                 alert("딥러닝 완료");
             }
-	        error : function(){
-	        	alert("수치를 모두 입력해주세요.");
-	        }
         });
     });
     //업로드 파일체인지가 됬을경우 실행되는 이벤트  form태그에 fileProfile은 hidden으로 넣어줌
@@ -329,7 +323,8 @@ $(function() {
 			$('#searchDisplay').css("align-items", "center");
 			$('#searchDisplay').css("min-width", "0");
 			$('#searchDisplay').css("max-height", "none");
-			$('#searchDisplay').css("background", "#f9f9f9");		
+			$('#searchDisplay').css("background", "#f9f9f9");
+			$('#searchDisplay').css("border-radius", "499rem");			
 		}
 		
 		// keyword -> search_next.ja(search_next.jsp) -> result -> 콜백함수 -> display에 출력
@@ -353,13 +348,13 @@ $(function() {
 		if(disease.length == 0) {        // 검색글자수가 0인 경우
 			$('#diseaseList').css("display", "none");       // 숨김
 		} else {
-			$('#searchDisplay').css("visibility", "visible");      // 표시
-			$('#searchDisplay').css("display", "flex");
-			$('#searchDisplay').css("align-items", "center");
-			$('#searchDisplay').css("min-width", "0");
-			$('#searchDisplay').css("max-height", "none");
-			$('#searchDisplay').css("background", "#f9f9f9");
-			$('#searchDisplay').css("width", "570px");
+			$('#diseaseList').css("visibility", "visible");      // 표시
+			$('#diseaseList').css("display", "flex");
+			$('#diseaseList').css("align-items", "center");
+			$('#diseaseList').css("min-width", "0");
+			$('#diseaseList').css("max-height", "none");
+			$('#diseaseList').css("background", "#f9f9f9");
+			$('#diseaseList').css("border-radius", "499rem");	
 		}
 		
 		$.ajax({
@@ -382,12 +377,13 @@ $(function() {
 		if(drug.length == 0) {        // 검색글자수가 0인 경우
 			$('#drugList1').css("display", "none");       // 숨김
 		} else {
-			$('#searchDisplay').css("visibility", "visible");      // 표시
-			$('#searchDisplay').css("display", "flex");
-			$('#searchDisplay').css("align-items", "center");
-			$('#searchDisplay').css("min-width", "0");
-			$('#searchDisplay').css("max-height", "none");
-			$('#searchDisplay').css("background", "#f9f9f9");
+			$('#drugList1').css("visibility", "visible");      // 표시
+			$('#drugList1').css("display", "flex");
+			$('#drugList1').css("align-items", "center");
+			$('#drugList1').css("min-width", "0");
+			$('#drugList1').css("max-height", "none");
+			$('#drugList1').css("background", "#f9f9f9");
+			$('#drugList1').css("border-radius", "499rem");	
 		}
 		
 		$.ajax({
@@ -410,12 +406,13 @@ $(function() {
 		if(drug.length == 0) {        // 검색글자수가 0인 경우
 			$('#drugList2').css("display", "none");       // 숨김
 		} else {
-			$('#searchDisplay').css("visibility", "visible");      // 표시
-			$('#searchDisplay').css("display", "flex");
-			$('#searchDisplay').css("align-items", "center");
-			$('#searchDisplay').css("min-width", "0");
-			$('#searchDisplay').css("max-height", "none");
-			$('#searchDisplay').css("background", "#f9f9f9");	
+			$('#drugList2').css("visibility", "visible");      // 표시
+			$('#drugList2').css("display", "flex");
+			$('#drugList2').css("align-items", "center");
+			$('#drugList2').css("min-width", "0");
+			$('#drugList2').css("max-height", "none");
+			$('#drugList2').css("background", "#f9f9f9");
+			$('#drugList2').css("border-radius", "499rem");	
 		}
 		
 		$.ajax({
@@ -438,12 +435,13 @@ $(function() {
 		if(drug.length == 0) {        // 검색글자수가 0인 경우
 			$('#drugList3').css("display", "none");       // 숨김
 		} else {
-			$('#searchDisplay').css("visibility", "visible");      // 표시
-			$('#searchDisplay').css("display", "flex");
-			$('#searchDisplay').css("align-items", "center");
-			$('#searchDisplay').css("min-width", "0");
-			$('#searchDisplay').css("max-height", "none");
-			$('#searchDisplay').css("background", "#f9f9f9");
+			$('#drugList3').css("visibility", "visible");      // 표시
+			$('#drugList3').css("display", "flex");
+			$('#drugList3').css("align-items", "center");
+			$('#drugList3').css("min-width", "0");
+			$('#drugList3').css("max-height", "none");
+			$('#drugList3').css("background", "#f9f9f9");
+			$('#drugList3').css("border-radius", "499rem");	
 		}
 		
 		$.ajax({
@@ -466,12 +464,13 @@ $(function() {
 		if(drug.length == 0) {        // 검색글자수가 0인 경우
 			$('#drugList4').css("display", "none");       // 숨김
 		} else {
-			$('#searchDisplay').css("visibility", "visible");      // 표시
-			$('#searchDisplay').css("display", "flex");
-			$('#searchDisplay').css("align-items", "center");
-			$('#searchDisplay').css("min-width", "0");
-			$('#searchDisplay').css("max-height", "none");
-			$('#searchDisplay').css("background", "#f9f9f9");
+			$('#drugList4').css("visibility", "visible");      // 표시
+			$('#drugList4').css("display", "flex");
+			$('#drugList4').css("align-items", "center");
+			$('#drugList4').css("min-width", "0");
+			$('#drugList4').css("max-height", "none");
+			$('#drugList4').css("background", "#f9f9f9");
+			$('#drugList4').css("border-radius", "499rem");	
 		}
 		
 		$.ajax({
@@ -494,12 +493,13 @@ $(function() {
 		if(drug.length == 0) {        // 검색글자수가 0인 경우
 			$('#drugList5').css("display", "none");       // 숨김
 		} else {
-			$('#searchDisplay').css("visibility", "visible");      // 표시
-			$('#searchDisplay').css("display", "flex");
-			$('#searchDisplay').css("align-items", "center");
-			$('#searchDisplay').css("min-width", "0");
-			$('#searchDisplay').css("max-height", "none");
-			$('#searchDisplay').css("background", "#f9f9f9");
+			$('#drugList5').css("visibility", "visible");      // 표시
+			$('#drugList5').css("display", "flex");
+			$('#drugList5').css("align-items", "center");
+			$('#drugList5').css("min-width", "0");
+			$('#drugList5').css("max-height", "none");
+			$('#drugList5').css("background", "#f9f9f9");
+			$('#drugList5').css("border-radius", "499rem");	
 		}
 		
 		$.ajax({
@@ -1282,10 +1282,6 @@ $(function(){
 							<input type="text" placeholder="60ml/min이상" name="kidney4" style="width:450px" id="kidney4" class="kidney4">
 							<input type="hidden" name="customer_id" value="${vo.getCustomer_id()}">																
 							
-							<input type="text" value="신장(cm)" id="label" style="width:200px" disabled>	
-							<input type="text" placeholder="" name="height" style="width:450px" id="height" class="height">
-							<input type="text" value="체중(kg)" id="label" style="width:200px" disabled>	
-							<input type="text" placeholder="" name="weight" style="width:450px" id="weight" class="weight">
 						
 						
 						<label for="commentField">Comment</label>
