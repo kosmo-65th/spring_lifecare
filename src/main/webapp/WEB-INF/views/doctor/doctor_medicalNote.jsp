@@ -212,19 +212,7 @@ $(function() {
     $('#CancerStart').click(function() {
         console.log('암검사 딥러닝 시작');        
         
-       // var CancerForm = new FormData(document.getElementById('CancerForm'));
     	var CanerForm = $("#CancerForm").serialize();
-       /*  var radius = document.qwer.radius.value;
-        var texture = document.qwer.texture.value;
-        var perimeter = document.qwer.perimeter.value;
-        var area = document.qwer.area.value;        
-        var smoothness = document.qwer.smoothness.value;
-        var compactness = document.qwer.compactness.value;        
-        var concavity = document.qwer.concavity.value;
-        var symmetry = document.qwer.symmetry.value;
-        var fractal_dimension = document.qwer.fractal_dimension.value;
-        var age = document.qwer.age.value;
-        	 */
     	$.ajax({
             type: "post",
             url: "${path}/doctor/DeepLearningCancer?${_csrf.parameterName}=${_csrf.token}",
@@ -254,6 +242,26 @@ $(function() {
         });
     });
     //업로드 파일체인지가 됬을경우 실행되는 이벤트  form태그에 fileProfile은 hidden으로 넣어줌
+});
+
+// 기초검사결과 저장
+$(function() {
+    //이미지 클릭시 업로드창 실행
+    $('#basicExPro').click(function() {      
+        
+    	var BasicForm = $("#BasicForm").serialize();
+    	$.ajax({
+            type: "post",
+            url: "${path}/doctor/basicExPro?${_csrf.parameterName}=${_csrf.token}",
+            data: BasicForm,
+            success: function(data){
+            	console.log("data : " + data);
+				if(data == 1) {
+	                alert("검사기록 저장 완료");
+				}
+            }
+        });
+    });
 });
 
 // 환자조회 keyup
@@ -604,13 +612,13 @@ function readImage() {
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 							<input type="hidden" name="customer_id" value="${vo.getCustomer_id()}">
 								<fieldset>
-									<input type="text" placeholder="(*)질병코드" id="disease_code" name="disease_code">
-									<input type="text" placeholder="(*)주증상(C.C)" id="nameField" name="cc">
+									<span style="text-align:left; color:#797979; font-family:'Ruda', sans-serif; margin-right:20px;">*질병</span><input type="text" placeholder="질병코드" id="disease_code" name="disease_code">									
+									<span style="text-align:left; color:#797979; font-family:'Ruda', sans-serif; margin-right:20px; margin-left:20px;">*주증상</span><input type="text" placeholder="주증상(C.C)" id="nameField" name="cc">
 									<div id="diseaseList"></div>
-									<input type="text" placeholder="혈압(BP)" id="nameField" name="bp">
-									<input type="text" placeholder="호흡(RR)" id="nameField" name="rr">
-									<input type="text" placeholder="맥박(PR)" id="nameField" name="pr">
-									<input type="text" placeholder="체온(BT)" id="nameField" name="bt">
+									<span style="text-align:left; color:#797979; font-family:'Ruda', sans-serif; margin-right:20px;">혈압</span><input type="text" placeholder="혈압(BP)" id="nameField" name="bp">
+									<span style="text-align:left; color:#797979; font-family:'Ruda', sans-serif; margin-right:20px; margin-left:20px;">호흡 </span><input type="text" placeholder="호흡(RR)" id="nameField" name="rr">
+									<span style="text-align:left; color:#797979; font-family:'Ruda', sans-serif; margin-right:20px;">맥박</span><input type="text" placeholder="맥박(PR)" id="nameField" name="pr">
+									<span style="text-align:left; color:#797979; font-family:'Ruda', sans-serif; margin-right:20px; margin-left:20px;">체온 </span><input type="text" placeholder="체온(BT)" id="nameField" name="bt"> 
 
 			<div class="row grid-responsive">
 				<div class="column column-50">
@@ -689,7 +697,7 @@ function readImage() {
 									<input type="text" placeholder="진료금액" name="customer_amount">
 									<div id="drugList5"></div>									
 									<br>
-									<input style="float:left;" class="button-primary" type="submit" value="진료기록저장">
+									<input style="float:left; font-size:20px;" class="button-primary" type="submit" value="진료기록저장">
 								</fieldset>
 							</form>
 						</div>
@@ -699,19 +707,20 @@ function readImage() {
 							<div class="card-title">
 								<h2>기초검사결과 작성</h2>
 							</div>
-						<form action="${path}/doctor/basicExPro" method="post" name="fda">
+							<div class="card-block">
+						<form action="${path}/doctor/basicExPro" method="post" name="fda" id="BasicForm">
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 							<input type="hidden" name="customer_id" value="${vo.getCustomer_id()}">																
-							<input type="text" placeholder="키" name="height">
-							<input type="text" placeholder="몸무게" name="weight">
+							<span style="text-align:left; color:#797979; font-family:'Ruda', sans-serif; margin-right:20px;">신장</span><input type="text" placeholder="키" name="height">
+							<span style="text-align:left; color:#797979; font-family:'Ruda', sans-serif; margin-right:20px; margin-left:20px;">체중</span><input type="text" placeholder="몸무게" name="weight">
 						<label for="commentField">이상지질혈증(정상범위)</label>
-							<input type="text" placeholder="TC(200mg/dl미만)" name="tc">
-							<input type="text" placeholder="TG(150mg/dl미만)" name="tg">
-							<input type="text" placeholder="LDL(130mg/dl미만)" name="ldl">
-							<input type="text" placeholder="HDL(60mg/dl미만)" name="hdl">
+							<span style="text-align:left; color:#797979; font-family:'Ruda', sans-serif; margin-right:20px;">TC</span><input type="text" placeholder="TC(200mg/dl미만)" name="tc">
+							<span style="text-align:left; color:#797979; font-family:'Ruda', sans-serif; margin-right:20px; margin-left:20px;">TG</span><input type="text" placeholder="TG(150mg/dl미만)" name="tg">
+							<span style="text-align:left; color:#797979; font-family:'Ruda', sans-serif; margin-right:20px;">LDL</span><input type="text" placeholder="LDL(130mg/dl미만)" name="ldl">
+							<span style="text-align:left; color:#797979; font-family:'Ruda', sans-serif; margin-right:20px; margin-left:20px;">HDL</span><input type="text" placeholder="HDL(60mg/dl미만)" name="hdl">
 						<label for="commentField">혈압(정상범위)</label>
-							<input type="text" placeholder="수축기혈압(120mmHg미만)" name="blood1">
-							<input type="text" placeholder="이완기혈압(80mmHg미만)" name="blood2">	
+							<span style="text-align:left; color:#797979; font-family:'Ruda', sans-serif; margin-right:20px;">수축기</span><input type="text" placeholder="수축기혈압(120mmHg미만)" name="blood1">
+							<span style="text-align:left; color:#797979; font-family:'Ruda', sans-serif; margin-right:20px; margin-left:20px;">이완기</span><input type="text" placeholder="이완기혈압(80mmHg미만)" name="blood2">	
 						<label for="commentField">당뇨(정상범위)</label>
 							<input type="text" placeholder="공복혈당(100mg/dL미만)" name="bloodSugar">
 						<label for="commentField">혈액(정상범위)</label>									
@@ -728,8 +737,9 @@ function readImage() {
 							<input type="text" placeholder="사구체여과율(60ml/min이상)" name="kidney4">
 						<label for="commentField">Comment</label>
 							<textarea style="resize: none;" placeholder="소견 작성" id="commentField" name="ex_result"></textarea>
-							<input class="button-primary" type="submit" value="Send">
+							<input type="button" class="button-primary" id="basicExPro" value="검사기록저장">						
 						</form>
+						</div>
 					</div>
 						<hr>	
 						<div class="row grid-responsive">

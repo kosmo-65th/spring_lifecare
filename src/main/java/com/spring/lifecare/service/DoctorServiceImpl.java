@@ -337,7 +337,7 @@ public class DoctorServiceImpl implements DoctorService{
 		vo.setEx_result(req.getParameter("ex_result"));		
 		
 		int insertCnt = userDAO.insertBasicEx(vo);
-		model.addAttribute("insertCnt", insertCnt);
+		req.setAttribute("insertCnt", insertCnt);
 	}
 
 	@Override
