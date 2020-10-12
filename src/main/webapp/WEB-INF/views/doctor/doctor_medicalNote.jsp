@@ -157,14 +157,15 @@
 	
 	#label {
 		text-align: center !important;
+		color: #000 !important; 
 	}
-	
+	 
 
 	</style>
 	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700" rel="stylesheet">
 	
-	<!-- Template Styles -->
+	<!-- Template Styles --> 
 	<link rel="stylesheet" href="${path_resources}css/doctorfont-awesome.min.css">
 	
 	<!-- CSS Reset -->
@@ -1113,21 +1114,27 @@ $(function(){
 						<div class="card-block">
 							<form action="${path}/doctor/diagnosisPro" method="post" name="medicalForm">
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-							<input type="hidden" name="customer_id" value="${vo.getCustomer_id()}">
+							<input type="hidden" name="customer_id" value="${vo.getCustomer_id()}"> 
 								<fieldset>
-									<input type="text" placeholder="(*)질병코드" id="disease_code" name="disease_code">
-									<input type="text" placeholder="(*)주증상(C.C)" id="nameField" name="cc">
-									<div id="diseaseList"></div>
-									<input type="text" placeholder="혈압(BP)" id="nameField" name="bp">
-									<input type="text" placeholder="호흡(RR)" id="nameField" name="rr">
-									<input type="text" placeholder="맥박(PR)" id="nameField" name="pr">
-									<input type="text" placeholder="체온(BT)" id="nameField" name="bt">
+									<input type="text" value="(*)질병코드" id="label" style="width:200px" disabled>
+									<input type="text" placeholder="(*)질병코드" id="disease_code" name="disease_code" style="width:450px">
+									<input type="text" value="(*)주증상(C.C)" id="label" style="width:200px" disabled>
+									<input type="text" placeholder="(*)주증상(C.C)" id="nameField" name="cc" style="width:450px"> 
+									<div id="diseaseList"></div> 
+									<input type="text" value="혈압(BP)" id="label" style="width:200px" disabled>
+									<input type="text" placeholder="혈압(BP)" id="nameField" name="bp"style="width:450px">
+									<input type="text" value="호흡(RR)" id="label" style="width:200px" disabled>
+									<input type="text" placeholder="호흡(RR)" id="nameField" name="rr"style="width:450px">
+									<input type="text" value="맥박(PR)" id="label" style="width:200px" disabled>
+									<input type="text" placeholder="맥박(PR)" id="nameField" name="pr"style="width:450px">
+									<input type="text" value="체온(BT)" id="label" style="width:200px" disabled>
+									<input type="text" placeholder="체온(BT)" id="nameField" name="bt"style="width:450px"> 
 
 			<div class="row grid-responsive">
 				<div class="column column-50">
 					<div class="card">
 						<div class="card-title">
-							<h2>과거력</h2>
+							<h2>과거력</h2> 
 						</div>
 						<div class="card-block">
 							<div class="canvas-wrapper">
@@ -1187,17 +1194,23 @@ $(function(){
 					</div>
 				</div>
 			</div>	
-									<label for="commentField">처방약</label>									
-									<input type="text" placeholder="처방약1" id="drug1" name="drug1">
-									<input type="text" placeholder="처방약2" id="drug2" name="drug2">
+									<label for="commentField">처방약</label>
+									<input type="text" value="처방약1" id="label" style="width:200px" disabled>									
+									<input type="text" placeholder="처방약1" id="drug1" name="drug1" style="width:450px;">
+									<input type="text" value="처방약2" id="label" style="width:200px" disabled>
+									<input type="text" placeholder="처방약2" id="drug2" name="drug2"style="width:450px;">
 									<div id="drugList1"></div>
 									<div id="drugList2"></div>
-									<input type="text" placeholder="처방약3" id="drug3" name="drug3">
-									<input type="text" placeholder="처방약4" id="drug4" name="drug4">
+									<input type="text" value="처방약3" id="label" style="width:200px" disabled>
+									<input type="text" placeholder="처방약3" id="drug3" name="drug3"style="width:450px;">
+									<input type="text" value="처방약4" id="label" style="width:200px" disabled>
+									<input type="text" placeholder="처방약4" id="drug4" name="drug4"style="width:450px;">
 									<div id="drugList3"></div>
 									<div id="drugList4"></div>
-									<input type="text" placeholder="처방약5" id="drug5" name="drug5">
-									<input type="text" placeholder="진료금액" name="customer_amount">
+									<input type="text" value="처방약5" id="label" style="width:200px" disabled>
+									<input type="text" placeholder="처방약5" id="drug5" name="drug5"style="width:450px;">
+									<input type="text" value="진료금액" id="label" style="width:200px" disabled>
+									<input type="text" placeholder="진료금액" name="customer_amount"style="width:450px;">
 									<div id="drugList5"></div>									
 									<br>
 									<input style="float:left;" class="button-primary" type="submit" value="진료기록저장">
@@ -1254,11 +1267,8 @@ $(function(){
 						<label for="commentField">혈액</label>					
 							<input type="text" value="백혈구" id="label" style="width:200px" disabled>					
 							<input type="text" placeholder="4천~1만개" name="white" style="width:450px" id="white" class="white">
-							<input type="text" value="혈소판" id="label" style="width:200px" disabled>					
-							<input type="text" placeholder="12~16.5g/dL" name="platelet"  style="width:450px" id="platelet" class="platelet">
 							<input type="text" value="혈색소" id="label" style="width:200px" disabled>					
 							<input type="text" placeholder="남성 13.0~17.0g/dL , 여성 12.0~16.0g/dL" name="hb"  style="width:450px">
-						
 						
 						<label for="commentField">간질환</label>					
 							<input type="text" value="AST(GOT)" id="label" style="width:200px" disabled>						
@@ -1358,16 +1368,25 @@ $(function(){
 											<input type="hidden" name="age" value="${2020 - vo.getCustomer_year()}">
 											<input type="hidden" name="percentage" value="">
 											<label for="commentField">검사정보입력</label>
-												<input type="text" placeholder="radius" name="radius">
-												<input type="text" placeholder="texture" name="texture">
-												<input type="text" placeholder="perimeter" name="perimeter">
-												<input type="text" placeholder="area" name="area">
-												<input type="text" placeholder="smoothness" name="smoothness">
-												<input type="text" placeholder="compactness" name="compactness">
-												<input type="text" placeholder="concavity" name="concavity">
-												<input type="text" placeholder="symmetry" name="symmetry">
-												<input type="text" placeholder="fractal_dimension" name="fractal_dimension">																																			
-											<table cellspacing='0'>
+												<input type="text" value="radius" id="label" style="width:200px" disabled>
+												<input type="text" placeholder="radius" name="radius"  style="width:400px" >
+												<input type="text" value="texture" id="label" style="width:200px" disabled>
+												<input type="text" placeholder="texture" name="texture"style="width:400px" >
+												<input type="text" value="perimeter" id="label" style="width:200px" disabled>
+												<input type="text" placeholder="perimeter" name="perimeter"style="width:400px" >
+												<input type="text" value="area" id="label" style="width:200px" disabled>
+												<input type="text" placeholder="area" name="area"style="width:400px" >
+												<input type="text" value="smoothness" id="label" style="width:200px" disabled>
+												<input type="text" placeholder="smoothness" name="smoothness"style="width:400px" >
+												<input type="text" value="compactness" id="label" style="width:200px" disabled> 
+												<input type="text" placeholder="compactness" name="compactness"style="width:400px" >
+												<input type="text" value="concavity" id="label" style="width:200px" disabled>
+												<input type="text" placeholder="concavity" name="concavity"style="width:400px" >
+												<input type="text" value="symmetry" id="label" style="width:200px" disabled>
+												<input type="text" placeholder="symmetry" name="symmetry"style="width:400px" >
+												<input type="text" value="fractal_dimension" id="label" style="width:200px" disabled>
+												<input type="text" placeholder="fractal_dimension" name="fractal_dimension"style="width:400px" >	 	 																																	
+											<table cellspacing='0'> 
 												<tr>
 													<th colspan="2">결과</th>
 												</tr>											    
@@ -1393,6 +1412,6 @@ $(function(){
 		<p class="credit">HTML5 Admin Template by <a href="https://www.medialoot.com">Medialoot</a></p>
 		</section>
 	</div>
-	  
+	   
 </body>
 </html>
