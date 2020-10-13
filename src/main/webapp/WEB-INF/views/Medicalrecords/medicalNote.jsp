@@ -83,7 +83,7 @@
 			</tr>
 			<tr>
 				<th class="tg-c3ow" colspan="2" style = "background-color:#E8E8E8">V/S</th>
-				<td class="tg-c3ow" colspan="9" style = "text-align:left">BP = ${dto.diagnosis_bp}&nbsp;&nbsp; / &nbsp;&nbsp;RR = ${dto.diagnosis_rr}&nbsp;&nbsp; / &nbsp;&nbsp;PR = ${dto.diagnosis_pr}&nbsp;&nbsp; / &nbsp;&nbsp;PT = ${dto.diagnosis_pt}</td>
+				<td class="tg-c3ow" colspan="9" style = "text-align:left">BP = ${dto.diagnosis_bp}&nbsp;&nbsp; / &nbsp;&nbsp;RR = ${dto.diagnosis_rr}&nbsp;&nbsp; / &nbsp;&nbsp;PR = ${dto.diagnosis_pr}&nbsp;&nbsp; / &nbsp;&nbsp;BT = ${dto.diagnosis_pt}</td>
 			</tr>
 			<tr>	
 				<th class="tg-c3ow" colspan="2" style = "background-color:#E8E8E8">PHx</th>
