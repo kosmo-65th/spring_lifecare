@@ -21,6 +21,9 @@
   
 	<script src="${path_resources}setting/jquery-3.5.1.js"></script>
 	
+	<!-- site sign -->
+	<link rel="lifecaresign" href="${path_resources_lifecare}images/png" type="image/x-icon" />
+	
 	<!-- Site Icons -->
 	<link rel="shortcut icon" href="${path_resources_lifecare}images/fevicon.ico.png" type="image/x-icon" />
 	<link rel="apple-touch-icon" href="${path_resources_lifecare}images/apple-touch-icon.png">
