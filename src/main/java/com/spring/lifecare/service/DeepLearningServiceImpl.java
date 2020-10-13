@@ -210,6 +210,8 @@ public class DeepLearningServiceImpl implements DeepLearningService{
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 		
+		
+		
 		result.put("corona", String.format("%.2f", Double.parseDouble(realresult.get(0))*100));
 		result.put("normal", String.format("%.2f", Double.parseDouble(realresult.get(1))*100));
 		result.put("pneumonia", String.format("%.2f", Double.parseDouble(realresult.get(2))*100));
