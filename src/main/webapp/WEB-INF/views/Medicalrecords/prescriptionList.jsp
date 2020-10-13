@@ -55,7 +55,7 @@
 				        	${dto.doctor_major}
 				      </div>
 				      <div class="cell1" onClick="show(${dto.diagnosis_num})"style = "width : 16%">
-				        	${dto.customer_amount}
+				        	<fmt:formatNumber value="${dto.customer_amount}" pattern="#,###"/>
 				      </div>      
 				</div> 
 				
@@ -64,9 +64,41 @@
 				<div id= "content${dto.diagnosis_num}" style = "display:none"></div> 
 			
 			</c:forEach>
-		</c:if>
+		</c:if>		
 	</div>
 </form>
+<!-- 페이지 컨트롤 -->
+<table style="width:1000px; text-align:center;">
+	<tr>
+		<th align = "center">
+		<!-- 게시글이 있는 경우 -->
+		<c:if test = "${cnt > 0}">
+			<!-- 처음[◀◀] / 이전블록[◀] -->
+			<c:if test="${startPage > pageBlock}">
+				<a href = "/Medicalrecords/prescriptionList?">[◀◀]</a>
+				<a href = "/Medicalrecords/prescriptionList?pageNum=${startPage - pageBlock}">[◀]</a>
+			</c:if>
+			
+			<!-- 블록내의 페이지 번호 -->
+			<c:forEach var = "i" begin = "${startPage}" end = "${endPage}">
+				<c:if test = "${i == currentPage}">
+					<span><b>[${i}]</b></span>
+				</c:if>
+				
+				<c:if test = "${i != currentPage}">
+					<a href = "/Medicalrecords/prescriptionList?pageNum=${i}">[${i}]</a>
+				</c:if>
+			</c:forEach>
+			
+			<!-- 다음블록[▶] / 마지막[▶▶] -->
+			<c:if test="${pageCount > endPage}">
+				<a href = "/Medicalrecords/prescriptionList?pageNum=${startPage + pageBlock}">[▶]</a>
+				<a href = "/Medicalrecords/prescriptionList?pageNum=${pageCount}">[▶▶]</a>
+			</c:if>
+		</c:if>
+		</th>
+	</tr>
+</table>
 </fieldset>
 </div>
 <%@include file="../common/footer.jsp" %>

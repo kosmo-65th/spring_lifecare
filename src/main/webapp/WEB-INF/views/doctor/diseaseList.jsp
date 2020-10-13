@@ -7,7 +7,7 @@
 <ul style="list-style:none; margin-left:10px;">
 <c:forEach var="i" items="${list}">
 	<li>		
-		<a href="javascript:click('${i.getDisease_code()}');">${i.getDisease_code()} (${i.getDisease_name()})</a>
+		<a href="javascript:click('${i.getDisease_code()}', '${i.getDisease_name()}');">${i.getDisease_code()} (${i.getDisease_name()})</a>
 	</li>
 </c:forEach>
 

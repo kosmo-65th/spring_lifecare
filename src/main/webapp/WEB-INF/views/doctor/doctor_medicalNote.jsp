@@ -159,7 +159,10 @@
 		text-align: center !important;
 		color: #000 !important; 
 	}
-	 
+	
+	.CoronaText{
+		color:#FF0004 !important; background-color:#FAFA96 !important; font-weight:bold !important;
+	}
 
 	</style>
 	<!-- Google Fonts -->
@@ -240,6 +243,25 @@ $(function() {
             	var data_JSON_String = JSON.stringify(data);
             	var data_parse = JSON.parse(data_JSON_String);
             	
+            	$("#normal").removeClass();
+            	$("#normal").prev().removeClass();
+            	$("#corona").removeClass();
+            	$("#corona").siblings().removeClass();
+            	$("#pneumonia").removeClass();
+            	$("#pneumonia").siblings().removeClass();
+            	
+            	if(data_parse.normal >80){
+            		$("#normal").addClass("CoronaText");
+            		$("#normal").prev().addClass("CoronaText");
+            	}
+            	if(data_parse.corona >80){
+            		$("#corona").addClass("CoronaText");
+            		$("#corona").siblings().addClass("CoronaText");
+            	}
+            	if(data_parse.pneumonia >80){
+            		$("#pneumonia").addClass("CoronaText");
+            		$("#pneumonia").siblings().addClass("CoronaText");
+            	}
             	
                 $("#normal").text(data_parse.normal+"%");
                 $("#corona").text(data_parse.corona+"%");
@@ -400,8 +422,8 @@ $(function() {
 	});
 	
 	// 질병조회 keyup
-	$('#disease_code').keyup(function() {
-		var disease = $('#disease_code').val();  // input 태그에서 입력한 키워드
+	$('#disease_name').keyup(function() {
+		var disease = $('#disease_name').val();  // input 태그에서 입력한 키워드
 		
 		if(disease.length == 0) {        // 검색글자수가 0인 경우
 			$('#diseaseList').css("display", "none");       // 숨김
@@ -429,8 +451,8 @@ $(function() {
 	});
 	
 	// 약 조회 1번 keyup
-	$('#drug1').keyup(function() {
-		var drug = $('#drug1').val();  // input 태그에서 입력한 키워드
+	$('#drugName1').keyup(function() {
+		var drug = $('#drugName1').val();  // input 태그에서 입력한 키워드
 		
 		if(drug.length == 0) {        // 검색글자수가 0인 경우
 			$('#drugList1').css("display", "none");       // 숨김
@@ -458,8 +480,8 @@ $(function() {
 	});
 	
 	// 약 조회 2번 keyup
-	$('#drug2').keyup(function() {
-		var drug = $('#drug2').val();  // input 태그에서 입력한 키워드
+	$('#drugName2').keyup(function() {
+		var drug = $('#drugName2').val();  // input 태그에서 입력한 키워드
 		
 		if(drug.length == 0) {        // 검색글자수가 0인 경우
 			$('#drugList2').css("display", "none");       // 숨김
@@ -487,8 +509,8 @@ $(function() {
 	});
 	
 	// 약 조회 3번 keyup
-	$('#drug3').keyup(function() {
-		var drug = $('#drug3').val();  // input 태그에서 입력한 키워드
+	$('#drugName3').keyup(function() {
+		var drug = $('#drugName3').val();  // input 태그에서 입력한 키워드
 		
 		if(drug.length == 0) {        // 검색글자수가 0인 경우
 			$('#drugList3').css("display", "none");       // 숨김
@@ -516,8 +538,8 @@ $(function() {
 	});
 	
 	// 약 조회 4번 keyup
-	$('#drug4').keyup(function() {
-		var drug = $('#drug4').val();  // input 태그에서 입력한 키워드
+	$('#drugName4').keyup(function() {
+		var drug = $('#drugName4').val();  // input 태그에서 입력한 키워드
 		
 		if(drug.length == 0) {        // 검색글자수가 0인 경우
 			$('#drugList4').css("display", "none");       // 숨김
@@ -545,8 +567,8 @@ $(function() {
 	});
 	
 	// 약 조회 5번 keyup
-	$('#drug5').keyup(function() {
-		var drug = $('#drug5').val();  // input 태그에서 입력한 키워드
+	$('#drugName5').keyup(function() {
+		var drug = $('#drugName5').val();  // input 태그에서 입력한 키워드
 		
 		if(drug.length == 0) {        // 검색글자수가 0인 경우
 			$('#drugList5').css("display", "none");       // 숨김
@@ -574,33 +596,39 @@ $(function() {
 	});
 });
 
-function click(disease_code){
+function click(disease_code, disease_name){
 	document.medicalForm.disease_code.value = disease_code;
+	document.medicalForm.disease_name.value = disease_name;
 	$('#diseaseList').css("display", "none");
 }
 
-function drug1(drug_number){
+function drug1(drug_number, drug_name){
 	document.medicalForm.drug1.value = drug_number;
+	document.medicalForm.drugName1.value = drug_name;
 	$('#drugList1').css("display", "none");
 }
 
-function drug2(drug_number){
+function drug2(drug_number, drug_name){
 	document.medicalForm.drug2.value = drug_number;
+	document.medicalForm.drugName2.value = drug_name;
 	$('#drugList2').css("display", "none");
 }
 
-function drug3(drug_number){
+function drug3(drug_number, drug_name){
 	document.medicalForm.drug3.value = drug_number;
+	document.medicalForm.drugName3.value = drug_name;
 	$('#drugList3').css("display", "none");
 }
 
-function drug4(drug_number){
+function drug4(drug_number, drug_name){
 	document.medicalForm.drug4.value = drug_number;
+	document.medicalForm.drugName4.value = drug_name;
 	$('#drugList4').css("display", "none");
 }
 
-function drug5(drug_number){
+function drug5(drug_number, drug_name){
 	document.medicalForm.drug5.value = drug_number;
+	document.medicalForm.drugName5.value = drug_name;
 	$('#drugList5').css("display", "none");
 }
 
@@ -1190,10 +1218,11 @@ $(function(){
 						<div class="card-block">
 							<form action="${path}/doctor/diagnosisPro" method="post" name="medicalForm" onsubmit="return diagnosisFocus();">
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-							<input type="hidden" name="customer_id" value="${vo.getCustomer_id()}"> 
+							<input type="hidden" name="customer_id" value="${vo.getCustomer_id()}">
+							<input type="hidden" name="disease_code" value="">
 								<fieldset>
 									<input type="text" value="(*)질병코드" id="label" style="width:200px" disabled>
-									<input type="text" placeholder="(*)질병코드" id="disease_code" name="disease_code" style="width:450px">
+									<input type="text" placeholder="(*)질병코드" id="disease_name" name="disease_name" style="width:450px">
 									<input type="text" value="(*)주증상(C.C)" id="label" style="width:200px" disabled>
 									<input type="text" placeholder="(*)주증상(C.C)" id="nameField" name="cc" style="width:450px"> 
 									<div id="diseaseList"></div> 
@@ -1271,20 +1300,25 @@ $(function(){
 				</div>
 			</div>	
 									<label for="commentField">처방약</label>
-									<input type="text" value="처방약1" id="label" style="width:200px" disabled>									
-									<input type="text" placeholder="처방약1" id="drug1" name="drug1" style="width:450px;">
+									<input type="text" value="처방약1" id="label" style="width:200px" disabled>	
+									<input type="hidden" name="drug1" value="">								
+									<input type="text" placeholder="처방약1" id="drugName1" name="drugName1" style="width:450px;">
 									<input type="text" value="처방약2" id="label" style="width:200px" disabled>
-									<input type="text" placeholder="처방약2" id="drug2" name="drug2"style="width:450px;">
+									<input type="hidden" name="drug2" value="">	
+									<input type="text" placeholder="처방약2" id="drugName2" name="drugName2"style="width:450px;">
 									<div id="drugList1"></div>
 									<div id="drugList2"></div>
 									<input type="text" value="처방약3" id="label" style="width:200px" disabled>
-									<input type="text" placeholder="처방약3" id="drug3" name="drug3"style="width:450px;">
+									<input type="hidden" name="drug3" value="">	
+									<input type="text" placeholder="처방약3" id="drugName3" name="drugName3"style="width:450px;">
 									<input type="text" value="처방약4" id="label" style="width:200px" disabled>
-									<input type="text" placeholder="처방약4" id="drug4" name="drug4"style="width:450px;">
+									<input type="hidden" name="drug4" value="">	
+									<input type="text" placeholder="처방약4" id="drugName4" name="drugName4"style="width:450px;">
 									<div id="drugList3"></div>
 									<div id="drugList4"></div>
 									<input type="text" value="처방약5" id="label" style="width:200px" disabled>
-									<input type="text" placeholder="처방약5" id="drug5" name="drug5"style="width:450px;">
+									<input type="hidden" name="drug5" value="">	
+									<input type="text" placeholder="처방약5" id="drugName5" name="drugName5"style="width:450px;">
 									<input type="text" value="진료금액" id="label" style="width:200px" disabled>
 									<input type="text" placeholder="진료금액" name="customer_amount"style="width:450px;">
 									<div id="drugList5"></div>									
@@ -1394,8 +1428,8 @@ $(function(){
 											<table>
 												<thead>
 												<tr>
-													<th style="width:70%;">이미지</th>
-													<th style="width:30%;" colspan="2">결과</th>
+													<th style="width:60%;">이미지</th>
+													<th style="width:40%; text-align:center" colspan="2">결과</th>
 												</tr>
 												</thead>
 												<tbody style="height:600px;">										    
@@ -1482,6 +1516,27 @@ $(function(){
 		<p class="credit">HTML5 Admin Template by <a href="https://www.medialoot.com">Medialoot</a></p>
 		</section>
 	</div>
-	   
+	   <!-- Start of UiPath Chatbot widget -->
+    <script>
+  window.addEventListener("message", function (event) {
+      if (event.data.hasOwnProperty("frameSize")) {
+          const size = event.data.frameSize;
+          document.getElementById("uipath-chatbot-iframe").style.height = size.height;
+          document.getElementById("uipath-chatbot-iframe").style.width = size.width;
+      }
+  });
+</script>
+<iframe src="https://chatbot.uipath.com/web-channel?connectionId=058b734c-abbb-4acb-b9d6-8976248ebae5"
+  id="uipath-chatbot-iframe"
+  style="
+      z-index: 9999;
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      height: 112px;
+      width: 120px;
+      border: 0;">
+</iframe>
+<!-- End of UiPath Chatbot widget -->
 </body>
 </html>

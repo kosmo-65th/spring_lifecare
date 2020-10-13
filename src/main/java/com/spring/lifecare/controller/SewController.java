@@ -155,4 +155,11 @@ public class SewController {
 		medical.prescriptionprint(req, model);
 		return "Medicalrecords/prescriptionprint";
 	}
+	
+	//mypage-진단서 print
+	@RequestMapping("/Medicalrecords/diagnosisprint")
+	public String Mypagediagnosisprint(HttpServletRequest req, Model model) {
+		medical.diagnosisprint(req, model);
+		return "Medicalrecords/diagnosisprint";
+	}
 }

@@ -62,7 +62,7 @@
           var eventObj = info.event;
 
           if (eventObj.url) {
-            window.open(eventObj.url);
+        	  window.location.href = eventObj.url;
 
             info.jsEvent.preventDefault(); // prevents browser from following link in current tab.
           } else {
@@ -108,9 +108,10 @@
 		        		var event = {
 		        				title: result[i].title,
 		        				start: result[i].start,
+		        				duration: '02:00',
 		        				url: result[i].url
 		        		};
-		        		
+		        	
 		        		events.push(event);
 		        		
 		        	}
@@ -258,6 +259,28 @@ $(function() {
 			</div>					
 			<p class="credit">HTML5 Admin Template by <a href="https://www.medialoot.com">Medialoot</a></p>
 		</section>
-	</div>					
+	</div>		
+	<!-- Start of UiPath Chatbot widget -->
+    <script>
+  window.addEventListener("message", function (event) {
+      if (event.data.hasOwnProperty("frameSize")) {
+          const size = event.data.frameSize;
+          document.getElementById("uipath-chatbot-iframe").style.height = size.height;
+          document.getElementById("uipath-chatbot-iframe").style.width = size.width;
+      }
+  });
+</script>
+<iframe src="https://chatbot.uipath.com/web-channel?connectionId=058b734c-abbb-4acb-b9d6-8976248ebae5"
+  id="uipath-chatbot-iframe"
+  style="
+      z-index: 9999;
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      height: 112px;
+      width: 120px;
+      border: 0;">
+</iframe>
+<!-- End of UiPath Chatbot widget -->			
 </body>
 </html>

@@ -132,6 +132,7 @@
    <!-- 환자검색리스트 -->
    <select id="searchList" resultType="com.spring.lifecare.vo.CustomerVO">
    		select customer_id, customer_name from customer where customer_name like '%'||#{keyword}||'%'
+   														   or customer_id like '%'||#{keyword}||'%'
    </select>
    
    <!-- 회원정보 불러오기 -->
@@ -1075,5 +1076,26 @@
    <insert id ="insertXrayEx" parameterType="com.spring.lifecare.vo.XrayExVO">
      	INSERT INTO xray 
      	values(xray_seq.nextval, #{customer_id}, #{xray_img}, #{normal_percentage}, #{corona_percentage}, #{pneumonia_percentage}, #{xray_result}, sysdate)
-   </insert> 
+   </insert>
+   
+   <!-- 기초검사결과 수정 -->
+   <update id ="updateBasicEx" parameterType="java.util.Map">
+     	update basicEx 
+     	   set ex_result = #{ex_result}
+     	 where ex_num = #{ex_num}
+   </update>
+   
+   <!-- xray검사결과 수정 -->
+   <update id ="updateXrayEx" parameterType="java.util.Map">
+     	update xray 
+     	   set xray_result = #{xray_result}
+     	 where xray_num = #{xray_num}
+   </update>
+   
+   <!-- 암검사결과 수정 -->
+   <update id ="updateCancerEx" parameterType="java.util.Map">
+     	update cancerEx 
+     	   set cancer_result = #{cancer_result}
+     	 where cancer_num = #{cancer_num}
+   </update>
 </mapper>  	  

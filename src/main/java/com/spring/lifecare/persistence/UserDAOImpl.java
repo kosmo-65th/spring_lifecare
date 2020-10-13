@@ -24,6 +24,8 @@ import com.spring.lifecare.vo.DrugVO;
 import com.spring.lifecare.vo.ReservationVO;
 import com.spring.lifecare.vo.XrayExVO;
 
+import util.FinalString;
+
 @Repository
 public class UserDAOImpl implements UserDAO {
 	@Autowired
@@ -70,8 +72,10 @@ public class UserDAOImpl implements UserDAO {
 	public void sendmail(String customer_email, String key) {
 	   try {		
 			  MimeMessage message = mailSender.createMimeMessage();
+			  String ip =FinalString.CALLBACKIP.getValue();
 			  String txt = "환영합니다!! LifeCare 회원가입 인증 메일입니다. 링크를 눌러 회원가입을 완료하세요" 
-			+ "<a href=http://localhost/lifecare/emailcheck?customer_email=" +customer_email+ ">Please click to the member verification</a>";
+			+ "<a href=http://"+ip+"/lifecare/emailcheck?customer_email=" +customer_email+ ">Please click to the member verification</a>";
+			  
 			  message.setSubject("LifeCare 회원가입 인증 메일입니다");
 			  message.setText(txt, "UTF-8", "html");
 			  message.setFrom(new InternetAddress("admin@mss.com"));
@@ -479,6 +483,27 @@ public class UserDAOImpl implements UserDAO {
 	public int insertXrayEx(XrayExVO vo) {
 		UserDAO dao = sqlSession.getMapper(UserDAO.class);
 		return dao.insertXrayEx(vo);
+	}
+
+
+	@Override
+	public int updateBasicEx(Map<String, Object> map) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.updateBasicEx(map);
+	}
+
+
+	@Override
+	public int updateXrayEx(Map<String, Object> map) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.updateXrayEx(map);
+	}
+
+
+	@Override
+	public int updateCancerEx(Map<String, Object> map) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.updateCancerEx(map);
 	}
 
 }

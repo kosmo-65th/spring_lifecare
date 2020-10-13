@@ -590,9 +590,30 @@ public class JinController {
 		return learning.DeepLearningCancer(req, model);
 	}
 	
-    //카카오 페이 결제 실패
+    // 응급처치 페이지
  	@RequestMapping("/first_aid")
  	public String first_aid(Model model) {		
  		return "guest/first-aid";
+ 	}
+ 	
+ 	// 기초검사수정
+ 	@RequestMapping("/doctor/basic_exPro")
+ 	public String basic_exPro(HttpServletRequest req, Model model) { 		
+ 		doctor.modifyBasic(req, model);
+ 		return "doctor/resultUpdate";
+ 	}
+ 	
+ 	// xray검사수정
+ 	@RequestMapping("/doctor/xray_exPro")
+ 	public String xray_exPro(HttpServletRequest req, Model model) { 		
+ 		doctor.modifyXray(req, model);
+ 		return "doctor/resultUpdate";
+ 	}
+ 	
+ 	// 암검사수정
+ 	@RequestMapping("/doctor/cancer_exPro")
+ 	public String cancer_exPro(HttpServletRequest req, Model model) { 		
+ 		doctor.modifyCancer(req, model);
+ 		return "doctor/resultUpdate";
  	}
 }
