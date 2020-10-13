@@ -481,4 +481,25 @@ public class UserDAOImpl implements UserDAO {
 		return dao.insertXrayEx(vo);
 	}
 
+
+	@Override
+	public int updateBasicEx(Map<String, Object> map) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.updateBasicEx(map);
+	}
+
+
+	@Override
+	public int updateXrayEx(Map<String, Object> map) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.updateXrayEx(map);
+	}
+
+
+	@Override
+	public int updateCancerEx(Map<String, Object> map) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		return dao.updateCancerEx(map);
+	}
+
 }

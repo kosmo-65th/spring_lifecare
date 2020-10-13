@@ -15,7 +15,37 @@
 .tbl_type td{padding:6px 0 4px;color:#4c4c4c}
 .tbl_type td.ranking{font-weight:bold}
 /* //UI Object */
+.button-primary {
+	margin-top:20px;
+	margin-left:420px; 
+	background-color: #35cebe; 
+	border: 0.1rem solid #35cebe; 
+	border-radius: 499rem; 
+	font-size: 1rem;
+	color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 700;
+    width: 160px;
+    height: 2.8rem; 
+    line-height: 2.8rem;
+    text-align: center;
+    text-decoration: none; 
+    text-transform: uppercase;
+    white-space: nowrap;
+}
 </style>
+<script type="text/javascript">
+// xray검사 결과 수정
+$(function() {
+    $('#updateXray_result').click(function() {
+    	var xrayResult = $("#xrayResult").val();
+		var xray_num = $("#xray_num").val();		
+		window.location = "${path}/doctor/xray_exPro?xray_num="+xray_num+"&xray_result="+xrayResult;
+    });
+});
+
+</script>
 <title>X-RAY검사결과</title>
 </head><br><br>
 <img  style="margin-left:350; height:50px;" src="/lifecare/resources/img/logo.png">
@@ -55,10 +85,12 @@
 <tr>
 <th colspan="4"  style="font-size:15px;">의사소견</th>
 </tr>
-<tr style="height:150px;">
-<td colspan="4">${vo.getXray_result()}</td>
+<tr style="height:110px;"> 
+<td style="padding:0px 0px 0px;" colspan="4"><textarea id="xrayResult" style="text-align:center; resize: none; font-size: 20px; font-weight: 500; width:100%; height:110px; vertical-align:middle;">${vo.getXray_result()}</textarea></td>
 </tr>
 </table>
+<input type="button" class="button-primary" value="검사기록저장" id="updateXray_result">
+<input type="hidden" id="xray_num" value="${vo.getXray_num()}">
 <!--//ui object -->
 </body>
 </html>

@@ -436,5 +436,44 @@ public class DoctorServiceImpl implements DoctorService{
 		int insertCnt = userDAO.insertXrayEx(vo);
 		req.setAttribute("insertCnt", insertCnt);
 	}
+
+	@Override
+	public void modifyBasic(HttpServletRequest req, Model model) {
+		int ex_num = Integer.parseInt(req.getParameter("ex_num"));	
+		String ex_result = req.getParameter("ex_result");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("ex_num", ex_num);
+		map.put("ex_result", ex_result);
+		
+		int updateCnt = userDAO.updateBasicEx(map);
+		model.addAttribute("updateCnt", updateCnt);
+	}
+
+	@Override
+	public void modifyXray(HttpServletRequest req, Model model) {
+		int xray_num = Integer.parseInt(req.getParameter("xray_num"));	
+		String xray_result = req.getParameter("xray_result");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("xray_num", xray_num);
+		map.put("xray_result", xray_result);
+		
+		int updateCnt = userDAO.updateXrayEx(map);
+		model.addAttribute("updateCnt", updateCnt);
+	}
+
+	@Override
+	public void modifyCancer(HttpServletRequest req, Model model) {
+		int cancer_num = Integer.parseInt(req.getParameter("cancer_num"));	
+		String cancer_result = req.getParameter("cancer_result");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("cancer_num", cancer_num);
+		map.put("cancer_result", cancer_result);
+		
+		int updateCnt = userDAO.updateCancerEx(map);
+		model.addAttribute("updateCnt", updateCnt);
+	}
 	
 }
