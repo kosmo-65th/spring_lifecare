@@ -131,7 +131,7 @@ public class DeepLearningServiceImpl implements DeepLearningService{
 			commendList.add("cd "+modelSrc.substring(0,modelSrc.length()-10));
 			System.out.println("실행어 : "+ "cd "+modelSrc.substring(0,modelSrc.length()-10));
 			modelSrc=modelSrc.substring(0,modelSrc.length()-9) +"mobileNetV2model7.h5";
-			commendList.add("corona.py "+ modelSrc+" "+TestImgSrc);
+			commendList.add("python corona.py "+ modelSrc+" "+TestImgSrc);
 			System.out.println("실행어 : "+ "corona.py "+ modelSrc+" "+TestImgSrc);
 			
 			try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(stdin))) {
@@ -261,7 +261,7 @@ public class DeepLearningServiceImpl implements DeepLearningService{
 			commendList.add("cd "+modelSrc.substring(0,modelSrc.length()-10));
 			System.out.println("실행어 : "+ "cd "+modelSrc.substring(0,modelSrc.length()-10));
 			modelSrc=modelSrc.substring(0,modelSrc.length()-9) +"logreg.pkl";
-			commendList.add("cancer.py "+ modelSrc+" "+radius+" "+texture+" "+perimeter+" "+area+" "+smoothness+" "+compactness+" "+concavity+" "+
+			commendList.add("python cancer.py "+ modelSrc+" "+radius+" "+texture+" "+perimeter+" "+area+" "+smoothness+" "+compactness+" "+concavity+" "+
 					symmetry+" "+fractal_dimension+" "+age);
 			System.out.println("실행어 : "+ "cancer.py "+ modelSrc+" "+radius+" "+texture+" "+perimeter+" "+area+" "+smoothness+" "+compactness+" "+concavity+" "+
 					symmetry+" "+fractal_dimension+" "+age);
