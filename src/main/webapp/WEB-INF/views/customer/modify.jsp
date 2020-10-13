@@ -140,7 +140,7 @@
                <div class="emailCheck"  id="emailChk"></div>                                   
         <div class="press">
               <button type="submit" class="btn-type btn2 blue mr_2">확인</button>
-              <button type="reset" class="btn-type btn3 red mr_3">취소</button>
+              <button type="reset" style="background:#FF0000; border:1px; width:14%; height:4.7%; color:#fff">취소</button>
           </div>
       </div>
 </form>
