@@ -19,9 +19,9 @@
    <!-- CSS -->
    
    <!-- 코로나  js -->
+   <script src="${path_resources}js/covid19_3.js"></script>
    <script src="${path_resources}js/covid19_1.js"></script>
    <script src="${path_resources}js/covid19_2.js"></script>
-   <script src="${path_resources}js/covid19_3.js"></script>
    <script src="${path_resources}js/covid19_4.js"></script>
    <script src="${path_resources}js/covid19_5.js"></script>
    <script src="${path_resources}js/covid19_6.js"></script> 

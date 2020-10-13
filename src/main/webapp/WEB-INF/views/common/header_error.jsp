@@ -81,9 +81,9 @@
                                         <li><a href="#">진료서비스<i class="ti-angle-down"></i></a>
                                         	<ul class="submenu">
                                         		<li><a href="${path}/questionnaire">자가진단</a></li>
-                                        		<li><a href="#">진료예약</a></li>
-                                        		<li><a href="#">예약확인</a></li>
-                                        		<li><a href="#">결제 및 서류발급</a></li>
+                                        		<li><a href="${path}/customer/appointment">진료예약</a></li>
+                                        		<li><a href="${path}/customer/confirmAppointment">예약확인</a></li>
+                                        		<li><a href="${path}/customer/payment">결제 및 서류발급</a></li>
                                             </ul>
                                         </li>     
                                         <li><a href="#">이용안내<i class="ti-angle-down"></i></a>
@@ -95,8 +95,7 @@
                                         <li><a href="#">의료정보 <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
                                                 <li><a href="${path}/drugSearch">약정보</a></li>
-                                                <li><a href="#">질병정보</a></li>
-                                                <li><a href="#">응급처치</a></li>
+                                                <li><a href="${path }/first_aid">응급처치</a></li>
                                             </ul>
                                         </li>
                                         <li><a href="#">병원소개 <i class="ti-angle-down"></i></a>

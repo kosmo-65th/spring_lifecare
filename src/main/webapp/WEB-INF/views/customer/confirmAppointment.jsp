@@ -97,7 +97,7 @@ function joinInFocus(){
 				        	${i.getDoctor_name()}
 				      </div>
 				      <div class="cell1" id="reservation_date">
-				        	${i.getReservation_date()}
+				        	<fmt:formatDate type = "both" pattern = "yyyy-MM-dd HH:mm" value = "${i.getReservation_date()}"/>
 				      </div>
 				    </div>
 					</c:forEach>

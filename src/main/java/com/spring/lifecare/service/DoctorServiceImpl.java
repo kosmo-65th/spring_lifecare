@@ -31,8 +31,12 @@ import com.spring.lifecare.vo.DrugVO;
 import com.spring.lifecare.vo.ReservationVO;
 import com.spring.lifecare.vo.XrayExVO;
 
+import util.FinalString;
+
 @Service
 public class DoctorServiceImpl implements DoctorService{
+
+	String ip =FinalString.CALLBACKIP.getValue();
 	
 	@Autowired
 	UserDAO userDAO;
@@ -238,7 +242,7 @@ public class DoctorServiceImpl implements DoctorService{
 			// json에 값넣기
 			rowArray.put("title", cus.getCustomer_name() + " (" + (2020 - cus.getCustomer_year()) + "세 " + cus.getCustomer_gender() + ")");
 			rowArray.put("start", vo.getReservation_date());
-			rowArray.put("url", "http://localhost/lifecare/doctor/doctor_medicalNote?customer_id=" + vo.getCustomer_id());
+			rowArray.put("url", "http://"+ip+"/lifecare/doctor/doctor_medicalNote?customer_id=" + vo.getCustomer_id());
 			jsonArray.add(rowArray);
 		}	
 		req.setAttribute("jsonArray", jsonArray);		
@@ -337,7 +341,7 @@ public class DoctorServiceImpl implements DoctorService{
 		vo.setEx_result(req.getParameter("ex_result"));		
 		
 		int insertCnt = userDAO.insertBasicEx(vo);
-		model.addAttribute("insertCnt", insertCnt);
+		req.setAttribute("insertCnt", insertCnt);
 	}
 
 	@Override
@@ -400,7 +404,7 @@ public class DoctorServiceImpl implements DoctorService{
 		vo.setCancer_result(req.getParameter("cancer_result"));
 		
 		int insertCnt = userDAO.insertCancerEx(vo);
-		model.addAttribute("insertCnt", insertCnt);
+		req.setAttribute("insertCnt", insertCnt);
 	}
 
 	@Override
@@ -409,7 +413,7 @@ public class DoctorServiceImpl implements DoctorService{
 		
 		// 업로드할 파일의 최대 사이즈(10 * 1024 * 1024 = 10MB)
 		String saveDir = req.getSession().getServletContext().getRealPath("/resources/img/");	
-		String realDir = "D:\\test2\\spring_lifecare\\src\\main\\webapp\\resources\\img\\";
+		String realDir = "D:\\test4\\spring_lifecare\\src\\main\\webapp\\resources\\img\\";
 		
 		try {
 			file.transferTo(new File(saveDir+file.getOriginalFilename()));
@@ -434,7 +438,7 @@ public class DoctorServiceImpl implements DoctorService{
 		vo.setXray_result(req.getParameter("xray_result"));
 		
 		int insertCnt = userDAO.insertXrayEx(vo);
-		model.addAttribute("insertCnt", insertCnt);
+		req.setAttribute("insertCnt", insertCnt);
 	}
 	
 }

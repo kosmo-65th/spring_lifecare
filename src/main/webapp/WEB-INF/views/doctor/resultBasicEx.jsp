@@ -6,20 +6,25 @@
 <meta charset="UTF-8">
 <style type="text/css">
 /* UI Object */
-.tbl_type,.tbl_type th,.tbl_type td{border:0}
-.tbl_type{width:500px;border-bottom:2px solid #dcdcdc;font-family:'돋움',dotum;font-size:12px;text-align:center;border-collapse:collapse}
+.tbl_type {margin-left: 120px; margin-top: 40px;}
+.tbl_type,.tbl_type th,.tbl_type td{border: 1px solid #000; text-align: center;}
+.tbl_type{width:750px;font-family:'돋움',dotum;font-size:12px;text-align:center;border-collapse:collapse}
 .tbl_type caption{display:none}
 .tbl_type tfoot{background-color:#f5f7f9;font-weight:bold}
-.tbl_type th{padding:7px 0 4px;border-top:2px solid #dcdcdc;border-right:1px solid #dcdcdc;border-left:1px solid #dcdcdc;background-color:#f5f7f9;color:#666;font-family:'돋움',dotum;font-size:12px;font-weight:bold}
-.tbl_type td{padding:6px 0 4px;border:1px solid #e5e5e5;color:#4c4c4c}
+.tbl_type th{padding:15px 0.5 20px;background-color:#4c4c4c1a;color:#000;font-family:'돋움',dotum;font-size:15px;font-weight: 700;}
+.tbl_type td{padding:6px 0 4px;color:#4c4c4c; font-size:15px;}
 .tbl_type td.ranking{font-weight:bold}
 /* //UI Object */
 </style>
 <title>기초검사결과</title>
-</head>
-<body onresize="parent.resizeTo(530,480)" onload="parent.resizeTo(530,480)">
+</head><br><br>
+<img  style="margin-left:350; height:50px;" src="/lifecare/resources/img/logo.png">
+<body onresize="parent.resizeTo(1000,1000)" onload="parent.resizeTo(1000,1000)">
 <!--ui object -->
 <table class="tbl_type" border="1">
+<tr>
+<th colspan="4" style="font-size:25px; font-family:'돋움',dotum; font-weight: bold;">기초검사결과</th>
+</tr>
 <tr>
 <th>이름</th>
 <td>${vo.getCustomer_name()}</td>
@@ -82,12 +87,12 @@
 <th>사구체여과율</th>
 <td>${vo.getKidney4()}mg/min</td>
 </tr>
-<tfoot>
 <tr>
-<th>의사소견</th>
-<td colspan="3" style="font-weight:bolder;">${vo.getEx_result()}</td>
+<th colspan="4" style="font-size:15px;">의사소견</th>
 </tr>
-</tfoot>
+<tr style="height:100px;">
+<td colspan="4" style="font-weight:bolder;">${vo.getEx_result()}</td>
+</tr>
 </table>
 <!--//ui object -->
 </body>

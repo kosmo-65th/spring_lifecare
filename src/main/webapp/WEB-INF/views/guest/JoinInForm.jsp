@@ -29,7 +29,7 @@
   	// 이메일 검사 정규식
   	var mailJ = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
   	// 휴대폰 번호 정규식
-  	var phoneJ = /^[0-9]{10,11}$/;
+  	var phoneJ = /^[0-9]{11}$/;
   	
     
     function joinInFocus(){
@@ -144,7 +144,7 @@
 							$('#numberChk').css('color', 'red');
 							document.joinInform.hiddenPhone.value = "0";
 						} else {								
-							$('#numberChk').text("(02, -)를 제외하고 입력해 주세요");
+							$('#numberChk').text("(02, -)를 제외하고 8자리 이상 입력해 주세요");
 							$('#numberChk').css('color', 'red');
 							document.joinInform.hiddenPhone.value = "0";
 						}

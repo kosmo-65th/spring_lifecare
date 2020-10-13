@@ -145,7 +145,7 @@ $(document).ready(function(){
         	건강보험
       </div>
       <div class="cell1">
-        	${j.getDiagnosis_time()}
+        	<fmt:formatDate type = "both" pattern = "yyyy-MM-dd" value = "${j.getDiagnosis_time()}"/>
       </div>
       <div class="cell1">
         	${j.getCustomer_id()}

@@ -174,7 +174,7 @@ $(function() {
 			$('#searchDisplay').css("min-width", "0");
 			$('#searchDisplay').css("max-height", "none");
 			$('#searchDisplay').css("background", "#f9f9f9");
-			$('#searchDisplay').css("border-radius", "499rem");			
+			$('#searchDisplay').css("width", "570px");
 		}
 		
 		// keyword -> search_next.ja(search_next.jsp) -> result -> 콜백함수 -> display에 출력
@@ -256,7 +256,7 @@ $(function() {
 												<td>${i.getCustomer_name()}</td>
 												<td>기초검사</td>
 												<td>${i.getEx_result()}</td>
-												<td>${i.getBasic_date()}</td>
+												<td><fmt:formatDate type = "both" pattern = "yyyy-MM-dd" value = "${i.getBasic_date()}"/></td>
 												<td><a href="javascript:void(0)" onclick="window.open('${path}/doctor/resultBasicEx?ex_num=${i.getEx_num()}','기초검사결과','resizable=no width=530 height=370');return false"><img style="width:30px; height:30px" src="${path_resources}images/돋보기.png"></a></td>
 											</tr>
 											</c:forEach>
@@ -282,7 +282,7 @@ $(function() {
 												<td>${i.getCustomer_name()}</td>
 												<td>X-RAY검사</td>
 												<td>${i.getXray_result()}</td>
-												<td>${i.getXray_date()}</td>
+												<td><fmt:formatDate type = "both" pattern = "yyyy-MM-dd" value = "${i.getXray_date()}"/></td>
 												<td><a href="javascript:void(0)" onclick="window.open('${path}/doctor/resultXrayEx?xray_num=${i.getXray_num()}','x-ray검사결과','resizable=no width=530 height=370');return false"><img style="width:30px; height:30px" src="${path_resources}images/돋보기.png"></a></td>
 											</tr>
 											</c:forEach>
@@ -308,7 +308,7 @@ $(function() {
 												<td>${i.getCustomer_name()}</td>
 												<td>암(유방)검사</td>
 												<td>${i.getCancer_result()}</td>
-												<td>${i.getCancer_date()}</td>
+												<td><fmt:formatDate type = "both" pattern = "yyyy-MM-dd" value = "${i.getCancer_date()}"/></td>
 												<td><a href="javascript:void(0);" onclick="window.open('${path}/doctor/resultCancerEx?cancer_num=${i.getCancer_num()}','암검사결과','resizable=no width=530 height=370');return false"><img style="width:30px; height:30px" src="${path_resources}images/돋보기.png"></a></td>
 											</tr>
 											</c:forEach>
@@ -323,5 +323,27 @@ $(function() {
 			<p class="credit">HTML5 Admin Template by <a href="https://www.medialoot.com">Medialoot</a></p>
 		</section>
 	</div>		
+	<!-- Start of UiPath Chatbot widget -->
+    <script>
+  window.addEventListener("message", function (event) {
+      if (event.data.hasOwnProperty("frameSize")) {
+          const size = event.data.frameSize;
+          document.getElementById("uipath-chatbot-iframe").style.height = size.height;
+          document.getElementById("uipath-chatbot-iframe").style.width = size.width;
+      }
+  });
+</script>
+<iframe src="https://chatbot.uipath.com/web-channel?connectionId=058b734c-abbb-4acb-b9d6-8976248ebae5"
+  id="uipath-chatbot-iframe"
+  style="
+      z-index: 9999;
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      height: 112px;
+      width: 120px;
+      border: 0;">
+</iframe>
+<!-- End of UiPath Chatbot widget -->
 </body>
 </html>

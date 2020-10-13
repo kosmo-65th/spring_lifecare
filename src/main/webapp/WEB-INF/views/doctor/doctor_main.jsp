@@ -2,6 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/resources/setting/setting.jsp" %>
 <html>
+<style>
+	.fc-ltr .fc-list-heading-alt{
+		margin-right:15px !important;		
+	}
+	
+</style>
 <head>
 	<meta charset="utf-8">
 	<title>Doctor Template</title>
@@ -56,7 +62,7 @@
           var eventObj = info.event;
 
           if (eventObj.url) {
-            window.open(eventObj.url);
+        	  window.location.href = eventObj.url;
 
             info.jsEvent.preventDefault(); // prevents browser from following link in current tab.
           } else {
@@ -102,9 +108,10 @@
 		        		var event = {
 		        				title: result[i].title,
 		        				start: result[i].start,
+		        				duration: '02:00',
 		        				url: result[i].url
 		        		};
-		        		
+		        	
 		        		events.push(event);
 		        		
 		        	}
@@ -150,7 +157,7 @@ $(function() {
 			$('#searchDisplay').css("min-width", "0");
 			$('#searchDisplay').css("max-height", "none");
 			$('#searchDisplay').css("background", "#f9f9f9");
-			$('#searchDisplay').css("border-radius", "499rem");
+			$('#searchDisplay').css("width", "570px");
 			
 		}
 		
@@ -241,7 +248,7 @@ $(function() {
 										<td>${i.getCustomer_gender()}</td>
 										<td><fmt:formatNumber value="${2020 - i.getCustomer_year()}" pattern="#,###"/>세</td>
 										<td>${i.getDisease_code()}</td>
-										<td>${i.getDiagnosis_time()}</td>
+										<td><fmt:formatDate type = "both" pattern = "yyyy-MM-dd" value = "${i.getDiagnosis_time()}"/></td>
 									</tr>
 									</c:forEach>	
 								</tbody>
@@ -252,6 +259,28 @@ $(function() {
 			</div>					
 			<p class="credit">HTML5 Admin Template by <a href="https://www.medialoot.com">Medialoot</a></p>
 		</section>
-	</div>					
+	</div>		
+	<!-- Start of UiPath Chatbot widget -->
+    <script>
+  window.addEventListener("message", function (event) {
+      if (event.data.hasOwnProperty("frameSize")) {
+          const size = event.data.frameSize;
+          document.getElementById("uipath-chatbot-iframe").style.height = size.height;
+          document.getElementById("uipath-chatbot-iframe").style.width = size.width;
+      }
+  });
+</script>
+<iframe src="https://chatbot.uipath.com/web-channel?connectionId=058b734c-abbb-4acb-b9d6-8976248ebae5"
+  id="uipath-chatbot-iframe"
+  style="
+      z-index: 9999;
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      height: 112px;
+      width: 120px;
+      border: 0;">
+</iframe>
+<!-- End of UiPath Chatbot widget -->			
 </body>
 </html>

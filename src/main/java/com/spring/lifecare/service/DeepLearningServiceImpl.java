@@ -325,22 +325,22 @@ public class DeepLearningServiceImpl implements DeepLearningService{
 		}
 		
 		ArrayList<String> realresult = new ArrayList<String>();
+		Map<String, Object> result = new HashMap<String, Object>();
 		
 		for(String test : list) {
 			if(test.contains("[")) {
-				System.out.println(test.substring(1,test.length()-1));
+				System.out.println("test : " +test.substring(1,test.length()-1));
 				test = test.substring(1,test.length()-1);
 				realresult.add(test);
+				
+				if(test.equals("0")) {
+					result.put("result", "악성");
+				} else {
+					result.put("result", "양성");
+				}
 			}
 		}
 		
-		Map<String, Object> result = new HashMap<String, Object>();
-		
-		if(realresult.get(0).equals("0")) {
-			result.put("result", "악성");
-		} else {
-			result.put("result", "양성");
-		}
 		result.put("percent", "82.09%");
 		
 		System.out.println("결과 : "+result.get("result"));
