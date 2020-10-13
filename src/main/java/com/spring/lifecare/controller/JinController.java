@@ -281,7 +281,6 @@ public class JinController {
     // 마이페이지
  	@RequestMapping("/customer/mypage")
  	public String mypage(HttpServletRequest req, Model model) {
- 		doctor.saveCancerEx(req, model);
  		return "customer/Mypage";
  	}
  	

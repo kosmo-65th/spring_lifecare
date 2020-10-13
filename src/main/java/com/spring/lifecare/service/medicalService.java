@@ -20,4 +20,7 @@ public interface medicalService {
 	//회원-결제된 처방내용 print
 	public void prescriptionprint(HttpServletRequest req, Model model);
 	
+	//회원-결제된 진단내용 print
+	public void diagnosisprint(HttpServletRequest req, Model model);
+	
 }
