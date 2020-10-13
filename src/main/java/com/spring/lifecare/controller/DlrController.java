@@ -72,5 +72,4 @@ public class DlrController {
 	public Map<String,Object> jimunLogin(HttpServletRequest req) {
 		return android_LoginService.jimunLogin(req);
 	}
-	
 }
