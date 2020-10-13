@@ -256,7 +256,7 @@ $(function() {
 												<td>${i.getCustomer_name()}</td>
 												<td>기초검사</td>
 												<td>${i.getEx_result()}</td>
-												<td>${i.getBasic_date()}</td>
+												<td><fmt:formatDate type = "both" pattern = "yyyy-MM-dd" value = "${i.getBasic_date()}"/></td>
 												<td><a href="javascript:void(0)" onclick="window.open('${path}/doctor/resultBasicEx?ex_num=${i.getEx_num()}','기초검사결과','resizable=no width=530 height=370');return false"><img style="width:30px; height:30px" src="${path_resources}images/돋보기.png"></a></td>
 											</tr>
 											</c:forEach>
@@ -282,7 +282,7 @@ $(function() {
 												<td>${i.getCustomer_name()}</td>
 												<td>X-RAY검사</td>
 												<td>${i.getXray_result()}</td>
-												<td>${i.getXray_date()}</td>
+												<td><fmt:formatDate type = "both" pattern = "yyyy-MM-dd" value = "${i.getXray_date()}"/></td>
 												<td><a href="javascript:void(0)" onclick="window.open('${path}/doctor/resultXrayEx?xray_num=${i.getXray_num()}','x-ray검사결과','resizable=no width=530 height=370');return false"><img style="width:30px; height:30px" src="${path_resources}images/돋보기.png"></a></td>
 											</tr>
 											</c:forEach>
@@ -308,7 +308,7 @@ $(function() {
 												<td>${i.getCustomer_name()}</td>
 												<td>암(유방)검사</td>
 												<td>${i.getCancer_result()}</td>
-												<td>${i.getCancer_date()}</td>
+												<td><fmt:formatDate type = "both" pattern = "yyyy-MM-dd" value = "${i.getCancer_date()}"/></td>
 												<td><a href="javascript:void(0);" onclick="window.open('${path}/doctor/resultCancerEx?cancer_num=${i.getCancer_num()}','암검사결과','resizable=no width=530 height=370');return false"><img style="width:30px; height:30px" src="${path_resources}images/돋보기.png"></a></td>
 											</tr>
 											</c:forEach>

@@ -31,8 +31,12 @@ import com.spring.lifecare.vo.DrugVO;
 import com.spring.lifecare.vo.ReservationVO;
 import com.spring.lifecare.vo.XrayExVO;
 
+import util.FinalString;
+
 @Service
 public class DoctorServiceImpl implements DoctorService{
+
+	String ip =FinalString.CALLBACKIP.getValue();
 	
 	@Autowired
 	UserDAO userDAO;
@@ -238,7 +242,7 @@ public class DoctorServiceImpl implements DoctorService{
 			// json에 값넣기
 			rowArray.put("title", cus.getCustomer_name() + " (" + (2020 - cus.getCustomer_year()) + "세 " + cus.getCustomer_gender() + ")");
 			rowArray.put("start", vo.getReservation_date());
-			rowArray.put("url", "http://localhost/lifecare/doctor/doctor_medicalNote?customer_id=" + vo.getCustomer_id());
+			rowArray.put("url", "http://"+ip+"/lifecare/doctor/doctor_medicalNote?customer_id=" + vo.getCustomer_id());
 			jsonArray.add(rowArray);
 		}	
 		req.setAttribute("jsonArray", jsonArray);		

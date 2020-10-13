@@ -159,7 +159,10 @@
 		text-align: center !important;
 		color: #000 !important; 
 	}
-	 
+	
+	.CoronaText{
+		color:#FF0004 !important; background-color:#FAFA96 !important; font-weight:bold !important;
+	}
 
 	</style>
 	<!-- Google Fonts -->
@@ -240,6 +243,25 @@ $(function() {
             	var data_JSON_String = JSON.stringify(data);
             	var data_parse = JSON.parse(data_JSON_String);
             	
+            	$("#normal").removeClass();
+            	$("#normal").prev().removeClass();
+            	$("#corona").removeClass();
+            	$("#corona").siblings().removeClass();
+            	$("#pneumonia").removeClass();
+            	$("#pneumonia").siblings().removeClass();
+            	
+            	if(data_parse.normal >80){
+            		$("#normal").addClass("CoronaText");
+            		$("#normal").prev().addClass("CoronaText");
+            	}
+            	if(data_parse.corona >80){
+            		$("#corona").addClass("CoronaText");
+            		$("#corona").siblings().addClass("CoronaText");
+            	}
+            	if(data_parse.pneumonia >80){
+            		$("#pneumonia").addClass("CoronaText");
+            		$("#pneumonia").siblings().addClass("CoronaText");
+            	}
             	
                 $("#normal").text(data_parse.normal+"%");
                 $("#corona").text(data_parse.corona+"%");
@@ -628,6 +650,25 @@ function readImage() {
 		};
 	}
 };
+
+function diagnosisFocus(){
+	 if (document.medicalForm.disease_code.value == ""){
+		 alert("질병코드를 입력해주세요.");
+		 return false;
+	 }
+	 if (document.medicalForm.cc.value == ""){
+		 alert("주증상를 입력해주세요.");
+		 return false;
+	 }
+	 if (document.medicalForm.pi.value == ""){
+		 alert("현재병력을 입력해주세요.");
+		 return false;
+	 }
+	 if (document.medicalForm.ros.value == ""){
+		 alert("증세를 입력해주세요.");
+		 return false;
+	 }
+}
 </script>
 
 <script> 
@@ -769,7 +810,7 @@ $(function() {
 					}
 				} 
 			
-			$(".blood_result").html("이완기 혈압 " + parseFloat(blood1).toFixed(2)+ " mmHg /dL " + " "+ blood_msg + "입니다."); 
+			$(".blood_result").html("수축기 혈압 " + parseFloat(blood1).toFixed(2)+ " mmHg /dL " + " "+ blood_msg + "입니다."); 
 			
 			return; 
 			
@@ -1169,7 +1210,7 @@ $(function(){
 							</div>
 							<div class='css3-tab-content tab-one'>														
 						<div class="card-block">
-							<form action="${path}/doctor/diagnosisPro" method="post" name="medicalForm">
+							<form action="${path}/doctor/diagnosisPro" method="post" name="medicalForm" onsubmit="return diagnosisFocus();">
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 							<input type="hidden" name="customer_id" value="${vo.getCustomer_id()}"> 
 								<fieldset>
@@ -1270,7 +1311,7 @@ $(function(){
 									<input type="text" placeholder="진료금액" name="customer_amount"style="width:450px;">
 									<div id="drugList5"></div>									
 									<br>
-									<input style="float:left;" class="button-primary" type="submit" value="진료기록저장">
+									<input type="submit" style="float:left;" class="button-primary" value="진료기록저장">
 								</fieldset>
 							</form>
 						</div>
@@ -1343,8 +1384,7 @@ $(function(){
 							<input type="text" value="혈창크레아티닌" id="label" style="width:200px" disabled>	
 							<input type="text" placeholder="1.5mg/dL이하" name="kidney3" style="width:450px" id="kidney3" class="kidney3">
 							<input type="text" value="사구체여과율" id="label" style="width:200px" disabled>	
-							<input type="text" placeholder="60ml/min이상" name="kidney4" style="width:450px" id="kidney4" class="kidney4">
-							<input type="hidden" name="customer_id" value="${vo.getCustomer_id()}">																
+							<input type="text" placeholder="60ml/min이상" name="kidney4" style="width:450px" id="kidney4" class="kidney4">															
 												
 						<label for="commentField">Comment</label>
 							<textarea style="resize: none;" placeholder="소견 작성" id="commentField" name="ex_result"></textarea>
@@ -1376,8 +1416,8 @@ $(function(){
 											<table>
 												<thead>
 												<tr>
-													<th style="width:70%;">이미지</th>
-													<th style="width:30%;" colspan="2">결과</th>
+													<th style="width:60%;">이미지</th>
+													<th style="width:40%; text-align:center" colspan="2">결과</th>
 												</tr>
 												</thead>
 												<tbody style="height:600px;">										    

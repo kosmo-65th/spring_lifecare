@@ -155,7 +155,7 @@
 	<![CDATA[
         select d.diagnosis_num, d.diagnosis_time, c.customer_name, c.customer_gender, customer_year, to_char(sysdate,'YYYY')-c.customer_year as customer_age, 
         	   c.customer_email, c.customer_phone, o.doctor_name, o.doctor_major, d.customer_amount, d.diagnosis_phx, d.diagnosis_fhx, 
-        	   d.diagnosis_pi, d.diagnosis_ros, d.diagnosis_pex
+        	   d.diagnosis_bp, d.diagnosis_rr, d.diagnosis_pr, d.diagnosis_pt, d.diagnosis_pi, d.diagnosis_ros, d.diagnosis_pex
         from diagnosis d, customer c, doctor o
         where d.doctor_id = o.doctor_id
         and d.customer_id = c.customer_id
@@ -195,7 +195,7 @@
 	<![CDATA[
         select d.diagnosis_num, d.diagnosis_time, c.customer_name, c.customer_gender, customer_year, to_char(sysdate,'YYYY')-c.customer_year as customer_age, 
         	   c.customer_email, c.customer_phone, o.doctor_name, o.doctor_major, d.customer_amount, d.diagnosis_phx, d.diagnosis_fhx, 
-        	   d.diagnosis_pi, d.diagnosis_ros, d.diagnosis_pex
+        	   d.diagnosis_bp, d.diagnosis_rr, d.diagnosis_pr, d.diagnosis_pt, d.diagnosis_pi, d.diagnosis_ros, d.diagnosis_pex
         from diagnosis d, customer c, doctor o
         where d.doctor_id = o.doctor_id
         and d.customer_id = c.customer_id
@@ -230,5 +230,20 @@
         and i.customer_payment = 1
         and i.diagnosis_num = #{diagnosis_num}
      ]]>
+	</select>
+	
+	<!-- 상세페이지 조회(결제 완료 = 진료기록) -->
+	<select id = "diagnosisprint" parameterType = "java.util.Map" resultType = "com.spring.lifecare.vo.medicalVO">
+	<![CDATA[
+        select d.diagnosis_num, d.diagnosis_time, c.customer_name, c.customer_gender, customer_year, to_char(sysdate,'YYYY')-c.customer_year as customer_age, 
+        	   c.customer_email, c.customer_phone, o.doctor_name, o.doctor_num, o.doctor_major, d.customer_amount, d.diagnosis_phx, d.diagnosis_fhx, 
+        	   i.disease_code, i.disease_name, d.diagnosis_pi, d.diagnosis_ros, d.diagnosis_pex
+        from diagnosis d, customer c, doctor o , disease i
+        where d.doctor_id = o.doctor_id
+        and d.customer_id = c.customer_id
+        and d.disease_code = i.disease_code
+        and d.customer_payment = 1
+        and d.diagnosis_num = #{diagnosis_num}
+	]]>
 	</select>
 </mapper>

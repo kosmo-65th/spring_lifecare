@@ -62,7 +62,7 @@
           var eventObj = info.event;
 
           if (eventObj.url) {
-            window.open(eventObj.url);
+        	  window.location.href = eventObj.url;
 
             info.jsEvent.preventDefault(); // prevents browser from following link in current tab.
           } else {
@@ -108,9 +108,10 @@
 		        		var event = {
 		        				title: result[i].title,
 		        				start: result[i].start,
+		        				duration: '02:00',
 		        				url: result[i].url
 		        		};
-		        		
+		        	
 		        		events.push(event);
 		        		
 		        	}
@@ -247,7 +248,7 @@ $(function() {
 										<td>${i.getCustomer_gender()}</td>
 										<td><fmt:formatNumber value="${2020 - i.getCustomer_year()}" pattern="#,###"/>세</td>
 										<td>${i.getDisease_code()}</td>
-										<td>${i.getDiagnosis_time()}</td>
+										<td><fmt:formatDate type = "both" pattern = "yyyy-MM-dd" value = "${i.getDiagnosis_time()}"/></td>
 									</tr>
 									</c:forEach>	
 								</tbody>
