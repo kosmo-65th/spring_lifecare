@@ -83,4 +83,13 @@ public interface DoctorService  {
 	  
 	  // x-ray 검사결과 불러오기
 	  public void loadXrayExInfo(HttpServletRequest req, Model model);
+	  
+	  // 기초검사 의사소견 수정
+	  public void modifyBasic(HttpServletRequest req, Model model);
+	  
+	  // 기초검사 의사소견 수정
+	  public void modifyXray(HttpServletRequest req, Model model);
+	  
+	  // 기초검사 의사소견 수정
+	  public void modifyCancer(HttpServletRequest req, Model model);
 }

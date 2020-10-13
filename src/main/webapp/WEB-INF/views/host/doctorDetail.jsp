@@ -8,8 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-
-<<title>의사 상세정보</title>
+<title>의사 상세정보</title>
 
  <!-- Custom fonts for this template-->
   <link href="${path_resources}sb_admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -104,12 +103,8 @@
 	      </div>
         </div>
         <!-- /.container-fluid -->
-
 	<!-- Footer -->
 	 <%@include file="./host_footer.jsp" %>	
 	<!-- End of Footer -->
-
-
 </body>
- 
 </html>
