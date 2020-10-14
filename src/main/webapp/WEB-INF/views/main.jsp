@@ -200,7 +200,6 @@
   		 </div>
       <%@include file="./common/footer.jsp" %>
       <!-- end copyrights -->
-      <a href="#home" data-scroll class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
       <!-- all js files -->
       <script src="${path_resources_lifecare}js/all.js"></script>
       <!-- all plugins -->
