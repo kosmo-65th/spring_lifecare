@@ -74,10 +74,7 @@
 				<th class="tg-c3ow" style = "background-color:#E8E8E8">이메일 주소</th>
 				<td class="tg-c3ow" colspan="3">${dto.customer_email}</td>
 				<th class="tg-c3ow" style = "background-color:#E8E8E8">전화번호 </th>
-				<td class="tg-c3ow" width="100px">
-				<c:set value="${dto.customer_phone}" var="phoneNum"/>
-				<c:out value="${fn:substring(phoneNum, 0, 3)}-${fn:substring(phoneNum, 3, 7)}-${fn:substring(phoneNum, 7, 11)}"/>
-				</td>
+				<td class="tg-c3ow" width="100px"><c:set value="${dto.customer_phone}" var="phoneNum"/><c:out value="${fn:substring(phoneNum, 0, 3)}-${fn:substring(phoneNum, 3, 7)}-${fn:substring(phoneNum, 7, 11)}"/></td>
 				<th class="tg-c3ow" style = "background-color:#E8E8E8">진료번호</th>
 				<td class="tg-c3ow" width="100px">${dto.diagnosis_num}</td>
 			</tr>
