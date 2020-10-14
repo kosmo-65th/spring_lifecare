@@ -515,7 +515,17 @@ public class JinController {
 					map.put("doctor_major", vo.getDoctor_major());
 					map.put("doctor_name", vo.getDoctor_name());
 					map.put("disease_name", vo.getDisease_name());
-					map.put("diagnosis_drug", vo.getDrug1() + "\n" + vo.getDrug2() + "\n" + vo.getDrug3());
+					if(vo.getDrug_name1() == null) {
+						map.put("drug", "없음");
+					} else if(vo.getDrug_name1() != null) {
+						if(vo.getDrug_name2() == null) {
+							map.put("drug", vo.getDrug_name1());
+						} else if(vo.getDrug_name2() != null) {
+							map.put("drug", vo.getDrug_name1() + "\n" + vo.getDrug_name2());
+						}
+					} else {
+						map.put("drug", vo.getDrug_name1() + "\n" + vo.getDrug_name2() + "\n" + vo.getDrug_name3());
+					}					
 					map.put("diagnosis_time", t);				
 					out.add(map);
 		}				
