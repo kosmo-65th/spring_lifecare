@@ -978,12 +978,18 @@
 
    <!-- 진료결과 조회 리스트 -->
    <select id="pickDiagnosisList" resultType="com.spring.lifecare.vo.DiagnosisVO" parameterType="String">
-   		<![CDATA[
-		SELECT d.diagnosis_num, d.diagnosis_time, o.doctor_name, o.doctor_major, i.disease_name, d.drug1, d.drug2, d.drug3
-		  FROM diagnosis d, doctor o, disease i
+   		<![CDATA[	 
+		SELECT d.diagnosis_num, d.diagnosis_time, o.doctor_name, o.doctor_major, i.disease_name, d1.drug_name as drug_name1, d2.drug_name as drug_name2, d3.drug_name as drug_name3
+		  FROM diagnosis d, doctor o, disease i, drug d1, drug d2, drug d3
 		 WHERE d.doctor_id = o.doctor_id
 		   AND d.disease_code = i.disease_code
-		   AND customer_id = #{customer_id}
+           and d.drug1 = d1.drug_number(+)
+           and (d.drug1 is not null or d.drug1 is null)
+           and d.drug2 = d2.drug_number(+)
+           and (d.drug2 is not null or d.drug2 is null)
+           and d.drug3 = d3.drug_number(+)
+           and (d.drug3 is not null or d.drug3 is null)
+		   AND d.customer_id = #{customer_id}
 		 ORDER BY d.diagnosis_time DESC
    		 ]]>
    </select>

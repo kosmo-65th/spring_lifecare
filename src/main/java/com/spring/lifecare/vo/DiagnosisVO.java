@@ -42,4 +42,9 @@ public class DiagnosisVO {
 	
 	// 질병
 	private String disease_name;
+	
+	//약
+	private String drug_name1;
+	private String drug_name2;
+	private String drug_name3;
 }
