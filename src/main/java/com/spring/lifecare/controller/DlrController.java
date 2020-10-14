@@ -24,7 +24,6 @@ public class DlrController {
 	@Autowired
 	Android_LoginService android_LoginService;
 	
-	
 	//로그인 페이지
 	@RequestMapping("/login")
 	public String login(Model model) {
