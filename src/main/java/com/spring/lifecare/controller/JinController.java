@@ -312,9 +312,10 @@ public class JinController {
  	
  	// 예약 성공
  	@RequestMapping("/customer/appointPro")
- 	public String appointPro(HttpServletRequest req, Model model) { 		
+ 	public String appointPro(HttpServletRequest req, Model model) throws Exception { 		
  		// 예약가능 테이블(appointment) update + 병원 예약 테이블(reservation) insert
  		customer.successReservation(req, model);
+ 		
  		return "customer/appointPro";
  	}
  	

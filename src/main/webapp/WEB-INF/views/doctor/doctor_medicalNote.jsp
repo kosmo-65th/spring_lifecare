@@ -883,6 +883,7 @@ $(function() {
 		} 
 	}
 );
+
 //이상지질혈증
 //tc
 $(function(){
@@ -911,6 +912,7 @@ $(function(){
 		}
 	})
 });  
+
 //tg
 $(function(){
 	$('#tg').on('input',function(){
@@ -929,6 +931,7 @@ $(function(){
 		}
 	})
 });  
+
 //ldl
 $(function(){
 	$('#ldl').on('input',function(){
@@ -956,7 +959,7 @@ $(function(){
 	})
 });  
 
-//tg
+//hdl
 $(function(){
 	$('#hdl').on('input',function(){
 	var value = $('#hdl').val();  
@@ -991,7 +994,8 @@ $(function(){
 		}
 	})
 });  
-//혈소판
+
+//혈색소
 $(function(){
 	$('#platelet').on('input',function(){
 	var value = $('#platelet').val();  
@@ -1008,6 +1012,7 @@ $(function(){
 		}
 	})
 });  
+
 //AST
 $(function(){
 	$('#ast').on('input',function(){
@@ -1025,6 +1030,7 @@ $(function(){
 		}
 	})
 });  
+
 //ALT
 $(function(){
 	$('#alt').on('input',function(){
@@ -1042,6 +1048,7 @@ $(function(){
 		}
 	})
 });  
+
 //gtp
 $(function(){
 	$('#gtp').on('input',function(){

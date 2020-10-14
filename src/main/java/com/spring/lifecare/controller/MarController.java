@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.spring.lifecare.service.AdminService;
 import com.spring.lifecare.service.DoctorService;
 import com.spring.lifecare.service.DrugService;
+
+import util.FcmUtil;
 
 @Controller
 public class MarController {
@@ -98,8 +101,6 @@ public class MarController {
 		ArrayList<Map<String,Object>> result = service.drugPhotoDetail(req);
 		return result;
 	}
-		
-
 	
 }
 	
