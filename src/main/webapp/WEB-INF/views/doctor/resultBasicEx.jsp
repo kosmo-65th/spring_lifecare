@@ -15,7 +15,38 @@
 .tbl_type td{padding:6px 0 4px;color:#4c4c4c; font-size:15px;}
 .tbl_type td.ranking{font-weight:bold}
 /* //UI Object */
+.button-primary {
+	margin-top:20px;
+	margin-left:420px; 
+	background-color: #35cebe; 
+	border: 0.1rem solid #35cebe; 
+	border-radius: 499rem; 
+	font-size: 1rem;
+	color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 700;
+    width: 160px;
+    height: 2.8rem;
+    line-height: 2.8rem;
+    text-align: center;
+    text-decoration: none; 
+    text-transform: uppercase;
+    white-space: nowrap;
+}
 </style>
+<script type="text/javascript">
+// 기초검사 결과 수정
+$(function() {
+    $('#updateEx_result').click(function() {
+    	var ex_result = $("#ex_result").val();
+		var ex_num = $("#ex_num").val();
+		
+		window.location = "${path}/doctor/basic_exPro?ex_num="+ex_num+"&ex_result="+ex_result;
+    });
+});
+
+</script>
 <title>기초검사결과</title>
 </head><br><br>
 <img  style="margin-left:350; height:50px;" src="/lifecare/resources/img/logo.png">
@@ -91,9 +122,11 @@
 <th colspan="4" style="font-size:15px;">의사소견</th>
 </tr>
 <tr style="height:100px;">
-<td colspan="4" style="font-weight:bolder;">${vo.getEx_result()}</td>
+<td colspan="4" style="padding:0px 0px 0px;"><textarea id="ex_result" style="text-align:center; resize: none; font-size: 20px; font-weight: 500; width:100%; height:110px; vertical-align:middle;">${vo.getEx_result()}</textarea></td>
 </tr>
 </table>
+<input type="button" class="button-primary" value="검사기록저장" id="updateEx_result">
+<input type="hidden" id="ex_num" value="${vo.getEx_num()}">
 <!--//ui object -->
 </body>
 </html>

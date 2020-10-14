@@ -328,13 +328,12 @@ public class DeepLearningServiceImpl implements DeepLearningService{
 		
 		ArrayList<String> realresult = new ArrayList<String>();
 		Map<String, Object> result = new HashMap<String, Object>();
-		
 		for(String test : list) {
 			if(test.contains("[")) {
 				System.out.println("test : " +test.substring(1,test.length()-1));
 				test = test.substring(1,test.length()-1);
 				realresult.add(test);
-				
+				System.out.println(realresult);
 				if(test.equals("0")) {
 					result.put("result", "악성");
 				} else {
