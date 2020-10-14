@@ -83,8 +83,14 @@
 			</tr>
 			<tr>
 				<th class="tg-c3ow" colspan="2" style = "background-color:#E8E8E8">V/S</th>
-				<td class="tg-c3ow" colspan="9" style = "text-align:left">BP = ${dto.diagnosis_bp}&nbsp;&nbsp; / &nbsp;&nbsp;RR = ${dto.diagnosis_rr}&nbsp;&nbsp; / &nbsp;&nbsp;PR = ${dto.diagnosis_pr}&nbsp;&nbsp; / &nbsp;&nbsp;BT = ${dto.diagnosis_pt}</td>
-			</tr>
+				<td class="tg-c3ow" style = "text-align:left">BP</td>
+				<td>${dto.diagnosis_bp}</td>
+				<td class="tg-c3ow" style = "text-align:left">RR</td>
+				<td>${dto.diagnosis_rr}</td>
+				<td class="tg-c3ow" style = "text-align:left">PR</td>
+				<td>${dto.diagnosis_pr}</td>
+				<td class="tg-c3ow" style = "text-align:left">BT</td>
+				<td>${dto.diagnosis_pt}</td>
 			<tr>	
 				<th class="tg-c3ow" colspan="2" style = "background-color:#E8E8E8">PHx</th>
 				<td class="tg-c3ow" colspan="9" style = "text-align:left">${dto.diagnosis_phx}</td>
@@ -93,7 +99,7 @@
 				<th class="tg-c3ow" colspan="2" style = "background-color:#E8E8E8">FHx</th>
 				<td class="tg-c3ow" colspan="9" style = "text-align:left">${dto.diagnosis_fhx}</td>	
 			</tr>
-			<tr>	
+			<tr style="height:150px;">	
 				<th class="tg-c3ow" colspan="2" style = "background-color:#E8E8E8">PI</th>
 				<td class="tg-c3ow" colspan="9" style = "text-align:left">${dto.diagnosis_pi}</td>	
 			</tr>

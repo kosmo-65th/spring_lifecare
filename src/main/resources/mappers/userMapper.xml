@@ -927,6 +927,7 @@
 		SELECT *
 		FROM(SELECT diagnosis_num, diagnosis_time, customer_id, customer_amount, customer_payment, rowNum as rNum
 			   FROM(SELECT * FROM diagnosis
+			   		 where customer_id = #{customer_id}
 				 	 order by diagnosis_time desc))
 		 WHERE rNum >= #{start} and rNum <= #{end} and customer_id = #{customer_id}
    		 ]]>
