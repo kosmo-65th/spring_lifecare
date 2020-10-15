@@ -46,12 +46,15 @@
 		bottom: 15%;
 	}	
 } 
+.chatbot{
+	
+}
 </style>
 </head>
 <body>
 	<div class="chatbot">
   		<a href= "javascript:window.open('${path}/customer/chatbot')" onclick="chatbot();">
-  		<img title="chat-bot" src="${path_resources}img/chatBot.png" 
+  		<img class="chatbot" title="chat-bot" src="${path_resources}img/chatBot.png" 
   		style="width: 120px; height: 120px;"></a>
   	</div>
   	

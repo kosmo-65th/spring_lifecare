@@ -18,7 +18,10 @@ String authority = authorities.toString();
 		window.location = "${path}/admin/summary";
 	}
 </script>
-
- <%@ include file="./header_error.jsp" %> 
+	
+	<%@ include file="./header_error.jsp" %>
+	
+	<%@ include file="./chatbot.jsp"%> 
+ 
 </body>
 </html>

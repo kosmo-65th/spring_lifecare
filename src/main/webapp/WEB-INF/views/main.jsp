@@ -166,7 +166,7 @@
 		<%= posts2 %>
 		</div>
 	  </div>
-      <%@include file="./common/chatbot.jsp"%>
+      
       <br>
       
       <div id="map" style="width:47%;height:500px; margin:0 auto;"></div>
