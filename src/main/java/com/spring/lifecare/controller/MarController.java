@@ -19,8 +19,9 @@ import com.spring.lifecare.service.DrugService;
 import util.FcmUtil;
 
 @Controller
+
 public class MarController {
-	
+	     
 	@Autowired 
 	DrugService service;
 	@Autowired 
