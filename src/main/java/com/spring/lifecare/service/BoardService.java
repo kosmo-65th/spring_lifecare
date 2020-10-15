@@ -25,8 +25,11 @@ public interface BoardService {
 	//회원-게시글 삭제 처리
 	public void deletePro(HttpServletRequest req, Model model);
 	
+	//회원-답변글 상세 페이지
+	//public void replyserch(HttpServletRequest req, Model model);
+	
 	//admin-총 게시글 페이지
-	public void adminboardList(HttpServletRequest req, Model model);
+	//public void adminboardList(HttpServletRequest req, Model model);
 	
 	//admin-총 게시글 상세 페이지
 	public void adminboardcontent(HttpServletRequest req, Model model);

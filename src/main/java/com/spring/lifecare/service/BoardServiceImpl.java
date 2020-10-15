@@ -27,6 +27,9 @@ public class BoardServiceImpl implements BoardService {
 	//회원-게시글 목록
 	@Override
 	public void boardList(HttpServletRequest req, Model model) {
+		// session id값 받아오기
+		String customer_id = (String)req.getSession().getAttribute("userSession");
+				
 		// 페이징
 		int pageSize = 10;	//한 페이지당 출력할 글 갯수
 		int pageBlock = 3;	//한 블럭당 페이지 갯수
@@ -43,7 +46,7 @@ public class BoardServiceImpl implements BoardService {
 		int endPage = 0;	//마지막 페이지
 
 		// 글 갯수 구하기
-		cnt = dao.getArticleCnt();
+		cnt = dao.getArticleCnt(customer_id);
 		System.out.println("=====================");
 		System.out.println("cnt = " + cnt);
 		
@@ -78,8 +81,6 @@ public class BoardServiceImpl implements BoardService {
 		System.out.println("number : " + number);
 		System.out.println("pageSize[한페이지에 나타날 건수] : " + pageSize);
 		
-		// session id값 받아오기
-		String customer_id = (String)req.getSession().getAttribute("userSession");
 
 		if(cnt > 0) {
 			// 게시글 목록 조회
@@ -194,9 +195,6 @@ public class BoardServiceImpl implements BoardService {
 		vo.setBoard_subject("board_subject");
 		vo.setBoard_content("board_content");
 		
-		int InsertContent = dao.newWrite();
-		System.out.println("InsertContent = " + InsertContent);
-		
 		model.addAttribute("customer_id", customer_id);
 		model.addAttribute("board_subject", board_subject);
 		model.addAttribute("board_content", board_content);
@@ -241,7 +239,28 @@ public class BoardServiceImpl implements BoardService {
 		model.addAttribute("userDelete", userDelete);
 		model.addAttribute("board_sortnum", board_sortnum);
 	}
+	
+	// 회원-답변글 상세 페이지
+	//@Override
+	//public void replyserch(HttpServletRequest req, Model model) {
+		
+		//int board_sortnum = Integer.parseInt(req.getParameter("board_sortnum"));
+		//int replycode = 0;
+		
+		//if(replycode > 0) {
+			//BoardVO vo = dao.replyserch(board_sortnum);
+			//model.addAttribute("dto", vo);
+			//replycode = 1;
+		//}
+		
+		//System.out.println("replycode" + " = " + replycode);
+		
+		//model.addAttribute("replycode", replycode);
+		//model.addAttribute("board_sortnum", board_sortnum);
+		
+	//}
 
+	/*
 	//admin-총 게시글 페이지
 	@Override
 	public void adminboardList(HttpServletRequest req, Model model) {
@@ -307,6 +326,7 @@ public class BoardServiceImpl implements BoardService {
             model.addAttribute("pageCount",pageCount);
         }
 	}
+	*/
 
 	//admin-총 게시글 상세 페이지
 	@Override
@@ -356,4 +376,5 @@ public class BoardServiceImpl implements BoardService {
 		model.addAttribute("board_reply", board_reply);
 		
 	}
+
 }

@@ -18,9 +18,9 @@ public class MyDAOImpl implements MyDAO {
 	
 	//게시글 갯수 구하기
 	@Override
-	public int getArticleCnt() {
+	public int getArticleCnt(String customer_id) {
 		MyDAO dao = sqlSession.getMapper(MyDAO.class);
-		return dao.getArticleCnt();
+		return dao.getArticleCnt(customer_id);
 	}
 	
 	//게시물 목록 조회
@@ -58,12 +58,6 @@ public class MyDAOImpl implements MyDAO {
 	public int updateContent(BoardVO vo) {
 		return sqlSession.update("com.spring.lifecare.persistence.MyDAO.updateContent", vo);
 	}
-
-	//유저 글쓰기
-	@Override
-	public int newWrite() {
-		return sqlSession.selectOne("com.spring.lifecare.persistence.MyDAO.newWrite");
-	}
 	
 	//글쓰기 처리
 	@Override
@@ -77,6 +71,13 @@ public class MyDAOImpl implements MyDAO {
 	public int contentDelete(int board_sortnum) {
 		return sqlSession.update("com.spring.lifecare.persistence.MyDAO.contentDelete", board_sortnum);
 	}
+	
+	//회원-답변글 조회(한건의 정보)
+	//@Override
+	//public BoardVO replyserch(Map<String, Object> map) {
+		//MyDAO dao = sqlSession.getMapper(MyDAO.class);
+		//return dao.replyserch(map);
+	//}
 
 	//admin 회원별 게시글 갯수
 	@Override
@@ -166,4 +167,5 @@ public class MyDAOImpl implements MyDAO {
 		MyDAO dao = sqlSession.getMapper(MyDAO.class);
 		return dao.diagnosisprint(map);
 	}
+
 }

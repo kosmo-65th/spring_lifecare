@@ -27,7 +27,7 @@ public class SewController {
 		return "board/customerboardList";
 	}
 	
-	//회원-게시글 상세 페이지
+	//회원-게시글 상세 페이지1
 	@RequestMapping("/board/customercontentForm")
 	public String contentForm(HttpServletRequest req, Model model) {
 		board.contentForm(req, model);
@@ -84,14 +84,14 @@ public class SewController {
 	public String deletePro(HttpServletRequest req, Model model) {
 		board.deletePro(req, model);
 		return "board/customerdeletePro";
-	}	
+	}
 	
 	//admin-총게시글 목록
-	@RequestMapping("/board/adminboardList")
-	public String adminboardForm(HttpServletRequest req, Model model) {
-		board.adminboardList(req, model);
-		return "/board/adminboardList";
-	}
+	//@RequestMapping("/board/adminboardList")
+	//public String adminboardForm(HttpServletRequest req, Model model) {
+		//board.adminboardList(req, model);
+		//return "/board/adminboardList";
+	//}
 	
 	//admin-총게시글 조회
 	@RequestMapping("/board/adminboardcontent")

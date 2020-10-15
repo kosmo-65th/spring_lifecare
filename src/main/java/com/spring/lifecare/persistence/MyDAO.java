@@ -10,7 +10,7 @@ import com.spring.lifecare.vo.medicalVO;
 public interface MyDAO {
 	
 	//회원-게시글 갯수 구하기
-	public int getArticleCnt();
+	public int getArticleCnt(String customer_id);
 	
 	//회원-게시글 목록 조회(여러건의 정보)
 	public List<BoardVO> getArticleList(Map<String, Object> map);
@@ -26,15 +26,15 @@ public interface MyDAO {
 	
 	//회원-게시글 수정 처리
 	public int updateContent(BoardVO vo);
-	
-	//회원-글쓰기
-	public int newWrite();
-	
+
 	//회원-글쓰기 처리
 	public int writeContent(BoardVO vo);
 	
 	//회원-게시글 삭제 처리
 	public int contentDelete(int board_sortnum);
+	
+	////회원-답변글 조회(한건의 정보)
+	//public BoardVO replyserch(int board_sortnum);
 	
 	//admin-회원글 검색
 	public int searchBoardCnt(String search);

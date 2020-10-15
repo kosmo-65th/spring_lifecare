@@ -8,7 +8,9 @@
 	<!-- 게시글 갯수 구하기 -->
 	<select id = "getArticleCnt" resultType = "int">
 	<![CDATA[
-		SELECT COUNT(*) as cnt FROM boardQA
+		SELECT COUNT(*) as cnt 
+		FROM boardQA
+		where customer_id = #{customer_id} 
 	]]>
 	</select>
 	
@@ -21,11 +23,10 @@
 						SELECT * 
 						FROM boardQA
 						where customer_id = #{customer_id}
-						order by board_writedate asc
+						order by board_writedate desc
 					 )
-			  )
+			)
 		WHERE rNum >= #{start} AND rNum <= #{end}
-		order by rNum desc
 		]]>
 	</select>
 	
@@ -33,7 +34,7 @@
 	<select id = "getArticle" parameterType = "java.util.Map" resultType = "com.spring.lifecare.vo.BoardVO">
 		<![CDATA[
 		SELECT * 
-		FROM (SELECT board_sortnum, customer_id, board_subject, board_content, board_writedate, board_reply , board_replycode, rowNum rNum 
+		FROM (SELECT board_sortnum, customer_id, board_subject, board_content, board_writedate, board_replydate, board_reply , board_replycode, rowNum rNum 
 				FROM (
 						SELECT * 
 						FROM boardQA
@@ -58,11 +59,6 @@
 	<!-- 현재 로그인된 아이디 세션에서 사용중인 비밀번호 인증을 위함 -->
 	<select id = "numPwdCheck" parameterType = "String" resultType = "String">
 		SELECT customer_pw FROM customer WHERE customer_id = #{customer_id}
-	</select>
-	
-	<!-- 유저글쓰기 확인 -->
-	<select id = "newWrite" resultType = "int">
-		SELECT MAX(board_sortnum) as maxNum FROM boardQA
 	</select>
 	
 	<!-- user글쓰기 insert -->

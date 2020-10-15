@@ -54,7 +54,6 @@
 					</c:forEach>
 				</tbody>
 			</table>
-			</form>
 		</div>
 		<!-- //리스트 -->
               </div>
@@ -62,30 +61,30 @@
           </div>
         </div>
         
-        
         <table style="width:1500px" align="center">
         <tr>
             <th align="center">
                 <!-- 게시글이 있으면  -->
                 <c:if test="${cnt>0 }">
-                    <!-- 처음[◀◀]/이전블록[◀] 특수문자 : 한글상태 ㅁ+한자키 -->
-                     <a href="${path}/board/adminboardList?currentPage=${(startPage - pageBlock)>0 ? (startPage - pageBlock) : 1 }&search=${param.search }&pageSize=${(pageSize) ? pageSize : 10 }"> [◀◀] </a>
-                     <a href="${path}/board/adminboardList?currentPage=${(currentPage - 1)>0 ? (currentPage - 1) : 1 }&search=${param.search }&pageSize=${(pageSize) ? pageSize : 10 }"> [◀] </a>
-                    
+                    			<!-- 처음[◀◀] / 이전블록[◀] -->
+					<c:if test="${startPage > pageBlock}">
+						<a href = "${path}/board/adminboardList?currentPage=">[◀◀]</a>
+						<a href = "${path}/board/adminboardList?currentPage=${startPage - pageBlock}">[◀]</a>
+					</c:if>
                     <!-- 블록내의 페이지 번호 -->
                     <c:forEach var="i" begin="${startPage }" end="${endPage }">
                         <c:if test="${i==currentPage }">
                             <span><b>[${i }]</b></span>
                         </c:if>
                         <c:if test="${i!=currentPage }">
-                            <a href="${path }/board/adminboardList?currentPage=${ i}&search=${param.search }&pageSize=${(pageSize) ? pageSize : 10 }">[${i }]</a>
+                            <a href="${path}/board/adminboardList?currentPage=${ i}&search=${param.search }&pageSize=${(pageSize) ? pageSize : 10 }">[${i }]</a>
                         </c:if>
                     </c:forEach>
                     
-                    <!-- 다음[▶]/마지막[▶▶] 특수문자 : 한글상태 ㅁ+한자키 -->
-                    <a href="${path }/board/adminboardList?currentPage=${(pageCount - currentPage-1)>0 ? (currentPage+1) : endPage }&search=${param.search }&pageSize=${(pageSize) ? pageSize : 10 }"> [▶] </a>
-                    <a href="${path }/board/adminboardList?currentPage=${(startPage +pageBlock)>pageCount ? pageCount : startPage +pageBlock}&search=${param.search }&pageSize=${(pageSize) ? pageSize : 10 }"> [▶▶] </a>
-                    
+       		<c:if test="${pageCount > endPage}">
+				<a href = "${path}/board/adminboardList?currentPage=${startPage + pageBlock}">[▶]</a>
+				<a href = "${path}/board/adminboardList?currentPage=${pageCount}">[▶▶]</a>
+			</c:if>
                 </c:if>
             </th>
         </tr>
