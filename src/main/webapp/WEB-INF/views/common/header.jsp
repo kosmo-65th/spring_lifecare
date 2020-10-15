@@ -5,6 +5,9 @@
 <%@ page import ="java.util.Collection"%>
 <%@ page import ="org.springframework.security.core.GrantedAuthority"%>
 <html>
+
+
+
 <body>
 <%
 Collection<? extends GrantedAuthority> authorities = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
@@ -21,7 +24,6 @@ String authority = authorities.toString();
 	
 	<%@ include file="./header_error.jsp" %>
 	
-	<%@ include file="./chatbot.jsp"%> 
- 
+ 	
 </body>
 </html>

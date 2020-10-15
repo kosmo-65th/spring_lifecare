@@ -103,6 +103,7 @@
 	                                        </div>
                                         </li>
                                     </ul>
+                                    
                                 </nav>
                             </div>
                         </div>
@@ -111,7 +112,9 @@
             </div>
         </div>
     </header>
+    
     <div style="margin-top:165px;"></div>
+    <%@ include file="./chatbot.jsp"%>
     <!-- header-end -->
 </body>
 </html>
