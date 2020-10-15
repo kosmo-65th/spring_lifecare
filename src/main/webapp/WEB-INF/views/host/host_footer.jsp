@@ -45,6 +45,12 @@
 
   <!-- Custom scripts for all pages-->
   <script src="${path_resources}sb_admin/js/sb-admin-2.min.js"></script>
+  
+  <script src="${path_resources}sb_admin/vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="${path_resources}sb_admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="${path_resources}sb_admin/js/demo/datatables-demo.js"></script>
 
 </body>
 </html>
