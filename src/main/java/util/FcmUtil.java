@@ -25,8 +25,7 @@ public class FcmUtil {
                     .build();
             
 
-            		FirebaseApp.initializeApp(options);
-            		
+//            		FirebaseApp.initializeApp(options);
             //Firebase 처음 호출시에만 initializing 처리
             if(FirebaseApp.getApps().isEmpty()) { 
                 FirebaseApp.initializeApp(options);
