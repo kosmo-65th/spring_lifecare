@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import util.FcmUtil;
+
 public interface CustomerService{
 	//아이디 중복확인
 	public int confirmId(String customer_id);
@@ -63,4 +65,6 @@ public interface CustomerService{
 	
 	//결제성공
 	public void successPay(HttpServletRequest req, Model model);
+	
+	
 }

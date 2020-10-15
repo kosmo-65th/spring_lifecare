@@ -132,6 +132,7 @@
    <!-- 환자검색리스트 -->
    <select id="searchList" resultType="com.spring.lifecare.vo.CustomerVO">
    		select customer_id, customer_name from customer where customer_name like '%'||#{keyword}||'%'
+   														   or customer_id like '%'||#{keyword}||'%'
    </select>
    
    <!-- 회원정보 불러오기 -->
@@ -145,8 +146,8 @@
    <select id="getCustomerInfo2" resultType="com.spring.lifecare.vo.CustomerVO" parameterType="String">
 		 <![CDATA[
 		 select * 
-           from (select customer_id, customer_name, customer_gender, customer_year, disease_code, diagnosis_time, diagnosis_pi, ROWNUM
-                   from (select c.customer_id, c.customer_name, c.customer_gender, c.customer_year, d.disease_code, d.diagnosis_time, d.diagnosis_pi
+           from (select customer_id, customer_name, customer_gender, customer_year, disease_code, diagnosis_time, diagnosis_pi, diagnosis_num, ROWNUM
+                   from (select c.customer_id, c.customer_name, c.customer_gender, c.customer_year, d.disease_code, d.diagnosis_time, d.diagnosis_pi, d.diagnosis_num
                            from customer c, diagnosis d 
                           where c.customer_id = #{customer_id}
                             and c.customer_id = d.customer_id 
@@ -874,7 +875,7 @@
    <!-- 진료리스트 -->
    <select id="getDiagnosisList" resultType="com.spring.lifecare.vo.DiagnosisVO">
    		<![CDATA[
-   		select ROWNUM, c.insurance, c.customer_name, c.customer_gender, c.customer_year, d.disease_code, d.diagnosis_time 
+   		select ROWNUM, c.insurance, c.customer_name, c.customer_gender, c.customer_year, d.disease_code, d.diagnosis_time , d.diagnosis_num
    		  from customer c, diagnosis d
    		 where c.customer_id = d.customer_id 
    		   and d.doctor_id = #{doctor_id} 
@@ -926,6 +927,7 @@
 		SELECT *
 		FROM(SELECT diagnosis_num, diagnosis_time, customer_id, customer_amount, customer_payment, rowNum as rNum
 			   FROM(SELECT * FROM diagnosis
+			   		 where customer_id = #{customer_id}
 				 	 order by diagnosis_time desc))
 		 WHERE rNum >= #{start} and rNum <= #{end} and customer_id = #{customer_id}
    		 ]]>
@@ -977,12 +979,18 @@
 
    <!-- 진료결과 조회 리스트 -->
    <select id="pickDiagnosisList" resultType="com.spring.lifecare.vo.DiagnosisVO" parameterType="String">
-   		<![CDATA[
-		SELECT d.diagnosis_num, d.diagnosis_time, o.doctor_name, o.doctor_major, i.disease_name, d.drug1, d.drug2, d.drug3
-		  FROM diagnosis d, doctor o, disease i
+   		<![CDATA[	 
+		SELECT d.diagnosis_num, d.diagnosis_time, o.doctor_name, o.doctor_major, i.disease_name, d1.drug_name as drug_name1, d2.drug_name as drug_name2, d3.drug_name as drug_name3
+		  FROM diagnosis d, doctor o, disease i, drug d1, drug d2, drug d3
 		 WHERE d.doctor_id = o.doctor_id
 		   AND d.disease_code = i.disease_code
-		   AND customer_id = #{customer_id}
+           and d.drug1 = d1.drug_number(+)
+           and (d.drug1 is not null or d.drug1 is null)
+           and d.drug2 = d2.drug_number(+)
+           and (d.drug2 is not null or d.drug2 is null)
+           and d.drug3 = d3.drug_number(+)
+           and (d.drug3 is not null or d.drug3 is null)
+		   AND d.customer_id = #{customer_id}
 		 ORDER BY d.diagnosis_time DESC
    		 ]]>
    </select>
@@ -1075,5 +1083,26 @@
    <insert id ="insertXrayEx" parameterType="com.spring.lifecare.vo.XrayExVO">
      	INSERT INTO xray 
      	values(xray_seq.nextval, #{customer_id}, #{xray_img}, #{normal_percentage}, #{corona_percentage}, #{pneumonia_percentage}, #{xray_result}, sysdate)
-   </insert> 
+   </insert>
+   
+   <!-- 기초검사결과 수정 -->
+   <update id ="updateBasicEx" parameterType="java.util.Map">
+     	update basicEx 
+     	   set ex_result = #{ex_result}
+     	 where ex_num = #{ex_num}
+   </update>
+   
+   <!-- xray검사결과 수정 -->
+   <update id ="updateXrayEx" parameterType="java.util.Map">
+     	update xray 
+     	   set xray_result = #{xray_result}
+     	 where xray_num = #{xray_num}
+   </update>
+   
+   <!-- 암검사결과 수정 -->
+   <update id ="updateCancerEx" parameterType="java.util.Map">
+     	update cancerEx 
+     	   set cancer_result = #{cancer_result}
+     	 where cancer_num = #{cancer_num}
+   </update>
 </mapper>  	  

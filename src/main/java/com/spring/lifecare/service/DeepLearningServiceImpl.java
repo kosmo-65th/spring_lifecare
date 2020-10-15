@@ -121,11 +121,11 @@ public class DeepLearningServiceImpl implements DeepLearningService{
 			//입력 stream을 BufferedWriter로 받아서 콘솔로부터 받은 입력을 Process 클래스로 실행시킨다.
 			System.out.println("modelSrc : "+modelSrc.substring(0,modelSrc.length()-9));
 			List<String> commendList = new ArrayList<String>();
-			//commendList.add("activate tensorflow3.6.5");
+			commendList.add("activate tensorflow3.6.5");
 			commendList.add("cd "+modelSrc.substring(0,modelSrc.length()-10));
 			System.out.println("실행어 : "+ "cd "+modelSrc.substring(0,modelSrc.length()-10));
 			modelSrc=modelSrc.substring(0,modelSrc.length()-9) +"mobileNetV2model7.h5";
-			commendList.add("corona.py "+ modelSrc+" "+TestImgSrc);
+			commendList.add("python corona.py "+ modelSrc+" "+TestImgSrc);
 			System.out.println("실행어 : "+ "corona.py "+ modelSrc+" "+TestImgSrc);
 			
 			try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(stdin))) {
@@ -204,6 +204,8 @@ public class DeepLearningServiceImpl implements DeepLearningService{
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 		
+		
+		
 		result.put("corona", String.format("%.2f", Double.parseDouble(realresult.get(0))*100));
 		result.put("normal", String.format("%.2f", Double.parseDouble(realresult.get(1))*100));
 		result.put("pneumonia", String.format("%.2f", Double.parseDouble(realresult.get(2))*100));
@@ -255,7 +257,7 @@ public class DeepLearningServiceImpl implements DeepLearningService{
 			commendList.add("cd "+modelSrc.substring(0,modelSrc.length()-10));
 			System.out.println("실행어 : "+ "cd "+modelSrc.substring(0,modelSrc.length()-10));
 			modelSrc=modelSrc.substring(0,modelSrc.length()-9) +"logreg.pkl";
-			commendList.add("cancer.py "+ modelSrc+" "+radius+" "+texture+" "+perimeter+" "+area+" "+smoothness+" "+compactness+" "+concavity+" "+
+			commendList.add("python cancer.py "+ modelSrc+" "+radius+" "+texture+" "+perimeter+" "+area+" "+smoothness+" "+compactness+" "+concavity+" "+
 					symmetry+" "+fractal_dimension+" "+age);
 			System.out.println("실행어 : "+ "cancer.py "+ modelSrc+" "+radius+" "+texture+" "+perimeter+" "+area+" "+smoothness+" "+compactness+" "+concavity+" "+
 					symmetry+" "+fractal_dimension+" "+age);
@@ -320,13 +322,12 @@ public class DeepLearningServiceImpl implements DeepLearningService{
 		
 		ArrayList<String> realresult = new ArrayList<String>();
 		Map<String, Object> result = new HashMap<String, Object>();
-		
 		for(String test : list) {
 			if(test.contains("[")) {
 				System.out.println("test : " +test.substring(1,test.length()-1));
 				test = test.substring(1,test.length()-1);
 				realresult.add(test);
-				
+				System.out.println(realresult);
 				if(test.equals("0")) {
 					result.put("result", "악성");
 				} else {

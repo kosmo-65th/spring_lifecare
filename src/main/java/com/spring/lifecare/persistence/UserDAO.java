@@ -223,4 +223,13 @@ public interface UserDAO {
 	 
 	 // xray검사결과 정보 불러오기
 	 public XrayExVO getXrayExInfo(int xray_num);
+	 
+	 // 기초검사 결과 수정
+	 public int updateBasicEx(Map<String, Object> map);
+	 
+	 // xray검사 결과 수정
+	 public int updateXrayEx(Map<String, Object> map);
+	 
+	 // 암검사 결과 수정
+	 public int updateCancerEx(Map<String, Object> map);
 }

@@ -25,6 +25,8 @@ import com.spring.lifecare.vo.CustomerVO;
 import com.spring.lifecare.vo.DiagnosisVO;
 import com.spring.lifecare.vo.ReservationVO;
 
+import util.FcmUtil;
+
 
 @Service
 public class CustomerServiceImpl implements CustomerService{
@@ -193,7 +195,22 @@ public class CustomerServiceImpl implements CustomerService{
 		map.put("reservation_date", reservation_date);
 		map.put("customer_id", customer_id);
 		map.put("doctor_id", doctor_id);		
-		int insertCnt = userDAO.addReservation(map);		
+		int insertCnt = userDAO.addReservation(map);
+		
+		//알림
+		String d = "고객님의 진료가 " + date.substring(0,4) + "년 " + date.substring(4,6) + "월 " + date.substring(6,8) + 
+				  "일 " + time + "에 예약 되었습니다.";
+		//한림
+		String tokenId= "ensbu-iyQhmUqpKhHUKKCh:APA91bE_xq8C2h_HB5IDISX1M_qGSbAtC-HUUqZDEnaKRWlH-T8aHUdFvok2tcaCJnMebXLe7Fw3TpndZD8jkdm6BqZOTlY1bKqyTyCcd7GoteddTwhkXnmFEdl3NktJAIUU1LM5hLkY";
+		//승운
+		//String tokenId= "dlZvyPr_R2aix7C8_yLGC8:APA91bGggpr_-bwkyn3LQ9JmL8MIdfLrtkNQ_gnBMezeCi3XL8x8P6Zzt_k6_i0x45AIbtvL9SNAJxUPdOC-Fmg6xMofoneciuHqAUQa7UJnobaNBLLfafE0PqosVErSvcvVya0XrEVP";
+	    
+		String title="Life Care 예약 알림 입니다.";
+	    String content=  d;
+	  
+	    FcmUtil FcmUtil = new FcmUtil();
+	    FcmUtil.send_FCM(tokenId, title, content);
+	    
 		model.addAttribute("insertCnt", insertCnt);
 	}
 

@@ -52,8 +52,8 @@
 	    </div>
 	    
 	    <div class="shopMain">
-	        <h3><a href="${path}/customer/modify"><strong>PROFILE</strong> 회원 정보</a></h3>
-	        <p><a href="${path}/customer/modify">회원이신 고객님의 개인정보를 관리하는 공간입니다.</a></p>
+	        <h3><a href="${path}/customer/myInformation"><strong>PROFILE</strong> 회원 정보</a></h3>
+	        <p><a href="${path}/customer/myInformation">회원이신 고객님의 개인정보를 관리하는 공간입니다.</a></p>
 	    </div>
 	    
 	     <div class="shopMain">

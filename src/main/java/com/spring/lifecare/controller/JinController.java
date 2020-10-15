@@ -96,7 +96,7 @@ public class JinController {
  	public String kakaopayCancel(Model model) { 		
  		return "customer/kakaopayCancel";
  	}
- 	
+
     //카카오 페이 결제 실패
  	@RequestMapping("/customer/kakaopayFail")
  	public String kakaopayFail(Model model) {		
@@ -259,23 +259,26 @@ public class JinController {
  	
     // 기초검사기록 저장
  	@RequestMapping("/doctor/basicExPro")
- 	public String basicExPro(HttpServletRequest req, Model model) { 		
+ 	public @ResponseBody int basicExPro(HttpServletRequest req, Model model) { 		
  		doctor.saveBasicEx(req, model);
- 		return "doctor/diagnosisPro";
+ 		int insertCnt = (Integer) req.getAttribute("insertCnt");
+ 		return insertCnt;
  	}
  	
     // 암검사기록 저장
  	@RequestMapping("/doctor/cancerExPro")
- 	public String cancerExPro(HttpServletRequest req, Model model) { 		
+ 	public @ResponseBody int cancerExPro(HttpServletRequest req, Model model) { 		
  		doctor.saveCancerEx(req, model);
- 		return "doctor/diagnosisPro";
+ 		int insertCnt = (Integer) req.getAttribute("insertCnt");
+ 		return insertCnt;
  	}
  	
     // xray검사기록 저장
  	@RequestMapping(value="/doctor/xrayExPro", method=RequestMethod.POST)
- 	public String xrayExPro(MultipartHttpServletRequest req, Model model) { 		
+ 	public @ResponseBody int xrayExPro(MultipartHttpServletRequest req, Model model) { 		
  		doctor.saveXrayEx(req, model);
- 		return "doctor/diagnosisPro";
+ 		int insertCnt = (Integer) req.getAttribute("insertCnt");
+ 		return insertCnt;
  	}
  	
     // 마이페이지
@@ -309,9 +312,10 @@ public class JinController {
  	
  	// 예약 성공
  	@RequestMapping("/customer/appointPro")
- 	public String appointPro(HttpServletRequest req, Model model) { 		
+ 	public String appointPro(HttpServletRequest req, Model model) throws Exception { 		
  		// 예약가능 테이블(appointment) update + 병원 예약 테이블(reservation) insert
  		customer.successReservation(req, model);
+ 		
  		return "customer/appointPro";
  	}
  	
@@ -512,7 +516,17 @@ public class JinController {
 					map.put("doctor_major", vo.getDoctor_major());
 					map.put("doctor_name", vo.getDoctor_name());
 					map.put("disease_name", vo.getDisease_name());
-					map.put("diagnosis_drug", vo.getDrug1() + "\n" + vo.getDrug2() + "\n" + vo.getDrug3());
+					if(vo.getDrug_name1() == null) {
+						map.put("drug", "없음");
+					} else if(vo.getDrug_name1() != null) {
+						if(vo.getDrug_name2() == null) {
+							map.put("drug", vo.getDrug_name1());
+						} else if(vo.getDrug_name2() != null) {
+							map.put("drug", vo.getDrug_name1() + "\n" + vo.getDrug_name2());
+						}
+					} else {
+						map.put("drug", vo.getDrug_name1() + "\n" + vo.getDrug_name2() + "\n" + vo.getDrug_name3());
+					}					
 					map.put("diagnosis_time", t);				
 					out.add(map);
 		}				
@@ -587,9 +601,30 @@ public class JinController {
 		return learning.DeepLearningCancer(req, model);
 	}
 	
-    //카카오 페이 결제 실패
+    // 응급처치 페이지
  	@RequestMapping("/first_aid")
  	public String first_aid(Model model) {		
  		return "guest/first-aid";
+ 	}
+ 	
+ 	// 기초검사수정
+ 	@RequestMapping("/doctor/basic_exPro")
+ 	public String basic_exPro(HttpServletRequest req, Model model) { 		
+ 		doctor.modifyBasic(req, model);
+ 		return "doctor/resultUpdate";
+ 	}
+ 	
+ 	// xray검사수정
+ 	@RequestMapping("/doctor/xray_exPro")
+ 	public String xray_exPro(HttpServletRequest req, Model model) { 		
+ 		doctor.modifyXray(req, model);
+ 		return "doctor/resultUpdate";
+ 	}
+ 	
+ 	// 암검사수정
+ 	@RequestMapping("/doctor/cancer_exPro")
+ 	public String cancer_exPro(HttpServletRequest req, Model model) { 		
+ 		doctor.modifyCancer(req, model);
+ 		return "doctor/resultUpdate";
  	}
 }

@@ -39,14 +39,12 @@
    <!-- CSS -->
    
    <!-- 코로나  js -->
+   <script src="${path_resources}js/covid19_3.js"></script> 
    <script src="${path_resources}js/covid19_1.js"></script>
    <script src="${path_resources}js/covid19_2.js"></script>
-   <script src="${path_resources}js/covid19_3.js"></script>
-   <script src="${path_resources}js/covid19_4.js"></script>
+   <script src="${path_resources}js/covid19_4.js"></script> 
    <script src="${path_resources}js/covid19_5.js"></script>
    <script src="${path_resources}js/covid19_6.js"></script>
-   
-   
    <!-- 코로나  js -->
    
    <!-- jQuery 추가 -->
@@ -74,7 +72,7 @@
 		function popUp() {
 	    	var cookieCheck = getCookie("popupYN");
 	    	if (cookieCheck != "N"){
-	         	window.open('${path}/popup', 'newpop', 'left=0,top=0,width=630,height=570');
+	         	window.open('${path}/popup', 'newpop', 'left=0,top=0,width=630,height=570,directoryies=no,titlebar=no');
 	    	}
 		}
 		
@@ -158,9 +156,15 @@
             </div>
          </div>
       </div>
-      <div align="center">
-      	<div>
-      	</div>
+      <div align="center" style="margin:40px;">
+      <div style="width:75%;">
+      <div style="border-bottom:1px solid #000; background-color:#E0ECF8;">
+      	<p style="font-size:30px;">실시간 코로나19(COVID-19) 현황</p>
+      </div>
+	      <div align="right"> 
+	      	<a href="${path}/covid19" style="color:gray;">코로나 정보 상세보기 >></a>
+	      </div>
+      </div>
 		<%= posts1 %>
 		<div id="abc"> 
 		<%= posts2 %>
@@ -168,7 +172,7 @@
 	  </div>
       
       <br>
-      
+      <div style="margin-top:50px;"></div>
       <div id="map" style="width:47%;height:500px; margin:0 auto;"></div>
       <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5a4dcbf8bd992d42aecc63827327a181&libraries=services"></script>
       <script>
@@ -191,26 +195,11 @@
 	  		marker.setMap(map);
       </script>  
         <br>
-       
-		<div class="findId_area">
-        <p>TRANSFORTATION</p>
-                       지하철<br>
-                       가산디지털단지역 6번출구 나오셔서 좌측횡단보도 건너 좌측으로 10m 가시면 삼거리가 나오고 
-                       삼거리에서 우측 방향으로 직진하셔서 사거리 대각선방향 우리은행 건물 F20호입니다.<br><br>               
-                       버스<br>
-           21, 571, 652, 금천 05
-           [디지털3단지월드벤쳐센터] 정류장에서 하차<br><br>
-           
-         <p>YOUR OWN CAR</p>
-                       자가용<br>  
-                       서부간선도로를 타고 오다가 광명교를 타고 좌회전 후 첫 사거리에서 우회전<br>
-                       가리봉5거리에서 철산방향 수출의 다리를 넘어 첫 사거리(한진사거리)에서 우회전<br>
-                       남부순환도로 구로IC로 나와 좌회전<br>                                                                                        
-       </div>      
-   
+       <div style="width:47%; margin:0 auto;">
+        <img src="${path_resources }img/LFMAP.JPG" >
+  		 </div>
       <%@include file="./common/footer.jsp" %>
       <!-- end copyrights -->
-      <a href="#home" data-scroll class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
       <!-- all js files -->
       <script src="${path_resources_lifecare}js/all.js"></script>
       <!-- all plugins -->

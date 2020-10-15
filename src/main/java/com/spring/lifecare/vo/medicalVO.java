@@ -17,6 +17,10 @@ public class medicalVO {
 	private String doctor_name;
 	private String doctor_major;
 	private Timestamp diagnosis_time;
+	private String diagnosis_bp;
+	private String diagnosis_rr;
+	private String diagnosis_pr;
+	private String diagnosis_pt;
 	private String diagnosis_phx;
 	private String diagnosis_fhx;
 	private String diagnosis_pi;
@@ -63,7 +67,6 @@ public class medicalVO {
 	public void setDiagnosis_num(int diagnosis_num) {
 		this.diagnosis_num = diagnosis_num;
 	}
-	
 	public int getCustomer_payment() {
 		return customer_payment;
 	}
@@ -141,6 +144,30 @@ public class medicalVO {
 	}
 	public void setDiagnosis_time(Timestamp diagnosis_time) {
 		this.diagnosis_time = diagnosis_time;
+	}
+	public String getDiagnosis_bp() {
+		return diagnosis_bp;
+	}
+	public void setDiagnosis_bp(String diagnosis_bp) {
+		this.diagnosis_bp = diagnosis_bp;
+	}
+	public String getDiagnosis_rr() {
+		return diagnosis_rr;
+	}
+	public void setDiagnosis_rr(String diagnosis_rr) {
+		this.diagnosis_rr = diagnosis_rr;
+	}
+	public String getDiagnosis_pr() {
+		return diagnosis_pr;
+	}
+	public void setDiagnosis_pr(String diagnosis_pr) {
+		this.diagnosis_pr = diagnosis_pr;
+	}
+	public String getDiagnosis_pt() {
+		return diagnosis_pt;
+	}
+	public void setDiagnosis_pt(String diagnosis_pt) {
+		this.diagnosis_pt = diagnosis_pt;
 	}
 	public String getDiagnosis_phx() {
 		return diagnosis_phx;

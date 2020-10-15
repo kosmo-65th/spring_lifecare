@@ -17,7 +17,7 @@
   overflow:hidden;padding:10px 5px;word-break:normal;}
 .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
   font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg .tg-lboi{border-color:inherit;text-align:left;vertical-align:middle}
+.tg .tg-lboi{border-color:inherit;ign:left;vertical-align:middle}
 .tg .tg-9wq8{border-color:inherit;text-align:center;vertical-align:middle}
 .tg .tg-dq1s{font-size:10px;text-align:right;vertical-align:bottom}
 .tg .tg-baqh{text-align:center;vertical-align:top}
@@ -28,6 +28,7 @@
 .tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
 .tg .tg-9pky{border-color:inherit;text-align:left;vertical-align:middle}
 .tg .tg-dvpl{border-color:inherit;text-align:right;vertical-align:top}
+.tg .tg-dvp{border-color:inherit;text-align:right;vertical-align:middel}
 .tg .tg-nrix{text-align:center;vertical-align:middle}
 .tg .tg-0lax{text-align:left;vertical-align:top}
 </style>
@@ -37,70 +38,70 @@
 <table class="tg"  style = "margin-bottom:20px;">
 <thead>
   <tr>
-    <th class="tg-8hvc" colspan="11">처 &nbsp;&nbsp;&nbsp;&nbsp;   방   &nbsp;&nbsp;&nbsp;&nbsp; 전</th>
-    <th class="tg-9wq8" colspan="3" style="width:100px">교부번호</th>
+    <th class="tg-8hvc" colspan="11" style = "background-color:#E8E8E8">처 &nbsp;&nbsp;&nbsp;&nbsp;   방   &nbsp;&nbsp;&nbsp;&nbsp; 전</th>
+    <th class="tg-9wq8" colspan="3" style="width:100px; background-color:#E8E8E8;">교부번호</th>
     <th class="tg-9pky" colspan="6" style="width:163px">${dto.diagnosis_num}</th>
   </tr>
 </thead>
 <tbody>
   <tr>
-    <td class="tg-c3ow" style="width: 40px; text-align: center;" >보험<br>종류</td>
+    <td class="tg-c3ow" style="width: 40px; text-align: center; background-color:#E8E8E8;">보험<br>종류</td>
     <td class="tg-0pky" style="width: 100px; text-align: center;">❶의료보험</td>
     <td class="tg-0pky" style="width: 100px; text-align: center;">②의료급여</td>
     <td class="tg-0pky" style="width: 100px; text-align: center;">③산제보험</td>
     <td class="tg-0pky" style="width: 100px; text-align: center;">④자동차보험</td>
     <td class="tg-0pky" style="width: 100px; text-align: center;">⑤기타(         )</td>
-    <td class="tg-c3ow" colspan="5">요양기관번호</td>
+    <td class="tg-c3ow" colspan="5" style = "background-color:#E8E8E8">요양기관번호</td>
     <td class="tg-9pky" colspan="8">120710</td>
   </tr>
   <tr>
-    <td class="tg-9wq8" rowspan="2">환자</td>
-    <td class="tg-c3ow">성명</td>
+    <td class="tg-9wq8" rowspan="2" style = "background-color:#E8E8E8">환자</td>
+    <td class="tg-c3ow" style = "background-color:#E8E8E8">성명</td>
     <td class="tg-0pky" colspan="4">${dto.customer_name}</td>
-    <td class="tg-c3ow" rowspan="2">의료기관(병원)</td>
-    <td class="tg-c3ow" colspan="4">명&nbsp;&nbsp;&nbsp;&nbsp;칭</td>
+    <td class="tg-c3ow" rowspan="2" style = "background-color:#E8E8E8">의료기관(병원)</td>
+    <td class="tg-c3ow" colspan="4" style = "background-color:#E8E8E8">명&nbsp;&nbsp;&nbsp;&nbsp;칭</td>
     <td class="tg-0pky" colspan="8">LifeCare</td>
   </tr>
   <tr>
-    <td class="tg-c3ow">출생년도</td>
-    <td class="tg-9pky" colspan="4">${dto.customer_year}</td>
-    <td class="tg-c3ow" colspan="4">전&nbsp;&nbsp;&nbsp;&nbsp;화</td>
+    <td class="tg-c3ow" style = "background-color:#E8E8E8">출생년도</td>
+    <td class="tg-9pky" colspan="4">${dto.customer_year}년</td>
+    <td class="tg-c3ow" colspan="4" style = "background-color:#E8E8E8">전&nbsp;&nbsp;&nbsp;&nbsp;화</td>
     <td class="tg-0pky" colspan="8">010-7220-7446</td>
   </tr>
   <tr>
-    <td class="tg-9wq8" rowspan="2">질병<br>분류<br>기호</td>
-    <td class="tg-c3ow">질병코드 </td>
+    <td class="tg-9wq8" rowspan="2" style = "background-color:#E8E8E8">질병<br>분류<br>기호</td>
+    <td class="tg-c3ow" style = "background-color:#E8E8E8">질병코드 </td>
     <td class="tg-9pky" colspan="4">${dto.disease_code}</td>
-    <td class="tg-c3ow" rowspan="2">의료기관(약국)</td>
-    <td class="tg-c3ow" colspan="4">약국<br>팩스</td>
+    <td class="tg-c3ow" rowspan="2" style = "background-color:#E8E8E8">의료기관(약국)</td>
+    <td class="tg-c3ow" colspan="4" style = "background-color:#E8E8E8">약국<br>팩스</td>
     <td class="tg-9pky" colspan="8">02-2025-4113</td>
   </tr>
   <tr>
-    <td class="tg-c3ow">질병이름</td>
+    <td class="tg-c3ow" style = "background-color:#E8E8E8">질병명</td>
     <td class="tg-9pky" colspan="4">${dto.disease_name}</td>
-    <td class="tg-c3ow" colspan="4">e_mail<br>주소</td>
+    <td class="tg-c3ow" colspan="4" style = "background-color:#E8E8E8">e_mail<br>주소</td>
     <td class="tg-9pky" colspan="8">sunrise555@empas.com</td>
   </tr>
   <tr>
-    <td class="tg-9wq8" rowspan="2">처&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;방<br>의료인의<br>성&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;명</td>
-    <td class="tg-dvpl" colspan="4" rowspan="2"><br><br><br><span style = "font-size : 32px">${dto.doctor_name}</span>                                                                             (서명또는 날인)</td>
-    <td class="tg-c3ow" colspan="6">면허종별</td>
+    <td class="tg-9wq8" rowspan="2" style = "background-color:#E8E8E8">처&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;방<br>의료인의<br>성&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;명</td>
+    <td class="tg-dvp" colspan="4" rowspan="2"><span style = "font-size : 32px;">${dto.doctor_name}<img src="${path_resources}images/lifecaresign.png" width="80px" height="80px" style = "align:bottom"/></span></td>
+    <td class="tg-c3ow" colspan="6" style = "background-color:#E8E8E8">면허종별</td>
     <td class="tg-9pky" colspan="8">의사</td>
   </tr>
   <tr>
-    <td class="tg-c3ow" colspan="6" >면허번호</td>
+    <td class="tg-c3ow" colspan="6" style = "background-color:#E8E8E8">면허번호</td>
     <td class="tg-9pky" colspan="8">${dto.doctor_num}</td>
   </tr>
   <tr>
     <td class="tg-0pky" colspan="19">※환자의 요구가 있는 때에는 질병분류기호를 기재하지 아니합니다.</td>
   </tr>
   <tr>
-    <td class="tg-cji8" colspan="3">처  &nbsp;&nbsp;&nbsp;&nbsp;방 &nbsp;&nbsp;&nbsp;&nbsp; 의&nbsp;&nbsp;  &nbsp;&nbsp;약 &nbsp;&nbsp;&nbsp;&nbsp; 품 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;명&nbsp;&nbsp;&nbsp;&nbsp;  칭</td>
-    <td class="tg-c4ow">제조회사</td>
-    <td class="tg-c4ow">효능 및 효과</td>
-    <td class="tg-c4ow">보관 방법</td>
-    <td class="tg-cji8" colspan="8">보관 기간</td>
-    <td class="tg-cji8" colspan="5">조&nbsp;&nbsp;&nbsp;제&nbsp;&nbsp;&nbsp;시&nbsp;&nbsp;&nbsp;참&nbsp;&nbsp;&nbsp;고&nbsp;&nbsp;&nbsp;사&nbsp;&nbsp;&nbsp;항</td>
+    <td class="tg-cji8" colspan="3" style = "background-color:#E8E8E8">처  &nbsp;&nbsp;&nbsp;&nbsp;방 &nbsp;&nbsp;&nbsp;&nbsp; 의&nbsp;&nbsp;  &nbsp;&nbsp;약 &nbsp;&nbsp;&nbsp;&nbsp; 품 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;명&nbsp;&nbsp;&nbsp;&nbsp;  칭</td>
+    <td class="tg-c4ow" style = "background-color:#E8E8E8">제조회사</td>
+    <td class="tg-c4ow" style = "background-color:#E8E8E8">효능 및 효과</td>
+    <td class="tg-c4ow" style = "background-color:#E8E8E8">보관 방법</td>
+    <td class="tg-cji8" colspan="8" style = "background-color:#E8E8E8">보관 기간</td>
+    <td class="tg-cji8" colspan="5" style = "background-color:#E8E8E8">조&nbsp;&nbsp;&nbsp;제&nbsp;&nbsp;&nbsp;시&nbsp;&nbsp;&nbsp;참&nbsp;&nbsp;&nbsp;고&nbsp;&nbsp;&nbsp;사&nbsp;&nbsp;&nbsp;항</td>
   </tr>
     <tr>
   <c:if test = "${dto.drug1 == 0}">
@@ -161,7 +162,7 @@
     <td class="tg-c3ow" colspan="19">주사제 처방내역(원내조제 ㅁ, 원외처방ㅁ)</td>
   </tr>
   <tr>
-    <td class="tg-0pky" style = "text-align:center">사용<br>기간</td>
+    <td class="tg-0pky" style = "text-align:center; background-color:#E8E8E8">사용<br>기간</td>
     <td class="tg-9pky" colspan="2">교부일로부터(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;)일간</td>
     <td class="tg-9pky" colspan="16">*사용기간내에 약국에 제출하여야 합니다.</td>
   </tr>
@@ -169,22 +170,22 @@
     <td class="tg-c3ow" colspan="19">의&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;약&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;품&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;조&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;제&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;내&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</td>
   </tr>
   <tr>
-    <td class="tg-nrix" rowspan="4">조<br><br>제<br><br>내<br><br>역</td>
-    <td class="tg-baqh" colspan="2">조제기관 명칭</td>
+    <td class="tg-nrix" rowspan="4" style = "background-color:#E8E8E8">조<br><br>제<br><br>내<br><br>역</td>
+    <td class="tg-baqh" colspan="2" style = "background-color:#E8E8E8">조제기관 명칭</td>
     <td class="tg-0lax" colspan="4"></td>
-    <td class="tg-nrix" colspan="12">처방의 변경, 수정, 확인대체세 그 내용등</td>
+    <td class="tg-nrix" colspan="12" style = "background-color:#E8E8E8">처방의 변경, 수정, 확인대체세 그 내용등</td>
   </tr>
   <tr>
-    <td class="tg-baqh" colspan="2">조제약사 성명</td>
+    <td class="tg-baqh" colspan="2" style = "background-color:#E8E8E8">조제약사 성명</td>
     <td class="tg-dq1s" colspan="4">(서명 또는 날인)</td>
     <td class="tg-0lax" colspan="12" rowspan="3"></td>
   </tr>
   <tr>
-    <td class="tg-baqh" colspan="2">조　제　량</td>
+    <td class="tg-baqh" colspan="2" style = "background-color:#E8E8E8">조　제　량</td>
     <td class="tg-0lax" colspan="4"></td>
   </tr>
   <tr>
-    <td class="tg-baqh" colspan="2">조　제　년　월　일</td>
+    <td class="tg-baqh" colspan="2" style = "background-color:#E8E8E8">조　제　년　월　일</td>
     <td class="tg-0lax" colspan="4"></td>
   </tr>
 </tbody>

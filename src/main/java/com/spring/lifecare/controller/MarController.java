@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,9 +16,12 @@ import com.spring.lifecare.service.AdminService;
 import com.spring.lifecare.service.DoctorService;
 import com.spring.lifecare.service.DrugService;
 
+import util.FcmUtil;
+
 @Controller
+
 public class MarController {
-	
+	     
 	@Autowired 
 	DrugService service;
 	@Autowired 
@@ -75,6 +79,7 @@ public class MarController {
 	}
 	//안드로이드 약 검색 결과출력
 	@RequestMapping("/android_drugSearchPro")
+	
 	public String android_drugSearchPro(HttpServletRequest req, Model model){
 		service.searchDrug(req, model);
 		return "drug/android_drugSearchPro";
@@ -97,8 +102,6 @@ public class MarController {
 		ArrayList<Map<String,Object>> result = service.drugPhotoDetail(req);
 		return result;
 	}
-		
-
 	
 }
 	

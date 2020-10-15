@@ -72,4 +72,7 @@ public interface MyDAO {
 	//회원-결제된 처방전 상세조회(한건의 정보 = 진료기록)
 	public medicalVO prescriptionprint(Map<String, Object> map);
 	
+	//회원-결제된 진단서 상세조회(한건의 정보 = 진료기록)
+	public medicalVO diagnosisprint(Map<String, Object> map);
+	
 }

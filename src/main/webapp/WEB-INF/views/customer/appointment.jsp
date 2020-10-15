@@ -737,7 +737,7 @@ function resInsert(){
 </div>
 <br>
 <div class="btnSet tac" style="margin-left:500;">
-	<a href="javascript:Form1.submit();" class="btn btn-blue btn-br btn-lg4"><span class="ico_mouse"></span>진료예약</a>
+	<a href="javascript:resInsert();" class="btn btn-blue btn-br btn-lg4"><span class="ico_mouse"></span>진료예약</a>
 	<a href="javascript:void(0);" onclick="resReset();" class="btn btn-black btn-br btn-lg4"><span class="ico1_return2"></span>예약정보 초기화</a>
 </div>
 </form>
