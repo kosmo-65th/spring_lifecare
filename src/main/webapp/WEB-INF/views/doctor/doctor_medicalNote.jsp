@@ -1191,13 +1191,15 @@ $(function(){
 			                        <hr>
 			                        <c:if test="${vo2.getDiagnosis_time() != null}">
 			                        <span><strong>최근내원일:</strong> ${vo2.getDiagnosis_time()}</span> &nbsp;&nbsp;&nbsp;&nbsp;
-			                        <span><strong>진단:</strong> ${vo2.getDisease_code()}</span>
+			                        <span><strong>진단:</strong> ${vo2.getDisease_code()}</span> &nbsp;&nbsp;&nbsp;&nbsp;<br><br>
+			                        <span><strong>검사결과</strong><a style="margin-left:10px; position: revert; vertical-align:middle;" href="javascript:void(0)" onclick="window.open('${path}/Medicalrecords/medicalNote?diagnosis_num=${vo2.getDiagnosis_num()}','진료결과','resizable=no width=830 height=850');return false"><img style="width:30px; height:30px" src="${path_resources}images/돋보기.png"></a></span> 
 			                        <br><br>
 			                        <p><strong>병력:</strong> ${vo2.getDiagnosis_pi()}</p>
 			                        </c:if>
 			                        <c:if test="${vo2.getDiagnosis_time() == null}">
 			                        <span><strong>최근내원일:</strong> 최근기록없음</span> &nbsp;&nbsp;&nbsp;&nbsp;
 			                        <span><strong>진단:</strong> 최근기록없음</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 			                        <br><br>
 			                        <p><strong>병력:</strong> 최근기록없음 &nbsp;&nbsp;&nbsp;&nbsp;</p>
 			                        </c:if>

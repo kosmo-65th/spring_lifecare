@@ -72,7 +72,7 @@
 		function popUp() {
 	    	var cookieCheck = getCookie("popupYN");
 	    	if (cookieCheck != "N"){
-	         	window.open('${path}/popup', 'newpop', 'left=0,top=0,width=630,height=570');
+	         	window.open('${path}/popup', 'newpop', 'left=0,top=0,width=630,height=570,directoryies=no,titlebar=no');
 	    	}
 		}
 		
@@ -170,7 +170,7 @@
 		<%= posts2 %>
 		</div>
 	  </div>
-      <%@include file="./common/chatbot.jsp"%>
+      
       <br>
       <div style="margin-top:50px;"></div>
       <div id="map" style="width:47%;height:500px; margin:0 auto;"></div>

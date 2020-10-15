@@ -146,8 +146,8 @@
    <select id="getCustomerInfo2" resultType="com.spring.lifecare.vo.CustomerVO" parameterType="String">
 		 <![CDATA[
 		 select * 
-           from (select customer_id, customer_name, customer_gender, customer_year, disease_code, diagnosis_time, diagnosis_pi, ROWNUM
-                   from (select c.customer_id, c.customer_name, c.customer_gender, c.customer_year, d.disease_code, d.diagnosis_time, d.diagnosis_pi
+           from (select customer_id, customer_name, customer_gender, customer_year, disease_code, diagnosis_time, diagnosis_pi, diagnosis_num, ROWNUM
+                   from (select c.customer_id, c.customer_name, c.customer_gender, c.customer_year, d.disease_code, d.diagnosis_time, d.diagnosis_pi, d.diagnosis_num
                            from customer c, diagnosis d 
                           where c.customer_id = #{customer_id}
                             and c.customer_id = d.customer_id 
@@ -875,7 +875,7 @@
    <!-- 진료리스트 -->
    <select id="getDiagnosisList" resultType="com.spring.lifecare.vo.DiagnosisVO">
    		<![CDATA[
-   		select ROWNUM, c.insurance, c.customer_name, c.customer_gender, c.customer_year, d.disease_code, d.diagnosis_time 
+   		select ROWNUM, c.insurance, c.customer_name, c.customer_gender, c.customer_year, d.disease_code, d.diagnosis_time , d.diagnosis_num
    		  from customer c, diagnosis d
    		 where c.customer_id = d.customer_id 
    		   and d.doctor_id = #{doctor_id} 
@@ -927,6 +927,7 @@
 		SELECT *
 		FROM(SELECT diagnosis_num, diagnosis_time, customer_id, customer_amount, customer_payment, rowNum as rNum
 			   FROM(SELECT * FROM diagnosis
+			   		 where customer_id = #{customer_id}
 				 	 order by diagnosis_time desc))
 		 WHERE rNum >= #{start} and rNum <= #{end} and customer_id = #{customer_id}
    		 ]]>
