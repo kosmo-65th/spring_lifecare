@@ -238,6 +238,7 @@ $(function() {
 										<th>나이</th>
 										<th>진단</th>
 										<th>진료일</th>
+										<th>진료결과</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -249,6 +250,7 @@ $(function() {
 										<td><fmt:formatNumber value="${2020 - i.getCustomer_year()}" pattern="#,###"/>세</td>
 										<td>${i.getDisease_code()}</td>
 										<td><fmt:formatDate type = "both" pattern = "yyyy-MM-dd" value = "${i.getDiagnosis_time()}"/></td>
+										<td><a href="javascript:void(0)" onclick="window.open('${path}/Medicalrecords/medicalNote?diagnosis_num=${i.getDiagnosis_num()}','진료결과','resizable=no width=830 height=850');return false"><img style="width:30px; height:30px" src="${path_resources}images/돋보기.png"></a></td>
 									</tr>
 									</c:forEach>	
 								</tbody>

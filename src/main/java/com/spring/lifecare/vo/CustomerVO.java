@@ -24,7 +24,14 @@ public class CustomerVO {
 	private String disease_code;
 	private Timestamp diagnosis_time;
 	private String diagnosis_pi;
+	private int diagnosis_num;
 	
+	public int getDiagnosis_num() {
+		return diagnosis_num;
+	}
+	public void setDiagnosis_num(int diagnosis_num) {
+		this.diagnosis_num = diagnosis_num;
+	}
 	public String getCustomer_echeck() {
 		return customer_echeck;
 	}
