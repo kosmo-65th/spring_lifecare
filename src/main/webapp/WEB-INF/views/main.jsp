@@ -126,7 +126,7 @@
                   <div class="service-time one" style="background:#2895f1;">
                      <span class="info-icon"><i class="fa fa-ambulance" aria-hidden="true"></i></span>
                      <h3 style="font-size:26px;">응급 상황</h3>
-                     <p style="font-size:18px; color:#fff;">우리가 홈런에 합당하다고 생각하는 것처럼, 아첨으로 이러한 고통의 시급함과 볼타의 질량뿐만 아니라 그는</p>
+                     <p style="font-size:18px; color:#fff;">응급의료센터는 24시간 내내 어떠한 응급상황에도 대처할 수 있는 진료 시스템을 갖추고 있습니다. </p>
                   </div>
                </div>
             </div>
@@ -149,8 +149,8 @@
                <div class="row">
                   <div class="service-time three" style="background:#0060b1;">
                      <span class="info-icon"><i class="fa fa-hospital-o" aria-hidden="true"></i></span>
-                     <h3 style="font-size:26px;">클리닉 시간표</h3>
-                     <p style="font-size:18px; color:#fff;">우리가 홈런에 합당하다고 생각하는 것처럼, 아첨으로 이러한 고통의 시급함과 볼타의 질량뿐만 아니라 그는.</p>
+                     <h3 style="font-size:26px;">진료서비스</h3>
+                     <p style="font-size:18px; color:#fff;">딥러닝과 다양한 기술을 적극적으로 활용하여 의료의 효과성 및 효율성을 향상시켰습니다.</p>
                   </div>
                </div>
             </div>
