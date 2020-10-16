@@ -388,8 +388,8 @@ public class JinController {
 				if(Integer.parseInt(vo.getAppoint_date()) > datestr) {
 					Map<String, Object> map = new HashMap<String, Object>();
 					String appoint_num = Integer.toString(vo.getAppoint_num());
-					String date = "20" + vo.getAppoint_date().substring(0, 2) + "년" + vo.getAppoint_date().substring(2, 4) + 
-							"월" + vo.getAppoint_date().substring(4, 6) + "일 " + vo.getAppoint_time().substring(0, 2) + "시" + vo.getAppoint_time().substring(3, 5) + "분";
+					String date = "20" + vo.getAppoint_date().substring(0, 2) + "년 " + vo.getAppoint_date().substring(2, 4) + 
+							"월 " + vo.getAppoint_date().substring(4, 6) + "일 \n" + vo.getAppoint_time().substring(0, 2) + "시 " + "00분";
 					map.put("doctor_id", vo.getDoctor_id());
 					map.put("appoint_num", appoint_num);
 					map.put("appoint_date", date);				
@@ -415,9 +415,9 @@ public class JinController {
 		
 		updateCnt = dao.updateAppoint(appoint_num);
 		Map<String, Object> map = new HashMap<String, Object>();
-		
-		String date = appoint_date.substring(0,4) + "-" + appoint_date.substring(5,7) + "-" + appoint_date.substring(8,10) + 
-					  " " + appoint_date.substring(12,14) + ":" + appoint_date.substring(15,17) + ":00.0";
+		System.out.println(appoint_date);
+		String date = appoint_date.substring(0,4) + "-" + appoint_date.substring(6,8) + "-" + appoint_date.substring(10,12) + 
+					  " " + appoint_date.substring(15,17) + ":" + "00:00.0";
 		System.out.println(date);
 		java.sql.Timestamp reservation_date = java.sql.Timestamp.valueOf(date);
 		
