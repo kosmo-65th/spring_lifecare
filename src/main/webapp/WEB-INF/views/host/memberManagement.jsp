@@ -33,27 +33,27 @@
 		<div class="container-fluid">
         <div Style="height:50px"></div>
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Member Management</h1>
-          <p class="mb-4">Host can see a number of member tables below</p>
+          <h1 class="h3 mb-2 text-gray-800">회원관리</h1>
+          <p class="mb-4">관리자는 회원 목록을 보실 수 있습니다.</p>
 
           <!-- DataTales Example -->          
         
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Member Management</h6>
+              <h6 class="m-0 font-weight-bold text-primary">회원관리</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>NAME</th>
-                      <th>ID</th>
-                      <th>GENDER</th>
-                      <th>BIRTH OF DATE</th>
-                      <th>EMAIL ADDRESS</th>
-                      <th>PHONE NUMBER</th>
-                      <th>DETAIL</th>
+                      <th>이름</th>
+                      <th>아이디</th>
+                      <th>성별</th>
+                      <th>생년월일</th>
+                      <th>이메일 주소</th>
+                      <th>전화번호</th>
+                      <th>상세보기</th>
                     </tr>
                   </thead>
                   <tbody>

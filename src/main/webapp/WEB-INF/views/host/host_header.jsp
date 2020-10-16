@@ -53,21 +53,21 @@
       <li class="nav-item">
         <a class="nav-link" href="${path}/admin/memberManagement">
           <i class="fas fa-fw fa-table"></i>
-          <span>Member Management</span></a>
+          <span>회원관리</span></a>
       </li>
       
        <!-- Nav Item - Tables -->
       <li class="nav-item">
         <a class="nav-link" href="${path}/admin/doctorManagement">
           <i class="fas fa-fw fa-table"></i>
-          <span>Doctor Management</span></a>
+          <span>의사관리</span></a>
       </li>
 
        <!-- Nav Item - Tables -->
       <li class="nav-item">
         <a class="nav-link" href="${path}/admin/doctorManagement">
           <i class="fas fa-fw fa-table"></i>
-          <span>Board Management</span></a>
+          <span>게시판 관리</span></a>
       </li>
       
       <!-- Nav Item - Tables -->
@@ -77,7 +77,7 @@
 		 <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
 		</form>
           <i class="fas fa-fw fa-table"></i>
-          <span>Logout</span></a>
+          <span>로그아웃</span></a>
       </li>
       
       <!-- Divider -->

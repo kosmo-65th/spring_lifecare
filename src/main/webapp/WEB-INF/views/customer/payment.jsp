@@ -65,7 +65,7 @@ $(document).ready(function(){
 		if(pay != "0"){
 			alert("미결제 진료분은 조회하실수 없습니다.");
 		}else{
-			window.open('${pageContext.request.contextPath}/Medicalrecords/diagnosisprint?diagnosis_num=' + diagnosis_num , '진단서 발급', 'left=0,top=0,resizable=no width=750, height=600');
+			window.open('${pageContext.request.contextPath}/Medicalrecords/diagnosisprint?diagnosis_num=' + diagnosis_num , '진단서 발급', 'resizable=no width=750, height=750');
 		}
 		
 	});
@@ -78,7 +78,7 @@ $(document).ready(function(){
 		if(pay != "0"){
 			alert("미결제 진료분은 조회하실수 없습니다.");
 		}else{
-			window.open('${pageContext.request.contextPath}/Medicalrecords/medicalPrint?diagnosis_num=' + diagnosis_num , '진료기록부 발급', 'left=0,top=0,resizable=no width=750, height=600');
+			window.open('${pageContext.request.contextPath}/Medicalrecords/medicalPrint?diagnosis_num=' + diagnosis_num , '진료기록부 발급', 'resizable=no width=850, height=880');
 		}
 		
 	});
@@ -91,9 +91,8 @@ $(document).ready(function(){
 		if(pay != "0"){
 			alert("미결제 진료분은 조회하실수 없습니다.");
 		}else{
-			window.open('${pageContext.request.contextPath}/Medicalrecords/prescriptionprint?diagnosis_num=' + diagnosis_num , '처방전 발급', 'left=0,top=0,resizable=no width=750, height=600');
+			window.open('${pageContext.request.contextPath}/Medicalrecords/prescriptionprint?diagnosis_num=' + diagnosis_num , '처방전 발급', 'resizable=no width=850, height=850');
 		}
-		
 	});
 });
 </script>
@@ -277,9 +276,9 @@ $(document).ready(function(){
 </div>
 <div class="light">	  			
 		<ul style="float: right;">
-       		<li style="display:inline;"><a class="large button green" href="javascript:void(1)" id = "diagnosisform" style="margin-left:572px">진단서 발급</a></li>
-       		<li style="display:inline;"><a class="large button green" href="javascript:void(1)" id = "medishow">진료기록부 발급</a></li>
-       		<li style="display:inline;"><a class="large button green" href="javascript:void(1)" id = "showpres">처방전 발급</a></li>
+       		<li style="display:inline;"><a class="large button green" href="javascript:void(1)" id = "diagnosisform" style="margin-left:572px; color: black;">진단서 발급</a></li>
+       		<li style="display:inline;"><a class="large button green" href="javascript:void(1)" id = "medishow" style="color: black;">진료기록부 발급</a></li>
+       		<li style="display:inline;"><a class="large button green" href="javascript:void(1)" id = "showpres" style="color: black;">처방전 발급</a></li>
 		</ul>
 		<p class="tail">* 미수금을 클릭하면 결제페이지로 이동하여 결제가 가능합니다.</p>
 </div>
