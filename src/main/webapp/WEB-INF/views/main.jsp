@@ -125,8 +125,8 @@
                <div class="row">
                   <div class="service-time one" style="background:#2895f1;">
                      <span class="info-icon"><i class="fa fa-ambulance" aria-hidden="true"></i></span>
-                     <h3>응급 상황</h3>
-                     <p>우리가 홈런에 합당하다고 생각하는 것처럼, 아첨으로 이러한 고통의 시급함과 볼타의 질량뿐만 아니라 그는</p>
+                     <h3 style="font-size:26px;">응급 상황</h3>
+                     <p style="font-size:18px; color:#fff;">우리가 홈런에 합당하다고 생각하는 것처럼, 아첨으로 이러한 고통의 시급함과 볼타의 질량뿐만 아니라 그는</p>
                   </div>
                </div>
             </div>
@@ -134,7 +134,7 @@
                <div class="row">
                   <div class="service-time middle" style="background:#0071d1; height:380px;">
                      <span class="info-icon"><i class="fa fa-clock-o" aria-hidden="true"></i></span> 
-                     <h3>근무 시간</h3>
+                     <h3 style="font-size:26px;">근무 시간</h3>
                      <div class="time-table-section">
                         <ul>
                            <li><span class="left">월요일 - 금요일</span><span class="right">8.00 – 18.00</span></li>
@@ -149,8 +149,8 @@
                <div class="row">
                   <div class="service-time three" style="background:#0060b1;">
                      <span class="info-icon"><i class="fa fa-hospital-o" aria-hidden="true"></i></span>
-                     <h3>클리닉 시간표</h3>
-                     <p>우리가 홈런에 합당하다고 생각하는 것처럼, 아첨으로 이러한 고통의 시급함과 볼타의 질량뿐만 아니라 그는.</p>
+                     <h3 style="font-size:26px;">클리닉 시간표</h3>
+                     <p style="font-size:18px; color:#fff;">우리가 홈런에 합당하다고 생각하는 것처럼, 아첨으로 이러한 고통의 시급함과 볼타의 질량뿐만 아니라 그는.</p>
                   </div>
                </div>
             </div>
@@ -172,8 +172,14 @@
 	  </div>
       
       <br>
-      <div style="margin-top:50px;"></div>
-      <div id="map" style="width:47%;height:500px; margin:0 auto;"></div>
+      <div align="center">
+	      <div style="margin-top:50px;width:50%;">
+	      		<div id="map" style="width:87%;height:500px; margin:0 auto;"></div>
+	      		<div align="right"> 
+		      		<a href="${path}/findWay" style="color:gray; margin-right:6.7%">지도 정보 상세보기 >></a>
+		      	</div>
+		  </div>
+	  </div>
       <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5a4dcbf8bd992d42aecc63827327a181&libraries=services"></script>
       <script>
 	       var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -195,8 +201,8 @@
 	  		marker.setMap(map);
       </script>  
         <br>
-       <div style="width:47%; margin:0 auto;">
-        <img src="${path_resources }img/LFMAP.JPG" >
+       <div style="width:46%; margin:0 auto; margin-top:15px;"> 
+        <img src="${path_resources}img/maein.PNG" > 
   		 </div>
       <%@include file="./common/footer.jsp" %>
       <!-- end copyrights -->

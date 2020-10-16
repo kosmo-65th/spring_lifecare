@@ -93,7 +93,6 @@ $(document).ready(function(){
 		}else{
 			window.open('${pageContext.request.contextPath}/Medicalrecords/prescriptionprint?diagnosis_num=' + diagnosis_num , '처방전 발급', 'resizable=no width=850, height=850');
 		}
-		
 	});
 });
 </script>
