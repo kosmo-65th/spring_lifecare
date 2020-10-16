@@ -40,9 +40,9 @@
 	z-index: 99999999999999999999999999;
 } 
 </style>
-<body>
+<body onresize="parent.resizeTo(800,800)" onload="parent.resizeTo(800,800)">
 	<div class="chatbot">
-  		<a href= "javascript:window.open('${path}/customer/chatbot')" onclick="chatbot();">
+  		<a href= "${path}/customer/chatbot" onclick="chatbot();">
   		<img class="chatbot" title="chat-bot" src="${path_resources}img/chatBot.png" 
   		style="width: 120px; height: 120px;"></a>
   	</div>

@@ -20,6 +20,7 @@ public class DlrController {
 	//문진표 서비스	
 	@Autowired
 	questionnaireService questionnaireservice;
+	
 	//안드로이드 로그인 서비스
 	@Autowired
 	Android_LoginService android_LoginService;
@@ -43,6 +44,13 @@ public class DlrController {
 	public String index1(HttpServletRequest req,Model model) {
 		
 		return "customer/Questionnaire/index1";
+	}
+	
+	//문진표 문항
+	@RequestMapping("/index2")
+	public String index2(HttpServletRequest req,Model model) {
+		
+		return "main";
 	}
 	
 	//코로나 정보

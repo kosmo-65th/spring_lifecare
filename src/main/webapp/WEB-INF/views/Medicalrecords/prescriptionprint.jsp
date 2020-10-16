@@ -33,7 +33,7 @@
 .tg .tg-0lax{text-align:left;vertical-align:top}
 </style>
 </head>
-<body>
+<body onresize="parent.resizeTo(850,750)" onload="parent.resizeTo(850,750)">
 <div align="center">
 <table class="tg"  style = "margin-bottom:20px;">
 <thead>

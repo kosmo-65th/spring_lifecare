@@ -65,7 +65,7 @@ $(document).ready(function(){
 		if(pay != "0"){
 			alert("미결제 진료분은 조회하실수 없습니다.");
 		}else{
-			window.open('${pageContext.request.contextPath}/Medicalrecords/diagnosisprint?diagnosis_num=' + diagnosis_num , '진단서 발급', 'resizable=no width=750, height=600');
+			window.open('${pageContext.request.contextPath}/Medicalrecords/diagnosisprint?diagnosis_num=' + diagnosis_num , '진단서 발급', 'left=0,top=0,resizable=no width=750, height=600');
 		}
 		
 	});
@@ -78,7 +78,7 @@ $(document).ready(function(){
 		if(pay != "0"){
 			alert("미결제 진료분은 조회하실수 없습니다.");
 		}else{
-			window.open('${pageContext.request.contextPath}/Medicalrecords/medicalPrint?diagnosis_num=' + diagnosis_num , '진료기록부 발급', 'resizable=no width=750, height=600');
+			window.open('${pageContext.request.contextPath}/Medicalrecords/medicalPrint?diagnosis_num=' + diagnosis_num , '진료기록부 발급', 'left=0,top=0,resizable=no width=750, height=600');
 		}
 		
 	});
@@ -91,7 +91,7 @@ $(document).ready(function(){
 		if(pay != "0"){
 			alert("미결제 진료분은 조회하실수 없습니다.");
 		}else{
-			window.open('${pageContext.request.contextPath}/Medicalrecords/prescriptionprint?diagnosis_num=' + diagnosis_num , '처방전 발급', 'resizable=no width=750, height=600');
+			window.open('${pageContext.request.contextPath}/Medicalrecords/prescriptionprint?diagnosis_num=' + diagnosis_num , '처방전 발급', 'left=0,top=0,resizable=no width=750, height=600');
 		}
 		
 	});
