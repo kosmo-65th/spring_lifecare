@@ -605,7 +605,7 @@ $(function() {
                                       <input type='checkbox' name='appoint_time' value='09:00' id="time16"/><span id="timeText16" style="margin-left:10px; margin-right:10px;">09:00</span>
                                       <input type='checkbox' name='appoint_time' value='11:00' id="time17"/><span id="timeText17" style="margin-left:10px; margin-right:10px;">11:00</span>
 									  <input type='checkbox' name='appoint_time' value='14:00' id="time18"/><span id="timeText18" style="margin-left:10px; margin-right:10px;">14:00</span>
-									  <input type='checkbox' name='appoint_time' value='16:00' id="time19"/><span id="timeText19" style="margin-left:10px; margin-right:10px;">16:00</span>
+									  <input type='checkbox' name='appoint_time' value='16:00' id="time19"/><span id="timeText19" style="margin-left:10px; margin-right:10">16:00</span>
                                 </div>
                             </div>
                         </div>
