@@ -5,6 +5,9 @@
 <%@ page import ="java.util.Collection"%>
 <%@ page import ="org.springframework.security.core.GrantedAuthority"%>
 <html>
+
+
+
 <body>
 <%
 Collection<? extends GrantedAuthority> authorities = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
@@ -18,7 +21,9 @@ String authority = authorities.toString();
 		window.location = "${path}/admin/summary";
 	}
 </script>
-
- <%@ include file="./header_error.jsp" %> 
+	
+	<%@ include file="./header_error.jsp" %>
+	
+ 	
 </body>
 </html>

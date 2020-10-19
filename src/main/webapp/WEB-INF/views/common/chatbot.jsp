@@ -3,57 +3,48 @@
 <!DOCTYPE html>
 <html>
 <%@ include file="/resources/setting/setting.jsp" %> 
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 <style type="text/css">
-
-@media (min-width:1930px) {
-
+ @media (min-width:1930px) {
     .chatbot{
-		float: right;
 		position: fixed;
-		margin-left: 92%;
-		bottom: 10%;
+		bottom: 1%;
+		left: 93%;
 	}	
 } 
 @media (max-width:1920px) {
-
     .chatbot{
-		float: right;
 		position: fixed;
-		margin-left: 92%;
-		bottom: 10%;
+		bottom: 1%;
+		left: 93%;
 	}	
 } 
 
 @media (max-width:1280px) {
-
     .chatbot{
 		float: right;
 		position: fixed;
-		margin-left:92%;
-		bottom: 4%;
+		bottom: 1%;
+		left: 93%;
 	}	
 }
 
 @media (max-width:1024px) {
-
     .chatbot{
 		float: right;
 		position: fixed;
-		margin-left:85%;
-		bottom: 15%;
+		bottom: 1%;
+		left: 93%;
 	}	
 } 
+.chatbot{
+	z-index: 99999999999999999999999999;
+} 
 </style>
-</head>
-<body>
+<body onresize="parent.resizeTo(800,800)" onload="parent.resizeTo(800,800)">
 	<div class="chatbot">
-  		<a href= "javascript:window.open('${path}/customer/chatbot')" onclick="chatbot();">
-  		<img title="chat-bot" src="${path_resources}img/chatBot.png" 
+  		<a href= "${path}/customer/chatbot" onclick="chatbot();">
+  		<img class="chatbot" title="chat-bot" src="${path_resources}img/chatBot.png" 
   		style="width: 120px; height: 120px;"></a>
   	</div>
-  	
 </body>
 </html>
