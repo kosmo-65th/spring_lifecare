@@ -249,7 +249,7 @@ public class JinController {
  		doctor.drugList(req, model);
  		return "doctor/drugList5";
  	}
- 	
+ 
     // 진료기록 저장
  	@RequestMapping("/doctor/diagnosisPro")
  	public String diagnosisPro(HttpServletRequest req, Model model) { 		
