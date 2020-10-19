@@ -28,7 +28,7 @@
 			<div class="loginform">
 				<div class="titles">로그인</div>
 				<h1 id="msg">Welcome Life Care</h1>
-				<input type="text" name="userid" id="label_id" class="idbox" placeholder="아이디"><br>
+				<input type="text" name="userid" id="label_id" class="idbox" placeholder="아이디" autocomplete="off"><br>
 				<input type="password" name="passwd" class="pwdbox" placeholder="패스워드"><br>
 				<input type="checkbox" id="idsave"> 아이디 저장
 				<input type="checkbox" name="autologin"> 자동 로그인
