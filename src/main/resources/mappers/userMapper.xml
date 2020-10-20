@@ -952,7 +952,7 @@
   
   <!-- 관리자 의사 회원목록 -->
     <select id="listDoctors" resultType="com.spring.lifecare.vo.DoctorVO">
-     SELECT d.doctor_name, d.doctor_id, d.doctor_email, d.doctor_phone, d.doctor_major, d.doctor_position, c.enabled 
+     SELECT d.doctor_num, d.doctor_name, d.doctor_id, d.doctor_email, d.doctor_phone, d.doctor_major, d.doctor_position, c.enabled 
      FROM doctor d, customer c
      where d.doctor_id = c.CUSTOMER_ID
   </select>

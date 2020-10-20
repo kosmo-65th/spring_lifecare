@@ -627,4 +627,10 @@ public class JinController {
  		doctor.modifyCancer(req, model);
  		return "doctor/resultUpdate";
  	}
+ 	
+    // 병원소개
+ 	@RequestMapping("/intro")
+ 	public String intro(Model model) {		
+ 		return "guest/intro";
+ 	}
 }

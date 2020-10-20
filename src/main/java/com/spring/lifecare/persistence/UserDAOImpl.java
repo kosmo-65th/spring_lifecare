@@ -175,12 +175,14 @@ public class UserDAOImpl implements UserDAO {
 		return dao.getTimeList();
 	}
 
+	// 예약 불가능하도록 update
 	@Override
 	public int updateAppoint(int appoint_num) {
 		UserDAO dao = sqlSession.getMapper(UserDAO.class);
 		return dao.updateAppoint(appoint_num);
 	}
 
+	// reservation테이블에 insert
 	@Override
 	public int addReservation(Map<String, Object> map) {
 		UserDAO dao = sqlSession.getMapper(UserDAO.class);
