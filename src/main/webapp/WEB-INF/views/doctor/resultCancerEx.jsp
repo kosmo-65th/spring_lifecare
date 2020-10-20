@@ -91,7 +91,7 @@ $(function() {
 </tr>
 <tr>
 <th colspan="2">AI검사결과확률</th>
-<td colspan="2">${vo.getPercentage()}</td>
+<td colspan="2" style="color:#FF0004; background-color:#FAFA96; font-weight:bold;">${vo.getPercentage()}</td>
 </tr>
 <tr>
 <th colspan="4" style="font-size:17px;">의사소견</th>

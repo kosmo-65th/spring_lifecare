@@ -34,6 +34,9 @@
     text-transform: uppercase;
     white-space: nowrap;
 }
+.CoronaText{
+	color:#FF0004 !important; background-color:#FAFA96 !important; font-weight:bold !important;
+}
 </style>
 <script type="text/javascript">
 // xray검사 결과 수정
@@ -43,7 +46,34 @@ $(function() {
 		var xray_num = $("#xray_num").val();		
 		window.location = "${path}/doctor/xray_exPro?xray_num="+xray_num+"&xray_result="+xrayResult;
     });
+    
+    var normal = $("#normal").val();
+    var pneumonia = $("#pneumonia").val();
+    var corona = $("#corona").val();
+	
+    var normal1 = normal.replace("%","");
+    var pneumonia1 = pneumonia.replace("%","");
+    var corona1 = corona.replace("%","");
+
+    var result_normal = parseFloat(normal1);
+    var result_pneumonia = parseFloat(pneumonia1);
+    var result_corona = parseFloat(corona1);
+    
+    if(result_normal >80){
+    	$("#result_normal").addClass("CoronaText");
+    	$("#result_normal").prev().addClass("CoronaText");
+    }
+    if(result_pneumonia >80){
+    	$("#result_pneumonia").addClass("CoronaText");
+    	$("#result_pneumonia").siblings().addClass("CoronaText");
+    }
+    if(result_corona >80){
+    	$("#result_corona").addClass("CoronaText");
+    	$("#result_corona").siblings().addClass("CoronaText");
+    }
 });
+
+
 
 </script>
 <title>X-RAY검사결과</title>
@@ -69,17 +99,16 @@ $(function() {
 <tbody>										    
 <tr>												
 <td rowspan="3" colspan="2"><img style="height:300px;" id="img" src="${path_resources}img/${vo.getXray_img()}"></td>
-<td>정상확률</td>
-    <td>${vo.getNormal_percentage()}</td>
-</tr>
-
-<tr>
-<td>폐렴확률</td>
-<td>${vo.getPneumonia_percentage()}</td>
+	<td>정상확률</td>
+    <td id="result_normal">${vo.getNormal_percentage()}</td>
 </tr>
 <tr>
-<td>코로나확률</td>
-<td>${vo.getCorona_percentage()}</td>
+	<td>폐렴확률</td>
+	<td id="result_pneumonia">${vo.getPneumonia_percentage()}</td>
+</tr>
+<tr>
+	<td>코로나확률</td>
+	<td id="result_corona">${vo.getCorona_percentage()}</td>
 </tr>
 </tbody>	
 <tr>
@@ -91,6 +120,9 @@ $(function() {
 </table>
 <input type="button" class="button-primary" value="검사기록저장" id="updateXray_result">
 <input type="hidden" id="xray_num" value="${vo.getXray_num()}">
+<input type="hidden" id="normal" value="${vo.getNormal_percentage()}">
+<input type="hidden" id="pneumonia" value="${vo.getPneumonia_percentage()}">
+<input type="hidden" id="corona" value="${vo.getCorona_percentage()}">
 <!--//ui object -->
 </body>
 </html>

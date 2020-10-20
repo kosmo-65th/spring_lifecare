@@ -1224,8 +1224,8 @@ $(function(){
 							<input type='radio' name='a' id='tabTwo' tabindex="2">
 			
 							<div class="css3-tab-nav">
-								<label for='tabOne'>진료기록작성</label>
-								<label for='tabTwo'>검사결과작성</label>
+								<label for='tabOne' style="font-size:25px;">진료기록작성</label>
+								<label for='tabTwo' style="font-size:25px;">검사결과작성</label>
 							</div>
 							<div class='css3-tab-content tab-one'>														
 						<div class="card-block">

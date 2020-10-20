@@ -36,25 +36,13 @@
 		<button type="submit" class="btn-type btn2 blue mr_3"><a href="https://map.kakao.com/link/map/37.478845,126.878594">지도 크게보기</a></button>&nbsp;&nbsp;
 		<button type="submit" class="btn-type btn2 blue mr_3"><a href="https://map.kakao.com/link/roadview/37.478845,126.878594">로드뷰</a></button>&nbsp;&nbsp;
  	</div>
-	<div class="findId_area">
-         <p>TRANSFORTATION</p>
-                        지하철<br>
-                        가산디지털단지역 6번출구 나오셔서 좌측횡단보도 건너 좌측으로 10m 가시면 삼거리가 나오고 
-                        삼거리에서 우측 방향으로 직진하셔서 사거리 대각선방향 우리은행 건물 F20호입니다.<br><br>               
-                        버스<br>
-            21, 571, 652, 금천 05
-            [디지털3단지월드벤쳐센터] 정류장에서 하차<br><br>
-            
-          <p>YOUR OWN CAR</p>
-                        자가용<br>  
-                        서부간선도로를 타고 오다가 광명교를 타고 좌회전 후 첫 사거리에서 우회전<br>
-                        가리봉5거리에서 철산방향 수출의 다리를 넘어 첫 사거리(한진사거리)에서 우회전<br>
-                        남부순환도로 구로IC로 나와 좌회전<br>                                                                                        
-    </div>      
+	<div style="width:46%; margin:0 auto; margin-top:15px;"> 
+        <img src="${path_resources}img/maein.PNG" > 
+  		 </div> 
     
     
 </body>
-<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5a4dcbf8bd992d42aecc63827327a18&libraries=services"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5a4dcbf8bd992d42aecc63827327a181&libraries=services"></script>
 <script>
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	mapCenter = new kakao.maps.LatLng(37.478845,126.878594), // 지도의 중심 좌표
@@ -76,8 +64,9 @@
 
 	//지도에 올릴 장소명 인포윈도우 입니다.
 	var mLabel = new kakao.maps.InfoWindow({
-	position: myPosition, // 지도의 중심좌표에 올립니다.
-	  // 인포윈도우 내부에 들어갈 컨텐츠 입니다.
+		position: myPosition, // 지도의 중심좌표에 올립니다.
+		content:"<div style='padding:5px; align:center;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LifeCare병원   </div>",
+		removable : true
 	});
 	mLabel.open(map, mMarker); // 지도에 올리면서, 두번째 인자로 들어간 마커 위에 올라가도록 설정합니다.
 
@@ -104,7 +93,9 @@
 
 	// 로드뷰에 올릴 장소명 인포윈도우를 생성합니다.
 	var rLabel = new kakao.maps.InfoWindow({
-	
+		position: myPosition,
+		content: "<div style='padding:5px; align:center;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LifeCare병원</div>" ,
+		removable : true
 	});
 	rLabel.setRange(100); //마커가 보일 수 있는 범위를 설정합니다. (단위는 m입니다.)
 	rLabel.open(rv, rMarker); // open시 마커를 넣어주면, 마커의 altitude와 position값을 모두 따라 갑니다.
