@@ -65,7 +65,7 @@
 
        <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="${path}/admin/doctorManagement">
+        <a class="nav-link" href="${path}/board/adminboardList">
           <i class="fas fa-fw fa-table"></i>
           <span>Board Management</span></a>
       </li>

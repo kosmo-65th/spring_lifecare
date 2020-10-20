@@ -87,13 +87,13 @@ public class SewController {
 	}
 	
 	//admin-총게시글 목록
-	//@RequestMapping("/board/adminboardList")
-	//public String adminboardForm(HttpServletRequest req, Model model) {
-		//board.adminboardList(req, model);
-		//return "/board/adminboardList";
-	//}
+	@RequestMapping("/board/adminboardList")
+	public String adminboardForm(HttpServletRequest req, Model model) {
+		board.adminboardList(req, model);
+		return "/board/adminboardList";
+	}
 	
-	//admin-총게시글 조회
+	//admin-게시글 상세
 	@RequestMapping("/board/adminboardcontent")
 	public String adminboardcontent(HttpServletRequest req, Model model) {
 		board.adminboardcontent(req, model);
@@ -111,6 +111,13 @@ public class SewController {
 	@RequestMapping("/board/adminboardreplydelete")
 	public String adminboardreplydelete(HttpServletRequest req, Model model) {
 		board.adminboardreplydelete(req, model);
+		return "/board/adminboardUpdate";
+	}
+	
+	//admin - 게시글 삭제
+	@RequestMapping("/board/boarddelete")
+	public String boarddelete(HttpServletRequest req, Model model) {
+		board.boarddelete(req, model);
 		return "/board/adminboardUpdate";
 	}
 	

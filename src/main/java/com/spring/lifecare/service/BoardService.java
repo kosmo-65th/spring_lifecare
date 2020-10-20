@@ -25,11 +25,8 @@ public interface BoardService {
 	//회원-게시글 삭제 처리
 	public void deletePro(HttpServletRequest req, Model model);
 	
-	//회원-답변글 상세 페이지
-	//public void replyserch(HttpServletRequest req, Model model);
-	
 	//admin-총 게시글 페이지
-	//public void adminboardList(HttpServletRequest req, Model model);
+	public void adminboardList(HttpServletRequest req, Model model);
 	
 	//admin-총 게시글 상세 페이지
 	public void adminboardcontent(HttpServletRequest req, Model model);
@@ -39,5 +36,11 @@ public interface BoardService {
 	
 	//admin-게시글 답변 삭제
 	public void adminboardreplydelete(HttpServletRequest req, Model model);
+	
+	//admin-답변글 수정
+	public void replyupdate(HttpServletRequest req, Model model);
+	
+	//admin-본글 삭제
+	public void boarddelete(HttpServletRequest req, Model model);
 	
 }

@@ -12,6 +12,9 @@ public interface MyDAO {
 	//회원-게시글 갯수 구하기
 	public int getArticleCnt(String customer_id);
 	
+	//admin-게시글 갯수 구하기
+	public int adminArticleCnt();
+	
 	//회원-게시글 목록 조회(여러건의 정보)
 	public List<BoardVO> getArticleList(Map<String, Object> map);
 	
@@ -33,9 +36,6 @@ public interface MyDAO {
 	//회원-게시글 삭제 처리
 	public int contentDelete(int board_sortnum);
 	
-	////회원-답변글 조회(한건의 정보)
-	//public BoardVO replyserch(int board_sortnum);
-	
 	//admin-회원글 검색
 	public int searchBoardCnt(String search);
 	
@@ -46,13 +46,22 @@ public interface MyDAO {
 	public List<BoardVO> searchBoardList(Map<String, Object> map);
 	
 	//admin-회원글 상세조회
-	public BoardVO adminboardcontent(Map<String, Object> map);
+	public BoardVO adminboardcontent(int board_sortnum);
 	
 	//admin-답변글쓰기
-	public int adminboardreply(BoardVO vo);
+	public int adminboardreply(Map<String, Object> map);
 	
 	//admin-답변글삭제
-	public int adminboardreplydelete(int board_sortnum);
+	public int adminboardreplydelete(Map<String, Object> map);
+	
+	//admin-답변글 수정
+	public int replyupdate(Map<String, Object> map);
+	
+	//admin-답변 상태
+	public int updatere(Map<String, Object> map);
+	
+	//admin-본글 삭제
+	public int boarddelete(int board_sortnum);
 	
 	//회원-진료횟수 확인
 	public int medicalCnt();

@@ -2,23 +2,45 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/resources/setting/setting.jsp" %>
 <html>
-<title>게시판관리</title>
 </head>
 <body id="page-top">
+<%@include file="../host/host_header.jsp" %>
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+      <div Style="height:50px"></div>
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Q&A Management</h1>
+<p class="mb-4">Response to customer Q&A and bulletin board management</p>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Q&A Management</h6>
+  </div>
 	
-  <!-- Page Wrapper -->
+ <!-- Page Wrapper -->
  	<div id="wrapper">
  		<c:set var="where" value="${path}/board/adminboardList"/>
 		<!-- Begin Page Content -->
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">게시판 관리</h1>
+          <h1 class="h3 mb-2 text-gray-800"></h1>
 
           <!-- DataTales Example -->
          
           <div class="card shadow mb-4">
             <div class="card-header py-3">
+              <h6 style="float:right" class="m-0 font-weight-bold text-primary" >검색 ${cnt}건</h6>
+              <br>
+              <form action="${path}/board/adminboardList" name="deliverList" method="get">
+              <div style="text-align:right;">검색어 : 
+              	<input type="text" name="search" value="${param.search }">
+              	<input type="submit" value="검색">
+              </div>
+              </form>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -26,42 +48,41 @@
 		<div class="contents_box">
 			<table width="100%" cellpadding="0" cellspacing="0" class="table table-bordered">
 				<colgroup>
-					<col width="10%">
-					<col width="40%">
-					<col width="10%">
-					<col width="5%">
+					<col style="text-align:center">
+					<col style="text-align:center">
+					<col style="text-align:center">
+					<col style="text-align:center">
+					<col style="text-align:center">
+					
 				</colgroup>
 				<thead>
 					<tr>
-						<th>번호</th>
-						<th>제목</th>
-						<th>작성자</th>
-						<th>등록일</th>
-						<th>답변확인</th>
+						<th style="text-align:center">번호</th>
+						<th style="text-align:center">제목</th>
+						<th style="text-align:center">작성자</th>
+						<th style="text-align:center">등록일</th>
+						<th style="text-align:center">답변확인</th>
 					</tr>
 				</thead>
 				<tbody>
 					 <c:forEach var="board" items="${boards}">
 						<tr>
-							<td>${board.rNum}</td>
-							<td class="left">
+							<td style="text-align:center">${number}
+							<c:set var = "number" value = "${number - 1}"/>
+							</td>
+							<td class="left" style="text-align:center">
 								<a href="${path}/board/adminboardcontent?board_sortnum=${board.board_sortnum }">${board.board_subject}</a>
 							</td>
-							<td>${board.customer_id }</td>
-							<td><fmt:formatDate type = "both" pattern = "yyyy-MM-dd" value = "${board.board_writedate}" /></td>
-							<td>${board.board_replycode}</td>
+							<td style="text-align:center">${board.customer_id }</td>
+							<td style="text-align:center"><fmt:formatDate type = "both" pattern = "yyyy-MM-dd" value = "${board.board_writedate}" /></td>
+							<td style="text-align:center">${board.board_replycode}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 		</div>
 		<!-- //리스트 -->
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <table style="width:1500px" align="center">
+		   <table style="width:120px" align="center">
         <tr>
             <th align="center">
                 <!-- 게시글이 있으면  -->
@@ -88,15 +109,11 @@
                 </c:if>
             </th>
         </tr>
-        	<br>
-     			 <br>
-          <form action="${path}/board/adminboardList" name="deliverList" method="get">
-              <div style="text-align:center;">serach : 
-              	<input type="text" name="search" value="${param.search}">
-              	<input type="submit" value="검색">
-              </div>
-              </form>
     </table>
+              </div>
+            </div>
+          </div>
+        </div>
         <!-- /.container-fluid -->
 
       </div>
