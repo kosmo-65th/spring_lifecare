@@ -203,7 +203,8 @@ public class CustomerServiceImpl implements CustomerService{
 		//한림
 		//String tokenId= "ensbu-iyQhmUqpKhHUKKCh:APA91bE_xq8C2h_HB5IDISX1M_qGSbAtC-HUUqZDEnaKRWlH-T8aHUdFvok2tcaCJnMebXLe7Fw3TpndZD8jkdm6BqZOTlY1bKqyTyCcd7GoteddTwhkXnmFEdl3NktJAIUU1LM5hLkY";
 		//승운
-		String tokenId= "dlZvyPr_R2aix7C8_yLGC8:APA91bGggpr_-bwkyn3LQ9JmL8MIdfLrtkNQ_gnBMezeCi3XL8x8P6Zzt_k6_i0x45AIbtvL9SNAJxUPdOC-Fmg6xMofoneciuHqAUQa7UJnobaNBLLfafE0PqosVErSvcvVya0XrEVP";
+		String tokenId= "d38Tvs1YQo-K2HxxSW8bJV:APA91bHgHsVEU2X2dSW_BB8tU7xNZHkpB-guUC9H_w6qYflbrDulbTGOsSIk4jJvIDLvTF92Vu22cFinUUSyucTqVLQ-Mi9UJqMvOE-CUrJWF8XrTVovIyDq3dlShShkx9l1W1XBueGV"; 
+				
 	    
 		String title="Life Care 예약 알림 입니다.";
 	    String content=  d;

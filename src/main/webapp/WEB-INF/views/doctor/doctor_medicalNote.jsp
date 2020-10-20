@@ -310,6 +310,10 @@ $(function() {
             	           	
                 $("#resultCancer").text(data_parse.result);
                 $("#resultPercent").text(data_parse.percent);
+        		$("#resultCancer").addClass("CoronaText");
+        		$("#resultCancer").prev().addClass("CoronaText");
+        		$("#resultPercent").addClass("CoronaText");
+        		$("#resultPercent").prev().addClass("CoronaText");
                 document.qwer.percentage.value = data_parse.result + " " + data_parse.percent;
                 alert("딥러닝 완료");
             }

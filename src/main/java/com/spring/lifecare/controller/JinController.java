@@ -13,6 +13,8 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -388,8 +390,8 @@ public class JinController {
 				if(Integer.parseInt(vo.getAppoint_date()) > datestr) {
 					Map<String, Object> map = new HashMap<String, Object>();
 					String appoint_num = Integer.toString(vo.getAppoint_num());
-					String date = "20" + vo.getAppoint_date().substring(0, 2) + "년" + vo.getAppoint_date().substring(2, 4) + 
-							"월" + vo.getAppoint_date().substring(4, 6) + "일 " + vo.getAppoint_time().substring(0, 2) + "시" + vo.getAppoint_time().substring(3, 5) + "분";
+					String date = "20" + vo.getAppoint_date().substring(0, 2) + "년 " + vo.getAppoint_date().substring(2, 4) + 
+							"월 " + vo.getAppoint_date().substring(4, 6) + "일 \n" + vo.getAppoint_time().substring(0, 2) + "시 " + "00분";
 					map.put("doctor_id", vo.getDoctor_id());
 					map.put("appoint_num", appoint_num);
 					map.put("appoint_date", date);				
@@ -402,50 +404,59 @@ public class JinController {
 	}
 	
  	// 예약하기
+	@Transactional(rollbackFor=Exception.class)
 	@ResponseBody
 	@RequestMapping(value="/android/addReservation")
 	public Map<String, String> addReservation(HttpServletRequest req, HttpServletResponse res, Model model) throws Exception {
-		int appoint_num = Integer.parseInt(req.getParameter("appoint_num"));
-		String customer_id = req.getParameter("customer_id");
-		String doctor_id = req.getParameter("doctor_id");
-		String appoint_date = req.getParameter("appoint_date"); 	
-		
-		int updateCnt = 0;
-		int insertCnt = 0;
-		
-		updateCnt = dao.updateAppoint(appoint_num);
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		String date = appoint_date.substring(0,4) + "-" + appoint_date.substring(5,7) + "-" + appoint_date.substring(8,10) + 
-					  " " + appoint_date.substring(12,14) + ":" + appoint_date.substring(15,17) + ":00.0";
-		System.out.println(date);
-		java.sql.Timestamp reservation_date = java.sql.Timestamp.valueOf(date);
-		
-		System.out.println(reservation_date);
-		
-		map.put("appoint_num", appoint_num);
-		map.put("customer_id", customer_id);
-		map.put("doctor_id", doctor_id);
-		map.put("reservation_date", reservation_date);		
-		insertCnt = dao.addReservation(map);
-		
-		Map<String, String> out = new HashMap<String, String>();
-		
-		if(updateCnt == 1 && insertCnt == 1) {
-			out.put("updateCnt", Integer.toString(updateCnt));
-			out.put("insertCnt", Integer.toString(insertCnt));
-		}		
-		System.out.println(out);
-		
-		// 파이어 베이스
-        String tokenId="ffFjqIswxZ8:APA91bHRGb-d9Ke4wgXtn_Ymm_Kzpcht8t9POxmqYi-oK0lvuIYTk8xgGPWlQujhJU0dUAALnGtoNF6RbhGvzesCGV0_gnKm1rujSg5AffaksMgF6S7UteN0FkkMGGGFWl01_sFHBhlL";
-        String title="Lifecare";
-        String content= customer_id + "님" + appoint_date + "예약이 확정되었습니다.";
-		
-        FcmUtil FcmUtil = new FcmUtil();
-        FcmUtil.send_FCM(tokenId, title, content);
-        
-		return out;
+		try {
+			int appoint_num = Integer.parseInt(req.getParameter("appoint_num"));
+			String customer_id = req.getParameter("customer_id");
+			String doctor_id = req.getParameter("doctor_id");
+			String appoint_date = req.getParameter("appoint_date"); 	
+			
+			int updateCnt = 0;
+			int insertCnt = 0;
+			
+			updateCnt = dao.updateAppoint(appoint_num);
+			Map<String, Object> map = new HashMap<String, Object>();
+			System.out.println(appoint_date);
+			String date = appoint_date.substring(0,4) + "-" + appoint_date.substring(6,8) + "-" + appoint_date.substring(10,12) + 
+						  " " + appoint_date.substring(15,17) + ":" + "00:00.0";
+			System.out.println(date);
+			java.sql.Timestamp reservation_date = java.sql.Timestamp.valueOf(date);
+			
+			System.out.println(reservation_date);
+			
+			map.put("appoint_num", appoint_num);
+			map.put("customer_id", customer_id);
+			map.put("doctor_id", doctor_id);
+			map.put("reservation_date", reservation_date);		
+			insertCnt = dao.addReservation(map);
+			
+			Map<String, String> out = new HashMap<String, String>();
+			
+			if(updateCnt == 1 && insertCnt == 1) {
+				out.put("updateCnt", Integer.toString(updateCnt));
+				out.put("insertCnt", Integer.toString(insertCnt));
+			}else {
+				throw new Exception("트랜잭션");
+			}
+			System.out.println(out);
+			
+			// 파이어 베이스
+	        String tokenId="ffFjqIswxZ8:APA91bHRGb-d9Ke4wgXtn_Ymm_Kzpcht8t9POxmqYi-oK0lvuIYTk8xgGPWlQujhJU0dUAALnGtoNF6RbhGvzesCGV0_gnKm1rujSg5AffaksMgF6S7UteN0FkkMGGGFWl01_sFHBhlL";
+	        String title="Lifecare";
+	        String content= customer_id + "님" + appoint_date + "예약이 확정되었습니다.";
+			
+	        FcmUtil FcmUtil = new FcmUtil();
+	        FcmUtil.send_FCM(tokenId, title, content);
+	        
+			return out;
+		}catch(Exception e) {
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+			System.out.println(e.getMessage());
+		}
+		return null;
 	}
 	
 	// 예약확정 시간 뿌려주기

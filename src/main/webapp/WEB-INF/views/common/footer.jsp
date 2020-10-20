@@ -12,7 +12,7 @@
 		<li><a href="${path}/conditions" >이용약관</a></li>
 		<li><a href="${path}/PI" class="colorPoint04" >개인정보 처리방침</a></li>
 		<li><a href="${path}/OI">정보공개</a></li>
-		<li><a href="/" data-layer="layerEmail" class="layerBtn">정보무단수집거부공개</a></li>
+		<!-- <li><a href="/" data-layer="layerEmail" class="layerBtn">정보무단수집거부공개</a></li> -->
 		<!-- <li><a href="/" data-layer="layerDown" class="layerBtn">뷰어다운로드</a></li> -->
 		<!-- <li><a href="//nrefer.snuh.org" target="_blank">진료협력센터</a></li> -->
 		

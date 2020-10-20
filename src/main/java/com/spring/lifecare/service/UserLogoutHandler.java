@@ -11,22 +11,20 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
 public class UserLogoutHandler  implements LogoutSuccessHandler{
+			@Override
+			public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
+					throws IOException, ServletException {
 
-	@Override
-	public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
-			throws IOException, ServletException {
-		
-		System.out.println("logoutHandler 타기");
-		 if (authentication != null && authentication.getDetails() != null) {
-	            try {
-	                 request.getSession().invalidate();
-	                 SecurityContextHolder.clearContext();
-	            } catch (Exception e) {
-	                e.printStackTrace();
-	            }
-	        } 
-	        response.setStatus(HttpServletResponse.SC_OK);
-	        response.sendRedirect("/lifecare/");
+				System.out.println("logoutHandler 타기");
+				if (authentication != null && authentication.getDetails() != null) {
+					try {
+						request.getSession().invalidate();
+						SecurityContextHolder.clearContext();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+				response.setStatus(HttpServletResponse.SC_OK);
+				response.sendRedirect("/lifecare/");
 	}
-
 }

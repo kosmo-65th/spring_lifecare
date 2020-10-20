@@ -246,7 +246,7 @@
                <input type="text" name="customer_name" id="userName" placeholder="이름" class="mb10" value="" required>
                <div class="name" id="nameChk"></div>
                <div align="center">
-               <div style="border:1px solid #ccc; width:334.8px;height:90px; margin-bottom:10px;">  
+               <div style="border:1px solid #ccc; width:100%;height:90px; margin-bottom:10px;">  
                		<div style="margin-top:10px;">
                		성별을 선택해주세요.
                <select name="customer_gender" required id="sex" style="width:95px; margin-left:18px;"> 
