@@ -5,21 +5,10 @@
 <html>
 <head>
 <link type="text/css" rel="stylesheet" href="${path_resources_customcss}findWay.css">
-<style>
-   .select {
-   
-   
-   
-   }
-
-</style>
 <title>찾아 오시는 길</title>
 </head>
 <%@include file="../common/header.jsp" %>
- 		 
 <body>
-    
-    
     <br>
     <div class="title">찾아오시는 길</div>
     
@@ -28,7 +17,6 @@
             you can find the way to come to the Lifecare using the map and information as below. 
                         아래의 정보와 지도를 통해서 라이프케어를 찾아오실 수 있습니다.                                                                                             
     </div>      
-  
     <div id="map" style="width:30%;height:300px; margin:0 auto;" ></div> <!-- 지도를 표시할 div 입니다 -->
     <div id="roadview" style="width:30%;height:300px; margin:0 auto; "></div> <!-- 로드뷰를 표시할 div 입니다 -->
     <div class= "press" align="center">                      
@@ -36,23 +24,9 @@
 		<button type="submit" class="btn-type btn2 blue mr_3"><a href="https://map.kakao.com/link/map/37.478845,126.878594">지도 크게보기</a></button>&nbsp;&nbsp;
 		<button type="submit" class="btn-type btn2 blue mr_3"><a href="https://map.kakao.com/link/roadview/37.478845,126.878594">로드뷰</a></button>&nbsp;&nbsp;
  	</div>
-	<div class="findId_area">
-         <p>TRANSFORTATION</p>
-                        지하철<br>
-                        가산디지털단지역 6번출구 나오셔서 좌측횡단보도 건너 좌측으로 10m 가시면 삼거리가 나오고 
-                        삼거리에서 우측 방향으로 직진하셔서 사거리 대각선방향 우리은행 건물 F20호입니다.<br><br>               
-                        버스<br>
-            21, 571, 652, 금천 05
-            [디지털3단지월드벤쳐센터] 정류장에서 하차<br><br>
-            
-          <p>YOUR OWN CAR</p>
-                        자가용<br>  
-                        서부간선도로를 타고 오다가 광명교를 타고 좌회전 후 첫 사거리에서 우회전<br>
-                        가리봉5거리에서 철산방향 수출의 다리를 넘어 첫 사거리(한진사거리)에서 우회전<br>
-                        남부순환도로 구로IC로 나와 좌회전<br>                                                                                        
-    </div>      
-    
-    
+		<div style="width:46%; margin:0 auto; margin-top:15px;"> 
+        	<img src="${path_resources}img/maein.PNG" > 
+  		</div>    
 </body>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5a4dcbf8bd992d42aecc63827327a18&libraries=services"></script>
 <script>

@@ -52,6 +52,7 @@
 <%@include file="./../common/header.jsp" %>
 <div align="center">
 	<%= posts6 %>
+	<p style="margin-left:67%; font-size:13px;">* 데이터 제공 : 질병관리본부</p>
 	<div id="abc"><%=posts7 %></div>
 	<%= posts4 %>
 	<%= posts3 %>
