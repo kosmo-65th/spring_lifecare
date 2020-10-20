@@ -37,4 +37,10 @@ public interface BoardService {
 	//admin-게시글 답변 삭제
 	public void adminboardreplydelete(HttpServletRequest req, Model model);
 	
+	//admin-답변글 수정
+	public void replyupdate(HttpServletRequest req, Model model);
+	
+	//admin-본글 삭제
+	public void boarddelete(HttpServletRequest req, Model model);
+	
 }

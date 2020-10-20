@@ -4,13 +4,6 @@
 <link type="text/css" rel="stylesheet" href="${path_resources}css/payment.css">
 <html>
 <body>
-<script>
-	$(function(){
-		if("${dto.board_reply}" != ""){ 
-			$('#show').css('display' , 'block');
-		}
-	});
-</script>
 <%@include file="../common/header.jsp"%>
 <form>
 <div align="center">
@@ -47,36 +40,7 @@
 </tbody>
 </table>
 
-<div id="show" style ="display:none">
-<h3 style = "font-size:30px" align="left">Q&A답변</h3>
-<table class="tablepay">
-<thead class="payment">
-  <tr class="row1 header blue">
-    <th class="cell1" style="width:120px;">글번호</th>
-    <th class="cell1">${dto.rNum}</th>
-    <th class="cell1">글제목</th>
-    <th class="cell1">${dto.board_subject}에 대한 답변 입니다.</th>
-    <th class="cell1">작성일</th>
-    <th class="cell1"><fmt:formatDate type = "both" pattern = "yyyy-MM-dd" value = "${dto.board_replydate}"/></th>
-  </tr>
-</thead>
-<tbody class="payment">
-  <tr class="row1 header blue">
-    <td class="cell1" rowspan="4" style="font-weight:700;">글내용</td>
-  </tr>
-  <tr>
-  	<% pageContext.setAttribute("newLineChar", "\n"); %>
-    <td class="cell1" colspan="7" rowspan="4" style="width:250px;height:250px;text-align:left;">${fn:replace(dto.board_reply, newLineChar, "<br/>")}</td>
-  </tr>  
-  <tr>
-  </tr>
-  <tr>
-  </tr>
-  <tr>
-  </tr>
-</tbody>
-</table>
-</div>
+<br>
 	<tr>
 		<th colspan = 4>
 		<input class="large button green"  type = "button" value = "글 수정"

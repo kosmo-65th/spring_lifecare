@@ -27,6 +27,9 @@ public class BoardServiceImpl implements BoardService {
 	//회원-게시글 목록
 	@Override
 	public void boardList(HttpServletRequest req, Model model) {
+		// session id값 받아오기
+		String customer_id = (String)req.getSession().getAttribute("userSession");
+				
 		// 페이징
 		int pageSize = 10;	//한 페이지당 출력할 글 갯수
 		int pageBlock = 3;	//한 블럭당 페이지 갯수
@@ -43,7 +46,7 @@ public class BoardServiceImpl implements BoardService {
 		int endPage = 0;	//마지막 페이지
 
 		// 글 갯수 구하기
-		cnt = dao.getArticleCnt();
+		cnt = dao.getArticleCnt(customer_id);
 		System.out.println("=====================");
 		System.out.println("cnt = " + cnt);
 		
@@ -78,8 +81,6 @@ public class BoardServiceImpl implements BoardService {
 		System.out.println("number : " + number);
 		System.out.println("pageSize[한페이지에 나타날 건수] : " + pageSize);
 		
-		// session id값 받아오기
-		String customer_id = (String)req.getSession().getAttribute("userSession");
 
 		if(cnt > 0) {
 			// 게시글 목록 조회
@@ -194,9 +195,6 @@ public class BoardServiceImpl implements BoardService {
 		vo.setBoard_subject("board_subject");
 		vo.setBoard_content("board_content");
 		
-		int InsertContent = dao.newWrite();
-		System.out.println("InsertContent = " + InsertContent);
-		
 		model.addAttribute("customer_id", customer_id);
 		model.addAttribute("board_subject", board_subject);
 		model.addAttribute("board_content", board_content);
@@ -242,18 +240,18 @@ public class BoardServiceImpl implements BoardService {
 		model.addAttribute("board_sortnum", board_sortnum);
 	}
 
+	
 	//admin-총 게시글 페이지
 	@Override
 	public void adminboardList(HttpServletRequest req, Model model) {
 		//3.변수선언
 		int pageSize = 10;     //한페이지당 출력할 글 갯수
         int pageBlock = 5;     //한 블럭당 페이지 갯수
-        
         int cnt = 0;        //글 갯수
         int start = 0;         //현재글 시작번호
         int end = 0;         //현재 페이지 마지막 글 번호
         int currentPage=0;    //현재페이지
-        
+        int number = 0;
         int pageCount = 0;    //페이지 갯수
         int startPage = 0;    //시작페이지
         int endPage = 0;    //마지막페이지
@@ -271,7 +269,7 @@ public class BoardServiceImpl implements BoardService {
         System.out.println("Search :"+search);
         
         	//5. dao 인스턴스 
-		if(search=="") {cnt = dao.getArticleCnt();}
+		if(search=="") {cnt = dao.adminArticleCnt();}
 		else {cnt = dao.searchBoardCnt(search);}
 		
         	//페이지 갯수
@@ -288,11 +286,12 @@ public class BoardServiceImpl implements BoardService {
         System.out.println("start : "+start);
         System.out.println("end : "+end);
         
+        number = cnt - (currentPage - 1) * pageSize;
+        
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("start", start);
         map.put("end", end);
         map.put("search", search);
-
         
         if(search=="") {boards= dao.adminboardList(map);}
         else {boards = dao.searchBoardList(map);}
@@ -300,6 +299,7 @@ public class BoardServiceImpl implements BoardService {
 		model.addAttribute("boards", boards);
 		model.addAttribute("cnt", cnt);    //글갯수
 	    model.addAttribute("currentPage", currentPage);//페이지 번호
+	    model.addAttribute("number", number); //출력용 글 번호
         if(cnt > 0 ) {
             model.addAttribute("startPage",startPage);
             model.addAttribute("endPage",endPage);
@@ -312,13 +312,11 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void adminboardcontent(HttpServletRequest req, Model model) {
 		
-		int board_sortnum = Integer.parseInt(req.getParameter("board_sortnum"));
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("board_sortnum", board_sortnum);
+		int boardNum = Integer.parseInt(req.getParameter("board_sortnum"));
 		// 상세페이지 조회
-		BoardVO vo = dao.adminboardcontent(map);
+		BoardVO vo = dao.adminboardcontent(boardNum);
 		//6.request | session에 처리 결과를 저장(jsp에 전달하기 위함)
-		model.addAttribute("board_sortnum" , vo);
+		model.addAttribute("dto" , vo);
 		
 	}
 
@@ -326,22 +324,21 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void adminboardreply(HttpServletRequest req, Model model) {
 		
-		int board_sortnum = Integer.parseInt(req.getParameter("board_sortnum"));
-		String board_subject = req.getParameter("board_subject");
-		String board_content = req.getParameter("board_content");
+		int boardNum = Integer.parseInt(req.getParameter("board_sortnum"));
 		String board_reply = req.getParameter("board_reply");
 		
-		BoardVO vo = new BoardVO();
+		System.out.println(board_reply);
 		
-		vo.setBoard_sortnum(board_sortnum);
-		vo.setBoard_subject(board_subject);
-		vo.setBoard_content(board_content);
-		vo.setBoard_reply(board_reply);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("boardNum", boardNum);
+		map.put("board_reply", board_reply);
+		map.put("re", "O");
 		
-		int adminboardreply = dao.adminboardreply(vo);
+		int makeReCnt=dao.adminboardreply(map);
+		dao.updatere(map);
 		
-		//6.request | session에 처리 결과를 저장(jsp에 전달하기 위함)
-		model.addAttribute("adminboardreply", adminboardreply);
+		//model.addAttribute("makeReCnt",makeReCnt);
+		req.setAttribute("makeReCnt",makeReCnt);
 	}
 
 	//admin-게시글 답변 삭제
@@ -349,11 +346,45 @@ public class BoardServiceImpl implements BoardService {
 	public void adminboardreplydelete(HttpServletRequest req, Model model) {
 		
 		int board_sortnum = Integer.parseInt(req.getParameter("board_sortnum"));
-		String board_reply = req.getParameter("board_reply");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("board_sortnum", board_sortnum);
+		map.put("board_replycode", "X");
+		
+		int deleteCnt = dao.adminboardreplydelete(map);
 		
 		//6.request | session에 처리 결과를 저장(jsp에 전달하기 위함)
-		model.addAttribute("board_sortnum", board_sortnum);
-		model.addAttribute("board_reply", board_reply);
+		model.addAttribute("deleteCnt", deleteCnt);
+		
+	}
+	
+	// admin-게시글 답변 수정
+	@Override
+	public void replyupdate(HttpServletRequest req, Model model) {
+		int boardNum = Integer.parseInt(req.getParameter("boardNum"));
+		String re_content = req.getParameter("board_reply");
+		int updateCnt = 0;
+		String re="";
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("boardNum", boardNum);
+		map.put("re_content", re_content);
+		
+		updateCnt = dao.adminboardreply(map);
+		if(updateCnt==1) {
+			re = re_content;
+		}
+		model.addAttribute("re",re);
+	}
+	
+	// admin - 본글 삭제
+	@Override
+	public void boarddelete(HttpServletRequest req, Model model) {
+		int board_sortnum = Integer.parseInt(req.getParameter("board_sortnum"));
+		
+		int deleteCnt = dao.boarddelete(board_sortnum);
+		
+		model.addAttribute("deleteCnt", deleteCnt);
 		
 	}
 }

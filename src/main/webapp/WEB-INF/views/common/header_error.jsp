@@ -41,7 +41,7 @@
                                     <!-- 로그인 완료후 -->
                                     <c:if test="${sessionScope.userSession != null}">
 	                                    <li><a href="${path}/customer/mypage">${sessionScope.userSession}의 마이페이지</a></li>
-	                                    <li><a href="">고객센터</a></li>
+	                                    <li><a href="${path}/board/customerboardList">고객센터</a></li>
 	                                    <%-- <li><a href="${path}/logout">로그아웃</a></li> --%>
 	                                    <li><a href="javascript:document.getElementById('logout-form').submit();" >로그아웃</a></li>
 	                                    <form id="logout-form" action="${path}/logout" method="POST">
