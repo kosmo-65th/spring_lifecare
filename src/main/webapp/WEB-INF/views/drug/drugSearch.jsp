@@ -403,7 +403,7 @@ function color_clicks(val) {
 					<div class="tab3Group">
 						<ul class="tab3">
 							<li class="selected"><a style="cursor:pointer" >전 체 (${cnt}) </a></li>
-							<li class="selected"><a style="cursor:pointer" onclick="javascript:window.print();" class=""><span class="">인쇄</span></a></li>
+							<!-- <li class="selected"><a style="cursor:pointer" onclick="javascript:window.print();" class=""><span class="">인쇄</span></a></li> -->
 						</ul>
 					</div>
 
