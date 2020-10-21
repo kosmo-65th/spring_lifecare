@@ -1,0 +1,7 @@
+#학습 및 검증
+https://github.com/ieee8023/covid-chestxray-dataset
+
+https://www.kaggle.com/tawsifurrahman/covid19-radiography-database/data
+
+# 최종 검증용
+https://github.com/abzargar/COVID-Classifier
