@@ -251,7 +251,7 @@ public class JinController {
  		doctor.drugList(req, model);
  		return "doctor/drugList5";
  	}
- 	
+ 
     // 진료기록 저장
  	@RequestMapping("/doctor/diagnosisPro")
  	public String diagnosisPro(HttpServletRequest req, Model model) { 		
@@ -637,5 +637,11 @@ public class JinController {
  	public String cancer_exPro(HttpServletRequest req, Model model) { 		
  		doctor.modifyCancer(req, model);
  		return "doctor/resultUpdate";
+ 	}
+ 	
+    // 병원소개
+ 	@RequestMapping("/intro")
+ 	public String intro(Model model) {		
+ 		return "guest/intro";
  	}
 }

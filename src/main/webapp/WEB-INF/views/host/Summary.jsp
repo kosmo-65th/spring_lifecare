@@ -16,6 +16,14 @@
   <!-- Custom styles for this template-->
   <link href="${path_resources}sb_admin/css/sb-admin-2.min.css" rel="stylesheet">
   
+  <style type="text/css">
+		.col-lg-5 {
+    	flex: 0 0 41.66667%;
+    	max-width: 41.66667%;
+    	height: 500px !important;
+    	}
+    	
+  </style>
   <!-- 선 그래프 -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">

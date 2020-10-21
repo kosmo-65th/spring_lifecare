@@ -32,7 +32,6 @@ public class DeepLearningServiceImpl implements DeepLearningService{
 	public static final String DATA_PATH = FilenameUtils.concat(System.getProperty("java.io.tmpdir"),
 	        "dl4j_keras/");
 	
-
 	@Override
 	public Map<String, String> covidTest(MultipartHttpServletRequest req, Model model) throws IOException {
 		
@@ -86,15 +85,11 @@ public class DeepLearningServiceImpl implements DeepLearningService{
 			while((data = fis.read()) != -1) {
 				fos.write(data);
 			}
-			//fos.flush();
-			
-			//in.close();
-			//out.close();
+
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		
-		
+				
 		/////////////////////////// 여기까지 사진 저장
 		String modelSrc = "";
 		try {
@@ -147,9 +142,7 @@ public class DeepLearningServiceImpl implements DeepLearningService{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 			} 
-			
-			
-			
+									
 			try (BufferedReader reader = new BufferedReader(new InputStreamReader(stdout))) {
 				String line;
 				while ((line = reader.readLine()) != null) {
@@ -203,9 +196,7 @@ public class DeepLearningServiceImpl implements DeepLearningService{
 		}
 		
 		Map<String, Object> result = new HashMap<String, Object>();
-		
-		
-		
+				
 		result.put("corona", String.format("%.2f", Double.parseDouble(realresult.get(0))*100));
 		result.put("normal", String.format("%.2f", Double.parseDouble(realresult.get(1))*100));
 		result.put("pneumonia", String.format("%.2f", Double.parseDouble(realresult.get(2))*100));
@@ -253,7 +244,7 @@ public class DeepLearningServiceImpl implements DeepLearningService{
 			//입력 stream을 BufferedWriter로 받아서 콘솔로부터 받은 입력을 Process 클래스로 실행시킨다.
 			System.out.println("modelSrc : "+modelSrc.substring(0,modelSrc.length()-9));
 			List<String> commendList = new ArrayList<String>();
-			commendList.add("activate tensorflow3.6.5");
+			//commendList.add("activate tensorflow3.6.5");
 			commendList.add("cd "+modelSrc.substring(0,modelSrc.length()-10));
 			System.out.println("실행어 : "+ "cd "+modelSrc.substring(0,modelSrc.length()-10));
 			modelSrc=modelSrc.substring(0,modelSrc.length()-9) +"logreg.pkl";
@@ -281,9 +272,7 @@ public class DeepLearningServiceImpl implements DeepLearningService{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 			} 
-			
-			
-			
+						
 			try (BufferedReader reader = new BufferedReader(new InputStreamReader(stdout))) {
 				String line;
 				while ((line = reader.readLine()) != null) {

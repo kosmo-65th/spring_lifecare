@@ -100,7 +100,7 @@ public class BoardServiceImpl implements BoardService {
 		
 		System.out.println("startPage[시작 페이지 번호] : " + startPage);
 
-		//마지막 페이지
+		//마지막 페이지 
 		endPage = startPage + pageBlock - 1;
 		if(endPage > pageCount) endPage = pageCount;
 		System.out.println("pageBlock : " + pageBlock);
@@ -340,7 +340,7 @@ public class BoardServiceImpl implements BoardService {
 		//model.addAttribute("makeReCnt",makeReCnt);
 		req.setAttribute("makeReCnt",makeReCnt);
 	}
-
+ 
 	//admin-게시글 답변 삭제
 	@Override
 	public void adminboardreplydelete(HttpServletRequest req, Model model) {
