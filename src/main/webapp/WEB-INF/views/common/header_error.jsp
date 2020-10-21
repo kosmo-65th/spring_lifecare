@@ -91,7 +91,6 @@
                                         </li>
                                         <li><a href="#">병원소개 <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <!-- <li><a href="#">병원뉴스</a></li> -->
                                                 <li><a href="${path}/intro">병원소개</a></li>
                                             </ul>
                                         </li>

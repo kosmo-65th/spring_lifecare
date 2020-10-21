@@ -166,6 +166,7 @@
 	      </div>
       </div>
 		<%= posts1 %>
+		<p style="margin-left:67%; font-size:13px;">* 데이터 제공 : 질병관리본부</p>
 		<div id="abc"> 
 		<%= posts2 %>
 		</div>
@@ -175,7 +176,7 @@
       <div align="center">
 	      <div style="margin-top:50px;width:50%;">
 	      		<div id="map" style="width:87%;height:500px; margin:0 auto;"></div>
-	      		<div align="right"> 
+	      		<div align="right">  
 		      		<a href="${path}/findWay" style="color:gray; margin-right:6.7%">지도 정보 상세보기 >></a>
 		      	</div>
 		  </div>
@@ -201,9 +202,9 @@
 	  		marker.setMap(map);
       </script>  
         <br>
-       <div style="width:46%; margin:0 auto; margin-top:15px;"> 
-        <img src="${path_resources}img/maein.PNG" > 
-  		 </div>
+       	<div style="width:46%; margin:0 auto; margin-top:15px;"> 
+        	<img src="${path_resources}img/maein.PNG" > 
+  		</div>
       <%@include file="./common/footer.jsp" %>
       <!-- end copyrights -->
       <!-- all js files -->

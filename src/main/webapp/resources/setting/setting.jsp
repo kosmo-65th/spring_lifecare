@@ -5,7 +5,11 @@
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 	<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-	
+	<style>
+		.chat-header-wrapper{
+			background:#81F7F3 !important;
+		}
+	</style>
 	
 	<c:set var="path" value="${pageContext.request.contextPath}"/> 
 	<c:set var="path_resources" value="/lifecare/resources/"/>
