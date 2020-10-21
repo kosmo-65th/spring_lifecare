@@ -142,12 +142,14 @@
 	}
 	
 	.greens{
-		color:#64CD3C;	
+		color:#0000ff;
+		font-weight:bold;	
 	}
 	
 	.oranges{
 		color:#FF8200;
-	    font-style: italic
+	    font-style: italic;
+		font-weight:bold;	
 	}
 	.reds{
 		color:#EB0000;	

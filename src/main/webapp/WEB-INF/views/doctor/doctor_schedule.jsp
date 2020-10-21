@@ -618,7 +618,7 @@ $(function() {
                             </div>
                         </div>
                         <div>
-                            <button type="submit" class="btn btn-outline-primary">예약일정 추가하기</button>
+                            <button style="font-size:17px; height: 50px;" type="submit" class="btn btn-outline-primary">예약일정 추가하기</button>
                         </div>
                     </form>
                 </div>
