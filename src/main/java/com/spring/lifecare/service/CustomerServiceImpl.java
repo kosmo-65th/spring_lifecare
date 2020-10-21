@@ -200,10 +200,10 @@ public class CustomerServiceImpl implements CustomerService{
 		//알림
 		String d = "고객님의 진료가 " + date.substring(0,4) + "년 " + date.substring(4,6) + "월 " + date.substring(6,8) + 
 				  "일 " + time + "에 예약 되었습니다.";
-		//한림
-		String tokenId= "ensbu-iyQhmUqpKhHUKKCh:APA91bE_xq8C2h_HB5IDISX1M_qGSbAtC-HUUqZDEnaKRWlH-T8aHUdFvok2tcaCJnMebXLe7Fw3TpndZD8jkdm6BqZOTlY1bKqyTyCcd7GoteddTwhkXnmFEdl3NktJAIUU1LM5hLkY";
-		//승운
-		//String tokenId= "dlZvyPr_R2aix7C8_yLGC8:APA91bGggpr_-bwkyn3LQ9JmL8MIdfLrtkNQ_gnBMezeCi3XL8x8P6Zzt_k6_i0x45AIbtvL9SNAJxUPdOC-Fmg6xMofoneciuHqAUQa7UJnobaNBLLfafE0PqosVErSvcvVya0XrEVP";
+		//한림 10.15
+		String tokenId= "dTs9jL7SRx2_FZOyRH_oRK:APA91bEAI_Vmn_up-YchylE4F1nGNe8RCWs71Wv7RjuqEjtZbz35eb9iUbJfAtSii9gHKVhQ4mNoFsAj-wlHb7rStvriDMQlalWQdG_wv46_TE43qNJGtDSrak5wQJvxIpNDLKnct9bA";
+		//승운 10.15
+		//String tokenId= "d38Tvs1YQo-K2HxxSW8bJV:APA91bHgHsVEU2X2dSW_BB8tU7xNZHkpB-guUC9H_w6qYflbrDulbTGOsSIk4jJvIDLvTF92Vu22cFinUUSyucTqVLQ-Mi9UJqMvOE-CUrJWF8XrTVovIyDq3dlShShkx9l1W1XBueGV";
 	    
 		String title="Life Care 예약 알림 입니다.";
 	    String content=  d;

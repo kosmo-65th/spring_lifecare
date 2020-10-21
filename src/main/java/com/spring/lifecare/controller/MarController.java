@@ -28,7 +28,7 @@ public class MarController {
 	DoctorService Dservice;
 	@Autowired 
 	AdminService aservice;
-	
+	    
 	//약 검색
 	@RequestMapping("/drugSearch")
 	public String drugSearch(HttpServletRequest req, Model model){

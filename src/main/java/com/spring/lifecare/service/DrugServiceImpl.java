@@ -125,16 +125,13 @@ public class DrugServiceImpl implements DrugService {
 			
 		model.addAttribute("cnt", cnt); 
 		model.addAttribute("number", number);		 		
-		System.out.println(" number : " + number);
 		model.addAttribute("pageNum", pageNum); 
-		System.out.println(" pageNum : " + pageNum);
 		if(cnt >0) {
 			model.addAttribute("startPage", startPage);  
 			model.addAttribute("endPage", endPage); 		 
 			model.addAttribute("pageBlock", pageBlock); 	 
 			model.addAttribute("pageCount", pageCount);  
 			model.addAttribute("currentPage", currentPage); 
-			System.out.println(" currentPage : " + currentPage);
 		}
 		
 	}

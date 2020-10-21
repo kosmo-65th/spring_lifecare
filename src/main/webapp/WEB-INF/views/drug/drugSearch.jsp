@@ -265,35 +265,6 @@ function color_clicks(val) {
 		$("#color_all").removeClass("selected");
 	}
 }
-
-// 쿠키 저장하기
-function setCookie( name, value, expiredays )
-{
-	var todayDate = new Date();
-	//todayDate.setDate( todayDate.getDate() + expiredays );
-	todayDate.setTime(todayDate.getTime() + 60 * 60 * 1000); //1시간 후
-	document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";"
-}
-
-// 쿠키 가져오기
-function getCookie(name) {
-;
-        var nameOfCookie = name + "=";
-        var x = 0
-        while ( x <= document.cookie.length ) {
-        var y = (x+nameOfCookie.length);
-        if ( document.cookie.substring( x, y ) == nameOfCookie ) {
-                if ( (endOfCookie=document.cookie.indexOf( ";",y )) == -1 )
-                endOfCookie = document.cookie.length;
-                return unescape( document.cookie.substring(y, endOfCookie ) );
-        }
-                x = document.cookie.indexOf( " ", x ) + 1;
-                if ( x == 0 )
-                        break;
-        }
-
-        return "";
-}
 </script>
 
 <body>
