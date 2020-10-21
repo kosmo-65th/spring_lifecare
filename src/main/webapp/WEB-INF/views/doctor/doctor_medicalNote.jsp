@@ -842,7 +842,6 @@ $(function() {
 			$('#bloodSugar_result_div').hide();
 		}	
 	});
-	
 		let bloodSugar_range = [
 			
 			 { id : 'low',

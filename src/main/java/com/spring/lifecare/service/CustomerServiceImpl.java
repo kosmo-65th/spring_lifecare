@@ -198,7 +198,6 @@ public class CustomerServiceImpl implements CustomerService{
 		String d = "고객님의 진료가 " + date.substring(0,4) + "년 " + date.substring(4,6) + "월 " + date.substring(6,8) + 
 				  "일 " + time + "에 예약 되었습니다.";
 		String tokenId= "cVCt6I68Q-CZWVXv_pspUX:APA91bGfNyl5sF5ZTocxqpceImEvergMzxcSH0e32w1HJl447aOVRgYMjouyckNfQnLvboo8Y8ptJBR28MEmNwIlvDU8Vc5aRDphdCq5YXuL_siZKid_Ri4jw7suhA0d7RlgZrwDOmdl"; 
-				
 	    
 		String title="Life Care 예약 알림 입니다.";
 	    String content=  d;

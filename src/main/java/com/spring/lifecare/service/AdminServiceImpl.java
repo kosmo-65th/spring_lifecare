@@ -167,17 +167,6 @@ public class AdminServiceImpl implements AdminService {
 		}
 		
 		JSONArray jsonArray2 = new JSONArray();
-//		JSONArray colNameArray2 = new JSONArray(); // 컬 타이틀 설정
-//		colNameArray2.add("string");
-//		colNameArray2.add("진료과");
-//		model.addAttribute("colNameArray2",colNameArray2);
-//		
-//		
-//		JSONArray colNameArray3 = new JSONArray(); // 컬 타이틀 설정
-//		colNameArray3.add("number");
-//		colNameArray3.add("진료수");
-//		model.addAttribute("colNameArray3",colNameArray3);
-//		
 		for(int i=0; i<doctor_major.size(); i++) {
 			JSONArray rowArray2 = new JSONArray();
 			rowArray2.add(doctor_major.get(i));
@@ -195,7 +184,5 @@ public class AdminServiceImpl implements AdminService {
 		
 		model.addAttribute("monthlyMajorCntChart", monthlyMajorCntChart);
 		model.addAttribute("jsonArray2",jsonArray2);
-				
 	}
-
 }
