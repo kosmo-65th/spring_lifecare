@@ -101,10 +101,17 @@
 		cursor: pointer;
 		text-align: center;
 		width: 100%;
+		background-color: #7fffd4;
 	}
 	
 	td:first-child, th:first-child {
     	padding-left: 0 !important;
+	}
+	
+	.fc-title {
+		font-size: 15px;
+		color: black;
+    	font-weight: 800;
 	}
 	</style>
 	
@@ -506,7 +513,7 @@ $(function() {
 			<div class="modal-content">
                 <div class="modal-header">
                 	<span class="close">&times;</span>
-                    <h5 class="modal-title" id="insertModalLabel">예약가능 일자 설정</h5>    
+                    <h5 class="modal-title" id="insertModalLabel" style="font-size: x-large;">예약가능 일자 설정</h5>    
                 </div>
                 <div class="modal-body">
                     <form name="appointForm" method="POST" action="${path}/doctor/appointSetPro">
@@ -525,12 +532,12 @@ $(function() {
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group" style="margin-left:40px;">
+                                <div class="form-group" style="margin-left:60px;">
                                     <label>예약가능 시간 설정</label>
-                                      <input type='checkbox' name='appoint_time' value='09:00' id="time0"><span id="timeText0">09:00</span>
-                                      <input type='checkbox' name='appoint_time' value='11:00' id="time1"><span id="timeText1">11:00</span>
-									  <input type='checkbox' name='appoint_time' value='14:00' id="time2"><span id="timeText2">14:00</span>
-									  <input type='checkbox' name='appoint_time' value='16:00' id="time3"><span id="timeText3">16:00</span>
+                                      <input type='checkbox' name='appoint_time' value='09:00' id="time0"><span id="timeText0" style="margin-left:10px; margin-right:10px;">09:00</span>
+                                      <input type='checkbox' name='appoint_time' value='11:00' id="time1"><span id="timeText1" style="margin-left:10px; margin-right:10px;">11:00</span>
+									  <input type='checkbox' name='appoint_time' value='14:00' id="time2"><span id="timeText2" style="margin-left:10px; margin-right:10px;">14:00</span>
+									  <input type='checkbox' name='appoint_time' value='16:00' id="time3"><span id="timeText3" style="margin-left:10px; margin-right:10px;">16:00</span>
                                 </div>
                             </div>
                         </div>
@@ -542,12 +549,12 @@ $(function() {
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group" style="margin-left:40px;">
+                                <div class="form-group" style="margin-left:60px;">
                                     <label>예약가능 시간 설정</label>
-                                      <input type='checkbox' name='appoint_time' value='09:00' id="time4"/><span id="timeText4">09:00</span>
-                                      <input type='checkbox' name='appoint_time' value='11:00' id="time5"/><span id="timeText5">11:00</span>
-									  <input type='checkbox' name='appoint_time' value='14:00' id="time6"/><span id="timeText6">14:00</span>
-									  <input type='checkbox' name='appoint_time' value='16:00' id="time7"/><span id="timeText7">16:00</span>
+                                      <input type='checkbox' name='appoint_time' value='09:00' id="time4"/><span id="timeText4" style="margin-left:10px; margin-right:10px;">09:00</span>
+                                      <input type='checkbox' name='appoint_time' value='11:00' id="time5"/><span id="timeText5" style="margin-left:10px; margin-right:10px;">11:00</span>
+									  <input type='checkbox' name='appoint_time' value='14:00' id="time6"/><span id="timeText6" style="margin-left:10px; margin-right:10px;">14:00</span>
+									  <input type='checkbox' name='appoint_time' value='16:00' id="time7"/><span id="timeText7" style="margin-left:10px; margin-right:10px;">16:00</span>
                                 </div>
                             </div>
                         </div>
@@ -559,12 +566,12 @@ $(function() {
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group" style="margin-left:40px;">
+                                <div class="form-group" style="margin-left:60px;">
                                     <label>예약가능 시간 설정</label>
-                                      <input type='checkbox' name='appoint_time' value='09:00' id="time8"/><span id="timeText8">09:00</span>
-                                      <input type='checkbox' name='appoint_time' value='11:00' id="time9"/><span id="timeText9">11:00</span>
-									  <input type='checkbox' name='appoint_time' value='14:00' id="time10"/><span id="timeText10">14:00</span>
-									  <input type='checkbox' name='appoint_time' value='16:00' id="time11"/><span id="timeText11">16:00</span>
+                                      <input type='checkbox' name='appoint_time' value='09:00' id="time8"/><span id="timeText8" style="margin-left:10px; margin-right:10px;">09:00</span>
+                                      <input type='checkbox' name='appoint_time' value='11:00' id="time9"/><span id="timeText9" style="margin-left:10px; margin-right:10px;">11:00</span>
+									  <input type='checkbox' name='appoint_time' value='14:00' id="time10"/><span id="timeText10" style="margin-left:10px; margin-right:10px;">14:00</span>
+									  <input type='checkbox' name='appoint_time' value='16:00' id="time11"/><span id="timeText11" style="margin-left:10px; margin-right:10px;">16:00</span>
                                 </div>
                             </div>
                         </div>
@@ -576,12 +583,12 @@ $(function() {
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group" style="margin-left:40px;">
+                                <div class="form-group" style="margin-left:60px;">
                                     <label>예약가능 시간 설정</label>
-                                      <input type='checkbox' name='appoint_time' value='09:00' id="time12"/><span id="timeText12">09:00</span>
-                                      <input type='checkbox' name='appoint_time' value='11:00' id="time13"/><span id="timeText13">11:00</span>
-									  <input type='checkbox' name='appoint_time' value='14:00' id="time14"/><span id="timeText14">14:00</span>
-									  <input type='checkbox' name='appoint_time' value='16:00' id="time15"/><span id="timeText15">16:00</span>
+                                      <input type='checkbox' name='appoint_time' value='09:00' id="time12"/><span id="timeText12" style="margin-left:10px; margin-right:10px;">09:00</span>
+                                      <input type='checkbox' name='appoint_time' value='11:00' id="time13"/><span id="timeText13" style="margin-left:10px; margin-right:10px;">11:00</span>
+									  <input type='checkbox' name='appoint_time' value='14:00' id="time14"/><span id="timeText14" style="margin-left:10px; margin-right:10px;">14:00</span>
+									  <input type='checkbox' name='appoint_time' value='16:00' id="time15"/><span id="timeText15" style="margin-left:10px; margin-right:10px;">16:00</span>
                                 </div>
                             </div>
                         </div>
@@ -593,12 +600,12 @@ $(function() {
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group" style="margin-left:40px;">
+                                <div class="form-group" style="margin-left:60px;">
                                     <label>예약가능 시간 설정</label>
-                                      <input type='checkbox' name='appoint_time' value='09:00' id="time16"/><span id="timeText16">09:00</span>
-                                      <input type='checkbox' name='appoint_time' value='11:00' id="time17"/><span id="timeText17">11:00</span>
-									  <input type='checkbox' name='appoint_time' value='14:00' id="time18"/><span id="timeText18">14:00</span>
-									  <input type='checkbox' name='appoint_time' value='16:00' id="time19"/><span id="timeText19">16:00</span>
+                                      <input type='checkbox' name='appoint_time' value='09:00' id="time16"/><span id="timeText16" style="margin-left:10px; margin-right:10px;">09:00</span>
+                                      <input type='checkbox' name='appoint_time' value='11:00' id="time17"/><span id="timeText17" style="margin-left:10px; margin-right:10px;">11:00</span>
+									  <input type='checkbox' name='appoint_time' value='14:00' id="time18"/><span id="timeText18" style="margin-left:10px; margin-right:10px;">14:00</span>
+									  <input type='checkbox' name='appoint_time' value='16:00' id="time19"/><span id="timeText19" style="margin-left:10px; margin-right:10">16:00</span>
                                 </div>
                             </div>
                         </div>

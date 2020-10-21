@@ -1,52 +1,95 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/resources/setting/setting.jsp"%>
+<link type="text/css" rel="stylesheet" href="${path_resources}css/payment.css">
 <html>
 <body>
+<script>
+	$(function(){
+		if("${dto.board_reply}" != ""){ 
+			$('#show').css('display' , 'block');
+		}
+	});
+</script>
 <%@include file="../common/header.jsp"%>
-<table align = "center">
-	<tr>
-		<th style = "width:150px">글 번호</th>
-		<td style = "width:150px" align = "center">${dto.rNum}</td>
-		
-	</tr>
-	
-	<tr>
-		<th style = "width:150px">작성자</th>
-		<td style = "width:150px" align = "center">${dto.customer_id}</td>
-		
-		<th style = "width:150px">작성일</th>
-		<td style = "width:150px" align = "center">
-			<fmt:formatDate type = "both" pattern = "yyyy-MM-dd" value = "${dto.board_writedate}" />
-		</td>
-	</tr>
-	
-	<tr>
-		<th style = "width:150px">글제목</th>
-		<td colspan = 3 align = "center">${dto.board_subject}</td>
-	</tr>
-	
-	<tr>
-		<th>글 내용</th>
-		<td colspan = 3 style = "height:200px" word-break:break-all>
-		<!-- word-break:break-all : 글자 단위 자동 줄바꿈 -권장 
-			 word-break:keep-all : 단어 기준 자동 줄바꿈
-		-->
-			${dto.board_content}
-		</td>
-	</tr>
-	
+<form>
+<div align="center">
+<div class="body" style="width:1000px;">
+<br><br>
+<h3 style = "font-size:30px" align="left">Q&A내용</h3>
+<table class="tablepay">
+<thead class="payment">
+  <tr class="row1 header blue">
+    <th class="cell1" style="width:120px;">글번호</th>
+    <th class="cell1">${dto.rNum}</th>
+    <th class="cell1">작성자</th>
+    <th class="cell1">${dto.customer_id}</th>
+    <th class="cell1">글제목</th>
+    <th class="cell1">${dto.board_subject}</th>
+    <th class="cell1">작성일</th>
+    <th class="cell1"><fmt:formatDate type = "both" pattern = "yyyy-MM-dd" value = "${dto.board_writedate}"/></th>
+  </tr>
+</thead>
+<tbody class="payment">
+  <tr class="row1 header blue">
+    <td class="cell1" rowspan="4" style="font-weight:700;">글내용</td>
+  </tr>
+  <tr>
+  	<% pageContext.setAttribute("newLineChar", "\n"); %>
+    <td class="cell1" colspan="7" rowspan="4" style="width:250px;height:250px;text-align:left;">${fn:replace(dto.board_content, newLineChar, "<br/>")}</td>
+  </tr>  
+  <tr>
+  </tr>
+  <tr>
+  </tr>
+  <tr>
+  </tr>
+</tbody>
+</table>
+
+<div id="show" style ="display:none">
+<h3 style = "font-size:30px" align="left">Q&A답변</h3>
+<table class="tablepay">
+<thead class="payment">
+  <tr class="row1 header blue">
+    <th class="cell1" style="width:120px;">글번호</th>
+    <th class="cell1">${dto.rNum}</th>
+    <th class="cell1">글제목</th>
+    <th class="cell1">${dto.board_subject}에 대한 답변 입니다.</th>
+    <th class="cell1">작성일</th>
+    <th class="cell1"><fmt:formatDate type = "both" pattern = "yyyy-MM-dd" value = "${dto.board_replydate}"/></th>
+  </tr>
+</thead>
+<tbody class="payment">
+  <tr class="row1 header blue">
+    <td class="cell1" rowspan="4" style="font-weight:700;">글내용</td>
+  </tr>
+  <tr>
+  	<% pageContext.setAttribute("newLineChar", "\n"); %>
+    <td class="cell1" colspan="7" rowspan="4" style="width:250px;height:250px;text-align:left;">${fn:replace(dto.board_reply, newLineChar, "<br/>")}</td>
+  </tr>  
+  <tr>
+  </tr>
+  <tr>
+  </tr>
+  <tr>
+  </tr>
+</tbody>
+</table>
+</div>
 	<tr>
 		<th colspan = 4>
-		<input class = "button" type = "button" value = "글 수정"
-				onclick = "window.location='${path}/board/customermodifyForm?board_sortnum=${dto.board_sortnum}'">
-			<input class = "button" type = "button" value = "글 삭제"
-				onclick = "window.location='${path}/board/customerdeleteForm?board_sortnum=${dto.board_sortnum}&board_replycode=${dto.board_replycode}'">
-			<input class = "button" type = "button" value = "목록 보기"
+		<input class="large button green"  type = "button" value = "글 수정"
+				onclick = "javascript:window.open('${path}/board/customermodifyForm?board_sortnum=${dto.board_sortnum}','a','width=605,height=445,location=no,status=no,scrollbars=yes');">
+			<input class="large button green"  type = "button" value = "글 삭제"
+				onclick = "javascript:window.open('${path}/board/customerdeleteForm?board_sortnum=${dto.board_sortnum}&board_replycode=${dto.board_replycode}','a','width=480,height=200,location=no,status=no,scrollbars=yes');">
+			<input class="large button green"  type = "button" value = "목록 보기"
 				onclick = "window.location='${path}/board/customerboardList?'">
 		</th>
 	</tr>
-</table>
+</div>
+</div>
+</form>
 <%@include file="../common/footer.jsp"%>
 </body>
 </html>

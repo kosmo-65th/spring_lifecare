@@ -325,6 +325,11 @@
   		    document.getElementById(num).value = value;
   		}
    	}
+	
+	function end(){
+		alert("문진표 작성완료.");
+	}
+	
 </script>
 <head>
 <meta charset="UTF-8">
@@ -678,7 +683,7 @@
 				</div>
 				<div class="bottombuttondiv">
 					<input type="button" id="no6back" class="back" value="뒤로가기" onclick="back('no6','no5')">
-					<input type="submit" id="no6next" class="next" value="작성완료">
+					<input type="submit" id="no6next" class="next" value="작성완료" onclick="end()">
 				</div>
 			</div>
 		</div>

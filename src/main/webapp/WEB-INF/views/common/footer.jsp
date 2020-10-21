@@ -12,11 +12,13 @@
 		<li><a href="${path}/conditions" >이용약관</a></li>
 		<li><a href="${path}/PI" class="colorPoint04" >개인정보 처리방침</a></li>
 		<li><a href="${path}/OI">정보공개</a></li>
-		<li><a href="/" data-layer="layerEmail" class="layerBtn">정보무단수집거부공개</a></li>
+		<!-- <li><a href="/" data-layer="layerEmail" class="layerBtn">정보무단수집거부공개</a></li> -->
 		<!-- <li><a href="/" data-layer="layerDown" class="layerBtn">뷰어다운로드</a></li> -->
 		<!-- <li><a href="//nrefer.snuh.org" target="_blank">진료협력센터</a></li> -->
+		
 	</ul>
 	<div class="footerInfo">
+	
 		<div class="innerWrap">
 			<address class="clearFix">
 				<p>주소 : 03080 서울특별시 종로구 대학로 101(연건동 28)</p>
@@ -37,9 +39,11 @@
 			<ul>
 				<li><p class="copyright">COPYRIGHT 2010 SEOUL NATIONAL
 						UNIVERSITY HOSPITAL. ALL RIGHTS RESERVED</p></li>
+						
 			</ul>
 		</div>
 	</div>
+	
 </footer>
 <script src="${path_resources_asset}feSeries.min.js"></script>
 <script src="${path_resources_asset}feCommon.min.js"></script> 

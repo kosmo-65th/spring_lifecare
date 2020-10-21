@@ -16,11 +16,18 @@ public class MyDAOImpl implements MyDAO {
 	@Autowired
 	SqlSession sqlSession;
 	
-	//게시글 갯수 구하기
+	//게시글 갯수 구하기(customer)
 	@Override
-	public int getArticleCnt() {
+	public int getArticleCnt(String customer_id) {
 		MyDAO dao = sqlSession.getMapper(MyDAO.class);
-		return dao.getArticleCnt();
+		return dao.getArticleCnt(customer_id);
+	}
+	
+	//게시글 갯수 구하기(admin)
+	@Override
+	public int adminArticleCnt() {
+		MyDAO dao = sqlSession.getMapper(MyDAO.class);
+		return dao.adminArticleCnt();
 	}
 	
 	//게시물 목록 조회
@@ -58,12 +65,6 @@ public class MyDAOImpl implements MyDAO {
 	public int updateContent(BoardVO vo) {
 		return sqlSession.update("com.spring.lifecare.persistence.MyDAO.updateContent", vo);
 	}
-
-	//유저 글쓰기
-	@Override
-	public int newWrite() {
-		return sqlSession.selectOne("com.spring.lifecare.persistence.MyDAO.newWrite");
-	}
 	
 	//글쓰기 처리
 	@Override
@@ -98,22 +99,35 @@ public class MyDAOImpl implements MyDAO {
 	public List<BoardVO> searchBoardList(Map<String, Object> map) {
 		return sqlSession.selectList("com.spring.lifecare.persistence.MyDAO.searchBoardList", map);
 	}
-
+	
 	//admin-회원글 상세조회
 	@Override
-	public BoardVO adminboardcontent(Map<String, Object> map) {
-		return sqlSession.selectOne("com.spring.lifecare.persistence.MyDAO.adminboardcontent", map);
+	public BoardVO adminboardcontent(int board_sortnum) {
+		return sqlSession.selectOne("com.spring.lifecare.persistence.MyDAO.adminboardcontent", board_sortnum);
 	}
-
-	//admin 답변글쓰기
+	
+	//admin-답변글쓰기
 	@Override
-	public int adminboardreply(BoardVO vo) {
-		return sqlSession.update("com.spring.lifecare.persistence.MyDAO.adminboardreply", vo);
+	public int adminboardreply(Map<String, Object> map) {
+		return sqlSession.update("com.spring.lifecare.persistence.MyDAO.adminboardreply", map);
 	}
-
+	
+	//admin-답변글삭제
 	@Override
-	public int adminboardreplydelete(int board_sortnum) {
-		return sqlSession.update("com.spring.lifecare.persistence.MyDAO.adminboardreplydelete", board_sortnum);
+	public int adminboardreplydelete(Map<String, Object> map) {
+		return sqlSession.update("com.spring.lifecare.persistence.MyDAO.adminboardreplydelete", map);
+	}
+	
+	//admin-답변글 수정
+	@Override
+	public int replyupdate(Map<String, Object> map) {
+		return sqlSession.update("com.spring.lifecare.persistence.MyDAO.adminboardreply", map);
+	}
+	
+	// admin-답변여부
+	@Override
+	public int updatere(Map<String, Object> map) {
+		return sqlSession.update("com.spring.lifecare.persistence.MyDAO.adminboardreply", map);
 	}
 	
 	// 진료결과 갯수 구하기
@@ -121,6 +135,12 @@ public class MyDAOImpl implements MyDAO {
 	public int medicalCnt() {
 		MyDAO dao = sqlSession.getMapper(MyDAO.class);
 		return dao.medicalCnt();
+	}
+	
+	// admin-본문 삭제
+	@Override
+	public int boarddelete(int board_sortnum) {
+		return sqlSession.update("com.spring.lifecare.persistence.MyDAO.contentDelete", board_sortnum);
 	}
 	
 	// 진료결과 목록 조회
@@ -166,4 +186,9 @@ public class MyDAOImpl implements MyDAO {
 		MyDAO dao = sqlSession.getMapper(MyDAO.class);
 		return dao.diagnosisprint(map);
 	}
+
+
+
+
+	
 }

@@ -34,14 +34,14 @@
         <div Style="height:50px"></div>
          
          <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Personal Information</h1>
-          <p class="mb-4">Host can see member's personal information below</p>
+          <h1 class="h3 mb-2 text-gray-800">개인정보</h1>
+          <p class="mb-4">관리자는 개인정보를 보실 수 있습니다.</p>
 
            <!-- DataTales Example -->          
         
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">${customer.getCustomer_name()}'s personal information</h6>
+              <h6 class="m-0 font-weight-bold text-primary">${customer.getCustomer_name()}님의 개인정보</h6>
             </div><br>
 
    			 <!-- End of Sidebar -->

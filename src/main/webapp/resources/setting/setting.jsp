@@ -18,7 +18,6 @@
 	<c:set var="drug_Ipath" value="/lifecare/resources/images/pills/" />
 	<c:set var="drug_Cpath" value="/lifecare/resources/css/drug/" />
   
-  
 	<script src="${path_resources}setting/jquery-3.5.1.js"></script>
 	
 	<!-- site sign -->

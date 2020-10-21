@@ -12,7 +12,7 @@
 	});
 </script>
 </head>
-<body>
+<body onresize="parent.resizeTo(850,750)" onload="parent.resizeTo(850,750)" >
 
 	<style type="text/css">
 .tg {

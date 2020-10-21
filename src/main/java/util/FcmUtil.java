@@ -17,7 +17,7 @@ public class FcmUtil {
     public void send_FCM(String tokenId, String title, String content) {
         try {    
             //본인의 json 파일 경로 입력
-            FileInputStream refreshToken = new FileInputStream("D:\\DV65\\TeamPle\\spring_lifecare\\src\\main\\webapp\\resources\\google\\android-project-lifecare-firebase-adminsdk-ie4g5-f65d853a5a.json");
+            FileInputStream refreshToken = new FileInputStream("C:\\Dev65\\springproject\\spring_lifecare\\src\\main\\webapp\\resources\\google\\android-project-lifecare-firebase-adminsdk-ie4g5-f65d853a5a.json");
             
             FirebaseOptions options = new FirebaseOptions.Builder()
                     .setCredentials(GoogleCredentials.fromStream(refreshToken))
