@@ -1,0 +1,13 @@
+tomcat > context.xml에 넣어주기
+
+<Resource auth="Container" 
+	    driverClassName="oracle.jdbc.driver.OracleDriver" 
+	    maxActive="50" 
+	    maxWait="1000" 
+	    name="jdbc/Oracle11g_amazone_LifeCare" 
+	    username="lifecare"
+	    password="lifecare" 
+	    type="javax.sql.DataSource" 
+	    url="jdbc:oracle:thin:@lifecare2.cwlccxqeur6w.us-east-2.rds.amazonaws.com:1521:orcl" >
+
+
