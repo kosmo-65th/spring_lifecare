@@ -8,7 +8,7 @@
 
 # 프로젝트 구성
 
-![Lifecare](readme.assets/Lifecare (1).jpg)
+![Lifecare](readme.assets/LifecareDetail.jpg)
 
 # 빌드 버전
 
