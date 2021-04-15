@@ -36,6 +36,10 @@
 
 ![image-20210416001713092](readme.assets/image-20210416001713092.png)
 
+## :scroll:진료흐름도( 고객 & 의사)
+
+![image-20210416002902789](readme.assets/image-20210416002902789.png)
+
 
 
 # :mag: overview
