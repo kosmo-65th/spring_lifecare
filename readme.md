@@ -44,6 +44,10 @@
 
 ![image-20210416002902789](readme.assets/image-20210416002902789.png)
 
+# :memo: ERD
+
+![image-20210416183555245](readme.assets/image-20210416183555245.png)
+
 
 
 # :mag: overview
